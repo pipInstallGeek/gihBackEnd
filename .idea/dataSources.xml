@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="gih@localhost" uuid="17cab7da-c3d2-4107-b662-28bee119515a">
+    <data-source source="LOCAL" name="PU_SC/Hibernate" uuid="07997a06-cfed-4c67-b0dc-8662b4232065">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>Hibernate
+
+E:/gihBackEnd/src/main/resources/META-INF/persistence.xml</remarks>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://localhost:3306/gih</jdbc-url>
+      <jdbc-url>jdbc:mysql://localhost:3306/Gih</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>
