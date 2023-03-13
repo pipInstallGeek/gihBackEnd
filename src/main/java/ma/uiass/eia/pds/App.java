@@ -37,7 +37,7 @@
 
         IServiceService serviceService = new ServiceService();
 
-
+/*
         Service service = new Service("CD", "Cardiologie");
         Service service1 = new Service("OC", "Oncologie" );
         Service service2 = new Service("GY", "Gynegologie" );
@@ -47,12 +47,7 @@
         serviceService.ajouterService(service1);
         serviceService.ajouterService(service2);
         serviceService.ajouterService(service3);
-
-
-
-
-
-
+*/
 
     }
 }
