@@ -8,13 +8,12 @@ import java.io.Serializable;
 public abstract class Espace implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    protected int id;
+    protected int idEspace;
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdEspace(int id) {
+        this.idEspace = id;
     }
-
-    public int getId() {
-        return id;
+    public int getIdEspace() {
+        return idEspace;
     }
 }

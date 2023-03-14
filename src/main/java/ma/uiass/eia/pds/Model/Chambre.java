@@ -36,8 +36,6 @@ public class Chambre extends Espace implements Serializable {
     @Column(name="TypeChambre", length=50)
     private String typeChambre;
 
-    Espace espace = new Chambre();
-
     public int getIdChambre() {
         return idChambre;
     }

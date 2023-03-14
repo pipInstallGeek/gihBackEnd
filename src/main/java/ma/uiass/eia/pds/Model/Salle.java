@@ -1,4 +1,3 @@
 package ma.uiass.eia.pds.Model;
-
-public class Salle extends Espace {
+public class Salle extends Espace{
 }
