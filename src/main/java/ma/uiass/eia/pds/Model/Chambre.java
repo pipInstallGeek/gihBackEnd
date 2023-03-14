@@ -9,7 +9,7 @@ import java.util.List;
 //import javax.persistence.*;
 @Entity
 @Table(name= "TChambre")
-public class Chambre implements Serializable {
+public class Chambre extends Espace implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idChambre;
@@ -26,7 +26,7 @@ public class Chambre implements Serializable {
 
 
     @OneToMany(mappedBy = "chambre", fetch = FetchType.LAZY )
-    private List<Lit> lits = new ArrayList<>();
+    private final List<Lit> lits = new ArrayList<>();
 
 
 
@@ -35,6 +35,8 @@ public class Chambre implements Serializable {
     }
     @Column(name="TypeChambre", length=50)
     private String typeChambre;
+
+    Espace espace = new Chambre();
 
     public int getIdChambre() {
         return idChambre;
