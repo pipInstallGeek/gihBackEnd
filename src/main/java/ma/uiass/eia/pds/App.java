@@ -36,9 +36,19 @@
         System.out.println("not here");
 
         IServiceService serviceService = new ServiceService();
+        ILitService litService = new LitService();
+        IChambreService chambreService = new ChambreService();
 
-/*
-        Service service = new Service("CD", "Cardiologie");
+        Service service1 = new Service("CD", "Cardiologie");
+        serviceService.ajouterService(service1);
+        Chambre chambre = new Chambre("Num120","etage 1", "double", service1);
+        chambreService.ajouterChambre(chambre);
+        EtatLit etatLit = null;
+        Lit lit = new Lit(EtatLit.INDISPONIBLE);
+        litService.ajouterLit(lit);
+
+
+        /*
         Service service1 = new Service("OC", "Oncologie" );
         Service service2 = new Service("GY", "Gynegologie" );
         Service service3 = new Service("PN", "Pneumologie" );

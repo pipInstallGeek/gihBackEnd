@@ -23,18 +23,18 @@ public class Chambre implements Serializable {
     private String numChambre;
     @Column(name="Etage",length=50)
     private String etage;
+    @Column(name="TypeChambre", length=50)
+    private String typeChambre;
 
 
     @OneToMany(mappedBy = "chambre", fetch = FetchType.LAZY )
-    private List<Lit> lits = new ArrayList<>();
+    private final List<Lit> lits = new ArrayList<>();
 
 
 
     public void setService(Service service) {
         this.service = service;
     }
-    @Column(name="TypeChambre", length=50)
-    private String typeChambre;
 
     public int getIdChambre() {
         return idChambre;
