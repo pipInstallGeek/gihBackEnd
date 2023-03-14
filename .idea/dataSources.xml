@@ -12,5 +12,12 @@ E:/gihBackEnd/src/main/resources/META-INF/persistence.xml</remarks>
       <jdbc-url>jdbc:mysql://localhost:3306/Gih</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
+    <data-source source="LOCAL" name="gih@localhost" uuid="51fab27b-e64f-4f35-b131-ed7fffad356f">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306/gih</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>
