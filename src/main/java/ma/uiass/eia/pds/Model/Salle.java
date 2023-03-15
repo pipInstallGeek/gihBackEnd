@@ -1,5 +1,5 @@
 package ma.uiass.eia.pds.Model;
-<<<<<<< HEAD
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
@@ -29,14 +29,4 @@ public class Salle extends Espace implements Serializable {
 
 
 }
-=======
 
-import jakarta.persistence.*;
-import java.io.Serializable;
-@Entity
-public class Salle extends Espace implements Serializable {
-
-    @Column
-    private String name;
-}
->>>>>>> origin/dev

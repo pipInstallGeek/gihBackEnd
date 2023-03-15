@@ -1,6 +1,6 @@
 package ma.uiass.eia.pds.Model;
 
-<<<<<<< HEAD
+
 import java.io.Serializable;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -42,19 +42,8 @@ public class Espace implements Serializable {
 
 
 }
-=======
-import jakarta.persistence.*;
-
-import java.util.List;
-
-@Entity
-@Table(name = "tespace")
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public abstract class Espace {
-    @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
-    private int idEspace;
 
 
-}
->>>>>>> origin/dev
+
+
+
