@@ -3,7 +3,6 @@ package ma.uiass.eia.pds.Model;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 //import javax.persistence.*;

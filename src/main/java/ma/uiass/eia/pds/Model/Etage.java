@@ -1,5 +1,6 @@
 package ma.uiass.eia.pds.Model;
 
+<<<<<<< HEAD
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
@@ -30,4 +31,7 @@ public class Etage {
     public void setNumEtage(String numEtage) {
         NumEtage = numEtage;
     }
+=======
+public class Etage {
+>>>>>>> origin/dev
 }
