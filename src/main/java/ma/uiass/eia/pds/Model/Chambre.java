@@ -9,10 +9,8 @@ import java.util.List;
 //import javax.persistence.*;
 @Entity
 @Table(name= "TChambre")
-public class Chambre implements Serializable {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idChambre;
+public class Chambre extends Espace implements Serializable {
+
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER)
@@ -34,14 +32,6 @@ public class Chambre implements Serializable {
 
     public void setService(Service service) {
         this.service = service;
-    }
-
-    public int getIdChambre() {
-        return idChambre;
-    }
-
-    public void setIdChambre(int idChambre) {
-        this.idChambre = idChambre;
     }
 
 
