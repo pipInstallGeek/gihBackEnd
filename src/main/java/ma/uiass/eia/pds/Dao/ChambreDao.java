@@ -7,7 +7,6 @@ import ma.uiass.eia.pds.Model.Chambre;
 
 
 import java.util.List;
-
 public class ChambreDao implements IChambreDao {
     private EntityManager entityManager;
     public ChambreDao() {
@@ -28,7 +27,6 @@ public class ChambreDao implements IChambreDao {
             e.printStackTrace();
         }
     }
-
     @Override
     public List<Chambre> getAll() {
         return entityManager.createQuery("from Chambre ", Chambre.class).getResultList();

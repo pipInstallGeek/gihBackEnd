@@ -9,29 +9,39 @@ import java.util.List;
 @Entity
 @Table(name = "Tlit")
 public class Lit implements Serializable {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idLit;
-
     @Column
     @Enumerated(EnumType.STRING)
     private EtatLit etatLit;
 
-    @ManyToOne
-    @JoinColumn(name = "idChambre", referencedColumnName = "idChambre")
-    private Chambre chambre;
+    @Column(name="Etage")
+    private Etage etage;
 
+    @Column(name="Service")
+    private Service service;
+
+    @ManyToOne
+    @JoinColumn(name = "idEspace", referencedColumnName = "idEspace")
+    private Espace espace;
     @ManyToOne
     @JoinColumn(name = "idType", referencedColumnName = "idType") // id de type de lit
     private TypeLit typeLit;
-
-
     @ManyToOne
     @JoinColumn(name = "idMarque", referencedColumnName = "idMarque")
     private Marque marque;
     @OneToMany(mappedBy = "lit")
     private List<Equipement> equipements;
+    public Lit(EtatLit etatLit, Etage etage, Service service, Espace espace, TypeLit typeLit, Marque marque, List<Equipement> equipements) {
+        this.etatLit = etatLit;
+        this.etage = etage;
+        this.service = service;
+        this.espace = espace;
+        this.typeLit = typeLit;
+        this.marque = marque;
+        this.equipements = equipements;
+    }
     public EtatLit getEtatLit() {
         return etatLit;
     }
@@ -46,5 +56,5 @@ public class Lit implements Serializable {
     public Lit(){
     }
 
-   public String toString(){return "Lit numero: "+ this.idLit+ "Etat: " + this.etatLit;}
+   public String toString(){return "Lit numero: "+ this.idLit+ "Etat: " + this.etatLit +"Service:" +this.service+ "Espace:"+this.espace+"TypeLit:"+this.typeLit+"Marque:"+this.marque+"Equipements"+this.equipements;}
 }

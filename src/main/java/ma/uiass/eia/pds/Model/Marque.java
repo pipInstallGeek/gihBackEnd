@@ -3,6 +3,7 @@ package ma.uiass.eia.pds.Model;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -17,7 +18,7 @@ public class Marque implements Serializable {
     private String nomMarque;
 
     @OneToMany(mappedBy = "marque")
-    private List<Lit> lits;
+    private List<Lit> lits=new ArrayList<>();
     public Marque(String code_Marque, String nom_Marque) {
         codeMarque = code_Marque;
         nomMarque = nom_Marque;
