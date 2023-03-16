@@ -12,8 +12,8 @@ import java.util.List;
 
 @Entity
 @Table(name= "TEspace")
-@Inheritance(strategy = InheritanceType.JOINED)
-public class Espace implements Serializable {
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+public abstract class Espace implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idEspace;

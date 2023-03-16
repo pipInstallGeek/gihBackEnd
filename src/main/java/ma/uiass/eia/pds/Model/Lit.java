@@ -19,7 +19,7 @@ public class Lit implements Serializable {
     private EtatLit etatLit;
 
     @ManyToOne
-    @JoinColumn(name = "idChambre", referencedColumnName = "idChambre")
+    @JoinColumn(name = "idEspace", referencedColumnName = "idEspace")
     private Chambre chambre;
 
     @ManyToOne

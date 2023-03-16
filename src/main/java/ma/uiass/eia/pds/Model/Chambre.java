@@ -10,9 +10,11 @@ import java.util.List;
 @Entity
 @Table(name= "TChambre")
 public class Chambre implements Serializable {
-    @Id
+    /*@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idChambre;
+
+     */
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER)
@@ -36,13 +38,15 @@ public class Chambre implements Serializable {
     @Column(name="TypeChambre", length=50)
     private String typeChambre;
 
-    public int getIdChambre() {
+   /* public int getIdChambre() {
         return idChambre;
     }
 
     public void setIdChambre(int idChambre) {
         this.idChambre = idChambre;
     }
+
+    */
 
 
 

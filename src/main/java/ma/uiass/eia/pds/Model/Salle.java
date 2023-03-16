@@ -11,9 +11,11 @@ import java.util.List;
 @Entity
 @Table(name= "TSalle")
 public class Salle extends Espace implements Serializable {
-    @Id
+   /* @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idSalle;
+
+    */
     public Salle(String numEspace,Service service, String typeSalle) {
         super(numEspace,service);
         TypeSalle = typeSalle;
