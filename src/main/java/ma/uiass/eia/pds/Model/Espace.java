@@ -15,16 +15,20 @@ import java.util.List;
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Espace implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.TABLE)
     private int idEspace;
     @Column(name="NumEspace", length=50)
     private String numEspace;
-    @OneToMany(mappedBy = "espace", fetch = FetchType.LAZY )
-    private List<Lit> lits = new ArrayList<>();
+
     @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "idService", referencedColumnName = "idService")
     private Service service;
+
+    public Espace() {
+
+    }
+
     public void setNumEspace(String numEspace) {
         this.numEspace = numEspace;
     }

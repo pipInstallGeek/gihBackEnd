@@ -9,17 +9,14 @@ import java.util.List;
 //import javax.persistence.*;
 @Entity
 @Table(name= "TChambre")
-public class Chambre implements Serializable {
-    /*@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idChambre;
-
-     */
-
+public class Chambre extends Espace implements Serializable {
+    /*
     @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "idService", referencedColumnName = "idService")
     private Service service;
+
+     */
 
     @Column(name="NumChambre", length=50)
     private String numChambre;
@@ -32,9 +29,7 @@ public class Chambre implements Serializable {
 
 
 
-    public void setService(Service service) {
-        this.service = service;
-    }
+
     @Column(name="TypeChambre", length=50)
     private String typeChambre;
 
@@ -62,9 +57,6 @@ public class Chambre implements Serializable {
         this.typeChambre = typeC;
     }
 
-    public Service getService() {
-        return service;
-    }
 
 
     public String getNumChambre() {
@@ -80,14 +72,15 @@ public class Chambre implements Serializable {
     }
 
 
-    public Chambre(String numChambre, String etage, String typeChambre, Service service) {
+    public Chambre(String numChambre, String etage, String typeChambre,String numEspace, Service service) {
+        super(numEspace, service);
         this.numChambre = numChambre;
         this.etage = etage;
         this.typeChambre = typeChambre;
-        this.service = service;
     }
 
     public Chambre() {
+        super();
     }
 
 

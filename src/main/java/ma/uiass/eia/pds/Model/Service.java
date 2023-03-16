@@ -18,7 +18,7 @@ public class Service implements Serializable {
 	private String nomService;
 
 	@OneToMany(mappedBy = "service")
-	private List<Espace> espaces =new ArrayList<>();
+	private List<Espace> espaces;
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "idEtage", referencedColumnName = "idEtage")
 	private Etage etage;
