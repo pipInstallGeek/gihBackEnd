@@ -1,15 +1,15 @@
-
     package ma.uiass.eia.pds;
 
     import com.sun.net.httpserver.HttpServer;
 
     import jakarta.ws.rs.core.UriBuilder;
 
-    import ma.uiass.eia.pds.Model.Chambre;
-    import ma.uiass.eia.pds.Model.Service;
+    import ma.uiass.eia.pds.Dao.IMarqueDao;
+    import ma.uiass.eia.pds.Dao.ITypeLitDao;
+    import ma.uiass.eia.pds.Dao.MarqueDao;
+    import ma.uiass.eia.pds.Dao.TypeLitDao;
+    import ma.uiass.eia.pds.Model.*;
     import ma.uiass.eia.pds.Service.*;
-    import ma.uiass.eia.pds.Model.EtatLit;
-    import ma.uiass.eia.pds.Model.Lit;
 
 
     import org.glassfish.jersey.jackson.internal.jackson.jaxrs.json.JacksonJsonProvider;
@@ -18,7 +18,7 @@
 
     import java.net.*;
     import java.util.ArrayList;
-    import java.util.List;
+    import java.util.Arrays;
 
 
     public class App extends ResourceConfig {
@@ -28,34 +28,68 @@
 
         public static void main(String[] args )
     {
-        System.out.println("here");
+
         URI baseUri = UriBuilder.fromUri("http://localhost/").port(9998).build();
         ResourceConfig config = new ResourceConfig().packages("ma.uiass.eia.pds");
         config.register(JacksonJsonProvider.class);
         HttpServer server = JdkHttpServerFactory.createHttpServer(baseUri, config);
-        System.out.println("not here");
+
+        System.out.println("server launched Successfully ");
 
         IServiceService serviceService = new ServiceService();
         ILitService litService = new LitService();
-        IChambreService chambreService = new ChambreService();
+        IEspaceService chambreService = new ChambreService();
+        IEspaceService salleService = new SalleService();
+        IEtageService etageService = new EtageService();
+        IBatimentService batimentService = new BatimentService();
+        IMarqueService marqueService = new MarqueService();
+        ITypeLitService typeLitService = new TypeLitService();
+
 /*
-        Service service1 = new Service("CD", "Cardiologie");
-        serviceService.ajouterService(service1);
-        Chambre chambre = new Chambre("Num120","etage 1", "double", service1);
-        chambreService.ajouterChambre(chambre);
-        EtatLit etatLit = null;
-        Lit lit = new Lit(EtatLit.INDISPONIBLE);
-        litService.ajouterLit(lit);
+        Batiment batiment = new Batiment("Batiment A");
+        batimentService.ajouter(batiment);
 
-        Service service1 = new Service("OC", "Oncologie" );
-        Service service2 = new Service("GY", "Gynegologie" );
-        Service service3 = new Service("PN", "Pneumologie" );
+        Etage etage = new Etage("Etage 1", batiment);
+        Etage etage1 = new Etage("Etage 2", batiment);
+        Etage etage2 = new Etage("Etage 3", batiment);
 
-        serviceService.ajouterService(service);
-        serviceService.ajouterService(service1);
-        serviceService.ajouterService(service2);
-        serviceService.ajouterService(service3);
-*/
+        etageService.ajouter(etage);
+        etageService.ajouter(etage1);
+        etageService.ajouter(etage2);
+
+
+        Service service1 = new Service("OC", "Oncologie", etage );
+        Service service2 = new Service("GY", "Gynegologie", etage1 );
+        Service service3 = new Service("PN", "Pneumologie", etage2 );
+
+        serviceService.ajouter(service1);
+        serviceService.ajouter(service2);
+        serviceService.ajouter(service3);
+
+        Espace chambre = new Chambre("chambre 10",TypeChambre.SIMPLE,"Espace10", service1 );
+        Espace salle = new Salle("salle2", TypeSalle.OPERATION, service2);
+        chambreService.ajouter(chambre);
+        salleService.ajouter(salle);
+        service1.setEspaces(new ArrayList<Espace>(Arrays.asList(salle, chambre)));
+
+
+        chambreService.ajouter(chambre);
+
+        Marque marque = new Marque("marque1", "Dorssal");
+        marqueService.ajouter(marque);
+
+        TypeLit typeLit = new TypeLit("type Je sais pas ");
+        typeLitService.ajouter(typeLit);
+
+        Lit lit = new Lit(marque, typeLit, EtatLit.BONNNEETAT,chambre);
+
+        litService.ajouter(lit);
+
+ */
+
+
+
+
 
 
 

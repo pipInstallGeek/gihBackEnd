@@ -11,22 +11,25 @@ import java.util.List;
 @Entity
 @Table(name= "TSalle")
 public class Salle extends Espace implements Serializable {
-   /* @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idSalle;
 
-    */
-    public Salle(String numEspace,Service service, String typeSalle) {
-        super(numEspace,service);
-        TypeSalle = typeSalle;
-    }
     @Column(name = "TypeSalle", length = 50)
-    private String TypeSalle;
-    public void setTypeSalle(String typeSalle) {
+    private TypeSalle TypeSalle;
+
+    public void setTypeSalle(TypeSalle typeSalle) {
         TypeSalle = typeSalle;
     }
-    public String getTypeSalle() {
+
+    public TypeSalle getTypeSalle() {
         return TypeSalle;
+    }
+
+    public Salle(String numEspace, TypeSalle typeSalle,Service service) {
+        super(numEspace,service);
+        this.TypeSalle = typeSalle;
+    }
+
+    public Salle() {
+
     }
 
 

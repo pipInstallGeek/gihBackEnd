@@ -1,5 +1,6 @@
 package ma.uiass.eia.pds.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -16,12 +17,17 @@ public class Marque implements Serializable {
     private String codeMarque;
     @Column(length = 40,name="nomMarque")
     private String nomMarque;
-
+    @JsonIgnore
     @OneToMany(mappedBy = "marque")
     private List<Lit> lits=new ArrayList<>();
-    public Marque(String code_Marque, String nom_Marque) {
-        codeMarque = code_Marque;
-        nomMarque = nom_Marque;
+
+
+    public List<Lit> getLits() {
+        return lits;
+    }
+
+    public void setLits(List<Lit> lits) {
+        this.lits = lits;
     }
 
     public int getIdMarque() {
@@ -32,9 +38,6 @@ public class Marque implements Serializable {
         this.idMarque = id_M;
     }
 
-    public Marque(){
-    }
-
     public String getNomMarque() { return nomMarque; }
 
     public void setNomMarque(String nomMarque) { this.nomMarque = nomMarque; }
@@ -43,5 +46,15 @@ public class Marque implements Serializable {
 
     public void setCodeMarque(String codeMarque) { this.codeMarque = codeMarque; }
 
+    public Marque(String code_Marque, String nom_Marque) {
+        codeMarque = code_Marque;
+        nomMarque = nom_Marque;
+    }
+
+    public Marque(){
+    }
+    public String toString(){
+        return this.nomMarque;
+    }
 
 }

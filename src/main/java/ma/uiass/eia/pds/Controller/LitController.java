@@ -2,9 +2,9 @@ package ma.uiass.eia.pds.Controller;
 
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
-import ma.uiass.eia.pds.Model.Lit;
-import ma.uiass.eia.pds.Service.ILitService;
-import ma.uiass.eia.pds.Service.LitService;
+import ma.uiass.eia.pds.Model.*;
+import ma.uiass.eia.pds.Service.*;
+import org.hibernate.annotations.Parameter;
 
 import java.util.List;
 
@@ -12,11 +12,17 @@ import java.util.List;
 public class LitController {
 
     ILitService service = new LitService();
+    IMarqueService marqueService = new MarqueService();
+    ITypeLitService typeLitService = new TypeLitService();
+    IEspaceService salleService = new SalleService();
+    IEspaceService chambreService = new ChambreService();
+
+
     @GET
     @Path("/getlits")
     @Produces(MediaType.APPLICATION_JSON)
     public List<Lit> getLit(){
-        return service.afficherLits();
+        return service.afficherTout();
     }
 
 
@@ -24,6 +30,8 @@ public class LitController {
     @Path("addlit")
     @Consumes(MediaType.APPLICATION_JSON)
     public void addLit(Lit lit){
-        service.ajouterLit(lit);
+        service.ajouter(lit);
     }
+
+
 }

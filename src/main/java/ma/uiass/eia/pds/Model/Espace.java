@@ -24,26 +24,36 @@ public abstract class Espace implements Serializable {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "idService", referencedColumnName = "idService")
     private Service service;
+    @JsonIgnore
+    @OneToMany
+    @JoinColumn(name = "idEspace", referencedColumnName = "idEspace")
+    private List<Lit> lit;
 
-    public Espace() {
+    public int getIdEspace() {
+        return idEspace;
+    }
 
+    public void setIdEspace(int idEspace) {
+        this.idEspace = idEspace;
     }
 
     public void setNumEspace(String numEspace) {
         this.numEspace = numEspace;
     }
+
+    public String getNumEspace() {
+        return numEspace;
+    }
+
     public Espace(String numEspace, Service service) {
         this.numEspace = numEspace;
         this.service = service;
     }
-    public String getNumEspace() {
-        return numEspace;
+    public Espace() {
     }
-    @Enumerated(EnumType.STRING)
-    private TypeChambre typeChambre;
-    @Enumerated(EnumType.STRING)
-    private TypeSalle typeSalle;
-
+    public String toString(){
+        return this.numEspace;
+    }
 
 }
 

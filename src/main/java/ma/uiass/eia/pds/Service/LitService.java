@@ -10,17 +10,17 @@ public class LitService implements ILitService{
     private ILitDao litDao = new LitDao();
 
     @Override
-    public void ajouterLit(Lit lit) {
+    public void ajouter(Lit lit) {
         litDao.add(lit);
     }
 
     @Override
-    public List<Lit> afficherLits() {
+    public List<Lit> afficherTout() {
         return litDao.getAll();
     }
 
     @Override
-    public Lit trouverChambreID(int id) {
+    public Lit trouverId(int id) {
 
         return litDao.getById(id);
     }

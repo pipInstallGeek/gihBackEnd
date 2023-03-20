@@ -7,7 +7,7 @@ import ma.uiass.eia.pds.Model.Chambre;
 
 
 import java.util.List;
-public class ChambreDao implements IChambreDao {
+public class ChambreDao implements IEspaceDao<Chambre> {
     private EntityManager entityManager;
     public ChambreDao() {
         entityManager = HibernateUtil.getEntityManger();

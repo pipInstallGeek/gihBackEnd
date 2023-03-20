@@ -1,5 +1,6 @@
 package ma.uiass.eia.pds.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -14,6 +15,7 @@ public class Equipement implements Serializable{
     private String codeEquipement;
     @Column
     private String nomEquipement;
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "idLit", referencedColumnName = "idLit")
     private Lit lit;

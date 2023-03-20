@@ -14,18 +14,18 @@ public class EquipementService implements IEquipementService{
 
 
     @Override
-    public void ajouterEquipement(Equipement equipement) {
+    public void ajouter(Equipement equipement) {
         equipementDao.add(equipement);
     }
 
     @Override
-    public List<Equipement> afficherEquipements() {
+    public List<Equipement> afficherTout() {
 
         return equipementDao.getAll();
     }
 
     @Override
-    public Equipement trouverChambreId(int id) {
+    public Equipement trouverId(int id) {
 
         return equipementDao.getById(id);
     }

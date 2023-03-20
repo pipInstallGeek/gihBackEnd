@@ -1,6 +1,7 @@
 package ma.uiass.eia.pds.Model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -18,20 +19,47 @@ public class Lit implements Serializable {
     @Enumerated(EnumType.STRING)
     private EtatLit etatLit;
 
+    @Column
+    private Boolean occupe;
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "idEspace", referencedColumnName = "idEspace")
     private Espace espace;
-
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "idType", referencedColumnName = "idType") // id de type de lit
     private TypeLit typeLit;
 
-
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "idMarque", referencedColumnName = "idMarque")
     private Marque marque;
     @OneToMany(mappedBy = "lit")
     private List<Equipement> equipements;
+
+    public int getIdLit() {
+        return idLit;
+    }
+
+    public void setIdLit(int idLit) {
+        this.idLit = idLit;
+    }
+
+    public Boolean getOccupe() {
+        return occupe;
+    }
+
+    public void setOccupe(Boolean occupe) {
+        this.occupe = occupe;
+    }
+
+    public List<Equipement> getEquipements() {
+        return equipements;
+    }
+
+    public void setEquipements(List<Equipement> equipements) {
+        this.equipements = equipements;
+    }
 
     public EtatLit getEtatLit() {
         return etatLit;
