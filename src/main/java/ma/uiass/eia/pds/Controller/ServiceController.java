@@ -17,7 +17,7 @@ public class  ServiceController {
     public List<Service> getServices(){return serviceService.afficherTout();}
 
     @POST
-    @Path("/addService")
+    @Path("/addservice")
     @Consumes(MediaType.APPLICATION_JSON)
     public void addService(Service service){
         serviceService.ajouter(service);

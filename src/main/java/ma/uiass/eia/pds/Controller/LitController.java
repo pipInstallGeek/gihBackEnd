@@ -27,11 +27,14 @@ public class LitController {
 
 
     @POST
-    @Path("addlit")
+    @Path("/addlit")
     @Consumes(MediaType.APPLICATION_JSON)
     public void addLit(Lit lit){
         service.ajouter(lit);
     }
+
+
+
 
 
 }

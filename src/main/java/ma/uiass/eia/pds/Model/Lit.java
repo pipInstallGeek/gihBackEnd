@@ -93,11 +93,12 @@ public class Lit implements Serializable {
         this.espace = espace;
     }
 
-    public Lit(Marque marque, TypeLit typeLit, EtatLit etatLit, Espace espace) {
+    public Lit(Marque marque, TypeLit typeLit, Boolean occupe, EtatLit etatLit, Espace espace) {
         setMarque(marque);
         setTypeLit(typeLit);
         setEtatLit(etatLit);
         setEspace(espace);
+        setOccupe(occupe);
     }
     public Lit(){
     }
