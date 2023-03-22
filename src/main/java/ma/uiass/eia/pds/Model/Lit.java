@@ -25,10 +25,28 @@ public class Lit implements Serializable {
     @ManyToOne
     @JoinColumn(name = "idEspace", referencedColumnName = "idEspace")
     private Espace espace;
+
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "idCommande", referencedColumnName = "idCommande")
+    private Commande commande;
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "idReservation", referencedColumnName = "idReservation")
+    private Reservation reservation;
     @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "idType", referencedColumnName = "idType") // id de type de lit
     private TypeLit typeLit;
+
+    public Lit(EtatLit etatLit, Boolean occupe, Espace espace,  TypeLit typeLit, Marque marque) {
+        this.etatLit = etatLit;
+        this.occupe = occupe;
+        this.espace = espace;
+        this.typeLit = typeLit;
+        this.marque = marque;
+
+    }
 
     @JsonIgnore
     @ManyToOne
@@ -73,6 +91,14 @@ public class Lit implements Serializable {
         return typeLit;
     }
 
+    public Reservation getReservation() {
+        return reservation;
+    }
+
+    public void setReservation(Reservation reservation) {
+        this.reservation = reservation;
+    }
+
     public void setTypeLit(TypeLit typeLit) {
         this.typeLit = typeLit;
     }
@@ -93,15 +119,30 @@ public class Lit implements Serializable {
         this.espace = espace;
     }
 
-    public Lit(Marque marque, TypeLit typeLit, Boolean occupe, EtatLit etatLit, Espace espace) {
-        setMarque(marque);
-        setTypeLit(typeLit);
-        setEtatLit(etatLit);
-        setEspace(espace);
-        setOccupe(occupe);
-    }
+
     public Lit(){
     }
 
-   public String toString(){return "Lit numero: "+ this.idLit+ "Etat: " + this.etatLit;}
+    public Lit(EtatLit etatLit, Boolean occupe, Espace espace, Reservation reservation, TypeLit typeLit, Marque marque) {
+        this.etatLit = etatLit;
+        this.occupe = occupe;
+        this.espace = espace;
+        this.reservation = reservation;
+        this.typeLit = typeLit;
+        this.marque = marque;
+    }
+
+    public Lit(int idLit, EtatLit etatLit, Boolean occupe, Espace espace, Commande commande, Reservation reservation, TypeLit typeLit, Marque marque, List<Equipement> equipements) {
+        this.idLit = idLit;
+        this.etatLit = etatLit;
+        this.occupe = occupe;
+        this.espace = espace;
+        this.commande = commande;
+        this.reservation = reservation;
+        this.typeLit = typeLit;
+        this.marque = marque;
+        this.equipements = equipements;
+    }
+
+    public String toString(){return "Lit numero: "+ this.idLit+ "Etat: " + this.etatLit;}
 }

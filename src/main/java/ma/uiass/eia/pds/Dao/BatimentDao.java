@@ -36,4 +36,5 @@ public class BatimentDao implements IBatimentDao{
     public Batiment getById(int id) {
         return entityManager.find(Batiment.class, id);
     }
+
 }

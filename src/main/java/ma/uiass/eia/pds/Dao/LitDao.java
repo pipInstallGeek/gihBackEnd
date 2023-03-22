@@ -2,8 +2,12 @@ package ma.uiass.eia.pds.Dao;
 
 import jakarta.persistence.*;
 import ma.uiass.eia.pds.HibernateUtility.HibernateUtil;
+import ma.uiass.eia.pds.Model.Espace;
+import ma.uiass.eia.pds.Model.EtatLit;
 import ma.uiass.eia.pds.Model.Lit;
+import ma.uiass.eia.pds.Model.Reservation;
 
+import java.util.Date;
 import java.util.List;
 
 public class LitDao implements ILitDao{
@@ -40,5 +44,24 @@ public class LitDao implements ILitDao{
             return null;
         }
         return lit;
+    }
+    @Override
+    public void update(Lit l, EtatLit etatLit, boolean occupe, Espace espace) {
+        EntityTransaction et = entityManager.getTransaction();;
+        l.setEtatLit(etatLit);
+        l.setOccupe(occupe);
+        l.setEspace(espace);
+        try {
+            if (!et.isActive()) {
+                et.begin();
+            }
+            entityManager.merge(l);
+            et.commit();
+        }catch(Exception e){
+            if (et != null) {
+                et.rollback();
+            }
+            e.printStackTrace();
+        }
     }
 }
