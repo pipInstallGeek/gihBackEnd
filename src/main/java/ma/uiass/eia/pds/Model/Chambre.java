@@ -50,11 +50,4 @@ public class Chambre extends Espace implements Serializable {
     public Chambre() {
         super();
     }
-
-
-
-
-
-
-
 }

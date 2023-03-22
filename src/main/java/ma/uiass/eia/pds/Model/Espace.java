@@ -27,7 +27,7 @@ public abstract class Espace implements Serializable {
     @JsonIgnore
     @OneToMany
     @JoinColumn(name = "idEspace", referencedColumnName = "idEspace")
-    private List<Lit> lit;
+    public List<Lit> lit;
 
     public int getIdEspace() {
         return idEspace;
