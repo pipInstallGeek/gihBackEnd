@@ -28,10 +28,6 @@ public class Salle extends Espace implements Serializable {
         this.TypeSalle = typeSalle;
     }
 
-    public Salle() {
-
-    }
-
-
+    public Salle() {}
 }
 

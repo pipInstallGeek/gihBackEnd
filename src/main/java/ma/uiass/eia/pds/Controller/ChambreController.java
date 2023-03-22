@@ -3,6 +3,7 @@ package ma.uiass.eia.pds.Controller;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import ma.uiass.eia.pds.Model.Chambre;
+import ma.uiass.eia.pds.Model.Lit;
 import ma.uiass.eia.pds.Service.ChambreService;
 import ma.uiass.eia.pds.Service.IEspaceService;
 
@@ -25,4 +26,9 @@ public class ChambreController {
     public void addChambre(Chambre chambre){
         service.ajouter(chambre);
     }
+
+    @DELETE
+    @Path("/removelitC")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public void removelitC(Lit l){service.retirerLit(l);}
 }
