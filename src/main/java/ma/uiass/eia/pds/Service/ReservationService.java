@@ -11,13 +11,13 @@ public class ReservationService  implements IReservationService{
     IReservationDao reservationDao = new ReservationDao();
     @Override
     public void ajouter(Reservation reservation) {
+        //reservation.getLit().setReservation(reservation);
         reservationDao.add(reservation);
     }
     @Override
     public List<Reservation> afficherTout() {
         return reservationDao.getAll();
     }
-
     @Override
     public Reservation trouverId(int id) {
         return reservationDao.getById(id);

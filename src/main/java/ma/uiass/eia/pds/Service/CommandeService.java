@@ -14,7 +14,8 @@ public class CommandeService implements ICommandeService{
     @Override
     public void modifier(Commande commande, Date dlc,boolean confirmation) {commandeDao.update(commande,dlc,confirmation);}
     @Override
-    public void ajouter(Commande commande) {commandeDao.add(commande);}
+    public void ajouter(Commande commande) {
+        commandeDao.add(commande);}
     @Override
     public List<Commande> afficherTout() {return commandeDao.getAll();}
     @Override

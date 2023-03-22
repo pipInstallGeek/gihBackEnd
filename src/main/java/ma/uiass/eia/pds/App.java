@@ -55,71 +55,61 @@
 
 
                 Batiment batiment = new Batiment("Batiment A");
-               //batimentService.ajouter(batiment);
-
-
+                //batimentService.ajouter(batiment);
 
                 Etage etage = new Etage("Etage 1", batiment);
                 Etage etage1 = new Etage("Etage 2", batiment);
                 Etage etage2 = new Etage("Etage 3", batiment);
-
-           /*etageService.ajouter(etage);
+                /*etageService.ajouter(etage);
                 etageService.ajouter(etage1);
                 etageService.ajouter(etage2);*/
 
                 Service service1 = new Service("OC", "Oncologie", etage );
                 Service service2 = new Service("GY", "Gynegologie", etage1 );
                 Service service3 = new Service("PN", "Pneumologie", etage2 );
-
                 /*serviceService.ajouter(service1);
                 serviceService.ajouter(service2);
                 serviceService.ajouter(service3);*/
 
                 Espace chambre = new Chambre("chambre 10",TypeChambre.SIMPLE,"Espace10", service1 );
                 Espace salle = new Salle("salle2", TypeSalle.OPERATION, service2);
-              // chambreService.ajouter(chambre);
-              // salleService.ajouter(salle);
-              service1.setEspaces(new ArrayList<Espace>(Arrays.asList(salle, chambre)));
+                /*chambreService.ajouter(chambre);
+                salleService.ajouter(salle);
+                service1.setEspaces(new ArrayList<Espace>(Arrays.asList(salle, chambre)));*/
 
 
-               //chambreService.ajouter(chambre);
+                //chambreService.ajouter(chambre);
 
                 Marque marque = new Marque("marque1", "Dorssal");
-              // marqueService.ajouter(marque);
+                //marqueService.ajouter(marque);
 
                 TypeLit typeLit = new TypeLit("type Je sais pas ");
-               typeLitService.ajouter(typeLit);
+                typeLitService.ajouter(typeLit);
                 LocalDate localDate2 = LocalDate.of(2023, 12, 13);
                 LocalDateTime localDateTime2 = localDate2.atStartOfDay();
                 Date date2 = Date.from(localDateTime2.atZone(ZoneId.systemDefault()).toInstant());
                 LocalDate localDate3 = LocalDate.of(2020, 12, 13);
                 LocalDateTime localDateTime3 = localDate2.atStartOfDay();
                 Date date3 = Date.from(localDateTime2.atZone(ZoneId.systemDefault()).toInstant());
-                Reservation reser1=new Reservation("reser2","patient2", date3,date2,false);
-                //reservationService.ajouter(reser1);
 
-                Lit lit = new Lit(EtatLit.BONNNEETAT,true,chambre,reser1,typeLit,marque);
-                Lit lit1 = new Lit(EtatLit.BONNNEETAT,true,chambre,reser1,typeLit,marque);
+                Lit lit = new Lit(EtatLit.BONNNEETAT,true,chambre,typeLit,marque);
+                Lit lit1 = new Lit(EtatLit.BONNNEETAT,false,chambre,typeLit,marque);
+               /* litService.ajouter(lit);
+                litService.ajouter(lit1);*/
 
-
-               //litService.ajouter(lit);
-
-
-                //litService.ajouter(lit1);
                 LocalDate localDate = LocalDate.of(2022, 12, 13);
                 LocalDateTime localDateTime = localDate.atStartOfDay();
                 Date date = Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
 
+                Reservation  reser1=new Reservation("reser1", date2, Calendar.getInstance().getTime(),false,lit);
+               // reservationService.ajouter(reser1);
+                Reservation  reser2=new Reservation("reser2", date, Calendar.getInstance().getTime(),false,lit);
 
-               Reservation  reser2=new Reservation(1,"reser2","patient2", date, Calendar.getInstance().getTime(),false,Arrays.asList(lit1,lit));
 
-                //System.out.println(reservationService.afficheHistorique("patient2"));
-
-              //reser2.setDateFin(LocalDate.of(2012, Month.MARCH,5));
-              //reser2.setEstAnnulée(true);
                 LocalDate localDate1 = LocalDate.of(2023, 2, 13);
                 LocalDateTime localDateTime1 = localDate.atStartOfDay();
                 Date date1 = Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
+
                 //reservationService.modifier(reser2,Calendar.getInstance().getTime(),true);
                 System.out.println(reservationService.trouverId(3));
 
@@ -136,12 +126,13 @@
                 LocalDateTime localDateTime15 = localDate10.atStartOfDay();
                 Date date15 = Date.from(localDateTime5.atZone(ZoneId.systemDefault()).toInstant());
 
-                Commande commande1 = new Commande(1,"a230",15,date5,date10,true,Arrays.asList(lit1,lit));
+               // Commande commande1 = new Commande("a230",15,date5,date10,true,Arrays.asList(lit1,lit));
                 //commandeService.ajouter(commande1);
-                System.out.println(commandeService.afficherTout());
+               // System.out.println(commandeService.afficherTout());
                 //commandeService.modifier(commande1,date15,false);
-                System.out.println(commandeService.afficherTout());
-                litService.modifier(lit1,EtatLit.DEFECTUEUSE,false,salle);
+                //System.out.println(commandeService.afficherTout());
+                //litService.modifier(lit1,EtatLit.DEFECTUEUSE,false,salle);
+                reservationService.modifier(reser1,date15,true);
 
 
 

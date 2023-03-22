@@ -1,13 +1,12 @@
 package ma.uiass.eia.pds.Model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
 
 import java.io.Serializable;
-import java.time.LocalDate;
-import java.util.ArrayList;
+
 import java.util.Date;
-import java.util.List;
+
 
 @Entity
 @Table(name= "TReservation")
@@ -26,9 +25,9 @@ public class Reservation implements Serializable {
     private Date dateFin;
     @Column
     private Boolean estAnnulée;
-    @JsonIgnore
-    @OneToMany(mappedBy = "reservation", fetch = FetchType.LAZY )
-    private List<Lit> lits = new ArrayList<>();
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "idLit")
+    private Lit lit;
     public String getNumReservation() {
         return numReservation;
     }
@@ -71,25 +70,26 @@ public class Reservation implements Serializable {
         return idReservation;
     }
 
-    public Reservation(int idReservation, String numReservation,  Date dateDébut, Date dateFin, Boolean estAnnulée, Lit lit) {
-        this.idReservation = idReservation;
+
+    public Reservation(String numReservation, Date dateDébut, Date dateFin, Boolean estAnnulée,Lit lit) {
         this.numReservation = numReservation;
         this.dateDébut = dateDébut;
         this.dateFin = dateFin;
         this.estAnnulée = estAnnulée;
-        this.lit = lit;
+        this.lit=lit;
     }
-    public Reservation(String numReservation, Date dateDébut, Date dateFin, Boolean estAnnulée) {
-        this.numReservation = numReservation;
-        this.dateDébut = dateDébut;
-        this.dateFin = dateFin;
-        this.estAnnulée = estAnnulée;
+    public Lit getLit() {
+        return lit;
+    }
+
+    public void setLit(Lit lit) {
+        this.lit = lit;
     }
     public void setIdReservation(int idReservation) {
         this.idReservation = idReservation;
     }
     public  Reservation(){}
     public String toString(){
-        return this.idReservation + " "+this.numReservation+" "+" "+this.dateDébut+" "+this.dateFin+" "+this.estAnnulée+" "+this.lits;
+        return this.idReservation + " "+this.numReservation+" "+" "+this.dateDébut+" "+this.dateFin+" "+this.estAnnulée+" "+this.lit;
     }
 }

@@ -35,16 +35,7 @@ public class LitController {
         service.ajouter(lit);
     }
 
-    @Path("/modifierlit")
-    @Consumes(MediaType.APPLICATION_JSON)
-    public Response modifierLit(@QueryParam("idLit") int idLit, @QueryParam("etatLit") EtatLit etatLit, @QueryParam("occupe") boolean occupe, @QueryParam("espace") Espace espace){
-        Lit litToUpdate = service.trouverId(idLit);
-        litToUpdate.setEtatLit(etatLit);
-        litToUpdate.setOccupe(occupe);
-        litToUpdate.setEspace(espace);
-        service.modifier(litToUpdate, etatLit, occupe,espace);
-        return Response.ok().build();
-    }
+
 
 
 

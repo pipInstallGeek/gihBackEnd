@@ -8,6 +8,5 @@ import ma.uiass.eia.pds.Model.Reservation;
 import java.util.Date;
 
 public interface ILitDao extends IDao<Lit> {
-    default void update(Lit l, EtatLit etatLit, boolean occupe, Espace espace) {
-    }
+
 }

@@ -25,6 +25,5 @@ public class LitService implements ILitService{
     public Lit trouverId(int id) {return litDao.getById(id);}
 
 
-    @Override
-    public void modifier(Lit l, EtatLit etatLit, boolean occupe, Espace espace) {litDao.update(l,etatLit,occupe,espace);}
+
 }

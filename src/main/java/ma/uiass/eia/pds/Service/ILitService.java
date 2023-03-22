@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface ILitService extends IService<Lit>{
 
-    void modifier(Lit l, EtatLit etatLit, boolean occupe, Espace espace);
+
 
 
 }
