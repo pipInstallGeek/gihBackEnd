@@ -37,27 +37,6 @@ public class ReservationDao implements IReservationDao{
     public Reservation getById(int id) {
         return entityManager.find(Reservation.class, id);
     }
-
-   /* @Override
-    public List<Reservation> afficheHistorique(String numPatient) {
-        return entityManager.createQuery("select r from Reservation r where r.numPatient = :numPatient")
-                .setParameter("numPatient", numPatient)
-                .getResultList();
-    }*/
-    /* public void annulerReservation(Reservation reservation) {
-         EntityTransaction transaction = entityManager.getTransaction();
-         try {
-             transaction.begin();
-             reservation.setEstAnnulée(true);
-             entityManager.merge(reservation);
-             transaction.commit();
-         } catch (Exception e) {
-             if (transaction != null) {
-                 transaction.rollback();
-             }
-             e.printStackTrace();
-         }
-     }*/
     public void update(Reservation s, Date dateFin, boolean estannulée) {
         EntityTransaction et = entityManager.getTransaction();;
         s.setDateFin(dateFin);

@@ -6,34 +6,33 @@ import jakarta.persistence.*;
 
 import java.io.Serializable;
 import java.util.List;
-
 @Entity
 @Table(name = "Tlit")
 public class Lit implements Serializable {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idLit;
 
+    public void setCommande(Commande commande) {
+        this.commande = commande;
+    }
+
     @Column
     @Enumerated(EnumType.STRING)
     private EtatLit etatLit;
-
     @Column
     private Boolean occupe;
     @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "idEspace", referencedColumnName = "idEspace")
     private Espace espace;
-
     @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "idCommande", referencedColumnName = "idCommande")
     private Commande commande;
-    @JsonIgnore
-    @ManyToOne
-    @JoinColumn(name = "idReservation", referencedColumnName = "idReservation")
-    private Reservation reservation;
+   /*@OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "idReservation")
+    private Reservation reservation;*/
     @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "idType", referencedColumnName = "idType") // id de type de lit
@@ -45,9 +44,7 @@ public class Lit implements Serializable {
         this.espace = espace;
         this.typeLit = typeLit;
         this.marque = marque;
-
     }
-
     @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "idMarque", referencedColumnName = "idMarque")
@@ -91,13 +88,13 @@ public class Lit implements Serializable {
         return typeLit;
     }
 
-    public Reservation getReservation() {
+   /*public Reservation getReservation() {
         return reservation;
-    }
+    }*/
 
-    public void setReservation(Reservation reservation) {
+    /*public void setReservation(Reservation reservation) {
         this.reservation = reservation;
-    }
+    }*/
 
     public void setTypeLit(TypeLit typeLit) {
         this.typeLit = typeLit;
@@ -118,31 +115,21 @@ public class Lit implements Serializable {
     public void setEspace(Espace espace) {
         this.espace = espace;
     }
-
-
     public Lit(){
     }
 
-    public Lit(EtatLit etatLit, Boolean occupe, Espace espace, Reservation reservation, TypeLit typeLit, Marque marque) {
-        this.etatLit = etatLit;
-        this.occupe = occupe;
-        this.espace = espace;
-        this.reservation = reservation;
-        this.typeLit = typeLit;
-        this.marque = marque;
-    }
 
-    public Lit(int idLit, EtatLit etatLit, Boolean occupe, Espace espace, Commande commande, Reservation reservation, TypeLit typeLit, Marque marque, List<Equipement> equipements) {
+    public Lit(int idLit, EtatLit etatLit, Boolean occupe, Espace espace, Commande commande,  TypeLit typeLit, Marque marque, List<Equipement> equipements) {
         this.idLit = idLit;
         this.etatLit = etatLit;
         this.occupe = occupe;
         this.espace = espace;
         this.commande = commande;
-        this.reservation = reservation;
         this.typeLit = typeLit;
         this.marque = marque;
         this.equipements = equipements;
     }
 
     public String toString(){return "Lit numero: "+ this.idLit+ "Etat: " + this.etatLit;}
+
 }

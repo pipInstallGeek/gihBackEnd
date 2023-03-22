@@ -45,23 +45,6 @@ public class LitDao implements ILitDao{
         }
         return lit;
     }
-    @Override
-    public void update(Lit l, EtatLit etatLit, boolean occupe, Espace espace) {
-        EntityTransaction et = entityManager.getTransaction();;
-        l.setEtatLit(etatLit);
-        l.setOccupe(occupe);
-        l.setEspace(espace);
-        try {
-            if (!et.isActive()) {
-                et.begin();
-            }
-            entityManager.merge(l);
-            et.commit();
-        }catch(Exception e){
-            if (et != null) {
-                et.rollback();
-            }
-            e.printStackTrace();
-        }
-    }
+
+
 }
