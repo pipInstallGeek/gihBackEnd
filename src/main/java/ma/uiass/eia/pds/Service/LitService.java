@@ -2,6 +2,8 @@ package ma.uiass.eia.pds.Service;
 
 import ma.uiass.eia.pds.Dao.ILitDao;
 import ma.uiass.eia.pds.Dao.LitDao;
+import ma.uiass.eia.pds.Model.Espace;
+import ma.uiass.eia.pds.Model.EtatLit;
 import ma.uiass.eia.pds.Model.Lit;
 
 import java.util.List;
@@ -20,8 +22,9 @@ public class LitService implements ILitService{
     }
 
     @Override
-    public Lit trouverId(int id) {
+    public Lit trouverId(int id) {return litDao.getById(id);}
 
-        return litDao.getById(id);
-    }
+
+    @Override
+    public void modifier(Lit l, EtatLit etatLit, boolean occupe, Espace espace) {litDao.update(l,etatLit,occupe,espace);}
 }
