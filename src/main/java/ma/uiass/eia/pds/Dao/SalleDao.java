@@ -40,17 +40,6 @@ public class SalleDao implements IEspaceDao<Salle> {
 
     @Override
     public void remove(Lit l) {
-        EntityTransaction transaction = entityManager.getTransaction();
 
-        try {
-            transaction.begin();
-            entityManager.remove(l);
-            transaction.commit();
-        } catch (RuntimeException e) {
-            if (transaction != null){
-                transaction.rollback();
-            }
-            e.printStackTrace();
-        }
     }
 }

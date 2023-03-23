@@ -17,6 +17,7 @@ public class ChambreDao implements IEspaceDao<Chambre> {
     @Override
     public void add(Chambre chambre) {
         EntityTransaction transaction = entityManager.getTransaction();
+
         try {
             transaction.begin();
             entityManager.persist(chambre);
@@ -53,18 +54,6 @@ public class ChambreDao implements IEspaceDao<Chambre> {
 
     @Override
     public void remove(Lit l) {
-        EntityTransaction transaction = entityManager.getTransaction();
-
-        try {
-            transaction.begin();
-            entityManager.remove(l);
-            transaction.commit();
-        } catch (RuntimeException e) {
-            if (transaction != null){
-                transaction.rollback();
-            }
-            e.printStackTrace();
-        }
 
     }
 }
