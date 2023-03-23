@@ -13,49 +13,37 @@ public class Lit implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idLit;
 
-    public void setCommande(Commande commande) {
-        this.commande = commande;
-    }
-
     @Column
     @Enumerated(EnumType.STRING)
     private EtatLit etatLit;
+
     @Column
     private Boolean occupe;
+
     @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "idEspace", referencedColumnName = "idEspace")
     private Espace espace;
+
     @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "idCommande", referencedColumnName = "idCommande")
     private Commande commande;
-   /*@OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "idReservation")
-    private Reservation reservation;*/
     @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "idType", referencedColumnName = "idType") // id de type de lit
     private TypeLit typeLit;
 
-    public Lit(EtatLit etatLit, Boolean occupe, Espace espace,  TypeLit typeLit, Marque marque) {
-        this.etatLit = etatLit;
-        this.occupe = occupe;
-        this.espace = espace;
-        this.typeLit = typeLit;
-        this.marque = marque;
-    }
     @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "idMarque", referencedColumnName = "idMarque")
     private Marque marque;
+
     @OneToMany(mappedBy = "lit")
     private List<Equipement> equipements;
-
     public int getIdLit() {
         return idLit;
     }
-
     public void setIdLit(int idLit) {
         this.idLit = idLit;
     }
@@ -67,6 +55,7 @@ public class Lit implements Serializable {
     public void setOccupe(Boolean occupe) {
         this.occupe = occupe;
     }
+
 
     public List<Equipement> getEquipements() {
         return equipements;
@@ -88,14 +77,6 @@ public class Lit implements Serializable {
         return typeLit;
     }
 
-   /*public Reservation getReservation() {
-        return reservation;
-    }*/
-
-    /*public void setReservation(Reservation reservation) {
-        this.reservation = reservation;
-    }*/
-
     public void setTypeLit(TypeLit typeLit) {
         this.typeLit = typeLit;
     }
@@ -115,19 +96,18 @@ public class Lit implements Serializable {
     public void setEspace(Espace espace) {
         this.espace = espace;
     }
+
     public Lit(){
     }
 
 
-    public Lit(int idLit, EtatLit etatLit, Boolean occupe, Espace espace, Commande commande,  TypeLit typeLit, Marque marque, List<Equipement> equipements) {
-        this.idLit = idLit;
+
+    public Lit(EtatLit etatLit, Boolean occupe, Espace espace,  TypeLit typeLit, Marque marque) {
         this.etatLit = etatLit;
         this.occupe = occupe;
         this.espace = espace;
-        this.commande = commande;
         this.typeLit = typeLit;
         this.marque = marque;
-        this.equipements = equipements;
     }
 
     public String toString(){return "Lit numero: "+ this.idLit+ "Etat: " + this.etatLit;}

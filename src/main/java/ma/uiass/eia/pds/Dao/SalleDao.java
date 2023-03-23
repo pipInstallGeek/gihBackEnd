@@ -3,6 +3,7 @@ package ma.uiass.eia.pds.Dao;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 import ma.uiass.eia.pds.HibernateUtility.HibernateUtil;
+import ma.uiass.eia.pds.Model.Lit;
 import ma.uiass.eia.pds.Model.Salle;
 
 import java.util.List;
@@ -35,5 +36,10 @@ public class SalleDao implements IEspaceDao<Salle> {
     @Override
     public Salle getById(int id) {
         return entityManager.find(Salle.class, id);
+    }
+
+    @Override
+    public void remove(Lit l) {
+
     }
 }
