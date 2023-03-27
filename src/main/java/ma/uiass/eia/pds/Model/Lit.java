@@ -20,27 +20,28 @@ public class Lit implements Serializable {
     @Column
     private Boolean occupe;
 
-    @JsonIgnore
+
     @ManyToOne
     @JoinColumn(name = "idEspace", referencedColumnName = "idEspace")
     private Espace espace;
 
-    @JsonIgnore
-    @ManyToOne
-    @JoinColumn(name = "idCommande", referencedColumnName = "idCommande")
-    private Commande commande;
-    @JsonIgnore
+
     @ManyToOne
     @JoinColumn(name = "idType", referencedColumnName = "idType") // id de type de lit
     private TypeLit typeLit;
 
-    @JsonIgnore
+
     @ManyToOne
     @JoinColumn(name = "idMarque", referencedColumnName = "idMarque")
     private Marque marque;
 
     @OneToMany(mappedBy = "lit")
     private List<Equipement> equipements;
+
+    @ManyToMany(mappedBy = "lits")
+    private List<Commande> commandes;
+
+
     public int getIdLit() {
         return idLit;
     }
@@ -97,10 +98,9 @@ public class Lit implements Serializable {
         this.espace = espace;
     }
 
+
     public Lit(){
     }
-
-
 
     public Lit(EtatLit etatLit, Boolean occupe, Espace espace,  TypeLit typeLit, Marque marque) {
         this.etatLit = etatLit;

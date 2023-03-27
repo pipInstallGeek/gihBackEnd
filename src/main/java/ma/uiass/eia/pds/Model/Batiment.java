@@ -52,6 +52,7 @@ public class Batiment implements Serializable {
 
     }
 
+
     public String toString(){
         return this.numBatiment;
     }
