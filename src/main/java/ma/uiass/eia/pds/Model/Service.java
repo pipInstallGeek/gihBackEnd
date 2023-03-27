@@ -20,7 +20,7 @@ public class Service implements Serializable {
 	@JsonIgnore
 	@OneToMany(mappedBy = "service")
 	private List<Espace> espaces;
-	@JsonIgnore
+
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "idEtage", referencedColumnName = "idEtage")
 	private Etage etage;

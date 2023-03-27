@@ -4,6 +4,7 @@ package ma.uiass.eia.pds.Model;
 import java.io.Serializable;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -20,14 +21,22 @@ public abstract class Espace implements Serializable {
     @Column(name="NumEspace", length=50)
     private String numEspace;
 
-    @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "idService", referencedColumnName = "idService")
     private Service service;
+
     @JsonIgnore
     @OneToMany
     @JoinColumn(name = "idEspace", referencedColumnName = "idEspace")
     public List<Lit> lit;
+
+    public Service getService() {
+        return service;
+    }
+
+    public void setService(Service service) {
+        this.service = service;
+    }
 
     public int getIdEspace() {
         return idEspace;
@@ -45,12 +54,22 @@ public abstract class Espace implements Serializable {
         return numEspace;
     }
 
+    public List<Lit> getLit() {
+        return lit;
+    }
+    public void setLit(List<Lit> lit) {
+        this.lit = lit;
+    }
+
     public Espace(String numEspace, Service service) {
         this.numEspace = numEspace;
         this.service = service;
     }
+
     public Espace() {
+
     }
+
     public String toString(){
         return this.numEspace;
     }

@@ -8,7 +8,7 @@ import java.util.List;
 
 @Entity
 @Table(name= "TypeLit")
-public class TypeLit implements Serializable {
+public class    TypeLit implements Serializable {
 
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -46,7 +46,7 @@ public class TypeLit implements Serializable {
         }
 
         public TypeLit( String nomTypeLit) {
-                nomTypeLit = nomTypeLit;
+                this.nomTypeLit = nomTypeLit;
         }
 
         public TypeLit(){ }

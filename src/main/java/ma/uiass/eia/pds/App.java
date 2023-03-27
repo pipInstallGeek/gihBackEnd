@@ -42,8 +42,56 @@
                 HttpServer server = JdkHttpServerFactory.createHttpServer(baseUri, config);
                 System.out.println("server launched Successfully ");
 
+                IBatimentService batimentService = new BatimentService();
+                IEtageService etageService = new EtageService();
+                IServiceService serviceService = new ServiceService();
+                IEspaceService espaceService = new ChambreService();
+                ITypeLitService typeLitService = new TypeLitService();
+                IMarqueService marqueService = new MarqueService();
+                ILitService litService = new LitService();
+
+                Batiment batiment = new Batiment("Batiment A");
+                Batiment batiment1 = new Batiment("Batiment B");
+                batimentService.ajouter(batiment1);
+                batimentService.ajouter(batiment);
 
 
+                Etage etage = new Etage("Etage 1", batiment);
+                Etage etage1 = new Etage("Etage 2", batiment);
+                Etage etage4 = new Etage("Etage 3", batiment);
+                Etage etage2 = new Etage("Etage 1", batiment1);
+                Etage etage3 = new Etage("Etage 2", batiment1);
+                etageService.ajouter(etage);
+                etageService.ajouter(etage1);
+                etageService.ajouter(etage2);
+                etageService.ajouter(etage3);
+                etageService.ajouter(etage4);
+
+                Service service = new Service("Car", "Cardiologie", etage);
+                Service service1 = new Service("On", "Oncologie", etage);
+                Service service2 = new Service("Gy", "Gynécologie", etage1);
+                serviceService.ajouter(service);
+                serviceService.ajouter(service1);
+                serviceService.ajouter(service2);
+
+
+
+                Espace chambre = new Chambre("Chambre 10", TypeChambre.SIMPLE,service );
+                Espace chambre1 = new Chambre("Chambre 2", TypeChambre.DOUBLE, service1);
+                espaceService.ajouter(chambre);
+                espaceService.ajouter(chambre1);
+
+                TypeLit typeLit = new TypeLit("Lit electrique");
+                typeLitService.ajouter(typeLit);
+
+                Marque marque = new Marque("K","Kinedorss");
+                marqueService.ajouter(marque);
+
+                Lit lit = new Lit(EtatLit.DEFECTUEUSE, false, (Chambre) chambre1, typeLit, marque);
+                Lit lit1 = new Lit(EtatLit.BONNNEETAT, true, (Chambre) chambre1, typeLit, marque);
+
+                litService.ajouter(lit1);
+                litService.ajouter(lit);
 
 
 
