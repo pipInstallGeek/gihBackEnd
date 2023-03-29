@@ -4,11 +4,8 @@ package ma.uiass.eia.pds.Model;
 import java.io.Serializable;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import jakarta.persistence.*;
 
-import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -18,8 +15,8 @@ public abstract class Espace implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
     private int idEspace;
-    @Column(name="NumEspace", length=50)
-    private String numEspace;
+    @Column(name="codeEspace", length=50)
+    private String codeEspace;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "idService", referencedColumnName = "idService")
@@ -46,12 +43,12 @@ public abstract class Espace implements Serializable {
         this.idEspace = idEspace;
     }
 
-    public void setNumEspace(String numEspace) {
-        this.numEspace = numEspace;
+    public void setCodeEspace(String numEspace) {
+        this.codeEspace = numEspace;
     }
 
-    public String getNumEspace() {
-        return numEspace;
+    public String getCodeEspace() {
+        return codeEspace;
     }
 
     public List<Lit> getLit() {
@@ -61,8 +58,8 @@ public abstract class Espace implements Serializable {
         this.lit = lit;
     }
 
-    public Espace(String numEspace, Service service) {
-        this.numEspace = numEspace;
+    public Espace(Service service) {
+        this.codeEspace = service.getCodeService()+this.getIdEspace();
         this.service = service;
     }
 
@@ -71,7 +68,7 @@ public abstract class Espace implements Serializable {
     }
 
     public String toString(){
-        return this.numEspace;
+        return this.codeEspace;
     }
 
 }

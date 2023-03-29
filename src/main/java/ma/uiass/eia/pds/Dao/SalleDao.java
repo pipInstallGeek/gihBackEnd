@@ -24,6 +24,8 @@ public class SalleDao implements IEspaceDao<Salle> {
         try {
             transaction.begin();
             entityManager.persist(salle);
+            salle.setCodeEspace(salle.getService().getCodeService()+salle.getIdEspace());
+            entityManager.merge(salle);
             transaction.commit();
         }catch (Exception e){
             if (transaction != null){

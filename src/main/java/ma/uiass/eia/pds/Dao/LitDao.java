@@ -27,7 +27,10 @@ public class LitDao implements ILitDao{
         try {
             transaction.begin();
             entityManager.persist(lit);
+            lit.setCodeLit(lit.getEspace().getCodeEspace()+lit.getIdLit());
+            entityManager.merge(lit);
             transaction.commit();
+
         }catch (Exception e){
             if (transaction != null){
                 transaction.rollback();

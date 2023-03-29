@@ -11,15 +11,15 @@ import java.util.List;
 @Table(name= "TEtage")
 
 public class Etage {
-    public String getNumEtage() {
-        return NumEtage;
+    public String getCodeEtage() {
+        return codeEtage;
     }
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idEtage;
 
-    @Column(name="NumEtage", length=50)
-    private String NumEtage;
+    @Column(name="codeEtage", length=50)
+    private String codeEtage;
     @JsonIgnore
     @OneToMany(mappedBy="etage")
     private List<Service> services=new ArrayList<>();
@@ -28,12 +28,12 @@ public class Etage {
     @JoinColumn(name = "idBatiment", referencedColumnName = "idBatiment")
     private Batiment batiment;
 
-    public void setNumEtage(String numEtage) {
-        NumEtage = numEtage;
+    public void setCodeEtage(String codeEtage) {
+        this.codeEtage = codeEtage;
     }
 
-    public Etage(String numEtage, Batiment batiment) {
-        NumEtage = numEtage;
+    public Etage(String codeEtage, Batiment batiment) {
+        this.codeEtage = batiment.getCodeBatiment()+codeEtage;
         this.batiment = batiment;
     }
 
@@ -41,7 +41,7 @@ public class Etage {
 
     }
     public String toString(){
-        return this.NumEtage;
+        return this.codeEtage;
     }
 
 }
