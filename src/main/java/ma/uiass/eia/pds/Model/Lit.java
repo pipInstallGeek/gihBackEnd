@@ -14,6 +14,8 @@ public class Lit implements Serializable {
     private int idLit;
 
     @Column
+    private String codeLit;
+    @Column
     @Enumerated(EnumType.STRING)
     private EtatLit etatLit;
 
@@ -47,6 +49,14 @@ public class Lit implements Serializable {
     }
     public void setIdLit(int idLit) {
         this.idLit = idLit;
+    }
+
+    public String getCodeLit() {
+        return codeLit;
+    }
+
+    public void setCodeLit(String codeLit) {
+        this.codeLit = codeLit;
     }
 
     public Boolean getOccupe() {

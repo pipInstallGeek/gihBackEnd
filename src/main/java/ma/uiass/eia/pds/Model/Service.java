@@ -69,7 +69,7 @@ public class Service implements Serializable {
 
 	public Service(String codeS, String nomService,Etage etage) {
 		setEtage(etage);
-		setCodeService(codeS);
+		setCodeService(etage.getCodeEtage()+codeS);
 		setNomService(nomService);
 	}
 

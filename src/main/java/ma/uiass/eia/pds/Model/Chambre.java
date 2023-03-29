@@ -29,8 +29,8 @@ public class Chambre extends Espace implements Serializable {
     }
 
 
-    public Chambre(String numEspace ,TypeChambre typeChambre, Service service) {
-        super(numEspace, service);
+    public Chambre(TypeChambre typeChambre, Service service) {
+        super(service);
         this.typeChambre = typeChambre;
     }
 
