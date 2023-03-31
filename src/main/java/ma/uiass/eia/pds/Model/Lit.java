@@ -20,7 +20,7 @@ public class Lit implements Serializable {
     private EtatLit etatLit;
 
     @Column
-    private Boolean occupe;
+    private Boolean occupe; 
 
 
     @ManyToOne
