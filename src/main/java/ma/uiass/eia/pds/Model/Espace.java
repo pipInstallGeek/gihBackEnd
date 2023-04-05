@@ -4,6 +4,10 @@ package ma.uiass.eia.pds.Model;
 import java.io.Serializable;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -11,6 +15,12 @@ import java.util.List;
 @Entity
 @Table(name= "TEspace")
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@DiscriminatorColumn(name = "type")
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
+@JsonSubTypes({
+        @JsonSubTypes.Type(value = Chambre.class, name = "chambre"),
+        @JsonSubTypes.Type(value = Salle.class, name = "salle"),
+})
 public abstract class Espace implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)

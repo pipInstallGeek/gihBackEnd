@@ -11,7 +11,7 @@ import java.util.List;
 public interface ILitService extends IService<Lit>{
 
 
-
+    Long countOccupation(boolean occupation);
 
     void retirerLit(Lit l);
 }

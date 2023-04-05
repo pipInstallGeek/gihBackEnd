@@ -37,10 +37,10 @@
 
                 URI baseUri = UriBuilder.fromUri("http://localhost/").port(9998).build();
                 ResourceConfig config = new ResourceConfig().packages("ma.uiass.eia.pds");
-                config.register(JacksonJsonProvider.class);
                 config.register(ReservationController.class);
                 HttpServer server = JdkHttpServerFactory.createHttpServer(baseUri, config);
                 System.out.println("server launched Successfully ");
+/*
 
                 IBatimentService batimentService = new BatimentService();
                 IEtageService etageService = new EtageService();
@@ -94,6 +94,8 @@
                 litService.ajouter(lit);
 
 
+
+ */
 
             }
         }

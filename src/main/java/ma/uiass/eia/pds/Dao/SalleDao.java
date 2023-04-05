@@ -40,8 +40,5 @@ public class SalleDao implements IEspaceDao<Salle> {
         return entityManager.find(Salle.class, id);
     }
 
-    @Override
-    public void remove(Lit l) {
 
-    }
 }

@@ -36,9 +36,11 @@ public class Lit implements Serializable {
     @ManyToOne
     @JoinColumn(name = "idMarque", referencedColumnName = "idMarque")
     private Marque marque;
-
+    @JsonIgnore
     @OneToMany(mappedBy = "lit")
     private List<Equipement> equipements;
+
+    @JsonIgnore
 
     @ManyToMany(mappedBy = "lits")
     private List<Commande> commandes;

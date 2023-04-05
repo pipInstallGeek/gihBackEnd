@@ -18,15 +18,16 @@ public class SalleController {
     @GET
     @Path("/getsalles")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Chambre> getChambres() {
+    public List<Chambre> getChambres(){
         return service.afficherTout();
     }
 
     @POST
     @Path("/addsalle")
     @Consumes(MediaType.APPLICATION_JSON)
-    public void addChambre(Salle salle) {
+    public void addChambre(Salle salle){
         service.ajouter(salle);
     }
+
 
 }
