@@ -25,8 +25,5 @@ public class SalleService implements IEspaceService<Salle> {
         return salleDao.getById(id);
     }
 
-    @Override
-    public void retirerLit(Lit l) {
-        salleDao.remove(l);
-    }
+
 }

@@ -7,6 +7,7 @@ import java.io.Serializable;
 //import javax.persistence.*;
 @Entity
 @Table(name= "TSalle")
+@DiscriminatorValue("salle")
 public class Salle extends Espace implements Serializable {
 
     @Column(name = "TypeSalle", length = 50)
@@ -25,6 +26,8 @@ public class Salle extends Espace implements Serializable {
         this.typeSalle = typeSalle;
     }
 
-    public Salle() {}
+    public Salle() {
+        super();
+    }
 }
 

@@ -29,8 +29,5 @@ public class SalleController {
         service.ajouter(salle);
     }
 
-    @DELETE
-    @Path("/removelitS")
-    @Consumes(MediaType.APPLICATION_JSON)
-    public void removelitS(Lit l){ service.retirerLit(l);}
+
 }

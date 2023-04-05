@@ -25,5 +25,9 @@ public class LitService implements ILitService{
     public Lit trouverId(int id) {return litDao.getById(id);}
 
 
-
+    @Override
+    public Long countOccupation(boolean occupation) {
+        Long mycount = litDao.countOccupation(occupation);
+        return mycount;
+    }
 }

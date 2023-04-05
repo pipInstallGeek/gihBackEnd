@@ -2,12 +2,8 @@ package ma.uiass.eia.pds.Dao;
 
 import jakarta.persistence.*;
 import ma.uiass.eia.pds.HibernateUtility.HibernateUtil;
-import ma.uiass.eia.pds.Model.Espace;
-import ma.uiass.eia.pds.Model.EtatLit;
 import ma.uiass.eia.pds.Model.Lit;
-import ma.uiass.eia.pds.Model.Reservation;
 
-import java.util.Date;
 import java.util.List;
 
 public class LitDao implements ILitDao{
@@ -50,4 +46,11 @@ public class LitDao implements ILitDao{
     }
 
 
+    @Override
+    public Long countOccupation(boolean occupation) {
+        Long mycount = entityManager.createQuery("SELECT count(*) from Lit t where t.occupe = :value ", Long.class)
+                .setParameter("value", occupation)
+                .getSingleResult();
+        return mycount;
+    }
 }

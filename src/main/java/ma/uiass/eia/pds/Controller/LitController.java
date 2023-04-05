@@ -14,10 +14,6 @@ import java.util.List;
 public class LitController {
 
     ILitService service = new LitService();
-    IMarqueService marqueService = new MarqueService();
-    ITypeLitService typeLitService = new TypeLitService();
-    IEspaceService salleService = new SalleService();
-    IEspaceService chambreService = new ChambreService();
 
 
     @GET
@@ -32,14 +28,17 @@ public class LitController {
     @Path("/addlit")
     @Consumes(MediaType.APPLICATION_JSON)
     public void addLit(Lit lit){
+        System.out.println(lit);
         service.ajouter(lit);
     }
 
+    @GET
+    @Path("/count/{occupation}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Long countOccupation(
+     @PathParam("occupation") String occupation){
 
-
-
-
-
-
+        return  service.countOccupation(Boolean.parseBoolean(occupation));
+    }
 
 }

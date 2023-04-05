@@ -27,8 +27,5 @@ public class ChambreController {
         service.ajouter(chambre);
     }
 
-    @DELETE
-    @Path("/removelitC")
-    @Consumes(MediaType.APPLICATION_JSON)
-    public void removelitC(Lit l){service.retirerLit(l);}
+
 }

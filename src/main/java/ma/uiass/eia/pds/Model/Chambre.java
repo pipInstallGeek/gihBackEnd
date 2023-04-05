@@ -9,9 +9,9 @@ import java.util.List;
 //import javax.persistence.*;
 @Entity
 @Table(name= "TChambre")
+@DiscriminatorValue("chambre")
+
 public class Chambre extends Espace implements Serializable {
-
-
 
     @Column(name="TypeChambre", length=50)
     private TypeChambre typeChambre;

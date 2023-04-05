@@ -54,8 +54,5 @@ public class ChambreDao implements IEspaceDao<Chambre> {
     }
 
 
-    @Override
-    public void remove(Lit l) {
 
-    }
 }
