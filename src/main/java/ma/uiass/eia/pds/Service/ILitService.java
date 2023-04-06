@@ -12,6 +12,7 @@ public interface ILitService extends IService<Lit>{
 
 
     Long countOccupation(boolean occupation);
+    void deleteLit(int idLitt);
 
-    void retirerLit(Lit l);
+    void update(int idLit, boolean occupee, int espacecode, EtatLit etatLit);
 }
