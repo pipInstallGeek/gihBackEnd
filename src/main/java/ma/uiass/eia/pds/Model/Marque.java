@@ -21,7 +21,6 @@ public class Marque implements Serializable {
     @OneToMany(mappedBy = "marque")
     private List<Lit> lits=new ArrayList<>();
 
-
     public List<Lit> getLits() {
         return lits;
     }
@@ -47,14 +46,15 @@ public class Marque implements Serializable {
     public void setCodeMarque(String codeMarque) { this.codeMarque = codeMarque; }
 
     public Marque(String code_Marque, String nom_Marque) {
-        codeMarque = code_Marque;
-        nomMarque = nom_Marque;
+        this.codeMarque = code_Marque;
+        this.nomMarque = nom_Marque;
     }
 
     public Marque(){
     }
-    public String toString(){
-        return this.nomMarque;
-    }
 
+    @Override
+    public String toString() {
+        return nomMarque;
+    }
 }

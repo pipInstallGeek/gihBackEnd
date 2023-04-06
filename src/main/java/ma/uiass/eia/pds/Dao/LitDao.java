@@ -48,6 +48,29 @@ public class LitDao implements ILitDao{
         }
         return lit;
     }
+    @Override
+    public void addLitInStock(Lit lit) {
+        EntityTransaction transaction = entityManager.getTransaction();
+        try {
+            transaction.begin();
+            entityManager.persist(lit);
+            lit.setEspace(null);
+            lit.setEtatLit(EtatLit.BONNNEETAT);
+            lit.setOccupe(Boolean.FALSE);
+            entityManager.merge(lit);
+            transaction.commit();
 
+        }catch (Exception e){
+            if (transaction != null){
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }
+    }
+    @Override
+    public List<Lit> getAll2() {
+        return entityManager.createQuery("select r from Lit r where espace=null and occupe=false ", Lit.class).getResultList();
+
+    }
 
 }

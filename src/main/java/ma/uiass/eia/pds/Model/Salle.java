@@ -25,6 +25,8 @@ public class Salle extends Espace implements Serializable {
         this.typeSalle = typeSalle;
     }
 
-    public Salle() {}
+    public Salle() {
+        super();
+    }
 }
 

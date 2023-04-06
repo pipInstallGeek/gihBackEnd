@@ -35,7 +35,23 @@ public class LitController {
         service.ajouter(lit);
     }
 
-
+    @GET
+    @Path("/getstock")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Lit> getStock(){
+        return service.afficherToutStock();
+    }
+   /* @POST
+    @Path("/addlitenstock/{etatLit}/{occupe}/{espace}/{typeLit}/{marque}")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    public void addLitEnStock(@PathParam("etatLit") EtatLit etatLit,
+                              @PathParam("occupe") Boolean occupe,
+                              @PathParam("espace") int idespace,
+                              @PathParam("typeLit") TypeLit typeLit,
+                              @PathParam("marque") int idmarque){
+        service.ajouterlitStock(etatLit,occupe,idespace,typeLit, idmarque);
+    }*/
 
 
 

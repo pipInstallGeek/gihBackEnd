@@ -20,6 +20,11 @@ public class MarqueService implements IMarqueService{
 
     @Override
     public Marque trouverId(int id) {
-        return marqueDao.getById(id);
+        return null;
+    }
+
+    @Override
+    public Marque trouverCode(String codeMarque) {
+        return marqueDao.getByCode(codeMarque);
     }
 }

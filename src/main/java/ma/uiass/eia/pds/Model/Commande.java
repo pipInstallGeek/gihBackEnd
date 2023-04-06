@@ -17,27 +17,58 @@ public class Commande implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idCommande;
-    @Column(name = "NumCommande", length = 50)
+    @Column(name = "numCommande", length = 50)
     private String numCommande;
-    @Column(name = "Quantite", length = 50)
+    @Column(name = "quantite", length = 50)
     private int quantite;
-    @Column(name = "DateCommande", length = 50)
-    private Date dateCommande;
-    @Column(name = "DateLivraison", length = 50)
-    private Date dateLivraison;
+    @Column(name = "dateCommande", length = 50)
+    private String dateCommande;
+    @Column(name = "dateLivraison")
+    private String dateLivraison;
+    /*@OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "idTypelit")
+    private TypeLit typelit;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "idMarque")
+    private Marque marque;*/
+    @Column(name = "typelit", length = 50)
+    private String typelit;
+
+    @Column(name = "marque", length = 50)
+    private String marque;
+
     @Column
-    private Boolean confirmation;
+    @Enumerated(EnumType.STRING)
+    private EtatCommande etat;
 
-    @ManyToMany
-    @JoinTable(name = "detailsCommande", joinColumns = {@JoinColumn(name = "idCommande")}, inverseJoinColumns = {@JoinColumn(name = "idLit")})
-    private List<Lit> lits;
+    public Commande(String numCommande, int quantite, String dateCommande, String dateLivraison, String typelit, String marque, EtatCommande etat) {
+        this.numCommande = numCommande;
+        this.quantite = quantite;
+        this.dateCommande = dateCommande;
+        this.dateLivraison = dateLivraison;
+        this.typelit=typelit;
+        this.marque=marque;
+        this.etat=etat;
+    }
+
+    public EtatCommande getEtat() {
+        return etat;
+    }
+
+    public void setEtat(EtatCommande etat) {
+        this.etat = etat;
+    }
+
+   // public String getNomMarque() {return this.marque.getNomMarque();}
+    //public String getNomTypeLit() {return this.typelit.getNomTypeLit();}
 
 
-    public int getIdReservation() {
+    public int getIdCommande() {
         return idCommande;
     }
 
-    public void setIdReservation(int idCommande) {
+    public void setIdCommande(int idCommande) {
         this.idCommande = idCommande;
     }
 
@@ -57,41 +88,49 @@ public class Commande implements Serializable {
         this.quantite = quantite;
     }
 
-    public Date getDateCommande() {
+    public String getDateCommande() {
         return dateCommande;
     }
 
-    public void setDateCommande(Date dateCommande) {
+    public void setDateCommande(String dateCommande) {
         this.dateCommande = dateCommande;
     }
 
-    public Date getDateLivraison() {
+    public String getDateLivraison() {
         return dateLivraison;
     }
 
-    public void setDateLivraison(Date dateLivraison) {
+    public void setDateLivraison(String dateLivraison) {
         this.dateLivraison = dateLivraison;
     }
 
-    public Boolean getConfirmation() {
-        return confirmation;
+    public String getTypelit() {
+        return typelit;
     }
 
-    public void setConfirmation(Boolean confirmation) {
-        this.confirmation = confirmation;
+    public void setTypelit(String typelit) {
+        this.typelit = typelit;
     }
 
+    public String getMarque() {return marque;}
 
-    public Commande() {
+    public void setMarque(String marque) {this.marque = marque;}
+
+    public Commande(){
 
     }
 
-    public Commande(String numCommande, int quantite, Date dateCommande, Date dateLivraison, Boolean confirmation, List<Lit> lits) {
-        this.numCommande = numCommande;
-        this.quantite = quantite;
-        this.dateCommande = dateCommande;
-        this.dateLivraison = dateLivraison;
-        this.confirmation = confirmation;
+    @Override
+    public String toString() {
+        return "Commande{" +
+                "numCommande='" + numCommande + '\'' +
+                ", quantite=" + quantite +
+                ", dateCommande='" + dateCommande + '\'' +
+                ", dateLivraison='" + dateLivraison + '\'' +
+                ", typelit=" + typelit +
+                ", marque=" + marque +
+                ", etat=" + etat +
+                '}';
     }
 }
 

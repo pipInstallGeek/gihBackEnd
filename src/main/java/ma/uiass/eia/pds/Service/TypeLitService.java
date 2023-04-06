@@ -20,6 +20,11 @@ public class TypeLitService implements ITypeLitService{
 
     @Override
     public TypeLit trouverId(int id) {
-        return typeLitDao.getById(id);
+        return null;
+    }
+
+    @Override
+    public TypeLit trouverCode(String codeTypelit) {
+        return typeLitDao.getByCode(codeTypelit);
     }
 }

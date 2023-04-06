@@ -6,6 +6,8 @@ import jakarta.persistence.*;
 
 import java.io.Serializable;
 import java.util.List;
+
+
 @Entity
 @Table(name = "Tlit")
 public class Lit implements Serializable {
@@ -39,10 +41,6 @@ public class Lit implements Serializable {
 
     @OneToMany(mappedBy = "lit")
     private List<Equipement> equipements;
-
-    @ManyToMany(mappedBy = "lits")
-    private List<Commande> commandes;
-
 
     public int getIdLit() {
         return idLit;
@@ -119,6 +117,7 @@ public class Lit implements Serializable {
         this.typeLit = typeLit;
         this.marque = marque;
     }
+
 
     public String toString(){return "Lit numero: "+ this.idLit+ "Etat: " + this.etatLit;}
 

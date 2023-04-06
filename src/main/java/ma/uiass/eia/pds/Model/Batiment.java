@@ -17,7 +17,6 @@ public class Batiment implements Serializable {
     private int idBatiment;
     @Column(name="codeBatiment", length=50)
     private String codeBatiment;
-    @JsonIgnore
     @OneToMany(mappedBy = "batiment", fetch = FetchType.LAZY )
     private List<Etage> etages = new ArrayList<>();
 

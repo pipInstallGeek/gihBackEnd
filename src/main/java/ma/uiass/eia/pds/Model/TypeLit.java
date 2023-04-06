@@ -8,12 +8,14 @@ import java.util.List;
 
 @Entity
 @Table(name= "TypeLit")
-public class    TypeLit implements Serializable {
+public class TypeLit implements Serializable {
 
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         private int idType;
 
+        @Column(length =40,name="codeTypelit")
+        private String codeTypelit;
         @Column(length = 40,name="nomType")
         private String nomTypeLit;
         @JsonIgnore
@@ -28,6 +30,13 @@ public class    TypeLit implements Serializable {
                 this.idType = id_T;
         }
 
+        public String getCodeTypelit() {
+                return codeTypelit;
+        }
+
+        public void setCodeTypelit(String codeTypelit) {
+                this.codeTypelit = codeTypelit;
+        }
 
         public String getNomTypeLit() {
                 return nomTypeLit;
@@ -45,14 +54,15 @@ public class    TypeLit implements Serializable {
                 this.lits = lits;
         }
 
-        public TypeLit( String nomTypeLit) {
+        public TypeLit( String codeTypelit,String nomTypeLit) {
                 this.nomTypeLit = nomTypeLit;
+                this.codeTypelit=codeTypelit;
         }
 
         public TypeLit(){ }
-        public String toString(){
-                return this.nomTypeLit;
+
+        @Override
+        public String toString() {
+                return  nomTypeLit ;
         }
-
-
 }

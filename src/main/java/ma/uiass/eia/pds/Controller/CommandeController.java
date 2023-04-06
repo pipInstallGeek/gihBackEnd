@@ -4,6 +4,7 @@ import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import ma.uiass.eia.pds.Model.Commande;
+import ma.uiass.eia.pds.Model.EtatCommande;
 import ma.uiass.eia.pds.Service.CommandeService;
 import ma.uiass.eia.pds.Service.ICommandeService;
 
@@ -18,26 +19,38 @@ public class CommandeController {
     @GET
     @Path("/getcommandes")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Commande> getReservation(){
+    public List<Commande> getCommandes(){
         return commandeService.afficherTout();
     }
 
+    @POST
+    @Path("/updateEtat{code}")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    public void update(@PathParam("code") String code){
+        commandeService.modifier(code);
+    }
 
+    @DELETE
+    @Path("/deletecommande{numCommande}")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    public void removeCommande(
+            @PathParam("numCommande") String numCommande){
+        commandeService.supprimerCommande(numCommande);
+    }
     @POST
     @Path("/addcommande")
-    @Consumes(MediaType.APPLICATION_JSON)
-    public void addCommande(Commande commande){
-        commandeService.ajouter(commande);
-    }
-    @Path("/modifiercommande")
-    @Consumes(MediaType.APPLICATION_JSON)
-    public Response modifierCommande(@QueryParam("idCommande") int idCommande,
-                                        @QueryParam("dateLivraison") Date dateLivraison,
-                                        @QueryParam("confirmation") boolean confirmation){
-        Commande commandeToUpdate = commandeService.trouverId(idCommande);
-        commandeToUpdate.setDateLivraison(dateLivraison);
-        commandeToUpdate.setConfirmation(confirmation);
-        commandeService.modifier(commandeToUpdate, dateLivraison, confirmation);
-        return Response.ok().build();
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    public void addCommande(@FormParam("numCommande") String numCommande,
+                            @FormParam("quantite") int quantite,
+                            @FormParam("dateCommande") String dateCommande,
+                            @FormParam("dateLivraison") String dateLivraison,
+                            @FormParam("typelit") String typelit,
+                            @FormParam("marque") String marque ,
+                            @FormParam("etat") EtatCommande etat){
+        commandeService.ajouter(numCommande,quantite,dateCommande,dateLivraison,typelit,marque,etat);
+        System.out.println("commqnde controller hereeeee");
     }
 }
