@@ -2,6 +2,7 @@ package ma.uiass.eia.pds.Dao;
 
 import jakarta.persistence.*;
 import ma.uiass.eia.pds.HibernateUtility.HibernateUtil;
+import ma.uiass.eia.pds.Model.Espace;
 import ma.uiass.eia.pds.Model.Service;
 
 import java.util.List;
@@ -46,6 +47,17 @@ public class ServiceDao implements IServiceDao{
     public void update(Service service) {
 
     }
+    public int getNombreLitOccupé(int serviceId) {
+        String queryString = "SELECT COUNT(lit) FROM Lit lit " +
+                "JOIN lit.espace espace " +
+                "JOIN espace.service service " +
+                "WHERE service.idService = :serviceId AND lit.occupe = true";
+        TypedQuery<Long> query = entityManager.createQuery(queryString, Long.class);
+        query.setParameter("serviceId", serviceId);
+        Long result = query.getSingleResult();
+        return result.intValue();
+    }
+
 
 }
 
