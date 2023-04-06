@@ -16,7 +16,7 @@ public class EtageDao implements IEtageDao{
     }
     @Override
     public List<Etage> getAll() {
-        return entityManager.createQuery("from Etage", Etage.class).getResultList();
+        return entityManager.createQuery(" from Etage  ", Etage.class).getResultList();
     }
 
     @Override
@@ -37,5 +37,10 @@ public class EtageDao implements IEtageDao{
     @Override
     public Etage getById(int id) {
         return entityManager.find(Etage.class, id);
+    }
+
+    @Override
+    public void update(Etage etage) {
+
     }
 }

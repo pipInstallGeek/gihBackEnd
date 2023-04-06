@@ -1,28 +1,24 @@
 package ma.uiass.eia.pds.Dao;
 
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.*;
 import ma.uiass.eia.pds.HibernateUtility.HibernateUtil;
-import ma.uiass.eia.pds.Model.Batiment;
-
+import ma.uiass.eia.pds.Model.Users;
 import java.util.List;
 
-public class BatimentDao implements IBatimentDao{
+public class UsersDao implements IUsersDao {
     private EntityManager entityManager ;
-    public BatimentDao(){
+    public UsersDao(){
         entityManager = HibernateUtil.getEntityManger();
     }
     @Override
-    public List<Batiment> getAll() {
-        return entityManager.createQuery("from Batiment   ").getResultList();
-    }
+    public List<Users> getAll() {return entityManager.createQuery("select r from Users r ").getResultList();}
 
     @Override
-    public void add(Batiment batiment) {
+    public void add(Users user) {
         EntityTransaction transaction = entityManager.getTransaction();
         try {
             transaction.begin();
-            entityManager.persist(batiment);
+            entityManager.persist(user);
             transaction.commit();
         }catch (Exception e){
             if (transaction != null){
@@ -30,16 +26,18 @@ public class BatimentDao implements IBatimentDao{
             }
             e.printStackTrace();
         }
+
     }
 
     @Override
-    public Batiment getById(int id) {
-        return entityManager.find(Batiment.class, id);
+    public Users getById(int id) {
+        return null;
     }
 
     @Override
-    public void update(Batiment batiment) {
+    public void update(Users users) {
 
     }
+
 
 }

@@ -8,4 +8,5 @@ public interface IDao<T > {
     void    add(T t);
 
     T getById(int id);
+    void update(T t);
 }

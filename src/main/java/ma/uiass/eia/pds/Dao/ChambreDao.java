@@ -29,7 +29,7 @@ public class ChambreDao implements IEspaceDao<Chambre> {
     }
     @Override
     public List<Chambre> getAll() {
-        return entityManager.createQuery("from Chambre ", Chambre.class).getResultList();
+        return entityManager.createQuery("from Chambre", Chambre.class).getResultList();
     }
 
     @Override
@@ -47,6 +47,11 @@ public class ChambreDao implements IEspaceDao<Chambre> {
             e.printStackTrace();
             return null;
         }
+    }
+
+    @Override
+    public void update(Chambre chambre) {
+
     }
 
 

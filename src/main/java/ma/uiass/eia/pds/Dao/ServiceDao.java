@@ -8,7 +8,7 @@ import java.util.List;
 
 public class ServiceDao implements IServiceDao{
 
-    private final EntityManager entityManager;
+    private  EntityManager entityManager;
     public ServiceDao() {
         entityManager = HibernateUtil.getEntityManger();
     }
@@ -40,6 +40,11 @@ public class ServiceDao implements IServiceDao{
             return null;
         }
         return service;
+    }
+
+    @Override
+    public void update(Service service) {
+
     }
 
 }

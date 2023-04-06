@@ -17,6 +17,7 @@ public class Marque implements Serializable {
     private String codeMarque;
     @Column(length = 40,name="nomMarque")
     private String nomMarque;
+
     @JsonIgnore
     @OneToMany(mappedBy = "marque")
     private List<Lit> lits=new ArrayList<>();

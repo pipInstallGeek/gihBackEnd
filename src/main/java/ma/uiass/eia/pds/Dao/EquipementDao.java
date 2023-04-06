@@ -35,12 +35,17 @@ public class  EquipementDao implements IEquipementDao {
 
     @Override
     public List<Equipement> getAll() {
-        return  entityManager.createQuery("From Equipement ").getResultList();
+        return  entityManager.createQuery("from Equipement ").getResultList();
 
     }
     @Override
     public Equipement getById(int id) {
         return entityManager.find(Equipement.class,id);
+    }
+
+    @Override
+    public void update(Equipement equipement) {
+
     }
 
 }

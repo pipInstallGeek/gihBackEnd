@@ -14,7 +14,7 @@ public class SalleDao implements IEspaceDao<Salle> {
     }
     @Override
     public List<Salle> getAll() {
-        return entityManager.createQuery("from Salle ", Salle.class).getResultList();
+        return entityManager.createQuery(" from Salle  ", Salle.class).getResultList();
     }
 
     @Override
@@ -35,5 +35,10 @@ public class SalleDao implements IEspaceDao<Salle> {
     @Override
     public Salle getById(int id) {
         return entityManager.find(Salle.class, id);
+    }
+
+    @Override
+    public void update(Salle salle) {
+
     }
 }
