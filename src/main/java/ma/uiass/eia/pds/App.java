@@ -40,7 +40,7 @@
                 config.register(ReservationController.class);
                 HttpServer server = JdkHttpServerFactory.createHttpServer(baseUri, config);
                 System.out.println("server launched Successfully ");
-/*
+
 
                 IBatimentService batimentService = new BatimentService();
                 IEtageService etageService = new EtageService();
@@ -52,7 +52,9 @@
 
                 Batiment batiment = new Batiment("A");
                 Batiment batiment1 = new Batiment("B");
+                Batiment batiment2 = new Batiment("C");
                 batimentService.ajouter(batiment1);
+                batimentService.ajouter(batiment2);
                 batimentService.ajouter(batiment);
 
 
@@ -78,24 +80,65 @@
 
                 Espace chambre = new Chambre(TypeChambre.SIMPLE,service );
                 Espace chambre1 = new Chambre(TypeChambre.DOUBLE, service1);
+                Espace chambre2 = new Chambre(TypeChambre.DOUBLE, service2);
+                espaceService.ajouter(chambre2);
                 espaceService.ajouter(chambre);
                 espaceService.ajouter(chambre1);
 
                 TypeLit typeLit = new TypeLit("Lit electrique");
+                TypeLit typeLit1 = new TypeLit("Lit manuelle");
                 typeLitService.ajouter(typeLit);
+                typeLitService.ajouter(typeLit1);
 
                 Marque marque = new Marque("K","Kinedorssal");
+                Marque marque1 = new Marque("K","ComfyBed");
+                Marque marque2 = new Marque("K","MyBedsComfy");
                 marqueService.ajouter(marque);
+                marqueService.ajouter(marque1);
+                marqueService.ajouter(marque2);
 
-                Lit lit = new Lit(EtatLit.DEFECTUEUSE, false, chambre1, typeLit, marque);
-                Lit lit1 = new Lit(EtatLit.BONNNEETAT, true, chambre1, typeLit, marque);
+                Lit lit = new Lit(EtatLit.DEFECTUEUSE, false, chambre1, typeLit1, marque);
+                Lit lit1 = new Lit(EtatLit.DEFECTUEUSE, true, chambre, typeLit, marque1);
+                Lit lit2 = new Lit(EtatLit.DEFECTUEUSE, true, chambre2, typeLit, marque2);
+                Lit lit3 = new Lit(EtatLit.DEFECTUEUSE, false, chambre1, typeLit1, marque2);
+                Lit lit4 = new Lit(EtatLit.BONNNEETAT, false, chambre2, typeLit, marque1);
+                Lit lit5 = new Lit(EtatLit.BONNNEETAT, true, chambre, typeLit1, marque);
+                Lit lit6 = new Lit(EtatLit.DEFECTUEUSE, true, chambre, typeLit, marque1);
+                Lit lit7 = new Lit(EtatLit.DEFECTUEUSE, false, chambre1, typeLit1, marque2);
+                Lit lit8 = new Lit(EtatLit.BONNNEETAT, true, chambre1, typeLit, marque);
+                Lit lit9 = new Lit(EtatLit.DEFECTUEUSE, true, chambre2, typeLit1, marque2);
+                Lit lit10 = new Lit(EtatLit.BONNNEETAT, false, chambre2, typeLit, marque2);
+                Lit lit11 = new Lit(EtatLit.DEFECTUEUSE, true, chambre, typeLit1, marque1);
+                Lit lit12 = new Lit(EtatLit.BONNNEETAT, false, chambre1, typeLit1, marque);
+                Lit lit13= new Lit(EtatLit.DEFECTUEUSE, true, chambre2, typeLit, marque1);
+                Lit lit14= new Lit(EtatLit.BONNNEETAT, true, chambre, typeLit, marque2);
+                Lit lit15= new Lit(EtatLit.BONNNEETAT, false, chambre2, typeLit1, marque);
+                Lit lit16= new Lit(EtatLit.BONNNEETAT, true, chambre1, typeLit, marque1);
 
-                litService.ajouter(lit1);
+
                 litService.ajouter(lit);
+                litService.ajouter(lit1);
+                litService.ajouter(lit2);
+                litService.ajouter(lit3);
+                litService.ajouter(lit4);
+                litService.ajouter(lit5);
+                litService.ajouter(lit6);
+                litService.ajouter(lit7);
+                litService.ajouter(lit8);
+                litService.ajouter(lit9);
+                litService.ajouter(lit10);
+                litService.ajouter(lit11);
+                litService.ajouter(lit12);
+                litService.ajouter(lit13);
+                litService.ajouter(lit14);
+                litService.ajouter(lit15);
+                litService.ajouter(lit16);
 
 
 
- */
+
+
+
 
             }
         }
