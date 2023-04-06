@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 
 import java.io.Serializable;
 
-//import javax.persistence.*;
 @Entity
 @Table(name= "TSalle")
 @DiscriminatorValue("salle")
