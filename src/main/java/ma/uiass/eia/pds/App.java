@@ -4,14 +4,12 @@
 
             import jakarta.ws.rs.core.UriBuilder;
 
+            import ma.uiass.eia.pds.Config.SecurityConfiguration;
             import ma.uiass.eia.pds.Controller.ReservationController;
-            import ma.uiass.eia.pds.Dao.IMarqueDao;
-            import ma.uiass.eia.pds.Dao.ITypeLitDao;
-            import ma.uiass.eia.pds.Dao.MarqueDao;
-            import ma.uiass.eia.pds.Dao.TypeLitDao;
+            import ma.uiass.eia.pds.Dao.IDao;
+            import ma.uiass.eia.pds.Dao.UserDao;
             import ma.uiass.eia.pds.Model.*;
-            import ma.uiass.eia.pds.Repository.UserRepository;
-            import ma.uiass.eia.pds.Service.*;
+            import ma.uiass.eia.pds.Repository.IUserRepository;
 
 
             import org.glassfish.jersey.jackson.internal.jackson.jaxrs.json.JacksonJsonProvider;
@@ -19,17 +17,10 @@
             import org.glassfish.jersey.server.ResourceConfig;
 
             import java.net.*;
-            import java.time.LocalDate;
-            import java.time.LocalDateTime;
-            import java.time.Month;
-            import java.time.ZoneId;
-            import java.util.ArrayList;
-            import java.util.Arrays;
-            import java.util.Calendar;
-            import java.util.Date;
 
 
             public class App extends ResourceConfig {
+                private static IUserRepository IUserRepository;
             public App(){
                 packages("ma.uiass.eia.pds");
             }
@@ -39,9 +30,18 @@
                 URI baseUri = UriBuilder.fromUri("http://localhost/").port(8080).build();
                 ResourceConfig config = new ResourceConfig().packages("ma.uiass.eia.pds");
                 config.register(JacksonJsonProvider.class);
-                config.register(ReservationController.class);
+                config.register(ReservationController.class).register(SecurityConfiguration.class);
                 HttpServer server = JdkHttpServerFactory.createHttpServer(baseUri, config);
                 System.out.println("server launched Successfully ");
+
+
+
+
+                User user = new User("marouane","marouane","marouane10", Role.ADMIN);
+
+                IDao<User> userIDao = new UserDao();
+
+                userIDao.add(user);
 /*
                 IBatimentService batimentService = new BatimentService();
                 IEtageService etageService = new EtageService();

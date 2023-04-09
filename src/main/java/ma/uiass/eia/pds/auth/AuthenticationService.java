@@ -5,7 +5,7 @@ import lombok.var;
 import ma.uiass.eia.pds.Config.JwtService;
 import ma.uiass.eia.pds.Model.Role;
 import ma.uiass.eia.pds.Model.User;
-import ma.uiass.eia.pds.Repository.UserRepository;
+import ma.uiass.eia.pds.Repository.IUserRepository;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class AuthenticationService {
-    private  UserRepository userRepository;
+    private IUserRepository IUserRepository;
     private PasswordEncoder passwordEncoder;
     private JwtService jwtService;
     private AuthenticationManager authenticationManager;
@@ -26,7 +26,7 @@ public class AuthenticationService {
                         authenticationRequest.getPassword()
                 )
         );
-        var user = userRepository.findByUsername(authenticationRequest.getUsername());
+        var user = IUserRepository.findByUsername(authenticationRequest.getUsername());
         var jwt = jwtService.generateToken(user);
         return jwt;
     }
@@ -39,7 +39,7 @@ public class AuthenticationService {
                 .password(passwordEncoder.encode(registerRequest.getPassword()))
                 .role(Role.valueOf(registerRequest.getRole()))
                 .build();
-        userRepository.saveAndFlush(user);
+        IUserRepository.saveAndFlush(user);
         var jwt = jwtService.generateToken(user);
         return jwt;
     }
