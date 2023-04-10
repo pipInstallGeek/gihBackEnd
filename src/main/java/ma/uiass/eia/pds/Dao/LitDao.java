@@ -56,7 +56,7 @@ public class LitDao implements ILitDao{
             entityManager.persist(lit);
             lit.setEspace(null);
             lit.setEtatLit(EtatLit.BONNNEETAT);
-            lit.setOccupe(Boolean.FALSE);
+            lit.setOccupe(false);
             entityManager.merge(lit);
             transaction.commit();
 

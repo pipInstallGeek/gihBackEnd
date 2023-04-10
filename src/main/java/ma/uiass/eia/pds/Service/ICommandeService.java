@@ -14,6 +14,6 @@ public interface ICommandeService extends IService<Commande> {
 
    // List<Commande> afficherTout2();
 
-    void ajouter(String NumCommande, int QteT, String dateCT, String dateLT, String codeTypelit, String codeMarque, EtatCommande etat);
+    void ajouter(String NumCommande, int QteT, String dateCT, String dateLT, String codeTypelit, String codeMarque, EtatCommande etat,String service);
 }
 

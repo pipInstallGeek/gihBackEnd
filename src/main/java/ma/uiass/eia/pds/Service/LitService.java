@@ -24,8 +24,7 @@ public class LitService implements ILitService{
 
 
     @Override
-    public void ajouterlitStock(EtatLit etatLit, Boolean occupe, Espace espace, TypeLit typeLit, Marque marque) {
-        Lit lit = new Lit(etatLit,occupe,espace,typeLit, marque);
+    public void ajouterlitStock(Lit lit) {
         litDao.addLitInStock(lit);}
 
     @Override

@@ -37,8 +37,8 @@ public class CommandeService implements ICommandeService{
 
 
     @Override
-    public void ajouter(String numCommande, int quantite, String dateCommande, String dateLivraison, String typelit, String marque, EtatCommande etat) {
-        Commande c = new Commande(numCommande,quantite,dateCommande,dateLivraison,typelit,marque,etat);
+    public void ajouter(String numCommande, int quantite, String dateCommande, String dateLivraison, String typelit, String marque, EtatCommande etat,String service) {
+        Commande c = new Commande(numCommande,quantite,dateCommande,dateLivraison,typelit,marque,etat,service);
         commandeDao.add(c);
     }
 }

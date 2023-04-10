@@ -49,8 +49,9 @@ public class CommandeController {
                             @FormParam("dateLivraison") String dateLivraison,
                             @FormParam("typelit") String typelit,
                             @FormParam("marque") String marque ,
-                            @FormParam("etat") EtatCommande etat){
-        commandeService.ajouter(numCommande,quantite,dateCommande,dateLivraison,typelit,marque,etat);
+                            @FormParam("etat") EtatCommande etat,
+                            @FormParam("service") String service){
+        commandeService.ajouter(numCommande,quantite,dateCommande,dateLivraison,typelit,marque,etat,service);
         System.out.println("commqnde controller hereeeee");
     }
 }

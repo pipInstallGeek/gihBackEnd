@@ -45,7 +45,7 @@ public class App extends ResourceConfig {
         ICommandeService commandeService = new CommandeService();
 
 
-        /*Batiment batiment = new Batiment("Batiment A");
+        Batiment batiment = new Batiment("Batiment A");
         batimentService.ajouter(batiment);
 
         Etage etage = new Etage("Etage 1", batiment);
@@ -66,7 +66,7 @@ public class App extends ResourceConfig {
         serviceService.ajouter(service2);
         serviceService.ajouter(service3);
 
-        Espace chambre = new Chambre(TypeChambre.SIMPLE,service1);
+        /*Espace chambre = new Chambre(TypeChambre.SIMPLE,service1);
         chambreService.ajouter(chambre);
 
         Espace salle = new Salle("salle2", TypeSalle.OPERATION, service2);
@@ -116,17 +116,24 @@ public class App extends ResourceConfig {
         typeLitService.ajouter(typeLit3);
         typeLitService.ajouter(typeLit4);
 
-        /*Lit lit = new Lit(EtatLit.BONNNEETAT,Boolean.FALSE,chambre,typeLit0,marque0);
-        Lit lit1 = new Lit(EtatLit.BONNNEETAT,false,null,typeLit0,marque0);
-        litService.ajouter(lit);
-        litService.ajouter(lit1);*/
+        Lit lit = new Lit(EtatLit.BONNNEETAT,false,null,typeLit0,marque0);
+        Lit lit1 = new Lit(EtatLit.BONNNEETAT,false,null,typeLit1,marque1);
+        Lit lit2 = new Lit(EtatLit.BONNNEETAT,false,null,typeLit2,marque2);
+        Lit lit3 = new Lit(EtatLit.BONNNEETAT,false,null,typeLit3,marque3);
+        Lit lit4 = new Lit(EtatLit.BONNNEETAT,false,null,typeLit4,marque4);
 
-        Commande commande1 = new Commande("a230",15,"2025-03-20","2026-05-12",typeLit0.getNomTypeLit(),marque0.getNomMarque(),EtatCommande.EN_TRAITEMENT);
-        Commande commande2 = new Commande("a231",16,"2025-03-20","2026-05-12",typeLit1.getNomTypeLit(),marque1.getNomMarque(),EtatCommande.TRAITEE);
-        Commande commande3 = new Commande("a232",17,"2025-03-20","2026-05-12",typeLit2.getNomTypeLit(),marque2.getNomMarque(),EtatCommande.TRAITEE);
-        Commande commande4 = new Commande("a233",18,"2025-03-20","2026-05-12",typeLit3.getNomTypeLit(),marque3.getNomMarque(),EtatCommande.TRAITEE);
-        Commande commande5 = new Commande("a234",19,"2025-03-20","2026-05-12",typeLit4.getNomTypeLit(),marque4.getNomMarque(),EtatCommande.EN_TRAITEMENT);
-        Commande commande7 = new Commande("souad5",15,"2025-03-20","2026-05-12",typeLit0.getNomTypeLit(),marque0.getNomMarque(),EtatCommande.EN_TRAITEMENT);
+        litService.ajouterlitStock(lit);
+        litService.ajouterlitStock(lit1);
+        litService.ajouterlitStock(lit2);
+        litService.ajouterlitStock(lit3);
+        litService.ajouterlitStock(lit4);
+
+        Commande commande1 = new Commande("a230",15,"2025-03-20","2026-05-12",typeLit0.getNomTypeLit(),marque0.getNomMarque(),EtatCommande.EN_TRAITEMENT,service1.getNomService());
+        Commande commande2 = new Commande("a231",16,"2025-03-20","2026-05-12",typeLit1.getNomTypeLit(),marque1.getNomMarque(),EtatCommande.TRAITEE,service2.getNomService());
+        Commande commande3 = new Commande("a232",17,"2025-03-20","2026-05-12",typeLit2.getNomTypeLit(),marque2.getNomMarque(),EtatCommande.TRAITEE,service3.getNomService());
+        Commande commande4 = new Commande("a233",18,"2025-03-20","2026-05-12",typeLit3.getNomTypeLit(),marque3.getNomMarque(),EtatCommande.TRAITEE,service3.getNomService());
+        Commande commande5 = new Commande("a234",19,"2025-03-20","2026-05-12",typeLit4.getNomTypeLit(),marque4.getNomMarque(),EtatCommande.EN_TRAITEMENT,service1.getNomService());
+        Commande commande7 = new Commande("souad5",15,"2025-03-20","2026-05-12",typeLit0.getNomTypeLit(),marque0.getNomMarque(),EtatCommande.EN_TRAITEMENT,service3.getNomService());
 
         commandeService.ajouter(commande1);
         commandeService.ajouter(commande2);
@@ -136,18 +143,16 @@ public class App extends ResourceConfig {
         commandeService.ajouter(commande7);
 
 
-        //System.out.println(litService.afficherToutStock());
-        //System.out.println("ajout");
+        System.out.println("ajout");
         commandeService.supprimerCommande("a230");
         commandeService.supprimerCommande("souad5");
         commandeService.modifier("a234");
         System.out.println("suppression");
         System.out.println(commandeService.afficherTout());
-        //System.out.println(commandeService.afficherTout2());
-        //commandeService.modifier("a231");
-       // MarqueDao marqueDao = new MarqueDao();
-        //TypeLitDao typelitDao = new TypeLitDao();
-        //System.out.println(typelitDao.getByCode("TL01"));
+        commandeService.modifier("a231");
+        System.out.println(litService.afficherToutStock());
+
+
 
 
 

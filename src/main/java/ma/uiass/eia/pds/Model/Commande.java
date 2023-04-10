@@ -28,10 +28,11 @@ public class Commande implements Serializable {
     /*@OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "idTypelit")
     private TypeLit typelit;
-
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "idMarque")
     private Marque marque;*/
+    @Column(name = "sercvice")
+    private String service;
     @Column(name = "typelit", length = 50)
     private String typelit;
 
@@ -42,7 +43,7 @@ public class Commande implements Serializable {
     @Enumerated(EnumType.STRING)
     private EtatCommande etat;
 
-    public Commande(String numCommande, int quantite, String dateCommande, String dateLivraison, String typelit, String marque, EtatCommande etat) {
+    public Commande(String numCommande, int quantite, String dateCommande, String dateLivraison, String typelit, String marque, EtatCommande etat, String service) {
         this.numCommande = numCommande;
         this.quantite = quantite;
         this.dateCommande = dateCommande;
@@ -50,6 +51,7 @@ public class Commande implements Serializable {
         this.typelit=typelit;
         this.marque=marque;
         this.etat=etat;
+        this.service=service;
     }
 
     public EtatCommande getEtat() {
@@ -63,6 +65,14 @@ public class Commande implements Serializable {
    // public String getNomMarque() {return this.marque.getNomMarque();}
     //public String getNomTypeLit() {return this.typelit.getNomTypeLit();}
 
+
+    public String getService() {
+        return service;
+    }
+
+    public void setService(String service) {
+        this.service = service;
+    }
 
     public int getIdCommande() {
         return idCommande;

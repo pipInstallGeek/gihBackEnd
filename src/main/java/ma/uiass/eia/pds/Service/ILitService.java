@@ -7,6 +7,6 @@ import java.util.List;
 
 public interface ILitService extends IService<Lit>{
 
-     void ajouterlitStock(EtatLit etatLit, Boolean occupe, Espace espace, TypeLit typeLit, Marque marque);
+     void ajouterlitStock(Lit lit);
     List<Lit> afficherToutStock();
 }
