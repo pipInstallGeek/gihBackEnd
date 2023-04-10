@@ -1,25 +1,30 @@
 package ma.uiass.eia.pds.Dao;
-
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 import ma.uiass.eia.pds.HibernateUtility.HibernateUtil;
 import ma.uiass.eia.pds.Model.Chambre;
 import ma.uiass.eia.pds.Model.Lit;
-
+import  ma.uiass.eia.pds.Model.Stock;
 
 import java.util.List;
-public class ChambreDao implements IEspaceDao<Chambre> {
+
+
+public class StockDao  implements IEspaceDao<Stock>  {
     private EntityManager entityManager;
-    public ChambreDao() {
+    public StockDao() {
         entityManager = HibernateUtil.getEntityManger();
+    }
+    @Override
+    public List<Stock> getAll() {
+        return entityManager.createQuery("from Stock ", Stock.class).getResultList();
     }
 
     @Override
-    public void add(Chambre chambre) {
+    public void add(Stock stock) {
         EntityTransaction transaction = entityManager.getTransaction();
         try {
             transaction.begin();
-            entityManager.persist(chambre);
+            entityManager.persist(stock);
             transaction.commit();
         }catch (Exception e){
             if (transaction != null){
@@ -27,18 +32,15 @@ public class ChambreDao implements IEspaceDao<Chambre> {
             }
             e.printStackTrace();
         }
-    }
-    @Override
-    public List<Chambre> getAll() {
-        return entityManager.createQuery("from Chambre ", Chambre.class).getResultList();
+
     }
 
     @Override
-    public Chambre getById(int idChambre) {
+    public Stock getById(int idStock) {
         EntityTransaction transaction = entityManager.getTransaction();
         try {
             transaction.begin();
-            Chambre response=(Chambre) entityManager.find(Chambre.class,idChambre);
+            Stock response=(Stock) entityManager.find(Stock.class,idStock);
             transaction.commit();
             return response;
         }catch (Exception e){
@@ -50,9 +52,8 @@ public class ChambreDao implements IEspaceDao<Chambre> {
         }
     }
 
-
     @Override
-    public void remove(Lit l) {
+    public void remove(Lit l)  {
         EntityTransaction transaction = entityManager.getTransaction();
 
         try {
@@ -65,6 +66,7 @@ public class ChambreDao implements IEspaceDao<Chambre> {
             }
             e.printStackTrace();
         }
-
     }
+
+
 }

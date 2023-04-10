@@ -33,6 +33,11 @@ public class LitController {
         service.ajouter(lit);
     }
 
+    @DELETE
+    @Path("/removelitC")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public void removelitC(Lit l){service.retirerLit(l);}
+
 
 
 

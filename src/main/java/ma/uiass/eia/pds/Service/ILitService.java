@@ -7,4 +7,5 @@ import java.util.List;
 public interface ILitService extends IService<Lit>{
 
 
+    void retirerLit(Lit l);
 }
