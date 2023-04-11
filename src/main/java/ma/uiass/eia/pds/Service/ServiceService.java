@@ -12,7 +12,7 @@ public class ServiceService implements IServiceService{
     IServiceDao serviceDao = new ServiceDao();
     @Override
     public void ajouter(Service service) {
-         serviceDao.add(service);
+        serviceDao.add(service);
     }
 
     @Override

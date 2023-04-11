@@ -14,7 +14,7 @@ public class TypeLitDao implements ITypeLitDao{
     }
     @Override
     public List<TypeLit> getAll() {
-        return entityManager.createQuery(" from TypeLit  ", TypeLit.class).getResultList();
+        return entityManager.createQuery("from TypeLit ", TypeLit.class).getResultList();
     }
 
     @Override
@@ -35,10 +35,5 @@ public class TypeLitDao implements ITypeLitDao{
     @Override
     public TypeLit getById(int id) {
         return entityManager.find(TypeLit.class, id);
-    }
-
-    @Override
-    public void update(TypeLit typeLit) {
-
     }
 }

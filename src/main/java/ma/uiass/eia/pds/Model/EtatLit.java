@@ -1,5 +1,14 @@
-    package ma.uiass.eia.pds.Model;
+package ma.uiass.eia.pds.Model;
 
-    public enum EtatLit {
-        BONNNEETAT, DEFECTUEUSE,
+import com.fasterxml.jackson.annotation.JsonEnumDefaultValue;
+
+public enum EtatLit {
+    BONNNEETAT,
+    DEFECTUEUSE,
+    @JsonEnumDefaultValue UNKNOWN;
+
+
+    EtatLit() {
     }
+
+}

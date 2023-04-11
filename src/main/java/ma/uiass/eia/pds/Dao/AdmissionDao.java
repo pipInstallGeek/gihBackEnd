@@ -61,11 +61,11 @@ public class AdmissionDao implements IAdmissionDao {
                .setParameter("etat", EtatLit.BONNNEETAT)
                .getResultList();
        for (Lit lit : availableBeds) {
-           if (lit.isAvailableAndGoodCondition()) {
+           //if (lit.isAvailableAndGoodCondition()) {
                admission.setLit(entityManager.find(Lit.class, lit.getIdLit()));
                lit.setOccupe(true);
                break;
-           }
+
        }
      //  admission.setDateFin(null); // initialiser la date de fin à null
        try {

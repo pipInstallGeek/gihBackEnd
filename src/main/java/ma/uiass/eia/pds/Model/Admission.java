@@ -1,9 +1,14 @@
     package ma.uiass.eia.pds.Model;
+    import com.fasterxml.jackson.annotation.JsonIgnore;
+    import com.fasterxml.jackson.annotation.JsonProperty;
     import jakarta.persistence.*;
     import java.io.Serializable;
     import java.util.Date;
+    import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
     @Entity
     @Table(name= "TAdmission")
+    @JsonIgnoreProperties(ignoreUnknown = true)
     public class Admission implements Serializable {
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,7 +20,8 @@
         @Column(name="DateFin", length=50)
         private String dateFin;
         @OneToOne(cascade = CascadeType.ALL)
-        @JoinColumn(name = "idLit")
+        @JoinColumn(name = "idLit",referencedColumnName = "idLit")
+        @JsonProperty("lit")
         private Lit lit;
 
         public Admission(String numAdmission, String dateE, Lit lit) {
@@ -37,9 +43,7 @@
        /*public void setDateFin(Date dateFin) {
             this.dateFin = dateFin;
         }*/
-        public int getIdRAdmission() {
-            return idAdmission;
-        }
+
 
         public String getDateDébut() {
             return dateDébut;
@@ -78,8 +82,8 @@
         public Admission(){}
         public String toString(){
             return this.idAdmission + " "+this.numAdmission+" "+" "+this.dateDébut+" "+this.dateFin +" "+this.lit.getIdLit();        }
-
-        public int getIdLit() {
+        @JsonIgnore
+        public int getIdLitObject() {
             return lit.getIdLit();
         }
     }

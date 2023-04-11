@@ -43,10 +43,7 @@ public class ServiceDao implements IServiceDao{
         return service;
     }
 
-    @Override
-    public void update(Service service) {
 
-    }
     public int getNombreLitOccupé(int serviceId) {
         String queryString = "SELECT COUNT(lit) FROM Lit lit " +
                 "JOIN lit.espace espace " +

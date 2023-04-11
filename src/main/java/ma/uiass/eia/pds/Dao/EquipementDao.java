@@ -1,12 +1,12 @@
 package ma.uiass.eia.pds.Dao;
 
- import jakarta.persistence.EntityManager;
- import jakarta.persistence.EntityTransaction;
- import ma.uiass.eia.pds.HibernateUtility.HibernateUtil;
- import ma.uiass.eia.pds.Model.Equipement;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityTransaction;
+import ma.uiass.eia.pds.HibernateUtility.HibernateUtil;
+import ma.uiass.eia.pds.Model.Equipement;
 
 
- import java.util.List;
+import java.util.List;
 
 public class  EquipementDao implements IEquipementDao {
 
@@ -35,17 +35,12 @@ public class  EquipementDao implements IEquipementDao {
 
     @Override
     public List<Equipement> getAll() {
-        return  entityManager.createQuery("from Equipement ").getResultList();
+        return  entityManager.createQuery("From Equipement ").getResultList();
 
     }
     @Override
     public Equipement getById(int id) {
         return entityManager.find(Equipement.class,id);
-    }
-
-    @Override
-    public void update(Equipement equipement) {
-
     }
 
 }

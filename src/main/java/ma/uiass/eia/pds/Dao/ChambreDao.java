@@ -4,6 +4,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 import ma.uiass.eia.pds.HibernateUtility.HibernateUtil;
 import ma.uiass.eia.pds.Model.Chambre;
+import ma.uiass.eia.pds.Model.Lit;
 
 
 import java.util.List;
@@ -16,9 +17,12 @@ public class ChambreDao implements IEspaceDao<Chambre> {
     @Override
     public void add(Chambre chambre) {
         EntityTransaction transaction = entityManager.getTransaction();
+
         try {
             transaction.begin();
             entityManager.persist(chambre);
+            chambre.setCodeEspace("C"+chambre.getService().getCodeService()+chambre.getIdEspace());
+            entityManager.merge(chambre);
             transaction.commit();
         }catch (Exception e){
             if (transaction != null){
@@ -29,7 +33,7 @@ public class ChambreDao implements IEspaceDao<Chambre> {
     }
     @Override
     public List<Chambre> getAll() {
-        return entityManager.createQuery("from Chambre", Chambre.class).getResultList();
+        return entityManager.createQuery("from Chambre ", Chambre.class).getResultList();
     }
 
     @Override
@@ -49,10 +53,8 @@ public class ChambreDao implements IEspaceDao<Chambre> {
         }
     }
 
-    @Override
-    public void update(Chambre chambre) {
 
-    }
+
 
 
 }

@@ -14,7 +14,7 @@ public class MarqueDao implements IMarqueDao{
     }
     @Override
     public List<Marque> getAll() {
-        return entityManager.createQuery(" from Marque ", Marque.class).getResultList();
+        return entityManager.createQuery("from Marque", Marque.class).getResultList();
     }
 
     @Override
@@ -35,10 +35,5 @@ public class MarqueDao implements IMarqueDao{
     @Override
     public Marque getById(int id) {
         return entityManager.find(Marque.class, id);
-    }
-
-    @Override
-    public void update(Marque marque) {
-
     }
 }

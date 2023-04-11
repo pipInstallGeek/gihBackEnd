@@ -1,10 +1,9 @@
 package ma.uiass.eia.pds.Controller;
 
-import jakarta.ws.rs.GET;
-import jakarta.ws.rs.Path;
-import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+import ma.uiass.eia.pds.Model.Batiment;
 import ma.uiass.eia.pds.Model.Etage;
 import ma.uiass.eia.pds.Service.EtageService;
 import ma.uiass.eia.pds.Service.IEtageService;
@@ -21,5 +20,13 @@ public class EtageController {
     public List<Etage> getEtages(){
         return etageService.afficherTout();
     }
+
+    @Path("/addetage")
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    public void addBatiment(Etage etage){
+        etageService.ajouter(etage);
+    }
+
 
 }

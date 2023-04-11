@@ -15,8 +15,8 @@ public class Batiment implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idBatiment;
-    @Column(name="NumBatiment", length=50)
-    private String numBatiment;
+    @Column(name="codeBatiment", length=50)
+    private String codeBatiment;
     @JsonIgnore
     @OneToMany(mappedBy = "batiment", fetch = FetchType.LAZY )
     private List<Etage> etages = new ArrayList<>();
@@ -29,30 +29,31 @@ public class Batiment implements Serializable {
         this.idBatiment = idBatiment;
     }
 
-    public String getNumBatiment() {
-        return numBatiment;
+    public String getCodeBatiment() {
+        return codeBatiment;
     }
     public List<Etage> getEtages() {
         return etages;
     }
 
-    public void setNumBatiment(String numBatiment) {
-        this.numBatiment = numBatiment;
+    public void setCodeBatiment(String numBatiment) {
+        this.codeBatiment = numBatiment;
     }
 
     public void setEtages(List<Etage> etages) {
         this.etages = etages;
     }
 
-    public Batiment(String numBatiment) {
-        this.numBatiment = numBatiment;
+    public Batiment(String codeBatiment) {
+        this.codeBatiment = codeBatiment;
     }
 
     public Batiment(){
 
     }
 
+
     public String toString(){
-        return this.numBatiment;
+        return this.codeBatiment;
     }
 }

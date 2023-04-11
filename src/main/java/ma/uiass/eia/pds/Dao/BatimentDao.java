@@ -14,7 +14,7 @@ public class BatimentDao implements IBatimentDao{
     }
     @Override
     public List<Batiment> getAll() {
-        return entityManager.createQuery("from Batiment   ").getResultList();
+        return entityManager.createQuery("from Batiment ").getResultList();
     }
 
     @Override
@@ -35,11 +35,6 @@ public class BatimentDao implements IBatimentDao{
     @Override
     public Batiment getById(int id) {
         return entityManager.find(Batiment.class, id);
-    }
-
-    @Override
-    public void update(Batiment batiment) {
-
     }
 
 }

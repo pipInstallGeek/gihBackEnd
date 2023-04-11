@@ -10,10 +10,12 @@ import java.util.List;
 @Path("/service")
 public class  ServiceController {
     IServiceService serviceService = new ServiceService();
+
     @GET
     @Path("/getservices")
     @Produces(MediaType.APPLICATION_JSON)
     public List<Service> getServices(){return serviceService.afficherTout();}
+
     @POST
     @Path("/addservice")
     @Consumes(MediaType.APPLICATION_JSON)

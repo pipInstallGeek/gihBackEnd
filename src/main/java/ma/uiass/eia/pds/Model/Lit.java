@@ -1,115 +1,140 @@
-    package ma.uiass.eia.pds.Model;
-    import jakarta.persistence.*;
-
-    import java.io.Serializable;
-    import java.util.List;
-    @Entity
-    @Table(name = "Tlit")
-    public class Lit implements Serializable {
-        @Id
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
-        private int idLit;
-        @Column
-        private String codeLit;
-
-        @Column
-        @Enumerated(EnumType.STRING)
-        private EtatLit etatLit;
-        @Column
-        private Boolean occupe;
-
-        @ManyToOne
-        @JoinColumn(name = "idEspace", referencedColumnName = "idEspace")
-        private Espace espace;
-
-       /*@OneToOne(cascade = CascadeType.ALL)
-        @JoinColumn(name = "idReservation")
-        private Reservation reservation;*/
-        @ManyToOne
-        @JoinColumn(name = "idType", referencedColumnName = "idType") // id de type de lit
-        private TypeLit typeLit;
-        public Lit(String codeLit, EtatLit etatLit, Boolean occupe, Espace espace, TypeLit typeLit, Marque marque) {
-            this.codeLit = codeLit;
-            this.etatLit = etatLit;
-            this.occupe = occupe;
-            this.espace = espace;
-            this.typeLit = typeLit;
-            this.marque = marque;
-
-        }
-        public Lit( EtatLit etatLit, Boolean occupe, Espace espace, TypeLit typeLit, Marque marque) {
-            this.etatLit = etatLit;
-            this.occupe = occupe;
-            this.espace = espace;
-            this.typeLit = typeLit;
-            this.marque = marque;
-
-        }
-
-        @ManyToOne
-        @JoinColumn(name = "idMarque", referencedColumnName = "idMarque")
-        private Marque marque;
-        @OneToMany(mappedBy = "lit")
-        private List<Equipement> equipements;
-        public int getIdLit() {
-            return idLit;
-        }
-        public void setIdLit(int idLit) {
-            this.idLit = idLit;
-        }
-        public Boolean getOccupe() {
-            return occupe;
-        }
-        public void setOccupe(Boolean occupe) {
-            this.occupe = occupe;
-        }
-        public List<Equipement> getEquipements() {
-            return equipements;
-        }
-        public void setEquipements(List<Equipement> equipements) {
-            this.equipements = equipements;
-        }
-        public EtatLit getEtatLit() {
-            return etatLit;
-        }
-        public void setEtatLit(EtatLit etatLit ) {
-            this.etatLit = etatLit;
-        }
-        public TypeLit getTypeLit() {
-            return typeLit;
-        }
-        public void setTypeLit(TypeLit typeLit) {
-            this.typeLit = typeLit;
-        }
-        public Marque getMarque() {
-            return marque;
-        }
-        public void setMarque(Marque marque) {
-            this.marque = marque;
-        }
-        public Espace getEspace() {
-            return espace;
-        }
-        public void setEspace(Espace espace) {
-            this.espace = espace;
-        }
-        public Lit(){
-        }
-
-        public String getCodeLit() {
-            return codeLit;
-        }
-
-        public void setCodeLit(String codeLit) {
-            this.codeLit = codeLit;
-        }
+package ma.uiass.eia.pds.Model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.persistence.*;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import java.io.Serializable;
+import java.util.List;
+@Entity
+@Table(name = "Tlit")
+
+
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class Lit implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonProperty("idLit")
+    private int idLit;
+
+    @Column
+    private String codeLit;
+    @Column
+    @Enumerated(EnumType.STRING)
+    private EtatLit etatLit;
+
+    @Column
+    private Boolean occupe;
+
+
+    @ManyToOne
+    @JoinColumn(name = "idEspace", referencedColumnName = "idEspace")
+    private Espace espace;
+    @JsonIgnore
+    @OneToOne(mappedBy = "lit")
+    private Admission admission;
+
+
+    @ManyToOne
+    @JoinColumn(name = "idType", referencedColumnName = "idType") // id de type de lit
+    private TypeLit typeLit;
+
+
+    @ManyToOne
+    @JoinColumn(name = "idMarque", referencedColumnName = "idMarque")
+    private Marque marque;
+    @JsonIgnore
+    @OneToMany(mappedBy = "lit")
+    private List<Equipement> equipements;
+
+    @JsonIgnore
+
+    @ManyToMany(mappedBy = "lits")
+    private List<Commande> commandes;
+
+
+    public int getIdLit() {
+        return idLit;
+    }
+    public void setIdLit(int idLit) {
+        this.idLit = idLit;
+    }
+
+    public String getCodeLit() {
+        return codeLit;
+    }
+
+    public void setCodeLit(String codeLit) {
+        this.codeLit = codeLit;
+    }
+
+    public Boolean getOccupe() {
+        return occupe;
+    }
+
+    public void setOccupe(Boolean occupe) {
+        this.occupe = occupe;
+    }
+
+
+    public List<Equipement> getEquipements() {
+        return equipements;
+    }
+
+    public void setEquipements(List<Equipement> equipements) {
+        this.equipements = equipements;
+    }
+
+    public EtatLit getEtatLit() {
+        return etatLit;
+    }
+
+    public void setEtatLit(EtatLit etatLit ) {
+        this.etatLit = etatLit;
+    }
+
+    public TypeLit getTypeLit() {
+        return typeLit;
+    }
+
+    public void setTypeLit(TypeLit typeLit) {
+        this.typeLit = typeLit;
+    }
+
+    public Marque getMarque() {
+        return marque;
+    }
+
+    public void setMarque(Marque marque) {
+        this.marque = marque;
+    }
+
+    public Espace getEspace() {
+        return espace;
+    }
+
+    public void setEspace(Espace espace) {
+        this.espace = espace;
+    }
+
+
+    public Lit(){
+    }
+
+    public Lit(EtatLit etatLit, Boolean occupe, Espace espace,  TypeLit typeLit, Marque marque) {
+        this.etatLit = etatLit;
+        this.occupe = occupe;
+        this.espace = espace;
+        this.typeLit = typeLit;
+        this.marque = marque;
+    }
         public String toString(){
             return  this.getCodeLit();       }
-        public boolean isAvailableAndGoodCondition() {
+      /*  public boolean isAvailableAndGoodCondition() {
             return etatLit == EtatLit.BONNNEETAT && !occupe;
-        }
+        }*/
 
 
     }
