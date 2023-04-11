@@ -65,6 +65,16 @@ public class LitController {
         return  service.countOccupation(Boolean.parseBoolean(occupation));
     }
 
+    @GET
+    @Path("/count/{idEspace}/{occupation}")
+    public Long countOccupationInEspace(
+            @PathParam("idEspace") int idEspace,
+            @PathParam("occupation") String occupation
+    ){
+
+        return service.countOccupationInEspace(idEspace, Boolean.parseBoolean(occupation));
+    }
+
     @DELETE
     @Path("/delete/{idLit}")
     public void deleteLit(@PathParam("idLit") int idLit){

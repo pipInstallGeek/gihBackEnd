@@ -56,6 +56,7 @@ public class LitDao implements ILitDao{
         return mycount;
     }
 
+
     @Override
     public void deleteLit(Lit lit) {
         EntityTransaction transaction = entityManager.getTransaction();
@@ -87,5 +88,19 @@ public class LitDao implements ILitDao{
             }
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public Long countOccupationInEspace(Espace espace,boolean occupation) {
+        Long mycount = entityManager.createQuery("SELECT count(*) from Lit t JOIN t.espace where t.occupe = :value and espace.idEspace = :value2 ", Long.class)
+                .setParameter("value", occupation)
+                .setParameter("value2", espace.getIdEspace())
+                .getSingleResult();
+        return mycount;
+    }
+
+    public List<Lit> test(int idMarque){
+        return  entityManager.createQuery("from Lit t JOIN t.espace  where espace.idEspace =: value")
+                .setParameter("value", idMarque).getResultList();
     }
 }

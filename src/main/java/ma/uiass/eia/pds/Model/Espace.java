@@ -32,8 +32,7 @@ public abstract class Espace implements Serializable {
     private Service service;
 
     @JsonIgnore
-    @OneToMany
-    @JoinColumn(name = "idEspace", referencedColumnName = "idEspace")
+    @OneToMany(mappedBy = "espace")
     public List<Lit> lit;
 
     public Service getService() {
