@@ -5,10 +5,7 @@
             import jakarta.ws.rs.core.UriBuilder;
 
             import ma.uiass.eia.pds.Controller.ReservationController;
-            import ma.uiass.eia.pds.Dao.IMarqueDao;
-            import ma.uiass.eia.pds.Dao.ITypeLitDao;
-            import ma.uiass.eia.pds.Dao.MarqueDao;
-            import ma.uiass.eia.pds.Dao.TypeLitDao;
+            import ma.uiass.eia.pds.Dao.*;
             import ma.uiass.eia.pds.Model.*;
             import ma.uiass.eia.pds.Service.*;
 
@@ -23,10 +20,7 @@
             import java.time.LocalDateTime;
             import java.time.Month;
             import java.time.ZoneId;
-            import java.util.ArrayList;
-            import java.util.Arrays;
-            import java.util.Calendar;
-            import java.util.Date;
+            import java.util.*;
 
 
             public class App extends ResourceConfig {
@@ -42,7 +36,7 @@
                 HttpServer server = JdkHttpServerFactory.createHttpServer(baseUri, config);
                 System.out.println("server launched Successfully ");
 
-
+/*
                 IBatimentService batimentService = new BatimentService();
                 IEtageService etageService = new EtageService();
                 IServiceService serviceService = new ServiceService();
@@ -135,11 +129,9 @@
                 litService.ajouter(lit15);
                 litService.ajouter(lit16);
 
-
-
-
-
-
-
+ */
+                LitDao litDao = new LitDao();
+                List<Lit> espace = litDao.test(1);
+                System.out.println(espace);
             }
         }
