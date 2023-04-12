@@ -13,6 +13,7 @@
             import ma.uiass.eia.pds.Service.*;
 
 
+            import org.glassfish.jersey.jackson.JacksonFeature;
             import org.glassfish.jersey.jackson.internal.jackson.jaxrs.json.JacksonJsonProvider;
             import org.glassfish.jersey.jdkhttp.JdkHttpServerFactory;
             import org.glassfish.jersey.server.ResourceConfig;
@@ -36,7 +37,7 @@
             {
 
                 URI baseUri = UriBuilder.fromUri("http://localhost/").port(9998).build();
-                ResourceConfig config = new ResourceConfig().packages("ma.uiass.eia.pds");
+                ResourceConfig config = new ResourceConfig().packages("ma.uiass.eia.pds","com.fasterxml.jackson.jaxrs.json.provider").register(JacksonFeature.class);
                 config.register(ReservationController.class);
                 HttpServer server = JdkHttpServerFactory.createHttpServer(baseUri, config);
                 System.out.println("server launched Successfully ");
