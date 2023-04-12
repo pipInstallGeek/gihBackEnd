@@ -5,12 +5,14 @@
             import jakarta.ws.rs.core.UriBuilder;
 
             import ma.uiass.eia.pds.Controller.ReservationController;
-            import ma.uiass.eia.pds.Dao.*;
+            import ma.uiass.eia.pds.Dao.IMarqueDao;
+            import ma.uiass.eia.pds.Dao.ITypeLitDao;
+            import ma.uiass.eia.pds.Dao.MarqueDao;
+            import ma.uiass.eia.pds.Dao.TypeLitDao;
             import ma.uiass.eia.pds.Model.*;
             import ma.uiass.eia.pds.Service.*;
 
 
-            import org.glassfish.jersey.jackson.JacksonFeature;
             import org.glassfish.jersey.jackson.internal.jackson.jaxrs.json.JacksonJsonProvider;
             import org.glassfish.jersey.jdkhttp.JdkHttpServerFactory;
             import org.glassfish.jersey.server.ResourceConfig;
@@ -20,7 +22,10 @@
             import java.time.LocalDateTime;
             import java.time.Month;
             import java.time.ZoneId;
-            import java.util.*;
+            import java.util.ArrayList;
+            import java.util.Arrays;
+            import java.util.Calendar;
+            import java.util.Date;
 
 
             public class App extends ResourceConfig {
@@ -31,12 +36,12 @@
             {
 
                 URI baseUri = UriBuilder.fromUri("http://localhost/").port(9998).build();
-                ResourceConfig config = new ResourceConfig().packages("ma.uiass.eia.pds","com.fasterxml.jackson.jaxrs.json.provider").register(JacksonFeature.class);
+                ResourceConfig config = new ResourceConfig().packages("ma.uiass.eia.pds");
                 config.register(ReservationController.class);
                 HttpServer server = JdkHttpServerFactory.createHttpServer(baseUri, config);
                 System.out.println("server launched Successfully ");
 
-/*
+
                 IBatimentService batimentService = new BatimentService();
                 IEtageService etageService = new EtageService();
                 IServiceService serviceService = new ServiceService();
@@ -128,7 +133,25 @@
                 litService.ajouter(lit14);
                 litService.ajouter(lit15);
                 litService.ajouter(lit16);
-*/
+
+
+                //------------------------------------------------------------------------------------------------------------------------
+                TypeDmServiceImp typeDmServiceImp=new TypeDmServiceImp();
+                typeDmServiceImp.ajouterTypeDm(new TypeDM("respirateur artificiel"));
+                typeDmServiceImp.ajouterTypeDm(new TypeDM("défibrillateur"));
+                typeDmServiceImp.ajouterTypeDm(new TypeDM("pompe à insuline"));
+                typeDmServiceImp.ajouterTypeDm(new TypeDM("pacemaker"));
+                typeDmServiceImp.ajouterTypeDm(new TypeDM("scanner"));
+                typeDmServiceImp.ajouterTypeDm(new TypeDM("oxymètre de pouls"));
+                typeDmServiceImp.ajouterTypeDm(new TypeDM("cathéter"));
+                typeDmServiceImp.ajouterTypeDm(new TypeDM("moniteur de pression artérielle"));
+                typeDmServiceImp.ajouterTypeDm(new TypeDM("tensiomètre"));
+
+                //------------------------------------------------------------------------------------------------------------------------
+
+
+
+
 
             }
         }
