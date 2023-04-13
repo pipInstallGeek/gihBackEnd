@@ -16,6 +16,8 @@ public class DispoMedical {
     @Column
     private int quantiteStock;
 
+    @OneToOne(mappedBy = "dispoMedical")
+    private DetailsLivraison detailsLivraison;
     @ManyToOne
     @JoinColumn(name = "codeTypeDm", referencedColumnName = "codeTypeDm")
     private TypeDM typeDM;

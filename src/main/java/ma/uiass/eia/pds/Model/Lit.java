@@ -41,7 +41,6 @@ public class Lit implements Serializable {
     private List<Equipement> equipements;
 
     @JsonIgnore
-
     @ManyToMany(mappedBy = "lits")
     private List<Commande> commandes;
 
