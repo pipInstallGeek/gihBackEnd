@@ -19,5 +19,16 @@ E:/gihBackEnd/src/main/resources/META-INF/persistence.xml</remarks>
       <jdbc-url>jdbc:mysql://localhost:3306/gih</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
+    <data-source source="LOCAL" name="PU_SC/Hibernate" uuid="25696dda-1274-4c6d-b6fd-1172b603040b">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>Hibernate
+
+C:/Users/hhh/Desktop/gihBackEnd/src/main/resources/META-INF/persistence.xml</remarks>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306/Gih</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>

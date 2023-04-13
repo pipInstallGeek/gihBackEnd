@@ -1,5 +1,6 @@
 package ma.uiass.eia.pds.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -15,15 +16,9 @@ public class TypeLit implements Serializable {
 
         @Column(length = 40,name="nomType")
         private String nomTypeLit;
-
+        @JsonIgnore
         @OneToMany(mappedBy = "typeLit")
         private List<Lit> lits;
-
-        public TypeLit( String nomTypeLit) {
-                nomTypeLit = nomTypeLit;
-        }
-
-        public TypeLit(){ }
 
         public int getIdType() {
                 return idType;
@@ -41,4 +36,23 @@ public class TypeLit implements Serializable {
         public void setNomTypeLit(String nomTypeLit) {
                 this.nomTypeLit = nomTypeLit;
         }
+
+        public List<Lit> getLits() {
+                return lits;
+        }
+
+        public void setLits(List<Lit> lits) {
+                this.lits = lits;
+        }
+
+        public TypeLit( String nomTypeLit) {
+                this.nomTypeLit = nomTypeLit;
+        }
+
+        public TypeLit(){ }
+        public String toString(){
+                return this.nomTypeLit;
+        }
+
+
 }

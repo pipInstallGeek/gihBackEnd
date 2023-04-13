@@ -2,10 +2,10 @@ package ma.uiass.eia.pds.Dao;
 
 import java.util.List;
 
-public interface Dao<T > {
+public interface IDao<T > {
     List<T> getAll();
 
-    void add(T t);
+    void    add(T t);
 
-    T   getById(int id);
+    T getById(int id);
 }

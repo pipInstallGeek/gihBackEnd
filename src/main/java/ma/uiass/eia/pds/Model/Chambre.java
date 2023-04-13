@@ -9,87 +9,32 @@ import java.util.List;
 //import javax.persistence.*;
 @Entity
 @Table(name= "TChambre")
+@DiscriminatorValue("chambre")
+
 public class Chambre extends Espace implements Serializable {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idChambre;
 
-    @JsonIgnore
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "idService", referencedColumnName = "idService")
-    private Service service;
-
-    @Column(name="NumChambre", length=50)
-    private String numChambre;
-    @Column(name="Etage",length=50)
-    private String etage;
-
-
-    @OneToMany(mappedBy = "chambre", fetch = FetchType.LAZY )
-    private final List<Lit> lits = new ArrayList<>();
-
-
-
-    public void setService(Service service) {
-        this.service = service;
-    }
     @Column(name="TypeChambre", length=50)
-    private String typeChambre;
-
-    public int getIdChambre() {
-        return idChambre;
-    }
-
-    public void setIdChambre(int idChambre) {
-        this.idChambre = idChambre;
-    }
+    private TypeChambre typeChambre;
 
 
 
-    public void setNumChambre(String numC) {
-        this.numChambre = numC;
-    }
-
-    public void setEtage(String etage) {
-        this.etage = etage;
-    }
-
-    public void setTypeChambre(String typeC) {
+    public void setTypeChambre(TypeChambre typeC) {
         this.typeChambre = typeC;
     }
 
-    public Service getService() {
-        return service;
-    }
 
 
-    public String getNumChambre() {
-        return numChambre;
-    }
-
-    public String getEtage() {
-        return etage;
-    }
-
-    public String getTypeChambre() {
+    public TypeChambre getTypeChambre() {
         return typeChambre;
     }
 
 
-    public Chambre(String numChambre, String etage, String typeChambre, Service service) {
-        this.numChambre = numChambre;
-        this.etage = etage;
+    public Chambre(TypeChambre typeChambre, Service service) {
+        super(service);
         this.typeChambre = typeChambre;
-        this.service = service;
     }
 
     public Chambre() {
+        super();
     }
-
-
-
-
-
-
-
 }

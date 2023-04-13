@@ -11,17 +11,17 @@ public class ServiceService implements IServiceService{
 
     IServiceDao serviceDao = new ServiceDao();
     @Override
-    public void ajouterService(Service service) {
+    public void ajouter(Service service) {
          serviceDao.add(service);
     }
 
     @Override
-    public List<Service> afficherServices() {
+    public List<Service> afficherTout() {
         return serviceDao.getAll();
     }
 
     @Override
-    public Service trouverServiceId(int id) {
+    public Service trouverId(int id) {
         return serviceDao.getById(id);
     }
 }

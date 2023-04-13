@@ -2,7 +2,6 @@ package ma.uiass.eia.pds.Controller;
 
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
-
 import ma.uiass.eia.pds.Model.Service;
 import ma.uiass.eia.pds.Service.*;
 
@@ -15,15 +14,13 @@ public class  ServiceController {
     @GET
     @Path("/getservices")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Service> getServices(){return serviceService.afficherServices();}
+    public List<Service> getServices(){return serviceService.afficherTout();}
 
     @POST
-    @Path("/addService")
+    @Path("/addservice")
     @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.TEXT_PLAIN)
-    public String addService(Service service){
-        serviceService.ajouterService(service);
-        return "Service added successfully ";
+    public void addService(Service service){
+        serviceService.ajouter(service);
     }
 
 

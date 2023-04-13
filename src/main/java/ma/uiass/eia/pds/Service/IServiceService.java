@@ -4,11 +4,7 @@ import ma.uiass.eia.pds.Model.Service;
 
 import java.util.List;
 
-public interface IServiceService {
+public interface IServiceService extends IService<Service>{
 
-    void ajouterService(Service service);
 
-    List<Service> afficherServices();
-
-    Service trouverServiceId(int id);
 }
