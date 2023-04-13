@@ -16,4 +16,6 @@ public interface ILitService extends IService<Lit>{
 
     void update(int idLit, boolean occupee, int espacecode, EtatLit etatLit);
     Long countOccupationInEspace(int idEspace, boolean occupation);
+
+    List<Lit> getLitByEsapce(int idEspace);
 }

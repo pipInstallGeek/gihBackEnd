@@ -27,6 +27,15 @@ public class LitController {
         return service.afficherTout();
     }
 
+    @GET
+    @Path("getlits/{idEspace}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Lit> getLitByEspace(
+            @PathParam("idEspace") int idEspace
+    ){
+        return service.getLitByEsapce(idEspace);
+    }
+
 
     @POST
     @Path("/addlit")
