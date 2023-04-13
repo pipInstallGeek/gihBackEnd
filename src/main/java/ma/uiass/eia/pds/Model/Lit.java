@@ -2,9 +2,7 @@ package ma.uiass.eia.pds.Model;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.io.Serializable;
 import java.util.List;
@@ -12,11 +10,10 @@ import java.util.List;
 @Table(name = "Tlit")
 
 
-@JsonIgnoreProperties(ignoreUnknown = true)
 public class Lit implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JsonProperty("idLit")
+    //@JsonProperty("idLit")
     private int idLit;
 
     @Column
@@ -130,11 +127,8 @@ public class Lit implements Serializable {
         this.typeLit = typeLit;
         this.marque = marque;
     }
-        public String toString(){
-            return  this.getCodeLit();       }
-      /*  public boolean isAvailableAndGoodCondition() {
-            return etatLit == EtatLit.BONNNEETAT && !occupe;
-        }*/
+    public String toString(){return "Lit numero: "+ this.idLit+ "Etat: " + this.etatLit;}
+
 
 
     }

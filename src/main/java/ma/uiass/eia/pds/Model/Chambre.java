@@ -14,7 +14,6 @@ import java.util.List;
 public class Chambre extends Espace implements Serializable {
 
     @Column(name="TypeChambre", length=50)
-    @Enumerated(EnumType.STRING)
     private TypeChambre typeChambre;
 
 

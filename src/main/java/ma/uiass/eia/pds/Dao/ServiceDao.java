@@ -44,16 +44,6 @@ public class ServiceDao implements IServiceDao{
     }
 
 
-    public int getNombreLitOccupé(int serviceId) {
-        String queryString = "SELECT COUNT(lit) FROM Lit lit " +
-                "JOIN lit.espace espace " +
-                "JOIN espace.service service " +
-                "WHERE service.idService = :serviceId AND lit.occupe = true";
-        TypedQuery<Long> query = entityManager.createQuery(queryString, Long.class);
-        query.setParameter("serviceId", serviceId);
-        Long result = query.getSingleResult();
-        return result.intValue();
-    }
 
 
 }

@@ -8,7 +8,6 @@
 
     @Entity
     @Table(name= "TAdmission")
-    @JsonIgnoreProperties(ignoreUnknown = true)
     public class Admission implements Serializable {
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,7 +20,6 @@
         private String dateFin;
         @OneToOne(cascade = CascadeType.ALL)
         @JoinColumn(name = "idLit",referencedColumnName = "idLit")
-        @JsonProperty("lit")
         private Lit lit;
 
         public Admission(String numAdmission, String dateE, Lit lit) {
@@ -37,12 +35,7 @@
         public void setNumAdmission(String numAdmission) {
             this.numAdmission = numAdmission;
         }
-        //public Date getDateDébut() {return dateDébut;}
-        //public void setDateDébut(Date dateDébut) {this.dateDébut = dateDébut;}
-       //public Date getDateFin() {return dateFin;}
-       /*public void setDateFin(Date dateFin) {
-            this.dateFin = dateFin;
-        }*/
+
 
 
         public String getDateDébut() {
@@ -82,8 +75,8 @@
         public Admission(){}
         public String toString(){
             return this.idAdmission + " "+this.numAdmission+" "+" "+this.dateDébut+" "+this.dateFin +" "+this.lit.getIdLit();        }
-        @JsonIgnore
-        public int getIdLitObject() {
-            return lit.getIdLit();
-        }
+
+       public int getLitId() {
+           return lit.getIdLit();
+       }
     }

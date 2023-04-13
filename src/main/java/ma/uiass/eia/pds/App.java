@@ -24,12 +24,11 @@
                 }
 
                 public static void main(String[] args) {
-                    URI baseUri = UriBuilder.fromUri("http://localhost/").port(9998).build();
-                    ResourceConfig config = new ResourceConfig().packages("ma.uiass.eia.pds");
-                    config.register(JacksonJsonProvider.class);
+                URI baseUri = UriBuilder.fromUri("http://localhost/").port(9998).build();
+                ResourceConfig config = new ResourceConfig().packages("ma.uiass.eia.pds");
+                config.register(JacksonJsonProvider.class);
                     config.register(AdmissionController.class);
                     HttpServer server = JdkHttpServerFactory.createHttpServer(baseUri, config);
-
                     System.out.println("server launched Successfully ");
                 IAdmissionService reservationService =new AdmissionService();
                 IServiceService serviceService = new ServiceService();

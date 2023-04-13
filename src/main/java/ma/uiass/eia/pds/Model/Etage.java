@@ -2,16 +2,13 @@ package ma.uiass.eia.pds.Model;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
 @Table(name= "TEtage")
-@JsonIgnoreProperties(ignoreUnknown = true)
 
 public class Etage {
     public String getCodeEtage() {
@@ -21,7 +18,7 @@ public class Etage {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idEtage;
 
-    @JsonProperty("codeEtage")
+
     @Column(name="codeEtage", length=50)
     private String codeEtage;
     @JsonIgnore

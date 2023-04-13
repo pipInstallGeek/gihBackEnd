@@ -21,7 +21,7 @@ public class ChambreDao implements IEspaceDao<Chambre> {
         try {
             transaction.begin();
             entityManager.persist(chambre);
-            chambre.setCodeEspace("C"+chambre.getService().getCodeService()+chambre.getIdEspace());
+            chambre.setCodeEspace(chambre.getService().getCodeService()+chambre.getIdEspace());
             entityManager.merge(chambre);
             transaction.commit();
         }catch (Exception e){

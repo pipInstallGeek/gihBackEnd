@@ -58,6 +58,15 @@
 
             return  service.countOccupation(Boolean.parseBoolean(occupation));
         }
+        @GET
+        @Path("/count/{idEspace}/{occupation}")
+        public Long countOccupationInEspace(
+                @PathParam("idEspace") int idEspace,
+                @PathParam("occupation") String occupation
+        ){
+
+            return service.countOccupationInEspace(idEspace, Boolean.parseBoolean(occupation));
+        }
 
 
         @DELETE
@@ -77,9 +86,9 @@
             service.update(lit, Boolean.parseBoolean(occupe), espacecode, EtatLit.valueOf(etatlit));
         }
         @GET
-        @Path("/getlitById")
+        @Path("/getlitById/{idLit}")
         @Produces(MediaType.APPLICATION_JSON)
-        public Lit getById(int id){return service.trouverId(id) ;  }
+        public Lit getById(@PathParam(("idLit")) int idLit){return service.trouverId(idLit) ;  }
         @GET
         @Path("/getAvailableLit{nomService}")
         @Produces(MediaType.APPLICATION_JSON)

@@ -10,7 +10,6 @@ import java.io.Serializable;
 public class Salle extends Espace implements Serializable {
 
     @Column(name = "TypeSalle", length = 50)
-    @Enumerated(EnumType.STRING)
     private TypeSalle typeSalle;
 
     public void setTypeSalle(TypeSalle typeSalle) {

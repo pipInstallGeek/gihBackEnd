@@ -45,7 +45,7 @@ public class AdmissionService implements IAdmissionService {
             Lit lit = admission.getLit();
             if (lit != null) {
                 lit.setOccupe(false); // Mark the bed as available
-                litDao.update(lit); // Update the bed in the database
+                //litDao.update(lit); // Update the bed in the database
             }
             admissionDao.update(admission); // Update the admission in the database
         }
