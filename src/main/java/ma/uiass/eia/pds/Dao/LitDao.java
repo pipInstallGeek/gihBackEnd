@@ -99,8 +99,11 @@ public class LitDao implements ILitDao{
         return mycount;
     }
 
-    public List<Lit> test(int idMarque){
-        return  entityManager.createQuery("from Lit t JOIN t.espace  where espace.idEspace =: value")
-                .setParameter("value", idMarque).getResultList();
+    @Override
+    public List<Lit> getLitByEspace(int idEspace) {
+        return entityManager.createQuery("from Lit t JOIN t.espace  where espace.idEspace =: value")
+                .setParameter("value", idEspace).getResultList();
     }
+
+
 }

@@ -36,7 +36,7 @@
                 HttpServer server = JdkHttpServerFactory.createHttpServer(baseUri, config);
                 System.out.println("server launched Successfully ");
 
-
+/*
                 IBatimentService batimentService = new BatimentService();
                 IEtageService etageService = new EtageService();
                 IServiceService serviceService = new ServiceService();
@@ -128,10 +128,7 @@
                 litService.ajouter(lit14);
                 litService.ajouter(lit15);
                 litService.ajouter(lit16);
+*/
 
-
-                LitDao litDao = new LitDao();
-                List<Lit> espace = litDao.test(1);
-                System.out.println(espace);
             }
         }
