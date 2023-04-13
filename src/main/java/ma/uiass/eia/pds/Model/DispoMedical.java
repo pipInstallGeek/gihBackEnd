@@ -52,8 +52,13 @@ public class DispoMedical {
         this.typeDM = typeDM;
     }
 
-    public DispoMedical(String nameDispo, int quantiteStock,TypeDM typeDM){
+    public DispoMedical(String nameDispo,int quantiteStock,TypeDM typeDM){
         setNameDispo(nameDispo);
+        setQuantiteStock(quantiteStock);
+        setTypeDM(typeDM);
+    }
+
+    public DispoMedical(TypeDM typeDM,int quantiteStock){
         setQuantiteStock(quantiteStock);
         setTypeDM(typeDM);
     }
