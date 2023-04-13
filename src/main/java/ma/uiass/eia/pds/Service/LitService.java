@@ -56,4 +56,10 @@ public class LitService implements ILitService{
         }
         return litDao.countOccupationInEspace(espace, occupation);
     }
+
+    @Override
+    public List<Lit> getLitByEsapce(int idEspace) {
+
+        return litDao.getLitByEspace(idEspace);
+    }
 }
