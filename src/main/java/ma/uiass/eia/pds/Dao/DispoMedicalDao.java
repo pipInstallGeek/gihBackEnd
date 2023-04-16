@@ -11,7 +11,7 @@ import java.util.List;
 public class DispoMedicalDao implements IDispoMedicalDao {
 
 
-    private EntityManager entityManager;
+    private final EntityManager entityManager;
 
     public DispoMedicalDao() {
         entityManager = HibernateUtil.getEntityManger();
@@ -40,7 +40,12 @@ public class DispoMedicalDao implements IDispoMedicalDao {
 
     @Override
     public DispoMedical getById(int id) {
-        return null;
+        DispoMedical dispoMedical = entityManager.find(DispoMedical.class, id);
+        if(dispoMedical == null){
+            System.out.println("Not found");
+            return null;
+        }
+        return dispoMedical;
     }
 
 

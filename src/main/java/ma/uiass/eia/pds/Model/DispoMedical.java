@@ -11,7 +11,7 @@ public class DispoMedical {
     private int idDispoMedical;
 
     @Column
-    private String nameDispo;
+    private String nomDispoMed;
 
     @Column
     private int quantiteStock;
@@ -19,6 +19,8 @@ public class DispoMedical {
     @ManyToOne
     @JoinColumn(name = "codeTypeDm", referencedColumnName = "codeTypeDm")
     private TypeDM typeDM;
+
+
 
     public int getIdDispoMedical() {
         return idDispoMedical;
@@ -28,12 +30,12 @@ public class DispoMedical {
         this.idDispoMedical = idDispoMedical;
     }
 
-    public String getNameDispo() {
-        return nameDispo;
+    public String getNomDispoMed() {
+        return nomDispoMed;
     }
 
-    public void setNameDispo(String nameDispo) {
-        this.nameDispo = nameDispo;
+    public void setNomDispoMed(String nomDispoMed) {
+        this.nomDispoMed = nomDispoMed;
     }
 
     public int getQuantiteStock() {
@@ -52,19 +54,17 @@ public class DispoMedical {
         this.typeDM = typeDM;
     }
 
-    public DispoMedical(String nameDispo,int quantiteStock,TypeDM typeDM){
-        setNameDispo(nameDispo);
+
+    public DispoMedical(String nomDispoMed, TypeDM typeDM,int quantiteStock){
+        setNomDispoMed(nomDispoMed);
         setQuantiteStock(quantiteStock);
         setTypeDM(typeDM);
     }
 
-    public DispoMedical(TypeDM typeDM,int quantiteStock){
-        setQuantiteStock(quantiteStock);
-        setTypeDM(typeDM);
-    }
+    public DispoMedical(){}
 
     public String toString(){
-        return this.getNameDispo();
+        return this.getNomDispoMed();
 
     }
 }

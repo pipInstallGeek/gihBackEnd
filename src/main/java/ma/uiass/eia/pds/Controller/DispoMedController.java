@@ -31,6 +31,15 @@ public class DispoMedController {
     }
 
 
+    @GET
+    @Path("/getDispoMedById")
+    @Produces(MediaType.APPLICATION_JSON)
+    public DispoMedical getDispositifMedById(int id){
+        return dispoMedicalService.findDMbyID(id);
+    }
+
+
+
 
 
 }

@@ -40,6 +40,11 @@ public class TypeDmDAO implements ITypeDmDAO{
 
     @Override
     public TypeDM getById(int id) {
-        return null;
+        TypeDM typeDM = entityManager.find(TypeDM.class, id);
+        if(typeDM == null){
+            System.out.println("Not found");
+            return null;
+        }
+        return typeDM;
     }
 }

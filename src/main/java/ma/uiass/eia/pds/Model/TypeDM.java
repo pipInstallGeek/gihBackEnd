@@ -33,6 +33,8 @@ public class TypeDM {
         setNomType(nomType);
     }
 
+    public TypeDM(){};
+
     public String toString(){
         return this.getNomType();
     }

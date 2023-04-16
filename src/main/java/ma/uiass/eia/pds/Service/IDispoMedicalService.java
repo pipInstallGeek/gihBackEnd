@@ -9,4 +9,8 @@ public interface IDispoMedicalService {
     void ajouterDispoMed(DispoMedical dispoMedical);
 
     List<DispoMedical> afficherDispoMedical();
+
+    DispoMedical findDMbyID(int id);
+
+
 }

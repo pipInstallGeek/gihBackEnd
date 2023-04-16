@@ -41,6 +41,7 @@
                 HttpServer server = JdkHttpServerFactory.createHttpServer(baseUri, config);
                 System.out.println("server launched Successfully ");
 
+                /*
 
                 IBatimentService batimentService = new BatimentService();
                 IEtageService etageService = new EtageService();
@@ -49,6 +50,8 @@
                 ITypeLitService typeLitService = new TypeLitService();
                 IMarqueService marqueService = new MarqueService();
                 ILitService litService = new LitService();
+
+
 
                 Batiment batiment = new Batiment("A");
                 Batiment batiment1 = new Batiment("B");
@@ -97,6 +100,7 @@
                 marqueService.ajouter(marque1);
                 marqueService.ajouter(marque2);
 
+
                 Lit lit = new Lit(EtatLit.DEFECTUEUSE, false, chambre1, typeLit1, marque);
                 Lit lit1 = new Lit(EtatLit.DEFECTUEUSE, true, chambre, typeLit, marque1);
                 Lit lit2 = new Lit(EtatLit.DEFECTUEUSE, true, chambre2, typeLit, marque2);
@@ -137,17 +141,64 @@
 
                 //------------------------------------------------------------------------------------------------------------------------
                 TypeDmServiceImp typeDmServiceImp=new TypeDmServiceImp();
-                typeDmServiceImp.ajouterTypeDm(new TypeDM("respirateur artificiel"));
-                typeDmServiceImp.ajouterTypeDm(new TypeDM("défibrillateur"));
-                typeDmServiceImp.ajouterTypeDm(new TypeDM("pompe à insuline"));
-                typeDmServiceImp.ajouterTypeDm(new TypeDM("pacemaker"));
-                typeDmServiceImp.ajouterTypeDm(new TypeDM("scanner"));
-                typeDmServiceImp.ajouterTypeDm(new TypeDM("oxymètre de pouls"));
-                typeDmServiceImp.ajouterTypeDm(new TypeDM("cathéter"));
-                typeDmServiceImp.ajouterTypeDm(new TypeDM("moniteur de pression artérielle"));
-                typeDmServiceImp.ajouterTypeDm(new TypeDM("tensiomètre"));
+                typeDmServiceImp.ajouterTypeDm(new TypeDM("instruments légers"));
+                typeDmServiceImp.ajouterTypeDm(new TypeDM("outils de diagnostic"));
+                typeDmServiceImp.ajouterTypeDm(new TypeDM("mobilier"));
+                typeDmServiceImp.ajouterTypeDm(new TypeDM("équipement léger"));
+                typeDmServiceImp.ajouterTypeDm(new TypeDM("DM connectés"));
+                typeDmServiceImp.ajouterTypeDm(new TypeDM("équipement lourd"));
 
                 //------------------------------------------------------------------------------------------------------------------------
+
+
+                /*
+
+                System.out.println(typeDmServiceImp.afficherTypeDm());
+
+
+                TypeDmServiceImp typeDmServiceImp=new TypeDmServiceImp();
+                IDispoMedicalService dispoMedicalServiceImp=new DispoMedicalServiceImp();
+                TypeDM typeDM = new TypeDM("fournitures");
+                typeDmServiceImp.ajouterTypeDm(typeDM);
+
+
+
+                typeDmServiceImp.ajouterTypeDm(new TypeDM("équipement lourd"));
+
+
+             //IDispoMedicalService dispoMedicalServiceImp=new DispoMedicalServiceImp();
+               /* dispoMedicalServiceImp.ajouterDispoMed(new DispoMedical("Scanner",typeDM,22));
+                System.out.println(dispoMedicalServiceImp.afficherDispoMedical());
+
+
+
+
+               // dispoMedicItemService.ajouter(i1);
+
+
+                IDispoMedicalService dispoMedicalServiceImp=new DispoMedicalServiceImp();
+                IDispoMedicItemService dispoMedicItemService=new DispoMedicItemService();
+                ITypeDmService typeDmService=new TypeDmServiceImp();
+
+                TypeDM t1=new TypeDM("équipement léger");
+                typeDmService.ajouterTypeDm(t1);
+                DispoMedical i= new DispoMedical("ScannerAlpha",t1,10);
+                dispoMedicalServiceImp.ajouterDispoMed(i);
+                for(int j=0;j<=3;j++){
+                DispoMedicItem i1=new DispoMedicItem("Scanner"+Integer.valueOf((int)(Math.random()*100)),i);
+                dispoMedicItemService.ajouter(i1);}
+
+
+                 */
+
+
+
+
+
+
+
+
+
 
 
 
