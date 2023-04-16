@@ -7,7 +7,7 @@ import ma.uiass.eia.pds.Model.DetailsLivraison;
 import java.util.List;
 
 public class DetailsLivraisonDao implements IDetailsLivraisonDao{
-    private final EntityManager entityManager;
+    private EntityManager entityManager;
 
     public DetailsLivraisonDao () {
         this.entityManager = entityManager;

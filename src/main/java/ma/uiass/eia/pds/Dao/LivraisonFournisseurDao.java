@@ -8,7 +8,7 @@ import java.util.List;
 
 public class LivraisonFournisseurDao implements ILivraisonDao{
 
-    private final EntityManager entityManager;
+    private EntityManager entityManager;
 
     public LivraisonFournisseurDao() {
         this.entityManager = entityManager;
