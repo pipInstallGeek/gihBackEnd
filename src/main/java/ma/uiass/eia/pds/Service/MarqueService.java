@@ -2,6 +2,7 @@ package ma.uiass.eia.pds.Service;
 
 import ma.uiass.eia.pds.Dao.IMarqueDao;
 import ma.uiass.eia.pds.Dao.MarqueDao;
+import ma.uiass.eia.pds.Model.DescriptionDM;
 import ma.uiass.eia.pds.Model.Marque;
 
 import java.util.List;

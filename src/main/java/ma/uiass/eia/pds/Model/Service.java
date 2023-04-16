@@ -24,8 +24,7 @@ public class Service implements Serializable {
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "idEtage", referencedColumnName = "idEtage")
 	private Etage etage;
-	@OneToMany(mappedBy = "service")
-	private List<DemandeL> Demandes;
+
 
 
 	public int getIdService() {

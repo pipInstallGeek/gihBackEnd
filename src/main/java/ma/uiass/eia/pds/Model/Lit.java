@@ -71,6 +71,22 @@ public class Lit implements Serializable {
         return occupe;
     }
 
+    public Admission getAdmission() {
+        return admission;
+    }
+
+    public void setAdmission(Admission admission) {
+        this.admission = admission;
+    }
+
+    public List<Commande> getCommandes() {
+        return commandes;
+    }
+
+    public void setCommandes(List<Commande> commandes) {
+        this.commandes = commandes;
+    }
+
     public void setOccupe(Boolean occupe) {
         this.occupe = occupe;
     }
@@ -127,7 +143,7 @@ public class Lit implements Serializable {
         this.typeLit = typeLit;
         this.marque = marque;
     }
-    public String toString(){return "Lit numero: "+ this.idLit+ "Etat: " + this.etatLit;}
+    public String toString(){return this.codeLit;}
 
 
 

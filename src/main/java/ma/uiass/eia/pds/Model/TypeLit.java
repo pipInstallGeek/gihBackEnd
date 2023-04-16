@@ -16,6 +16,8 @@ public class    TypeLit implements Serializable {
 
         @Column(length = 40,name="nomType")
         private String nomTypeLit;
+        @Column(length = 40,name="codeType")
+        private String codeType;
         @JsonIgnore
         @OneToMany(mappedBy = "typeLit")
         private List<Lit> lits;
@@ -45,7 +47,8 @@ public class    TypeLit implements Serializable {
                 this.lits = lits;
         }
 
-        public TypeLit( String nomTypeLit) {
+        public TypeLit( String nomTypeLit,String codeType) {
+                this.codeType=codeType;
                 this.nomTypeLit = nomTypeLit;
         }
 

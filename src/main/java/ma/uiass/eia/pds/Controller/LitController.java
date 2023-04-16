@@ -90,6 +90,10 @@
         @Produces(MediaType.APPLICATION_JSON)
         public Lit getById(@PathParam(("idLit")) int idLit){return service.trouverId(idLit) ;  }
         @GET
+        @Path("/getlitByCode/{idLit}")
+        @Produces(MediaType.APPLICATION_JSON)
+        public Lit findbycode(@PathParam(("idLit")) String idLit){return service1.findbycode(idLit) ;  }
+        @GET
         @Path("/getAvailableLit{nomService}")
         @Produces(MediaType.APPLICATION_JSON)
         @Consumes(MediaType.APPLICATION_FORM_URLENCODED)

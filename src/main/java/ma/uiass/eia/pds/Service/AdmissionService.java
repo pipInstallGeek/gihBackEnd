@@ -4,6 +4,7 @@ import ma.uiass.eia.pds.Dao.AdmissionDao;
 import ma.uiass.eia.pds.Dao.ILitDao;
 import ma.uiass.eia.pds.Dao.LitDao;
 import ma.uiass.eia.pds.Model.Admission;
+import ma.uiass.eia.pds.Model.DescriptionDM;
 import ma.uiass.eia.pds.Model.Lit;
 import java.util.List;
 public class AdmissionService implements IAdmissionService {

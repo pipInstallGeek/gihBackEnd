@@ -56,17 +56,20 @@ public class AdmissionDao implements IAdmissionDao {
             return 0;
         }
     }public void add(Admission admission) {
-       EntityTransaction transaction = entityManager.getTransaction();
-       List<Lit> availableBeds = entityManager.createQuery("select l from Lit l where l.etatLit = :etat and l.occupe = false", Lit.class)
-               .setParameter("etat", EtatLit.BONNNEETAT)
-               .getResultList();
-       for (Lit lit : availableBeds) {
-           //if (lit.isAvailableAndGoodCondition()) {
-               admission.setLit(entityManager.find(Lit.class, lit.getIdLit()));
-               lit.setOccupe(true);
-               break;
+        EntityTransaction transaction = entityManager.getTransaction();
+        try {
+            transaction.begin();
+            entityManager.persist(admission);
+            admission.getLit().setOccupe(true);
+            entityManager.merge(admission);
+            transaction.commit();
 
-       }
+        }catch (Exception e){
+            if (transaction != null){
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }
      //  admission.setDateFin(null); // initialiser la date de fin à null
        try {
            transaction.begin();

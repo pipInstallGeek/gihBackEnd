@@ -22,6 +22,7 @@
         @JoinColumn(name = "idLit",referencedColumnName = "idLit")
         private Lit lit;
 
+
         public Admission(String numAdmission, String dateE, Lit lit) {
             this.numAdmission=numAdmission;
             this.dateDébut=dateE;
@@ -62,6 +63,8 @@
             this.dateDébut = dateDébut;
             this.dateFin = dateFin;
             this.lit = lit;
+
+
         }
         public Lit getLit() {
             return lit;
@@ -76,7 +79,7 @@
         public String toString(){
             return this.idAdmission + " "+this.numAdmission+" "+" "+this.dateDébut+" "+this.dateFin +" "+this.lit.getIdLit();        }
 
-       public int getLitId() {
-           return lit.getIdLit();
-       }
+       /*public int getLitId() {
+           return lit.getIdLit();*/
+
     }

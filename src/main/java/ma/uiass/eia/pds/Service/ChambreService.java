@@ -3,12 +3,13 @@ import ma.uiass.eia.pds.Dao.ChambreDao;
 
 import ma.uiass.eia.pds.Dao.IEspaceDao;
 import ma.uiass.eia.pds.Model.Chambre;
-import ma.uiass.eia.pds.Model.Lit;
+import ma.uiass.eia.pds.Model.DescriptionDM;
 
 import java.util.List;
 
 public class ChambreService implements IEspaceService<Chambre> {
     private IEspaceDao chambreDao = new ChambreDao();
+
 
     @Override
     public void ajouter(Chambre chambre) {

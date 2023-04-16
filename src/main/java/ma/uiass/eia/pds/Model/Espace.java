@@ -35,6 +35,18 @@ public abstract class Espace implements Serializable {
     @OneToMany(mappedBy = "espace")
     public List<Lit> lit;
 
+    public List<DescriptionDM> getDescriptionDM() {
+        return descriptionDM;
+    }
+
+    public void setDescriptionDM(List<DescriptionDM> descriptionDM) {
+        this.descriptionDM = descriptionDM;
+    }
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "espace")
+    public List<DescriptionDM> descriptionDM;
+
     public Service getService() {
         return service;
     }

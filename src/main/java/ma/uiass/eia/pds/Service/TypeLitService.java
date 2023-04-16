@@ -2,6 +2,7 @@ package ma.uiass.eia.pds.Service;
 
 import ma.uiass.eia.pds.Dao.ITypeLitDao;
 import ma.uiass.eia.pds.Dao.TypeLitDao;
+import ma.uiass.eia.pds.Model.DescriptionDM;
 import ma.uiass.eia.pds.Model.TypeLit;
 
 import java.util.List;

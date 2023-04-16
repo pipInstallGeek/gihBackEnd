@@ -1,6 +1,7 @@
 package ma.uiass.eia.pds.Service;
 
 import ma.uiass.eia.pds.Dao.EquipementDao;
+import ma.uiass.eia.pds.Model.DescriptionDM;
 import ma.uiass.eia.pds.Model.Equipement;
 
 import java.util.List;

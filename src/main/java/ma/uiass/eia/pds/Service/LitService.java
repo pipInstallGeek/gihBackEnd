@@ -10,10 +10,13 @@
         private IEspaceDao<Chambre> chambreDao = new ChambreDao();
         private IEspaceDao<Salle> salleDao = new SalleDao();
         private LitDao littDao1=new LitDao();
+
         @Override
         public void ajouter(Lit lit) {
             litDao.add(lit);
+
         }
+
         @Override
         public List<Lit> afficherTout() {
             return litDao.getAll();

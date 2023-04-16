@@ -12,7 +12,7 @@ public class TypeDM implements Serializable {
     private int idTypeDM;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "idDM", referencedColumnName = "idDM")
-    private DM dm;
+    private DescriptionDM dmDescription;
 
     public TypeDM() {
     }
@@ -43,9 +43,9 @@ public class TypeDM implements Serializable {
         this.codeTypeDM = codeTypeDM;
     }
 
-    public TypeDM(DM dm, String codeTypeDM, String NomTypeDM) {
-        this.dm = dm;
-        this.codeTypeDM = codeTypeDM;
+    public TypeDM(DescriptionDM dmDescription,  String NomTypeDM) {
+        this.dmDescription = dmDescription;
+        //this.codeTypeDM = codeTypeDM;
         this.NomTypeDM = NomTypeDM;
     }
 
@@ -53,12 +53,12 @@ public class TypeDM implements Serializable {
         return NomTypeDM;
     }
 
-    public DM getDm() {
-        return dm;
+    public DescriptionDM getDm() {
+        return dmDescription;
     }
 
-    public void setDm(DM dm) {
-        this.dm = dm;
+    public void setDm(DescriptionDM dmDescription) {
+        this.dmDescription = dmDescription;
     }
 
     public void setNomTypeDM(String NomTypeDM) {
