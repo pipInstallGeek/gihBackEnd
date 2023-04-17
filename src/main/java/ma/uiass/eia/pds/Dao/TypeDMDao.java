@@ -21,7 +21,7 @@ public class TypeDMDao implements ITypeDMDao {
             transaction.begin();
             entityManager.persist(typeDM);
             typeDM.setCodeTypeDM(typeDM.getNomTypeDM()+typeDM.getIdTypeDM());
-            entityManager.merge(typeDM);
+            //entityManager.merge(typeDM);
             transaction.commit();
         } catch (Exception e) {
             if (transaction != null) {
@@ -44,4 +44,15 @@ public class TypeDMDao implements ITypeDMDao {
             return null;
         }
     }
+    /*@Override
+    public List<TypeDM> getTypeDmByNomDm(String nomDM) {
+        TypedQuery<TypeDM> query = entityManager.createQuery(
+                "SELECT t FROM TypeDM t WHERE t.dmDescription.nomDM = :nomDM", TypeDM.class);
+        query.setParameter("nomDM", nomDM);
+        return query.getResultList();
+    }*/
+
+
+
+
 }

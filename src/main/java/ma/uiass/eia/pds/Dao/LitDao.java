@@ -105,8 +105,6 @@ public class LitDao implements ILitDao{
         }
     }
 
-
-
        /* public List<Lit> getAvailableLit(String nomService, String typeEspace) {
             return entityManager.createQuery(
                             "SELECT l FROM Lit l JOIN l.espace e WHERE e.service.nomService = :nomService " +

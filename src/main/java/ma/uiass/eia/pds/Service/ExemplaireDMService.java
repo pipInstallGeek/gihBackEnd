@@ -16,4 +16,11 @@ public class ExemplaireDMService implements IExemplaireDMService{
     public List<ExemplaireDM> afficherTout() {return ex.getAll();}
     @Override
     public ExemplaireDM trouverId(int id) {return ex.getById(id);}
+
+    @Override
+    public List<ExemplaireDM> trouvezExemplaireByDMetTypeDm(String nomDM) {
+        List<ExemplaireDM> lst=ex.getExemplaireByDMetTypeDm(nomDM);
+        return lst;
+
+    }
 }

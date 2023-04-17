@@ -1,5 +1,6 @@
 package ma.uiass.eia.pds.Model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
@@ -19,12 +20,14 @@ public class DescriptionDM implements Serializable {
     private String nomDM;
     @Column(name="Quantité", length=50)
     private int quantité;
-    @JsonIgnore
-    @OneToMany(mappedBy = "dmDescription", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST )
-    private List<TypeDM> typeDMs = new ArrayList<>();
+
     @JsonIgnore
     @OneToMany(mappedBy = "dmDescription", fetch = FetchType.LAZY )
     private List<ExemplaireDM> exemplaires = new ArrayList<>();
+    @JsonBackReference
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "idTypeDM", referencedColumnName = "idTypeDM")
+    private TypeDM typeDM;
     @ManyToOne
     @JoinColumn(name = "idEspace", referencedColumnName = "idEspace")
     private Espace espace;
@@ -62,6 +65,22 @@ public class DescriptionDM implements Serializable {
         return espace;
     }
 
+    public DescriptionDM(String nomDM, int quantité, TypeDM typeDM, Espace espace) {
+
+        this.nomDM = nomDM;
+        this.quantité = quantité;
+        this.typeDM = typeDM;
+        this.espace = espace;
+    }
+
+    public TypeDM getTypeDM() {
+        return typeDM;
+    }
+
+    public void setTypeDM(TypeDM typeDM) {
+        this.typeDM = typeDM;
+    }
+
     public void setEspace(Espace espace) {
         this.espace = espace;
     }
@@ -70,7 +89,6 @@ public class DescriptionDM implements Serializable {
         this.espace=espace;
         this.nomDM = nomDM;
         this.quantité = quantité;
-       // this.typeDMs = typeDMs;
     }
 
     public String getNomDM() {
@@ -89,11 +107,8 @@ public class DescriptionDM implements Serializable {
         this.quantité = quantité;
     }
 
-    public List<TypeDM> getTypeDMs() {
-        return typeDMs;
-    }
 
-    public void setTypeDMs(List<TypeDM> typeDMs) {
-        this.typeDMs = typeDMs;
+    public String toString(){
+        return this.getNomDM();
     }
 }
