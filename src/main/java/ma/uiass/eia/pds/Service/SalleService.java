@@ -2,6 +2,7 @@ package ma.uiass.eia.pds.Service;
 
 import ma.uiass.eia.pds.Dao.IEspaceDao;
 import ma.uiass.eia.pds.Dao.SalleDao;
+import ma.uiass.eia.pds.Model.Lit;
 import ma.uiass.eia.pds.Model.DescriptionDM;
 import ma.uiass.eia.pds.Model.Salle;
 
@@ -24,6 +25,4 @@ public class SalleService implements IEspaceService<Salle> {
     public Salle trouverId(int id) {
         return salleDao.getById(id);
     }
-
-
 }

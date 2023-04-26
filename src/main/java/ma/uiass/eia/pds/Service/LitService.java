@@ -1,28 +1,29 @@
-    package ma.uiass.eia.pds.Service;
-    import ma.uiass.eia.pds.Dao.*;
-    import ma.uiass.eia.pds.Model.*;
+package ma.uiass.eia.pds.Service;
+
+import ma.uiass.eia.pds.Dao.*;
+import ma.uiass.eia.pds.Model.*;
 
     import java.util.List;
     import java.util.Map;
 
-    public class LitService implements ILitService{
-        private ILitDao litDao = new LitDao();
-        private IEspaceDao<Chambre> chambreDao = new ChambreDao();
-        private IEspaceDao<Salle> salleDao = new SalleDao();
-        private LitDao littDao1=new LitDao();
+public class LitService implements ILitService{
+    private ILitDao litDao = new LitDao();
+    private IEspaceDao<Chambre> chambreDao = new ChambreDao();
+    private IEspaceDao<Salle> salleDao = new SalleDao();
+    private LitDao littDao1=new LitDao();
 
-        @Override
-        public void ajouter(Lit lit) {
-            litDao.add(lit);
+    @Override
+    public void ajouter(Lit lit) {
+        litDao.add(lit);
+    }
 
-        }
+    @Override
+    public List<Lit> afficherTout() {
+        return litDao.getAll();
+    }
 
-        @Override
-        public List<Lit> afficherTout() {
-            return litDao.getAll();
-        }
-        @Override
-        public Lit trouverId(int id) {return litDao.getById(id);}
+    @Override
+    public Lit trouverId(int id) {return litDao.getById(id);}
 
         @Override
         public Long countOccupation(boolean occupation) {
@@ -48,25 +49,26 @@
 
         }
 
-        @Override
-        public void update(int idLit, boolean occupee, int espacecode, EtatLit etatLit) {
-            Lit lit = litDao.getById(idLit);
-            Espace espace = chambreDao.getById(espacecode);
-            if (espace == null){
-                espace = salleDao.getById(espacecode);
-            }
-            litDao.update(lit,occupee, espace, etatLit);
+
+
+    @Override
+    public void update(int idLit,boolean occupee, int espacecode, EtatLit etatLit) {
+        Lit lit = litDao.getById(idLit);
+        Espace espace = chambreDao.getById(espacecode);
+        if (espace == null){
+            espace = salleDao.getById(espacecode);
         }
-
-
-
-        public List<Lit> afficherToutL(String nomService){return litDao.getAvailableLit( nomService);}
-        public List<Espace> afficherToutE(String nomService){return litDao.getEspaceByService(nomService);}
-
-        public Lit findbycode(String codeLit){
-            return litDao.findbyCode(codeLit);
-}
-        public Map<String, Integer> getNLDB(){return littDao1.getNLDB();}
-        public Map<String, Integer> getNLO(){return littDao1.getNLO();}
+        litDao.update(lit,occupee, espace, etatLit);
 
     }
+    public List<Lit> afficherToutL(String nomService){return litDao.getAvailableLit( nomService);}
+    public List<Espace> afficherToutE(String nomService){return litDao.getEspaceByService(nomService);}
+
+    public Lit findbycode(String codeLit){
+        return litDao.findbyCode(codeLit);
+    }
+    public Map<String, Integer> getNLDB(){return littDao1.getNLDB();}
+    public Map<String, Integer> getNLO(){return littDao1.getNLO();}
+
+
+}

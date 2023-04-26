@@ -9,7 +9,7 @@ import ma.uiass.eia.pds.Model.Service;
 import java.util.List;
 
 public class EtageDao implements IEtageDao{
-    private EntityManager entityManager;
+    private final EntityManager entityManager;
 
     public EtageDao() {
         entityManager = HibernateUtil.getEntityManger();

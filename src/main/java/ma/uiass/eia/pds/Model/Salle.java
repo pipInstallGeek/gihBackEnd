@@ -1,28 +1,32 @@
 package ma.uiass.eia.pds.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
+//import javax.persistence.*;
 @Entity
 @Table(name= "TSalle")
 @DiscriminatorValue("salle")
 public class Salle extends Espace implements Serializable {
 
     @Column(name = "TypeSalle", length = 50)
-    private TypeSalle typeSalle;
+    private TypeSalle TypeSalle;
 
     public void setTypeSalle(TypeSalle typeSalle) {
-        this.typeSalle = typeSalle;
+        TypeSalle = typeSalle;
     }
 
     public TypeSalle getTypeSalle() {
-        return typeSalle;
+        return TypeSalle;
     }
 
     public Salle(String numEspace, TypeSalle typeSalle,Service service) {
         super(service);
-        this.typeSalle = typeSalle;
+        this.TypeSalle = typeSalle;
     }
 
     public Salle() {
@@ -31,5 +35,5 @@ public class Salle extends Espace implements Serializable {
     public String toString(){
         return this.getCodeEspace();
     }
-
 }
+

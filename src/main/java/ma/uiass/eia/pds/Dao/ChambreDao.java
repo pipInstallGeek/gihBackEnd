@@ -6,6 +6,7 @@ import jakarta.persistence.NonUniqueResultException;
 import jakarta.persistence.TypedQuery;
 import ma.uiass.eia.pds.HibernateUtility.HibernateUtil;
 import ma.uiass.eia.pds.Model.Chambre;
+import ma.uiass.eia.pds.Model.Lit;
 import ma.uiass.eia.pds.Model.Espace;
 import ma.uiass.eia.pds.Model.Lit;
 import ma.uiass.eia.pds.Model.Salle;
@@ -66,4 +67,7 @@ public class ChambreDao implements IEspaceDao<Chambre> {
             return null;
         }
     }
+
+
+
 }

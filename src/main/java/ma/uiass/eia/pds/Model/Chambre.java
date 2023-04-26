@@ -13,15 +13,27 @@ import java.util.List;
 
 public class Chambre extends Espace implements Serializable {
 
-    @Column(name="TypeChambre", length=50)
+
+    @Column(name = "NumChambre", length = 50)
+    private String numChambre;
+
+    @Column(name = "TypeChambre", length = 50)
     private TypeChambre typeChambre;
 
+
+    public void setNumChambre(String numC) {
+        this.numChambre = numC;
+    }
 
 
     public void setTypeChambre(TypeChambre typeC) {
         this.typeChambre = typeC;
     }
 
+
+    public String getNumChambre() {
+        return numChambre;
+    }
 
 
     public TypeChambre getTypeChambre() {
@@ -37,8 +49,8 @@ public class Chambre extends Espace implements Serializable {
     public Chambre() {
         super();
     }
-    public String toString (){
+
+    public String toString() {
         return this.getCodeEspace();
     }
-
 }

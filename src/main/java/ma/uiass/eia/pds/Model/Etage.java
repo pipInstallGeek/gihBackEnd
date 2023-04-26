@@ -19,22 +19,24 @@ public class Etage {
     private int idEtage;
 
 
+
     @Column(name="codeEtage", length=50)
     private String codeEtage;
     @JsonIgnore
     @OneToMany(mappedBy="etage")
     private List<Service> services=new ArrayList<>();
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "idBatiment", referencedColumnName = "idBatiment")
     private Batiment batiment;
 
-    public void setCodeEtage(String codeEtage) {
-        this.codeEtage = codeEtage;
+    public void setNumEtage(String numEtage) {
+        codeEtage = numEtage;
     }
 
-    public Etage(String codeEtage, Batiment batiment) {
-        this.codeEtage = batiment.getCodeBatiment()+codeEtage;
+    public Etage(String numEtage, Batiment batiment) {
+        codeEtage = numEtage;
         this.batiment = batiment;
     }
 
@@ -42,7 +44,7 @@ public class Etage {
 
     }
     public String toString(){
-        return this.codeEtage;
+        return this.NumEtage;
     }
 
 }

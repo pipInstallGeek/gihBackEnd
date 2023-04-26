@@ -12,9 +12,12 @@ public interface ILitDao extends IDao<Lit> {
     Long countOccupationInEspace(Espace espace,boolean occupe);
     void deleteLit(Lit lit);
 
-    void update(Lit lit, boolean occupee, Espace espace, EtatLit etatLit);
     List<Lit> getAvailableLit(String nomService);
     Lit findbyCode(String code);
     List<Espace> getEspaceByService(String nomService);
 
+    void update(Lit lit, boolean occupee, Espace espace, EtatLit etatLit);
+
+
+    List<Lit> getLitByEspace(int idEspace);
 }

@@ -2,11 +2,13 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
       <profile name="Annotation profile for gihBackEnd" enabled="true">
         <sourceOutputDir name="output/generated-sources/annotations" />
         <sourceTestOutputDir name="output/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="gihBackEnd" />
+        <module name="backend" />
       </profile>
     </annotationProcessing>
   </component>

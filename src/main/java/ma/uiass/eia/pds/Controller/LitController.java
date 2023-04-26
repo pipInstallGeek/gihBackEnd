@@ -1,71 +1,72 @@
-    package ma.uiass.eia.pds.Controller;
+package ma.uiass.eia.pds.Controller;
 
-    import jakarta.ws.rs.*;
-    import jakarta.ws.rs.core.MediaType;
-    import ma.uiass.eia.pds.Model.*;
-    import ma.uiass.eia.pds.Service.*;
-    import java.util.List;
-    import java.util.Map;
+import jakarta.ws.rs.*;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
+import ma.uiass.eia.pds.Model.*;
+import ma.uiass.eia.pds.Service.*;
+import org.hibernate.annotations.Parameter;
 
-    @Path("/lit")
-    public class LitController {
-        LitService service1=new LitService();
-        ILitService service = new LitService();
-        IEspaceService<Chambre> chambreService = new ChambreService();
-        IEspaceService<Salle> salleService = new SalleService();
-        IMarqueService marqueService = new MarqueService();
-        ITypeLitService typeLitService = new TypeLitService();
+import java.util.Date;
+import java.util.List;
+import java.util.List;
+import java.util.Map;
 
-        @GET
-        @Path("/getlits")
-        @Produces(MediaType.APPLICATION_JSON)
-        public List<Lit> getLit(){
-            return service.afficherTout();
+@Path("/lit")
+public class LitController {
+    LitService service1=new LitService();
+    ILitService service = new LitService();
+    IMarqueService marqueService = new MarqueService();
+    ITypeLitService typeLitService = new TypeLitService();
+    IEspaceService salleService = new SalleService();
+    IEspaceService chambreService = new ChambreService();
+
+
+    @GET
+    @Path("/getlits")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Lit> getLit(){
+        return service.afficherTout();
+    }
+
+    @GET
+    @Path("getlits/{idEspace}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Lit> getLitByEspace(
+            @PathParam("idEspace") int idEspace
+    ){
+        return service.getLitByEsapce(idEspace);
+    }
+
+    @POST
+    @Path("/addlit")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public void addLit(Lit lit){
+        System.out.println(lit);
+        service.ajouter(lit);
+    }
+
+    @POST
+    @Path("/addlit2/{occupe}/{codeespace}/{typelit}/{marque}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public void addLit2(
+                        @PathParam("occupe") String occupe,
+                        @PathParam("codeespace") String codeespace,
+                        @PathParam("typelit") String typelit,
+                        @PathParam("marque") String marque){
+
+        Espace espace = (Espace) salleService.trouverId(Integer.parseInt(codeespace));
+        if (espace== null){
+         espace = (Espace) chambreService.trouverId(Integer.parseInt(codeespace));
         }
+        TypeLit typeLit = typeLitService.trouverId(Integer.parseInt(typelit));
+        Marque marque1 = marqueService.trouverId(Integer.parseInt(marque));
 
-
-        @POST
-        @Path("/addlit")
-        @Consumes(MediaType.APPLICATION_JSON)
-        public void addLit(Lit lit){
-            System.out.println(lit);
+        Lit lit = new Lit( EtatLit.BONNNEETAT, Boolean.parseBoolean(occupe),espace,typeLit,marque1);
             service.ajouter(lit);
-        }
-        @POST
-        @Path("/addlit2/{occupe}/{codeespace}/{typelit}/{marque}")
-        @Consumes(MediaType.APPLICATION_JSON)
-        public void addLit2(
-                @PathParam("occupe") String occupe,
-                @PathParam("codeespace") String codeespace,
-                @PathParam("typelit") String typelit,
-                @PathParam("marque") String marque){
+    }
 
-            Espace espace = salleService.trouverId(Integer.parseInt(codeespace));
-            if (espace== null){
-                espace = chambreService.trouverId(Integer.parseInt(codeespace));
-            }
-            TypeLit typeLit = typeLitService.trouverId(Integer.parseInt(typelit));
-            Marque marque1 = marqueService.trouverId(Integer.parseInt(marque));
 
-            Lit lit = new Lit( EtatLit.BONNNEETAT, Boolean.parseBoolean(occupe),espace,typeLit,marque1);
-            service.ajouter(lit);
-        }
-        @GET
-        @Path("/count/{occupation}")
-        @Produces(MediaType.APPLICATION_JSON)
-        public Long countOccupation(
-                @PathParam("occupation") String occupation){
-            return  service.countOccupation(Boolean.parseBoolean(occupation));
-        }
-        @GET
-        @Path("/count/{idEspace}/{occupation}")
-        public Long countOccupationInEspace(
-                @PathParam("idEspace") int idEspace,
-                @PathParam("occupation") String occupation
-        ){
-
-            return service.countOccupationInEspace(idEspace, Boolean.parseBoolean(occupation));
-        }
 
 
         @DELETE
@@ -120,4 +121,4 @@
         }
 
 
-    }
+}

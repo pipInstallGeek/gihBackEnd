@@ -14,9 +14,11 @@ import java.util.List;
 
 public class SalleDao implements IEspaceDao<Salle> {
     EntityManager entityManager;
-    public SalleDao(){
+
+    public SalleDao() {
         entityManager = HibernateUtil.getEntityManger();
     }
+
     @Override
     public List<Salle> getAll() {
         return entityManager.createQuery("from Salle ", Salle.class).getResultList();
@@ -28,11 +30,11 @@ public class SalleDao implements IEspaceDao<Salle> {
         try {
             transaction.begin();
             entityManager.persist(salle);
-            salle.setCodeEspace("S"+salle.getService().getCodeService()+salle.getIdEspace());
+            salle.setCodeEspace("S" + salle.getService().getCodeService() + salle.getIdEspace());
             entityManager.merge(salle);
             transaction.commit();
-        }catch (Exception e){
-            if (transaction != null){
+        } catch (Exception e) {
+            if (transaction != null) {
                 transaction.rollback();
             }
             e.printStackTrace();
@@ -43,6 +45,7 @@ public class SalleDao implements IEspaceDao<Salle> {
     public Salle getById(int id) {
         return entityManager.find(Salle.class, id);
     }
+
     @Override
     public Espace findbyCode(String codeEspace) {
         TypedQuery<Salle> query = entityManager.createQuery("SELECT c FROM Salle c WHERE c.codeEspace = :codeEspace", Salle.class);
@@ -53,10 +56,4 @@ public class SalleDao implements IEspaceDao<Salle> {
             return null;
         }
     }
-
-
-
-
-
-
 }

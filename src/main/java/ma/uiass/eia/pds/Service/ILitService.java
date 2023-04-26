@@ -17,6 +17,11 @@ public interface ILitService extends IService<Lit>{
     public List<Espace> afficherToutE(String nomService);
 
 
+    Long countOccupation(boolean occupation);
+    void deleteLit(int idLitt);
 
+    void update(int idLit, boolean occupee, int espacecode, EtatLit etatLit);
+    Long countOccupationInEspace(int idEspace, boolean occupation);
 
+    List<Lit> getLitByEsapce(int idEspace);
 }

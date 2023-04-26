@@ -25,6 +25,9 @@ public class Service implements Serializable {
 	@JoinColumn(name = "idEtage", referencedColumnName = "idEtage")
 	private Etage etage;
 
+	@OneToOne(mappedBy = "service", optional = true)
+	private Stock stock;
+
 
 
 	public int getIdService() {
@@ -67,8 +70,16 @@ public class Service implements Serializable {
 		this.etage = etage;
 	}
 
+	public Stock getStock() {
+		return stock;
+	}
 
-	public Service(String codeS, String nomService,Etage etage) {
+	public void setStock(Stock stock) {
+		this.stock = stock;
+	}
+
+
+	public Service(String codeS, String nomService, Etage etage) {
 		setEtage(etage);
 		setCodeService(etage.getCodeEtage()+codeS);
 		setNomService(nomService);
