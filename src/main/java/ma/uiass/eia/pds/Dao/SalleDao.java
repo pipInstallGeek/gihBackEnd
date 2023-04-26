@@ -2,7 +2,11 @@ package ma.uiass.eia.pds.Dao;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.NonUniqueResultException;
+import jakarta.persistence.TypedQuery;
 import ma.uiass.eia.pds.HibernateUtility.HibernateUtil;
+import ma.uiass.eia.pds.Model.Chambre;
+import ma.uiass.eia.pds.Model.Espace;
 import ma.uiass.eia.pds.Model.Lit;
 import ma.uiass.eia.pds.Model.Salle;
 
@@ -24,7 +28,7 @@ public class SalleDao implements IEspaceDao<Salle> {
         try {
             transaction.begin();
             entityManager.persist(salle);
-            salle.setCodeEspace(salle.getService().getCodeService()+salle.getIdEspace());
+            salle.setCodeEspace("S"+salle.getService().getCodeService()+salle.getIdEspace());
             entityManager.merge(salle);
             transaction.commit();
         }catch (Exception e){
@@ -39,6 +43,20 @@ public class SalleDao implements IEspaceDao<Salle> {
     public Salle getById(int id) {
         return entityManager.find(Salle.class, id);
     }
+    @Override
+    public Espace findbyCode(String codeEspace) {
+        TypedQuery<Salle> query = entityManager.createQuery("SELECT c FROM Salle c WHERE c.codeEspace = :codeEspace", Salle.class);
+        query.setParameter("codeEspace", codeEspace);
+        try {
+            return query.getSingleResult();
+        } catch (NonUniqueResultException e) {
+            return null;
+        }
+    }
+
+
+
+
 
 
 }

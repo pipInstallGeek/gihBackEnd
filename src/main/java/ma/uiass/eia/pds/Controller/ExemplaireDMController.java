@@ -37,7 +37,7 @@ public class ExemplaireDMController {
         return exemplaireDMService.afficherTout();
     }
     @GET
-    @Path("/getExByDMType/{nomDm}/{nomTypeDm}")
+    @Path("/getExByDMType/{nomDm}")
     @Produces(MediaType.APPLICATION_JSON)
     public List<ExemplaireDM> getExBYDMTypeDM(@PathParam(("nomDm"))String nomDM){ return exemplaireDMService.trouvezExemplaireByDMetTypeDm(nomDM);}
 

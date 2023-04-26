@@ -61,6 +61,8 @@
 
 
         public List<Lit> afficherToutL(String nomService){return litDao.getAvailableLit( nomService);}
+        public List<Espace> afficherToutE(String nomService){return litDao.getEspaceByService(nomService);}
+
         public Lit findbycode(String codeLit){
             return litDao.findbyCode(codeLit);
 }

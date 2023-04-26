@@ -22,8 +22,8 @@ public class TypeDM implements Serializable {
     }
     @Column(name="CodeTypeDM", length=50)
     private String codeTypeDM;
-    @Column(name="NomTypeDM", length=50)
-    private String NomTypeDM;
+    @Column(name="nomTypeDM", length=50)
+    private String nomTypeDM;
     @JsonManagedReference
     @OneToMany(mappedBy = "typeDM")
     private List<DescriptionDM> DMs = new ArrayList<>();
@@ -39,8 +39,8 @@ public class TypeDM implements Serializable {
     public void setCodeTypeDM(String codeTypeDM) {
         this.codeTypeDM = codeTypeDM;
     }
-    public TypeDM(  String NomTypeDM) {
-        this.NomTypeDM = NomTypeDM;
+    public TypeDM(  String nomTypeDM) {
+        this.nomTypeDM = nomTypeDM;
     }
 
     public List<DescriptionDM> getDMs() {
@@ -52,11 +52,11 @@ public class TypeDM implements Serializable {
     }
 
     public String getNomTypeDM() {
-        return NomTypeDM;
+        return nomTypeDM;
     }
 
-    public void setNomTypeDM(String NomTypeDM) {
-        this.NomTypeDM = NomTypeDM;
+    public void setNomTypeDM(String nomTypeDM) {
+        this.nomTypeDM =nomTypeDM;
     }
     public String toString(){
         return this.getNomTypeDM();

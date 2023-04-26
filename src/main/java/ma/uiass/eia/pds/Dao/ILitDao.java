@@ -15,5 +15,6 @@ public interface ILitDao extends IDao<Lit> {
     void update(Lit lit, boolean occupee, Espace espace, EtatLit etatLit);
     List<Lit> getAvailableLit(String nomService);
     Lit findbyCode(String code);
+    List<Espace> getEspaceByService(String nomService);
 
 }

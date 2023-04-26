@@ -55,7 +55,6 @@
         @Produces(MediaType.APPLICATION_JSON)
         public Long countOccupation(
                 @PathParam("occupation") String occupation){
-
             return  service.countOccupation(Boolean.parseBoolean(occupation));
         }
         @GET
@@ -99,6 +98,13 @@
         @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
         public List<Lit> getAvailableLit(@PathParam("nomService") String nomService) {
             return service.afficherToutL(nomService);
+        }
+        @GET
+        @Path("/getEspaceeByService/{nomService}")
+        @Produces(MediaType.APPLICATION_JSON)
+        @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+        public List<Espace> getgetEspaceByService(@PathParam("nomService") String nomService) {
+            return service.afficherToutE(nomService);
         }
         @GET
         @Path("/getnldb")

@@ -6,5 +6,6 @@ import java.util.List;
 
 public interface  ITypeDMDao extends IDao<TypeDM> {
     //List<TypeDM> getTypeDmByNomDm(String codeTypeDM);
-    TypeDM findbyCode(String codeTypeDM);
+    TypeDM findbyNom(String nomTypeDM);
+    void createT(TypeDM t);
 }

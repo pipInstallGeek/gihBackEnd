@@ -14,6 +14,7 @@ public interface ILitService extends IService<Lit>{
 
     void update(int idLit, boolean occupee, int espacecode, EtatLit etatLit);
     List<Lit> afficherToutL(String nomService);
+    public List<Espace> afficherToutE(String nomService);
 
 
 

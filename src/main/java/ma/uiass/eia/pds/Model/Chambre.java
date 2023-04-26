@@ -37,5 +37,8 @@ public class Chambre extends Espace implements Serializable {
     public Chambre() {
         super();
     }
+    public String toString (){
+        return this.getCodeEspace();
+    }
 
 }

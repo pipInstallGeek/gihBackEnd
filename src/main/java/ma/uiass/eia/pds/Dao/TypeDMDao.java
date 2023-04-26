@@ -35,9 +35,9 @@ public class TypeDMDao implements ITypeDMDao {
         return entityManager.find(TypeDM.class, id);
     }
     @Override
-    public TypeDM findbyCode(String codeTypeDM) {
-        TypedQuery<TypeDM> query = entityManager.createQuery("FROM TypeDM t WHERE t.codeTypeDM = :codeTypeDM", TypeDM.class);
-        query.setParameter("codeTypeDM", codeTypeDM);
+    public TypeDM findbyNom(String nomTypeDM) {
+        TypedQuery<TypeDM> query = entityManager.createQuery("FROM TypeDM t WHERE t.nomTypeDM = :nomTypeDM", TypeDM.class);
+        query.setParameter("nomTypeDM", nomTypeDM);
         try {
             return query.getSingleResult();
         } catch (NonUniqueResultException e) {
@@ -51,6 +51,23 @@ public class TypeDMDao implements ITypeDMDao {
         query.setParameter("nomDM", nomDM);
         return query.getResultList();
     }*/
+    @Override
+    public void createT(TypeDM t){
+        EntityTransaction transaction = entityManager.getTransaction();
+        try {
+            transaction.begin();
+            entityManager.persist(t);
+            t.setCodeTypeDM(t.getNomTypeDM()+t.getIdTypeDM());
+            //entityManager.merge(typeDM);
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }
+
+    }
 
 
 

@@ -16,8 +16,13 @@ public class TypeDMService implements ITypeDMService {
     public void addTypeDM(String NomTypeDM){
         TypeDM typedm=new TypeDM(NomTypeDM);
         type.add((typedm));
-
     }
+
+    @Override
+    public TypeDM trouverbyNom(String nomTypeDM) {
+        return type.findbyNom(nomTypeDM);
+    }
+
     @Override
     public List<TypeDM> afficherTout() {return type.getAll();}
     @Override
@@ -29,7 +34,9 @@ public class TypeDMService implements ITypeDMService {
                 List<TypeDM> typeDms = type.getTypeDmByNomDm(NomDM);
         return typeDms;
     }*/
-
-
+   @Override
+   public void createT(String nomTypeDM){
+       type.createT(new TypeDM(nomTypeDM));
+   }
 
 }

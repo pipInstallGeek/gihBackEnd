@@ -73,6 +73,13 @@ public class DescriptionDM implements Serializable {
         this.espace = espace;
     }
 
+    public DescriptionDM(String codeDM, String nomDM, int quantité, TypeDM typeDM) {
+        this.codeDM = codeDM;
+        this.nomDM = nomDM;
+        this.quantité = quantité;
+        this.typeDM = typeDM;
+    }
+
     public TypeDM getTypeDM() {
         return typeDM;
     }
@@ -85,8 +92,8 @@ public class DescriptionDM implements Serializable {
         this.espace = espace;
     }
 
-    public DescriptionDM(String nomDM, int quantité, Espace espace) {
-        this.espace=espace;
+    public DescriptionDM(String nomDM, int quantité, TypeDM t) {
+      this.typeDM=t;
         this.nomDM = nomDM;
         this.quantité = quantité;
     }

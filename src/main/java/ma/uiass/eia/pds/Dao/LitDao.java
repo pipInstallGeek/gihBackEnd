@@ -122,6 +122,13 @@ public class LitDao implements ILitDao{
                    .setParameter("etatLit", EtatLit.BONNNEETAT)
                    .getResultList();
        }
+       public List<Espace> getEspaceByService(String nomService){
+           return entityManager.createQuery(
+                           "SELECT e FROM Espace e WHERE e.service.nomService = :nomService ", Espace.class)
+                   .setParameter("nomService", nomService)
+                   .getResultList();
+
+       }
             @Override
             public Lit findbyCode(String codeLit) {
                 TypedQuery<Lit> query = entityManager.createQuery("FROM Lit l WHERE l.codeLit = :codeLit", Lit.class);

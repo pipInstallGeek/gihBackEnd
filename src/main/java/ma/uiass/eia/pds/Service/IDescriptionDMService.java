@@ -6,4 +6,8 @@ import java.util.List;
 
 public interface IDescriptionDMService extends IService<DescriptionDM> {
     List<DescriptionDM> trouverDMByTypeDM(String  TypeDM);
+    void addDescriptionDM(String NomDM,int Quantité,String NomTypeDM,String CodeESpace);
+    DescriptionDM trouverbyNom(String nomDM);
+    void create( String nomDM, int quantité,String typeDM);
+    int trouverQuantitéByDM(String nomDM);
 }

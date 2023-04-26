@@ -28,5 +28,8 @@ public class Salle extends Espace implements Serializable {
     public Salle() {
         super();
     }
+    public String toString(){
+        return this.getCodeEspace();
+    }
 
 }
