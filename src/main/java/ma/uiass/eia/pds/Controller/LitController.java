@@ -36,7 +36,6 @@ public class LitController {
         return service.getLitByEsapce(idEspace);
     }
 
-
     @POST
     @Path("/addlit")
     @Consumes(MediaType.APPLICATION_JSON)

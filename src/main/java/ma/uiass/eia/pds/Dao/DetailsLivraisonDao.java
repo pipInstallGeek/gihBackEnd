@@ -22,9 +22,7 @@ public class DetailsLivraisonDao implements IDetailsLivraisonDao{
     public void add(DetailsLivraison detailsLivraison) {
         EntityTransaction transaction = entityManager.getTransaction();
         try {
-            transaction.begin();
             entityManager.persist(detailsLivraison);
-            transaction.commit();
 
         }catch (Exception e){
             if (transaction != null){

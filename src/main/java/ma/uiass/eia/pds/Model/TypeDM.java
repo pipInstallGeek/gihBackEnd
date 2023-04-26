@@ -8,17 +8,19 @@ import jakarta.persistence.*;
 public class TypeDM {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int codeTypeDm;
+    private int idTypeDM;
 
+    @Column
+    private String codeDM;
     @Column
     private String nomType;
 
-    public int getCodeTypeDm() {
-        return codeTypeDm;
+    public int getIdTypeDM() {
+        return idTypeDM;
     }
 
-    public void setCodeTypeDm(int codeTypeDm) {
-        this.codeTypeDm = codeTypeDm;
+    public void setIdTypeDM(int codeTypeDm) {
+        this.idTypeDM = codeTypeDm;
     }
 
     public String getNomType() {
@@ -29,8 +31,21 @@ public class TypeDM {
         this.nomType = nomType;
     }
 
-    public TypeDM(String nomType){
+    public String getCodeDM() {
+        return codeDM;
+    }
+
+    public void setCodeDM(String codeDM) {
+        this.codeDM = codeDM;
+    }
+
+    public TypeDM(String codeDM,String nomType){
+        setCodeDM(codeDM);
         setNomType(nomType);
+    }
+
+    public TypeDM(){
+
     }
 
     public String toString(){

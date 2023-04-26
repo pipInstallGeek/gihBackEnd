@@ -12,13 +12,13 @@ import ma.uiass.eia.pds.Service.IDetailsLivraisonService;
 
 import java.util.List;
 
-@Path("/detailslivraison")
+@Path("/detailslivraisons")
 public class DetailsLivraisonController {
 
     private IDetailsLivraisonService detailsLivraisonService= new DetailsLivraisonService();
     @GET
     @Path("/getdetailslivraison")
-    public List<ma.uiass.eia.pds.Model.DetailsLivraison> getAll(){
+    public List<DetailsLivraison> getAll(){
         return detailsLivraisonService.afficherTout();
     }
 

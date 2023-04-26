@@ -3,8 +3,7 @@ package ma.uiass.eia.pds.Dao;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 import ma.uiass.eia.pds.HibernateUtility.HibernateUtil;
-import ma.uiass.eia.pds.Model.DispoMedical;
-import ma.uiass.eia.pds.Model.Lit;
+import ma.uiass.eia.pds.Model.DispositifMedical;
 
 import java.util.List;
 
@@ -17,16 +16,16 @@ public class DispoMedicalDao implements IDispoMedicalDao {
         entityManager = HibernateUtil.getEntityManger();
     }
     @Override
-    public List<DispoMedical> getAll() {
-        return entityManager.createQuery("From DispoMedical", DispoMedical.class).getResultList();
+    public List<DispositifMedical> getAll() {
+        return entityManager.createQuery("From DispositifMedical ", DispositifMedical.class).getResultList();
     }
 
     @Override
-    public void add(DispoMedical dispoMedical) {
+    public void add(DispositifMedical dispositifMedical) {
         EntityTransaction transaction = entityManager.getTransaction();
         try {
             transaction.begin();
-            entityManager.persist(dispoMedical);
+            entityManager.persist(dispositifMedical);
             transaction.commit();
 
         }catch (Exception e){
@@ -39,7 +38,7 @@ public class DispoMedicalDao implements IDispoMedicalDao {
     }
 
     @Override
-    public DispoMedical getById(int id) {
+    public DispositifMedical getById(int id) {
         return null;
     }
 

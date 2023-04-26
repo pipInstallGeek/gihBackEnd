@@ -22,7 +22,7 @@ public class LivraisonFournisseurController {
     }
 
     @POST
-    @Path("/adddetailslivraison")
+    @Path("/addlivraisonfournisseur")
     @Consumes(MediaType.APPLICATION_JSON)
     public void addDetailsLivraison(LivraisonFournisseur livraisonFournisseur){
 

@@ -1,12 +1,12 @@
 package ma.uiass.eia.pds.Service;
 
-import ma.uiass.eia.pds.Model.DispoMedical;
+import ma.uiass.eia.pds.Model.DispositifMedical;
 
 import java.util.List;
 
 public interface IDispoMedicalService {
 
-    void ajouterDispoMed(DispoMedical dispoMedical);
+    void ajouterDispoMed(DispositifMedical dispositifMedical);
 
-    List<DispoMedical> afficherDispoMedical();
+    List<DispositifMedical> afficherDispoMedical();
 }

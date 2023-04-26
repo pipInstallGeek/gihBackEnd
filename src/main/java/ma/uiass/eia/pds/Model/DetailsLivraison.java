@@ -1,5 +1,6 @@
 package ma.uiass.eia.pds.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
@@ -14,12 +15,13 @@ public class DetailsLivraison {
     private int quantite;
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "idLivraisonFournisseur", referencedColumnName = "idLivraisonFournisseur")
     private LivraisonFournisseur livraisonFournisseur;
 
-    @OneToOne
-    @JoinColumn(name = "idDispoMedical", referencedColumnName = "idDispoMedical")
-    private DispoMedical dispoMedical;
+    @ManyToOne
+    @JoinColumn(name = "idDispositifMedical", referencedColumnName = "idDispositifMedical")
+    private DispositifMedical dispositifMedical;
 
     public int getQuantite() {
         return quantite;
@@ -29,20 +31,12 @@ public class DetailsLivraison {
         this.quantite = quantite;
     }
 
-    public LivraisonFournisseur getLivraisaonFournisseur() {
-        return livraisonFournisseur;
+    public DispositifMedical getDispoMedical() {
+        return dispositifMedical;
     }
 
-    public void setLivraisaonFournisseur(LivraisonFournisseur livraisonFournisseur) {
-        this.livraisonFournisseur = livraisonFournisseur;
-    }
-
-    public DispoMedical getDispoMedical() {
-        return dispoMedical;
-    }
-
-    public void setDispoMedical(DispoMedical dispoMedical) {
-        this.dispoMedical = dispoMedical;
+    public void setDispoMedical(DispositifMedical dispositifMedical) {
+        this.dispositifMedical = dispositifMedical;
     }
 
     public int getIdDetailsLivraison() {
@@ -53,10 +47,26 @@ public class DetailsLivraison {
         this.idDetailsLivraison = idDetailsLivraison;
     }
 
-    public DetailsLivraison(int quantite, LivraisonFournisseur livraisonFournisseur, DispoMedical dispoMedical) {
+    public LivraisonFournisseur getLivraisonFournisseur() {
+        return livraisonFournisseur;
+    }
+
+    public void setLivraisonFournisseur(LivraisonFournisseur livraisonFournisseur) {
+        this.livraisonFournisseur = livraisonFournisseur;
+    }
+
+    public DispositifMedical getDispositifMedical() {
+        return dispositifMedical;
+    }
+
+    public void setDispositifMedical(DispositifMedical dispositifMedical) {
+        this.dispositifMedical = dispositifMedical;
+    }
+
+    public DetailsLivraison(int quantite, LivraisonFournisseur livraisonFournisseur, DispositifMedical dispositifMedical) {
         this.quantite = quantite;
         this.livraisonFournisseur = livraisonFournisseur;
-        this.dispoMedical = dispoMedical;
+        this.dispositifMedical = dispositifMedical;
     }
     public DetailsLivraison(){
 

@@ -2,6 +2,7 @@ package ma.uiass.eia.pds.Model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
 import java.util.List;
 @Entity
 @Table(name = "livraisonFournisseur")
@@ -15,11 +16,21 @@ public class LivraisonFournisseur {
     private String codeLivraisonFournisseur;
 
     @Column
-    private String fournisseur;
+    private LocalDate dateLivraisonFournisseur;
+    @ManyToOne()
+    @JoinColumn(name = "id", referencedColumnName = "id")
+    private Fournisseur fournisseur;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "livraisaonFournisseur")
+    @OneToMany(mappedBy = "livraisonFournisseur")
     private List<DetailsLivraison> detailsLivraisons;
+
+    public Fournisseur getFournisseur() {
+        return fournisseur;
+    }
+
+    public void setFournisseur(Fournisseur fournisseur) {
+        this.fournisseur = fournisseur;
+    }
 
     public int getIdLivraisonFournisseur() {
         return idLivraisonFournisseur;
@@ -27,6 +38,14 @@ public class LivraisonFournisseur {
 
     public void setIdLivraisonFournisseur(int idLivraisonFournisseur) {
         this.idLivraisonFournisseur = idLivraisonFournisseur;
+    }
+
+    public LocalDate getDateLivraisonFournisseur() {
+        return dateLivraisonFournisseur;
+    }
+
+    public void setDateLivraisonFournisseur(LocalDate dateLivraisonFournisseur) {
+        this.dateLivraisonFournisseur = dateLivraisonFournisseur;
     }
 
     public String getCodeLivraisonFournisseur() {
@@ -37,13 +56,7 @@ public class LivraisonFournisseur {
         this.codeLivraisonFournisseur = codeLivraisonFournisseur;
     }
 
-    public String getFournisseur() {
-        return fournisseur;
-    }
 
-    public void setFournisseur(String fournisseur) {
-        this.fournisseur = fournisseur;
-    }
 
     public List<DetailsLivraison> getDetailsLivraisons() {
         return detailsLivraisons;
@@ -52,12 +65,12 @@ public class LivraisonFournisseur {
     public void setDetailsLivraisons(List<DetailsLivraison> detailsLivraisons) {
         this.detailsLivraisons = detailsLivraisons;
     }
-
-    public LivraisonFournisseur(String codeLivraisonFournisseur, String fournisseur, List<DetailsLivraison> detailsLivraisons) {
+    public LivraisonFournisseur(String codeLivraisonFournisseur, LocalDate dateLivraisonFournisseur, Fournisseur fournisseur) {
         this.codeLivraisonFournisseur = codeLivraisonFournisseur;
+        this.dateLivraisonFournisseur = dateLivraisonFournisseur;
         this.fournisseur = fournisseur;
-        this.detailsLivraisons = detailsLivraisons;
     }
+
     public LivraisonFournisseur(){
 
     }

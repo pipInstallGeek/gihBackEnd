@@ -3,13 +3,16 @@ package ma.uiass.eia.pds.Dao;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 import ma.uiass.eia.pds.HibernateUtility.HibernateUtil;
-import ma.uiass.eia.pds.Model.Lit;
-import ma.uiass.eia.pds.Model.LivraisonFournisseur;
+import ma.uiass.eia.pds.Model.*;
 
 import java.util.List;
 
 public class LivraisonFournisseurDao implements ILivraisonFournisseurDao {
     private final EntityManager entityManager;
+    private final IDetailsLivraisonDao detailsLivraisonDao = new DetailsLivraisonDao();
+    private final IDispoMedicalDao dispoMedicalDao = new DispoMedicalDao();
+    private final  IStockDao stockDao = new StockDao();
+    private final IStocksDetailsDao stocksDetailsDao = new StocksDetailsDao();
     public LivraisonFournisseurDao(){
         entityManager =  HibernateUtil.getEntityManger();
     }
@@ -23,9 +26,20 @@ public class LivraisonFournisseurDao implements ILivraisonFournisseurDao {
     @Override
     public void add(LivraisonFournisseur livraisonFournisseur) {
         EntityTransaction transaction = entityManager.getTransaction();
+
+        List<DetailsLivraison> detailsLivraisons = livraisonFournisseur.getDetailsLivraisons();
+        transaction.begin();
         try {
-            transaction.begin();
+
+
             entityManager.persist(livraisonFournisseur);
+            detailsLivraisons.forEach(detailsLivraison -> {
+                detailsLivraison.setLivraisonFournisseur(livraisonFournisseur);
+                detailsLivraisonDao.add(detailsLivraison);
+                StocksDetails stocksDetails = new StocksDetails(detailsLivraison.getDispositifMedical(),stockDao.getById(1), detailsLivraison.getQuantite());
+
+                stocksDetailsDao.add(stocksDetails);
+            });
             transaction.commit();
 
         }catch (Exception e){
@@ -34,6 +48,7 @@ public class LivraisonFournisseurDao implements ILivraisonFournisseurDao {
             }
             e.printStackTrace();
         }
+
     }
 
     @Override
@@ -45,4 +60,6 @@ public class LivraisonFournisseurDao implements ILivraisonFournisseurDao {
         }
         return livraisonFournisseur;
     }
+
+
 }

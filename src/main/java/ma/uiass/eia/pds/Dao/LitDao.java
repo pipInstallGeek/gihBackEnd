@@ -92,7 +92,7 @@ public class LitDao implements ILitDao{
 
     @Override
     public Long countOccupationInEspace(Espace espace,boolean occupation) {
-        Long mycount = entityManager.createQuery("SELECT count(*) from Lit t JOIN t.espace where t.occupe = :value and espace.idEspace = :value2 ", Long.class)
+        Long mycount = entityManager.createQuery("SELECT count(*) from Lit t JOIN t.espace where t.occupe = :value and Espace.idEspace = :value2 ", Long.class)
                 .setParameter("value", occupation)
                 .setParameter("value2", espace.getIdEspace())
                 .getSingleResult();
@@ -101,9 +101,10 @@ public class LitDao implements ILitDao{
 
     @Override
     public List<Lit> getLitByEspace(int idEspace) {
-        return entityManager.createQuery("from Lit t JOIN t.espace  where espace.idEspace =: value")
+        return entityManager.createQuery("from Lit t JOIN t.espace  where Espace.idEspace =: value")
                 .setParameter("value", idEspace).getResultList();
     }
 
 
 }
+

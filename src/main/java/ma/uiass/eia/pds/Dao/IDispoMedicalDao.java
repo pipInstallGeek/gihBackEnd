@@ -1,7 +1,7 @@
 package ma.uiass.eia.pds.Dao;
 
-import ma.uiass.eia.pds.Model.DispoMedical;
+import ma.uiass.eia.pds.Model.DispositifMedical;
 
-public interface IDispoMedicalDao extends IDao<DispoMedical>{
+public interface IDispoMedicalDao extends IDao<DispositifMedical>{
 
 }

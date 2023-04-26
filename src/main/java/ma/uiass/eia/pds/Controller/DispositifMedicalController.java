@@ -3,22 +3,21 @@ package ma.uiass.eia.pds.Controller;
 
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
-import ma.uiass.eia.pds.Dao.IDispoMedicalDao;
-import ma.uiass.eia.pds.Model.DispoMedical;
+import ma.uiass.eia.pds.Model.DispositifMedical;
 import ma.uiass.eia.pds.Service.DispoMedicalServiceImp;
 import ma.uiass.eia.pds.Service.IDispoMedicalService;
 
 import java.util.List;
 
 @Path("/dispoMed")
-public class DispoMedController {
+public class DispositifMedicalController {
 
     IDispoMedicalService dispoMedicalService=new DispoMedicalServiceImp();
 
     @GET
     @Path("/getDispoMed")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<DispoMedical> getDispositifMed(){
+    public List<DispositifMedical> getDispositifMed(){
         return dispoMedicalService.afficherDispoMedical();
     }
 
@@ -26,8 +25,8 @@ public class DispoMedController {
     @Path("/addDispoMed")
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    public void addDispositifMed(DispoMedical dispoMedical){
-        dispoMedicalService.ajouterDispoMed(dispoMedical);
+    public void addDispositifMed(DispositifMedical dispositifMedical){
+        dispoMedicalService.ajouterDispoMed(dispositifMedical);
     }
 
 
