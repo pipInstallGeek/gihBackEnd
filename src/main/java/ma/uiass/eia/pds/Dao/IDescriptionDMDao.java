@@ -9,4 +9,5 @@ public interface IDescriptionDMDao extends IDao<DescriptionDM> {
     DescriptionDM findbyNom(String nomDM);
     void Create(DescriptionDM d);
     int getQuantitéByDM(String nomDM);
+    void  deleteDM(DescriptionDM d);
 }

@@ -38,5 +38,12 @@ public class TypeDMService implements ITypeDMService {
    public void createT(String nomTypeDM){
        type.createT(new TypeDM(nomTypeDM));
    }
+    @Override
+    public void supprimerTypeDM(String nomTypeDM) {
+        TypeDM type1 = type.findbyNom(nomTypeDM);
+        if (type1.getDMs() == null) {
+            type.deleteTypeDM(type.findbyNom(nomTypeDM));
+        }
+    }
 
 }

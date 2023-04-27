@@ -302,6 +302,7 @@
                     //System.out.println(exemplaireDMService.trouvezExemplaireByDMetTypeDm("gants"));
                     System.out.println(descriptionDMService.trouverbyNom("bandes"));
                     System.out.println( descriptionDMService.trouverQuantitéByDM("bandes"));
+                   //    System.out.println(typeDMService.trouverbyNom("fourniture"));
             }
                 }
 

@@ -3,6 +3,7 @@ package ma.uiass.eia.pds.Dao;
 import jakarta.persistence.*;
 import ma.uiass.eia.pds.HibernateUtility.HibernateUtil;
 import ma.uiass.eia.pds.Model.Admission;
+import ma.uiass.eia.pds.Model.Demande;
 import ma.uiass.eia.pds.Model.DescriptionDM;
 import ma.uiass.eia.pds.Model.TypeDM;
 
@@ -25,7 +26,9 @@ public class DescriptionDMDao implements IDescriptionDMDao {
         EntityTransaction transaction = entityManager.getTransaction();
         try {
             transaction.begin();
-            descriptionDM.setCodeDM(descriptionDM.getTypeDM().getCodeTypeDM() + descriptionDM.getNomDM());
+            descriptionDM.setCodeDM(descriptionDM.getNomDM()+descriptionDM.getEspace());
+            //descriptionDM.setNomDM(descriptionDM.getNomDM()+descriptionDM.getEspace());
+
             entityManager.persist(descriptionDM);
             transaction.commit();
 
@@ -69,12 +72,12 @@ public class DescriptionDMDao implements IDescriptionDMDao {
 
     @Override
     public DescriptionDM findbyNom(String nomDM) {
-        Query query = entityManager.createQuery("SELECT t FROM  DescriptionDM t WHERE t.nomDM = :nomDM ", DescriptionDM.class);
+        TypedQuery<DescriptionDM> query = entityManager.createQuery("SELECT t FROM DescriptionDM t WHERE t.nomDM = :nomDM", DescriptionDM.class);
         query.setParameter("nomDM", nomDM);
         try {
-            return (DescriptionDM) query.getSingleResult();
-        } catch (NonUniqueResultException e) {
-            return null;
+            return query.getSingleResult();
+        } catch (NoResultException e) {
+            return null; // Or throw a custom exception
         }
     }
     public int getQuantitéByDM(String nomDM) {
@@ -86,6 +89,23 @@ public class DescriptionDMDao implements IDescriptionDMDao {
             return 0;
         } else {
             return results.get(0);
+        }
+    }
+    @Override
+    public void deleteDM(DescriptionDM d) {
+        EntityTransaction et = null;
+        try {
+            et= entityManager.getTransaction();
+            if(!et.isActive()){
+                et.begin();
+            }
+            entityManager.remove(d);
+            et.commit();
+        }catch (Exception e){
+            if(et!=null){
+                et.rollback();
+            }
+            e.printStackTrace();
         }
     }
 }

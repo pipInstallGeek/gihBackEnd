@@ -5,6 +5,7 @@ import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.NonUniqueResultException;
 import jakarta.persistence.TypedQuery;
 import ma.uiass.eia.pds.HibernateUtility.HibernateUtil;
+import ma.uiass.eia.pds.Model.DescriptionDM;
 import ma.uiass.eia.pds.Model.TypeDM;
 
 import java.util.List;
@@ -67,6 +68,23 @@ public class TypeDMDao implements ITypeDMDao {
             e.printStackTrace();
         }
 
+    }
+    @Override
+    public void deleteTypeDM(TypeDM t) {
+        EntityTransaction et = null;
+        try {
+            et= entityManager.getTransaction();
+            if(!et.isActive()){
+                et.begin();
+            }
+            entityManager.remove(t);
+            et.commit();
+        }catch (Exception e){
+            if(et!=null){
+                et.rollback();
+            }
+            e.printStackTrace();
+        }
     }
 
 

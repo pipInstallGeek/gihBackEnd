@@ -23,23 +23,25 @@ public class DescriptionDMService implements IDescriptionDMService{
               Espace  s1= salle.findbyCode(CodeESpace);
               DescriptionDM old1= descriptionDao.findbyNom(NomDM);
               DescriptionDM d1=new DescriptionDM(NomDM,Quantité,t, s1);
-                descriptionDao.add(d1);
-                d1.setNomDM(NomDM+CodeESpace);
-                System.out.println(d1.getNomDM());
-                if(old1.getQuantité()>=Quantité) {
-                    old1.setQuantité(old1.getQuantité() - Quantité);
-                }
+              d1.setNomDM(NomDM+CodeESpace);
+                old1.setQuantité(old1.getQuantité() - Quantité);
+              descriptionDao.add(d1);
+              System.out.println(d1.getNomDM());
+
+
             }
           else {
                 Espace  c1= chambre.findbyCode(CodeESpace);
                 DescriptionDM old2= descriptionDao.findbyNom(NomDM);
+                System.out.println(old2);
                 DescriptionDM d2=new DescriptionDM(NomDM,Quantité,t, c1);
-                descriptionDao.add(d2);
                 d2.setNomDM(NomDM+CodeESpace);
+                old2.setQuantité(old2.getQuantité() - Quantité);
+
+
+                descriptionDao.add(d2);
                 System.out.println(d2.getNomDM());
-                if(old2.getQuantité()>=Quantité) {
-                    old2.setQuantité(old2.getQuantité() - Quantité);
-                }
+
             }
     }
     @Override
@@ -64,5 +66,12 @@ public class DescriptionDMService implements IDescriptionDMService{
    public  int trouverQuantitéByDM(String nomDM){
         DescriptionDMDao descriptionDMDao=new DescriptionDMDao();
         return descriptionDMDao.getQuantitéByDM(nomDM);
+    }
+    @Override
+    public void supprimerDM(String nomDM) {
+        DescriptionDM descriptionDM = descriptionDao.findbyNom(nomDM);
+        if (descriptionDM.getQuantité() == 0) {
+            descriptionDao.deleteDM(descriptionDao.findbyNom(nomDM));
+        }
     }
 }

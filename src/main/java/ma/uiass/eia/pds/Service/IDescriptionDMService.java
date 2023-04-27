@@ -10,4 +10,5 @@ public interface IDescriptionDMService extends IService<DescriptionDM> {
     DescriptionDM trouverbyNom(String nomDM);
     void create( String nomDM, int quantité,String typeDM);
     int trouverQuantitéByDM(String nomDM);
+    public void supprimerDM(String nomDM);
 }

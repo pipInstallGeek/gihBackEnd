@@ -46,4 +46,12 @@ public class TypeDMController {
     {
         type.createT(nomTypeDM);
     }
+    @DELETE
+    @Path("/deleteTypeDM{nomTypeDM}")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    public void removeTypeDM(
+            @PathParam("nomTypeDM") String nomTypeDM){
+        type.supprimerTypeDM(nomTypeDM);
+    }
 }

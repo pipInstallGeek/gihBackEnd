@@ -59,6 +59,14 @@ public class DescriptionDMController {
     public int getQuantitéByDM(@PathParam(("nomDM")) String nomDM) {
         return dms.trouverQuantitéByDM(nomDM);
     }
+    @DELETE
+    @Path("/deleteDM{nomDM}")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    public void removeDM(
+            @PathParam("nomDM") String nomDM){
+        dms.supprimerDM(nomDM);
+    }
 }
 
 

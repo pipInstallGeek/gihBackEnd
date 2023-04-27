@@ -23,7 +23,7 @@ public class TypeDM implements Serializable {
     @Column(name="CodeTypeDM", length=50)
     private String codeTypeDM;
     @Column(name="nomTypeDM", length=50)
-    private String nomTypeDM;
+        private String nomTypeDM;
     @JsonManagedReference
     @OneToMany(mappedBy = "typeDM")
     private List<DescriptionDM> DMs = new ArrayList<>();

@@ -15,9 +15,6 @@ public class DemandeService implements IDemandeService {
     ITypeLitService typedao = new TypeLitService();
     @Override
     public void ajouter(Demande demande) {Demandedao.add(demande);}
-
-
-
     @Override
     public List<Demande> afficherTout() {return Demandedao.getAll();}
 
