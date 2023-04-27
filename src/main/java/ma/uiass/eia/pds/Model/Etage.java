@@ -18,12 +18,15 @@ public class Etage {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idEtage;
 
+
+
     @Column(name="codeEtage", length=50)
     private String codeEtage;
     @JsonIgnore
     @OneToMany(mappedBy="etage")
     private List<Service> services=new ArrayList<>();
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "idBatiment", referencedColumnName = "idBatiment")
     private Batiment batiment;

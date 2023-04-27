@@ -19,19 +19,22 @@ public class Fournisseur {
     private int id;
     @Column
     private String idFiscal;
-
+    @Column
+    String nameFournisseur;
     @Column
     private String adresse;
     @Column
     private String email;
 
 
+
     @OneToMany(mappedBy = "fournisseur")
     @JsonIgnore
     private List<LivraisonFournisseur> livraisonFournisseurs;
 
-    public Fournisseur(String idFiscal, String adresse, String email){
+    public Fournisseur(String idFiscal, String nameFournisseur, String adresse, String email){
         setIdFiscal(idFiscal);
+        setNameFournisseur(nameFournisseur);
         setAdresse(adresse);
         setEmail(email);
 

@@ -6,6 +6,7 @@ import ma.uiass.eia.pds.HibernateUtility.HibernateUtil;
 import ma.uiass.eia.pds.Model.DetailsLivraison;
 import ma.uiass.eia.pds.Model.LivraisonFournisseur;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class DetailsLivraisonDao implements IDetailsLivraisonDao{
@@ -40,6 +41,19 @@ public class DetailsLivraisonDao implements IDetailsLivraisonDao{
             return null;
         }
         return livraisonFournisseur;
+    }
+
+    @Override
+    public List<DetailsLivraison> getbyLivraison(LivraisonFournisseur livraisonFournisseur) {
+        List<DetailsLivraison> detailsLivraisons = getAll();
+        List<DetailsLivraison> filter = new ArrayList<>();
+        for (DetailsLivraison detailsLivraison : detailsLivraisons){
+            if (detailsLivraison.getLivraisonFournisseur().getIdLivraisonFournisseur()== livraisonFournisseur.getIdLivraisonFournisseur()){
+                filter.add(detailsLivraison);
+            }
+        }
+
+        return filter;
     }
 }
 

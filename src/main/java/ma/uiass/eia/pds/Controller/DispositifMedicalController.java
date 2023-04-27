@@ -4,6 +4,7 @@ package ma.uiass.eia.pds.Controller;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import ma.uiass.eia.pds.Model.DispositifMedical;
+import ma.uiass.eia.pds.Model.TypeDM;
 import ma.uiass.eia.pds.Service.DispoMedicalServiceImp;
 import ma.uiass.eia.pds.Service.IDispoMedicalService;
 
@@ -30,7 +31,14 @@ public class DispositifMedicalController {
     }
 
 
-
+    @Path("/getbytypedm/{idTypeDm}")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public List<DispositifMedical> getbytype(
+            @PathParam("idTypeDm") int typeDM1){
+        return dispoMedicalService.getbytype(typeDM1);
+    }
 
 }
 

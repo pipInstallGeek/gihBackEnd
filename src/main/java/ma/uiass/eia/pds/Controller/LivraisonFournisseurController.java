@@ -1,9 +1,6 @@
 package ma.uiass.eia.pds.Controller;
 
-import jakarta.ws.rs.Consumes;
-import jakarta.ws.rs.GET;
-import jakarta.ws.rs.POST;
-import jakarta.ws.rs.Path;
+import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import ma.uiass.eia.pds.Model.DetailsLivraison;
 import ma.uiass.eia.pds.Model.LivraisonFournisseur;
@@ -17,6 +14,7 @@ public class LivraisonFournisseurController {
     private ILivraisonFournisseurService livraisonFournisseurService = new LivraisonFournisseurService();
     @GET
     @Path("/getdetailslivraison")
+    @Produces(MediaType.APPLICATION_JSON)
     public List<LivraisonFournisseur> getAll(){
         return livraisonFournisseurService.afficherTout();
     }
@@ -25,7 +23,6 @@ public class LivraisonFournisseurController {
     @Path("/addlivraisonfournisseur")
     @Consumes(MediaType.APPLICATION_JSON)
     public void addDetailsLivraison(LivraisonFournisseur livraisonFournisseur){
-
         livraisonFournisseurService.ajouter(livraisonFournisseur);
     }
 }

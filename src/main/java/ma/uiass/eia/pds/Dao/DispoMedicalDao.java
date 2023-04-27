@@ -4,7 +4,9 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 import ma.uiass.eia.pds.HibernateUtility.HibernateUtil;
 import ma.uiass.eia.pds.Model.DispositifMedical;
+import ma.uiass.eia.pds.Model.TypeDM;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class DispoMedicalDao implements IDispoMedicalDao {
@@ -43,4 +45,15 @@ public class DispoMedicalDao implements IDispoMedicalDao {
     }
 
 
+    @Override
+    public List<DispositifMedical> getbytype(TypeDM typeDM) {
+        List<DispositifMedical> dispositifMedicals = getAll();
+        List<DispositifMedical> filter = new ArrayList<>();
+        for (DispositifMedical dispositifMedical : dispositifMedicals){
+            if (dispositifMedical.getTypeDM().getIdTypeDM()== typeDM.getIdTypeDM()){
+                filter.add(dispositifMedical);
+            }
+        }
+        return filter;
+    }
 }

@@ -1,7 +1,10 @@
 package ma.uiass.eia.pds.Model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 @Table(name = "TtypeDM")
@@ -14,6 +17,18 @@ public class TypeDM {
     private String codeDM;
     @Column
     private String nomType;
+
+    @OneToMany(mappedBy = "typeDM")
+    @JsonIgnore
+    private List<DispositifMedical> dispositifMedicals;
+
+    public List<DispositifMedical> getDispositifMedicals() {
+        return dispositifMedicals;
+    }
+
+    public void setDispositifMedicals(List<DispositifMedical> dispositifMedicals) {
+        this.dispositifMedicals = dispositifMedicals;
+    }
 
     public int getIdTypeDM() {
         return idTypeDM;

@@ -3,43 +3,39 @@ package ma.uiass.eia.pds.Dao;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 import ma.uiass.eia.pds.HibernateUtility.HibernateUtil;
-import ma.uiass.eia.pds.Model.Lit;
+import ma.uiass.eia.pds.Model.Commande;
 import ma.uiass.eia.pds.Model.TypeDM;
 
+import java.util.Date;
 import java.util.List;
 
-public class TypeDmDAO implements ITypeDmDAO{
+public class TypeDMDao implements ITypeDMDao {
     private EntityManager entityManager;
-
-    public TypeDmDAO() {
+    public TypeDMDao() {
         entityManager = HibernateUtil.getEntityManger();
     }
-
-
     @Override
     public List<TypeDM> getAll() {
-        return entityManager.createQuery("From TypeDM", TypeDM.class).getResultList();
+        return entityManager.createQuery("from TypeDM r", TypeDM.class).getResultList();
     }
-
     @Override
     public void add(TypeDM typeDM) {
-        EntityTransaction transaction =entityManager.getTransaction();
+        EntityTransaction et = entityManager.getTransaction();
         try {
-            transaction.begin();
+            et.begin();
             entityManager.persist(typeDM);
-            transaction.commit();
-
-        }catch (Exception e){
-            if (transaction != null){
-                transaction.rollback();
+            et.commit();
+        } catch (Exception e) {
+            if (et != null) {
+                et.rollback();
             }
             e.printStackTrace();
         }
-
     }
-
     @Override
-    public TypeDM getById(int id) {
-        return null;
+    public TypeDM getById(int idCommande) {
+
+        return entityManager.find(TypeDM.class, idCommande);
     }
+
 }
