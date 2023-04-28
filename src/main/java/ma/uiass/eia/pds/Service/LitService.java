@@ -40,7 +40,12 @@ public class LitService implements ILitService{
             return litDao.countOccupationInEspace(espace, occupation);
         }
 
-        @Override
+    @Override
+    public List<Lit> getLitByEsapce(int idEspace) {
+        return null;
+    }
+
+    @Override
         public void deleteLit(int idLit) {
             Lit lit = litDao.getById(idLit);
             if (lit != null){

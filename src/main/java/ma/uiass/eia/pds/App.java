@@ -39,7 +39,7 @@
                 IMarqueService marqueService = new MarqueService();
                 ITypeLitService typeLitService = new TypeLitService();
                 IDescriptionDMService descriptionDMService=new DescriptionDMService();
-                ITypeDMService typeDMService=new TypeDMService();
+                ITypeDmService typeDMService=new TypeDmService();
                 IExemplaireDMService exemplaireDMService=new ExemplaireDMService();
                 LitDao l=new LitDao();
 

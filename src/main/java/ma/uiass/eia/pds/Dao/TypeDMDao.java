@@ -9,67 +9,50 @@ import ma.uiass.eia.pds.Model.TypeDM;
 
 import java.util.List;
 
-public class TypeDMDao implements ITypeDMDao {
-    private EntityManager entityManager ;
-   public TypeDMDao(){entityManager = HibernateUtil.getEntityManger();}
+public class TypeDMDAO implements ITypeDMDao {
+    private EntityManager entityManager;
+
+    public TypeDMDAO() {
+        entityManager = HibernateUtil.getEntityManger();
+    }
+
+
     @Override
-    public List<TypeDM> getAll() {return entityManager.createQuery(" from TypeDM ").getResultList();}
+    public List<TypeDM> getAll() {
+        return entityManager.createQuery("From TypeDM", TypeDM.class).getResultList();
+    }
+
     @Override
     public void add(TypeDM typeDM) {
-        EntityTransaction transaction = entityManager.getTransaction();
+        EntityTransaction transaction =entityManager.getTransaction();
         try {
             transaction.begin();
             entityManager.persist(typeDM);
-            typeDM.setCodeTypeDM(typeDM.getNomTypeDM()+typeDM.getIdTypeDM());
-            //entityManager.merge(typeDM);
             transaction.commit();
-        } catch (Exception e) {
-            if (transaction != null) {
+
+        }catch (Exception e){
+            if (transaction != null){
                 transaction.rollback();
             }
             e.printStackTrace();
         }
+
     }
+
     @Override
     public TypeDM getById(int id) {
-        return entityManager.find(TypeDM.class, id);
+        return null;
     }
+
     @Override
-    public TypeDM findbyNom(String nomTypeDM) {
-        TypedQuery<TypeDM> query = entityManager.createQuery("FROM TypeDM t WHERE t.nomTypeDM = :nomTypeDM", TypeDM.class);
-        query.setParameter("nomTypeDM", nomTypeDM);
+    public TypeDM findbyNom(String typeDM) {
         try {
+            TypedQuery<TypeDM> query = entityManager.createQuery("From TypeDM t where t.nomTypeDM =: nomTypeDM", TypeDM.class);
+            query.setParameter("nomTypeDM", typeDM);
             return query.getSingleResult();
-        } catch (NonUniqueResultException e) {
+        }catch (NonUniqueResultException e){
             return null;
         }
-    }
-    /*@Override
-    public List<TypeDM> getTypeDmByNomDm(String nomDM) {
-        TypedQuery<TypeDM> query = entityManager.createQuery(
-                "SELECT t FROM TypeDM t WHERE t.dmDescription.nomDM = :nomDM", TypeDM.class);
-        query.setParameter("nomDM", nomDM);
-        return query.getResultList();
-    }*/
-    @Override
-    public void createT(TypeDM t){
-        EntityTransaction transaction = entityManager.getTransaction();
-        try {
-            transaction.begin();
-            entityManager.persist(t);
-            t.setCodeTypeDM(t.getNomTypeDM()+t.getIdTypeDM());
-            //entityManager.merge(typeDM);
-            transaction.commit();
-        } catch (Exception e) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
-            e.printStackTrace();
-        }
 
     }
-
-
-
-
 }

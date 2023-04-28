@@ -10,7 +10,7 @@ import java.util.List;
 public class DescriptionDMService implements IDescriptionDMService{
     DescriptionDM DD=new DescriptionDM();
     IDescriptionDMDao descriptionDao=new DescriptionDMDao();
-    ITypeDMDao typeDMDao=new TypeDMDao();
+    ITypeDMDao typeDMDao=new TypeDMDAO();
     IEspaceDao salle=new SalleDao();
     IEspaceDao chambre =new ChambreDao();
     @Override

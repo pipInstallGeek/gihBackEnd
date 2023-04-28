@@ -44,7 +44,7 @@ public class Etage {
 
     }
     public String toString(){
-        return this.NumEtage;
+        return this.codeEtage;
     }
 
 }

@@ -19,7 +19,7 @@ public class EspaceController {
     @GET
     @Path("/getespaces")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Espace> getChambres(){
+    public List<Espace> getChambres() {
         List<Espace> espaces = new ArrayList<>();
         List<Chambre> chambres = chambreService.afficherTout();
         List<Salle> salles = salleService.afficherTout();
@@ -27,6 +27,7 @@ public class EspaceController {
         espaces.addAll(salles);
         return espaces;
     }
+}
 
 
 

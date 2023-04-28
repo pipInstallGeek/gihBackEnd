@@ -5,7 +5,7 @@ import ma.uiass.eia.pds.HibernateUtility.HibernateUtil;
 import ma.uiass.eia.pds.Model.Espace;
 import ma.uiass.eia.pds.Model.EtatLit;
 import ma.uiass.eia.pds.Model.Lit;
-import ma.uiass.eia.pds.Model.Reservation;
+
 
 import java.util.HashMap;
 import java.util.List;
@@ -57,13 +57,6 @@ public class LitDao implements ILitDao{
                 .setParameter("value", occupation)
                 .getSingleResult();
         return mycount;
-    }
-
-
-
-    public List<Lit> test(int idMarque){
-        return  entityManager.createQuery("from Lit t JOIN t.espace  where espace.idEspace =: value")
-                .setParameter("value", idMarque).getResultList();
     }
 
 

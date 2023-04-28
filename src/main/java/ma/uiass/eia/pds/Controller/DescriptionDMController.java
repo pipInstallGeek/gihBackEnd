@@ -14,7 +14,7 @@ public class DescriptionDMController {
     IEspaceService<Salle> salleService = new SalleService();
     IDescriptionDMService Idm = new DescriptionDMService();
     DescriptionDMService dms = new DescriptionDMService();
-    ITypeDMService tt = new TypeDMService();
+     ITypeDmService tt = new TypeDmService();
 
     @GET
     @Path("/getdispositifs")

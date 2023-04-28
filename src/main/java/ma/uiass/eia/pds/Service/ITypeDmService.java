@@ -4,8 +4,8 @@ import ma.uiass.eia.pds.Model.TypeDM;
 
 import java.util.List;
 
-public interface ITypeDmService {
-    void ajouterTypeDm(TypeDM typeDM);
+public interface ITypeDmService extends IService<TypeDM>{
 
-    List<TypeDM> afficherTypeDm();
+
+
 }
