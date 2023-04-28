@@ -26,6 +26,7 @@ public class Fournisseur {
     private String email;
 
 
+
     @OneToMany(mappedBy = "fournisseur")
     @JsonIgnore
     private List<LivraisonFournisseur> livraisonFournisseurs;

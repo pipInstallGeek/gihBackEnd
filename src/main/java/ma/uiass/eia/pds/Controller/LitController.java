@@ -2,7 +2,7 @@ package ma.uiass.eia.pds.Controller;
 
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
-import jakarta.ws.rs.core.Response;
+
 import ma.uiass.eia.pds.Model.*;
 import ma.uiass.eia.pds.Service.*;
 import org.hibernate.annotations.Parameter;

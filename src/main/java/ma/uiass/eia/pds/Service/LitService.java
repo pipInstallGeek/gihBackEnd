@@ -25,11 +25,7 @@ public class LitService implements ILitService{
     @Override
     public Lit trouverId(int id) {return litDao.getById(id);}
 
-        @Override
-        public Long countOccupation(boolean occupation) {
-            Long mycount = litDao.countOccupation(occupation);
-            return mycount;
-        }
+
 
         @Override
         public Long countOccupationInEspace(int idEspace, boolean occupation) {
@@ -54,20 +50,27 @@ public class LitService implements ILitService{
 
         }
 
-
-
     @Override
-    public void update(int idLit,boolean occupee, int espacecode, EtatLit etatLit) {
+    public void update(int idLit, boolean occupee, int espacecode, EtatLit etatLit) {
         Lit lit = litDao.getById(idLit);
         Espace espace = chambreDao.getById(espacecode);
         if (espace == null){
             espace = salleDao.getById(espacecode);
         }
         litDao.update(lit,occupee, espace, etatLit);
-
     }
+
+
     public List<Lit> afficherToutL(String nomService){return litDao.getAvailableLit( nomService);}
     public List<Espace> afficherToutE(String nomService){return litDao.getEspaceByService(nomService);}
+
+    @Override
+    public Long countOccupation(boolean occupation) {
+
+            Long mycount = litDao.countOccupation(occupation);
+            return mycount;
+        }
+
 
     public Lit findbycode(String codeLit){
         return litDao.findbyCode(codeLit);
