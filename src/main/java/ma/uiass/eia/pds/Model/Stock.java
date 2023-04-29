@@ -52,8 +52,9 @@ public class Stock implements Serializable {
         this.stocksDetails = stocksDetails;
     }
 
-    public Stock(String nomStock){
+    public Stock(String nomStock, Service service){
         setNomStock(nomStock);
+        setService(service);
     }
     public Stock(){
 

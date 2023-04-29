@@ -131,6 +131,20 @@
 
 
  */
+            IStockService stockService = new StockService();
+            Stock stock  = new Stock("Agent Logistic",null);
+            stockService.ajouter(stock);
+
+
+            ITypeDMSerivce typeDMSerivce = new TypeDMService();
+            TypeDM typeDM = new TypeDM("Fr","fourniture");
+            typeDMSerivce.ajouter(typeDM);
+            TypeDM typeDM1 = new TypeDM("I L ", "instruments légers");
+            typeDMSerivce.ajouter(typeDM1);
+
+            IDispoMedicalService dispoMedicalService = new DispoMedicalServiceImp();
+            DispositifMedical dispo = new DispositifMedical("Seringue", typeDM);
+            dispoMedicalService.ajouterDispoMed(dispo);
 
             }
         }

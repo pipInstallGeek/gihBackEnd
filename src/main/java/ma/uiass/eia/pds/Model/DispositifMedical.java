@@ -67,7 +67,7 @@ public class DispositifMedical {
         this.stocksDetails = stocksDetails;
     }
 
-    public DispositifMedical(String nameDispositifMedical, int quantiteStock, TypeDM typeDM){
+    public DispositifMedical(String nameDispositifMedical, TypeDM typeDM){
         setNameDispositifMedical(nameDispositifMedical);
         setTypeDM(typeDM);
     }
