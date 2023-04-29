@@ -6,13 +6,14 @@ import jakarta.persistence.*;
 
 import java.io.Serializable;
 import java.util.List;
-
-
 @Entity
 @Table(name = "Tlit")
+
+
 public class Lit implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //@JsonProperty("idLit")
     private int idLit;
 
     @Column
@@ -28,6 +29,9 @@ public class Lit implements Serializable {
     @ManyToOne
     @JoinColumn(name = "idEspace", referencedColumnName = "idEspace")
     private Espace espace;
+    @JsonIgnore
+    @OneToOne(mappedBy = "lit")
+    private Admission admission;
 
 
     @ManyToOne
@@ -38,9 +42,15 @@ public class Lit implements Serializable {
     @ManyToOne
     @JoinColumn(name = "idMarque", referencedColumnName = "idMarque")
     private Marque marque;
-
+    @JsonIgnore
     @OneToMany(mappedBy = "lit")
     private List<Equipement> equipements;
+
+    @JsonIgnore
+
+    @ManyToMany(mappedBy = "lits")
+    private List<Commande> commandes;
+
 
     public int getIdLit() {
         return idLit;
@@ -59,6 +69,14 @@ public class Lit implements Serializable {
 
     public Boolean getOccupe() {
         return occupe;
+    }
+
+    public Admission getAdmission() {
+        return admission;
+    }
+
+    public void setAdmission(Admission admission) {
+        this.admission = admission;
     }
 
     public void setOccupe(Boolean occupe) {
@@ -117,8 +135,8 @@ public class Lit implements Serializable {
         this.typeLit = typeLit;
         this.marque = marque;
     }
+    public String toString(){return this.codeLit;}
 
 
-    public String toString(){return "Lit numero: "+ this.idLit+ "Etat: " + this.etatLit;}
 
-}
+    }

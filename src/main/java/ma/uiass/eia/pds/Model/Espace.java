@@ -1,16 +1,23 @@
 package ma.uiass.eia.pds.Model;
 
 
-import java.io.Serializable;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import jakarta.persistence.*;
 
+import java.io.Serializable;
 import java.util.List;
 
 @Entity
 @Table(name= "TEspace")
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@DiscriminatorColumn(name = "type")
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
+@JsonSubTypes({
+        @JsonSubTypes.Type(value = Chambre.class, name = "chambre"),
+        @JsonSubTypes.Type(value = Salle.class, name = "salle"),
+})
 public abstract class Espace implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
@@ -23,9 +30,20 @@ public abstract class Espace implements Serializable {
     private Service service;
 
     @JsonIgnore
-    @OneToMany
-    @JoinColumn(name = "idEspace", referencedColumnName = "idEspace")
+    @OneToMany(mappedBy = "espace")
     public List<Lit> lit;
+
+    public List<DescriptionDM> getDescriptionDM() {
+        return descriptionDM;
+    }
+
+    public void setDescriptionDM(List<DescriptionDM> descriptionDM) {
+        this.descriptionDM = descriptionDM;
+    }
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "espace")
+    public List<DescriptionDM> descriptionDM;
 
     public Service getService() {
         return service;
@@ -72,8 +90,3 @@ public abstract class Espace implements Serializable {
     }
 
 }
-
-
-
-
-

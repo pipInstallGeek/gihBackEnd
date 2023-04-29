@@ -18,6 +18,7 @@ public class Etage {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idEtage;
 
+
     @Column(name="codeEtage", length=50)
     private String codeEtage;
     @JsonIgnore

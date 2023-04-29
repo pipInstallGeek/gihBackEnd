@@ -1,12 +1,15 @@
 package ma.uiass.eia.pds.Model;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.DiscriminatorValue;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 
 import java.io.Serializable;
 
-//import javax.persistence.*;
 @Entity
 @Table(name= "TSalle")
+@DiscriminatorValue("salle")
 public class Salle extends Espace implements Serializable {
 
     @Column(name = "TypeSalle", length = 50)
@@ -28,5 +31,5 @@ public class Salle extends Espace implements Serializable {
     public Salle() {
         super();
     }
-}
 
+}
