@@ -2,6 +2,7 @@ package ma.uiass.eia.pds.Service;
 
 import ma.uiass.eia.pds.Dao.EtageDao;
 import ma.uiass.eia.pds.Dao.IEtageDao;
+import ma.uiass.eia.pds.Model.DescriptionDM;
 import ma.uiass.eia.pds.Model.Etage;
 
 import java.util.List;

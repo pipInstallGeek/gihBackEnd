@@ -2,9 +2,12 @@ package ma.uiass.eia.pds.Dao;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.NonUniqueResultException;
+import jakarta.persistence.TypedQuery;
 import ma.uiass.eia.pds.HibernateUtility.HibernateUtil;
 import ma.uiass.eia.pds.Model.Chambre;
-import ma.uiass.eia.pds.Model.Lit;
+import ma.uiass.eia.pds.Model.Espace;
+
 
 
 import java.util.List;
@@ -17,7 +20,6 @@ public class ChambreDao implements IEspaceDao<Chambre> {
     @Override
     public void add(Chambre chambre) {
         EntityTransaction transaction = entityManager.getTransaction();
-
         try {
             transaction.begin();
             entityManager.persist(chambre);
@@ -52,7 +54,14 @@ public class ChambreDao implements IEspaceDao<Chambre> {
             return null;
         }
     }
-
-
-
+    @Override
+    public Espace findbyCode(String codeEspace) {
+        TypedQuery<Chambre> query = entityManager.createQuery("SELECT c FROM Chambre c WHERE c.codeEspace = :codeEspace", Chambre.class);
+        query.setParameter("codeEspace", codeEspace);
+        try {
+            return query.getSingleResult();
+        } catch (NonUniqueResultException e) {
+            return null;
+        }
+    }
 }

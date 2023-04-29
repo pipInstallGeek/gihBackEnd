@@ -3,7 +3,6 @@ package ma.uiass.eia.pds.Controller;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
-import ma.uiass.eia.pds.Model.Batiment;
 import ma.uiass.eia.pds.Model.Etage;
 import ma.uiass.eia.pds.Service.EtageService;
 import ma.uiass.eia.pds.Service.IEtageService;

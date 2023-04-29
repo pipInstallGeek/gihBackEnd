@@ -1,14 +1,11 @@
 package ma.uiass.eia.pds.Controller;
 
-import jakarta.ws.rs.*;
-import jakarta.ws.rs.core.MediaType;
-import jakarta.ws.rs.core.Response;
-import ma.uiass.eia.pds.Model.*;
-import ma.uiass.eia.pds.Service.*;
-import org.hibernate.annotations.Parameter;
-
-import java.util.Date;
-import java.util.List;
+    import jakarta.ws.rs.*;
+    import jakarta.ws.rs.core.MediaType;
+    import ma.uiass.eia.pds.Model.*;
+    import ma.uiass.eia.pds.Service.*;
+    import java.util.List;
+    import java.util.Map;
 
 @Path("/lit")
 public class LitController {
@@ -64,41 +61,76 @@ public class LitController {
             service.ajouter(lit);
     }
 
-    @GET
-    @Path("/count/{occupation}")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Long countOccupation(
-     @PathParam("occupation") String occupation){
 
-        return  service.countOccupation(Boolean.parseBoolean(occupation));
-    }
-
-    @GET
-    @Path("/count/{idEspace}/{occupation}")
-    public Long countOccupationInEspace(
-            @PathParam("idEspace") int idEspace,
-            @PathParam("occupation") String occupation
-    ){
+        @GET
+        @Path("/count/{occupation}")
+        @Produces(MediaType.APPLICATION_JSON)
+        public Long countOccupation(
+                @PathParam("occupation") String occupation){
+            return  service.countOccupation(Boolean.parseBoolean(occupation));
+        }
+        @GET
+        @Path("/count/{idEspace}/{occupation}")
+        public Long countOccupationInEspace(
+                @PathParam("idEspace") int idEspace,
+                @PathParam("occupation") String occupation
+        ){
 
         return service.countOccupationInEspace(idEspace, Boolean.parseBoolean(occupation));
     }
 
-    @DELETE
-    @Path("/delete/{idLit}")
-    public void deleteLit(@PathParam("idLit") int idLit){
-        service.deleteLit(idLit);
-    }
+        @DELETE
+        @Path("/delete/{idLit}")
+        public void deleteLit(@PathParam("idLit") int idLit){
+            service.deleteLit(idLit);
+        }
+        @PUT
+        @Path("/modify/{lit}/{occupe}/{espacecode}/{etatlit}")
+        public void updateLit(
+                @PathParam("lit") int lit,
+                @PathParam("occupe") String occupe,
+                @PathParam("espacecode") int espacecode,
+                @PathParam("etatlit") String etatlit
 
-    @PUT
-    @Path("/modify/{lit}/{occupe}/{espacecode}/{etatlit}")
-    public void updateLit(
-            @PathParam("lit") int lit,
-            @PathParam("occupe") String occupe,
-            @PathParam("espacecode") int espacecode,
-            @PathParam("etatlit") String etatlit
+        ){
+            service.update(lit, Boolean.parseBoolean(occupe), espacecode, EtatLit.valueOf(etatlit));
+        }
+        @GET
+        @Path("/getlitById/{idLit}")
+        @Produces(MediaType.APPLICATION_JSON)
+        public Lit getById(@PathParam(("idLit")) int idLit){return service.trouverId(idLit) ;  }
+        @GET
+        @Path("/getlitByCode/{idLit}")
+        @Produces(MediaType.APPLICATION_JSON)
+        public Lit findbycode(@PathParam(("idLit")) String idLit){return service1.findbycode(idLit) ;  }
+        @GET
+        @Path("/getAvailableLit{nomService}")
+        @Produces(MediaType.APPLICATION_JSON)
+        @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+        public List<Lit> getAvailableLit(@PathParam("nomService") String nomService) {
+            return service.afficherToutL(nomService);
+        }
+        @GET
+        @Path("/getEspaceeByService/{nomService}")
+        @Produces(MediaType.APPLICATION_JSON)
+        @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+        public List<Espace> getgetEspaceByService(@PathParam("nomService") String nomService) {
+            return service.afficherToutE(nomService);
+        }
+        @GET
+        @Path("/getnldb")
+        @Produces(MediaType.APPLICATION_JSON)
+        public Map<String, Integer> getNLDB() {
+            return service1.getNLDB();
+        }
+        @GET
+        @Path("/getnlo")
+        @Produces(MediaType.APPLICATION_JSON)
+        public Map<String, Integer> getNLO() {
+            return service1.getNLO();
+        }
 
-    ){
-        service.update(lit, Boolean.parseBoolean(occupe), espacecode, EtatLit.valueOf(etatlit));
-    }
+
+
 
 }

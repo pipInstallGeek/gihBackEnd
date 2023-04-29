@@ -18,14 +18,16 @@ public class Lit implements Serializable {
     @Column
     @Enumerated(EnumType.STRING)
     private EtatLit etatLit;
-
     @Column
-    private Boolean occupe; 
-
+    private Boolean occupe;
+    @JsonIgnore
 
     @ManyToOne
     @JoinColumn(name = "idEspace", referencedColumnName = "idEspace")
     private Espace espace;
+    @JsonIgnore
+    @OneToOne(mappedBy = "lit")
+    private Admission admission;
 
 
     @ManyToOne
@@ -33,9 +35,11 @@ public class Lit implements Serializable {
     private TypeLit typeLit;
 
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "idMarque", referencedColumnName = "idMarque")
     private Marque marque;
+
     @JsonIgnore
     @OneToMany(mappedBy = "lit")
     private List<Equipement> equipements;
@@ -48,16 +52,9 @@ public class Lit implements Serializable {
     public int getIdLit() {
         return idLit;
     }
+
     public void setIdLit(int idLit) {
         this.idLit = idLit;
-    }
-
-    public String getCodeLit() {
-        return codeLit;
-    }
-
-    public void setCodeLit(String codeLit) {
-        this.codeLit = codeLit;
     }
 
     public Boolean getOccupe() {
@@ -67,7 +64,6 @@ public class Lit implements Serializable {
     public void setOccupe(Boolean occupe) {
         this.occupe = occupe;
     }
-
 
     public List<Equipement> getEquipements() {
         return equipements;
@@ -89,6 +85,14 @@ public class Lit implements Serializable {
         return typeLit;
     }
 
+   /*public Reservation getReservation() {
+        return reservation;
+    }*/
+
+    /*public void setReservation(Reservation reservation) {
+        this.reservation = reservation;
+    }*/
+
     public void setTypeLit(TypeLit typeLit) {
         this.typeLit = typeLit;
     }
@@ -108,8 +112,6 @@ public class Lit implements Serializable {
     public void setEspace(Espace espace) {
         this.espace = espace;
     }
-
-
     public Lit(){
     }
 

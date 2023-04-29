@@ -9,6 +9,8 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 import jakarta.persistence.*;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -27,6 +29,7 @@ public abstract class Espace implements Serializable {
     @Column(name="codeEspace", length=50)
     private String codeEspace;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "idService", referencedColumnName = "idService")
     private Service service;
@@ -35,39 +38,16 @@ public abstract class Espace implements Serializable {
     @OneToMany(mappedBy = "espace")
     public List<Lit> lit;
 
-    public Service getService() {
-        return service;
-    }
 
-    public void setService(Service service) {
-        this.service = service;
-    }
+    @JsonIgnore
+    @OneToMany(mappedBy = "espace")
+    public List<DescriptionDM> descriptionDM;
 
-    public int getIdEspace() {
-        return idEspace;
-    }
 
-    public void setIdEspace(int idEspace) {
-        this.idEspace = idEspace;
-    }
 
-    public void setCodeEspace(String numEspace) {
+
+    public Espace(String numEspace, Service service) {
         this.codeEspace = numEspace;
-    }
-
-    public String getCodeEspace() {
-        return codeEspace;
-    }
-
-    public List<Lit> getLit() {
-        return lit;
-    }
-    public void setLit(List<Lit> lit) {
-        this.lit = lit;
-    }
-
-    public Espace(Service service) {
-        this.codeEspace = service.getCodeService()+this.getIdEspace();
         this.service = service;
     }
 

@@ -1,12 +1,12 @@
 package ma.uiass.eia.pds.Dao;
 
- import jakarta.persistence.EntityManager;
- import jakarta.persistence.EntityTransaction;
- import ma.uiass.eia.pds.HibernateUtility.HibernateUtil;
- import ma.uiass.eia.pds.Model.Equipement;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityTransaction;
+import ma.uiass.eia.pds.HibernateUtility.HibernateUtil;
+import ma.uiass.eia.pds.Model.Equipement;
 
 
- import java.util.List;
+import java.util.List;
 
 public class  EquipementDao implements IEquipementDao {
 

@@ -23,7 +23,7 @@ public class BatimentController {
     @Path("/getbatiments")
     @Produces(MediaType.APPLICATION_JSON)
     public List<Batiment> getBatiments(){
-     return batimentService.afficherTout();
+        return batimentService.afficherTout();
     }
 
 }

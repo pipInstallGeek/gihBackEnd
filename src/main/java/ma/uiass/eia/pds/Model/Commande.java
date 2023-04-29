@@ -5,7 +5,9 @@ import jakarta.persistence.*;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name= "TCommande")
@@ -29,7 +31,6 @@ public class Commande implements Serializable {
     @ManyToMany
     @JoinTable(name = "detailsCommande", joinColumns = {@JoinColumn(name = "idCommande")}, inverseJoinColumns = {@JoinColumn(name = "idLit")})
     private List<Lit> lits;
-
 
 
     public int getIdReservation() {
@@ -93,5 +94,3 @@ public class Commande implements Serializable {
         this.confirmation = confirmation;
     }
 }
-
-
