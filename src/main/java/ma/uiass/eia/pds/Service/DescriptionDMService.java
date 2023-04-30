@@ -1,28 +1,28 @@
 package ma.uiass.eia.pds.Service;
 
 import ma.uiass.eia.pds.Dao.*;
-import ma.uiass.eia.pds.Model.DescriptionDM;
+import ma.uiass.eia.pds.Model.DispositifMedical;
 import ma.uiass.eia.pds.Model.Espace;
 import ma.uiass.eia.pds.Model.TypeDM;
 
 import java.util.List;
 
 public class DescriptionDMService implements IDescriptionDMService{
-    DescriptionDM DD=new DescriptionDM();
+    DispositifMedical DD=new DispositifMedical();
     IDescriptionDMDao descriptionDao=new DescriptionDMDao();
     ITypeDMDao typeDMDao=new TypeDMDao();
     IEspaceDao salle=new SalleDao();
     IEspaceDao chambre =new ChambreDao();
     @Override
-    public void ajouter(DescriptionDM descriptionDM) {descriptionDao.add(descriptionDM);}
+    public void ajouter(DispositifMedical dispositifMedical) {descriptionDao.add(dispositifMedical);}
    @Override
     public void addDescriptionDM(String NomDM,int Quantité,String NomTypeDM,String CodeESpace){
         TypeDM t=typeDMDao.findbyNom(NomTypeDM);
         char s='S';
             if (CodeESpace.charAt(0)==s){
               Espace  s1= salle.findbyCode(CodeESpace);
-              DescriptionDM old1= descriptionDao.findbyNom(NomDM);
-              DescriptionDM d1=new DescriptionDM(NomDM,Quantité,t, s1);
+              DispositifMedical old1= descriptionDao.findbyNom(NomDM);
+              DispositifMedical d1=new DispositifMedical(NomDM,Quantité,t, s1);
               d1.setNomDM(NomDM+CodeESpace);
                 old1.setQuantité(old1.getQuantité() - Quantité);
               descriptionDao.add(d1);
@@ -32,9 +32,9 @@ public class DescriptionDMService implements IDescriptionDMService{
             }
           else {
                 Espace  c1= chambre.findbyCode(CodeESpace);
-                DescriptionDM old2= descriptionDao.findbyNom(NomDM);
+                DispositifMedical old2= descriptionDao.findbyNom(NomDM);
                 System.out.println(old2);
-                DescriptionDM d2=new DescriptionDM(NomDM,Quantité,t, c1);
+                DispositifMedical d2=new DispositifMedical(NomDM,Quantité,t, c1);
                 d2.setNomDM(NomDM+CodeESpace);
                 old2.setQuantité(old2.getQuantité() - Quantité);
 
@@ -47,19 +47,19 @@ public class DescriptionDMService implements IDescriptionDMService{
     @Override
     public void create(String nomDM, int quantité,String typeDM){
         TypeDM t=typeDMDao.findbyNom(typeDM);
-        descriptionDao.Create(new DescriptionDM(nomDM,0,t));
+        descriptionDao.Create(new DispositifMedical(nomDM,0,t));
     }
     @Override
-    public List<DescriptionDM> afficherTout() { return descriptionDao.getAll();}
+    public List<DispositifMedical> afficherTout() { return descriptionDao.getAll();}
     @Override
-    public DescriptionDM trouverId(int id) {return descriptionDao.getById(id);}
+    public DispositifMedical trouverId(int id) {return descriptionDao.getById(id);}
     @Override
-    public List<DescriptionDM> trouverDMByTypeDM(String  TypeDM) {
-        List<DescriptionDM> Dms = descriptionDao.getDmByNomType(TypeDM);
+    public List<DispositifMedical> trouverDMByTypeDM(String  TypeDM) {
+        List<DispositifMedical> Dms = descriptionDao.getDmByNomType(TypeDM);
         return Dms;
     }
     @Override
-    public DescriptionDM trouverbyNom(String nomDM) {
+    public DispositifMedical trouverbyNom(String nomDM) {
         return descriptionDao.findbyNom(nomDM);
     }
     @Override
@@ -69,8 +69,8 @@ public class DescriptionDMService implements IDescriptionDMService{
     }
     @Override
     public void supprimerDM(String nomDM) {
-        DescriptionDM descriptionDM = descriptionDao.findbyNom(nomDM);
-        if (descriptionDM.getQuantité() == 0) {
+        DispositifMedical dispositifMedical = descriptionDao.findbyNom(nomDM);
+        if (dispositifMedical.getQuantité() == 0) {
             descriptionDao.deleteDM(descriptionDao.findbyNom(nomDM));
         }
     }

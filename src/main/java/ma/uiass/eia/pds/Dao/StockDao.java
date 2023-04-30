@@ -1,6 +1,8 @@
 package ma.uiass.eia.pds.Dao;
 
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityTransaction;
+import jakarta.transaction.Transactional;
 import ma.uiass.eia.pds.HibernateUtility.HibernateUtil;
 import ma.uiass.eia.pds.Model.Stock;
 
@@ -19,7 +21,17 @@ public class StockDao implements IStockDao {
 
     @Override
     public void add(Stock stock) {
-
+        EntityTransaction transaction = entityManager.getTransaction();
+        try {
+            transaction.begin();
+            entityManager.persist(stock);
+            transaction.commit();
+        }catch (Exception e){
+            if (transaction != null){
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -29,5 +41,6 @@ public class StockDao implements IStockDao {
             System.out.println("Not found");
             return null;
         }
-        return stock;    }
+        return stock;
+    }
 }

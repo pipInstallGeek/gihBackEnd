@@ -11,6 +11,13 @@ public class LitService implements ILitService{
     private IEspaceDao<Chambre> chambreDao = new ChambreDao();
     private IEspaceDao<Salle> salleDao = new SalleDao();
     private LitDao littDao1=new LitDao();
+    private Espace getEspace(int idEspace){
+        Espace espace = chambreDao.getById(idEspace);
+        if (espace== null){
+            espace = salleDao.getById(idEspace);
+        }
+        return espace;
+    }
 
     @Override
     public void ajouter(Lit lit) {
@@ -33,10 +40,7 @@ public class LitService implements ILitService{
 
         @Override
         public Long countOccupationInEspace(int idEspace, boolean occupation) {
-            Espace espace = chambreDao.getById(idEspace);
-            if (espace== null){
-                espace = salleDao.getById(idEspace);
-            }
+           Espace espace = getEspace(idEspace);
             return litDao.countOccupationInEspace(espace, occupation);
         }
 
@@ -51,12 +55,9 @@ public class LitService implements ILitService{
 
 
     @Override
-    public void update(int idLit,boolean occupee, int espacecode, EtatLit etatLit) {
+    public void update(int idLit,boolean occupee, int idEspace, EtatLit etatLit) {
         Lit lit = litDao.getById(idLit);
-        Espace espace = chambreDao.getById(espacecode);
-        if (espace == null){
-            espace = salleDao.getById(espacecode);
-        }
+        Espace espace = getEspace(idEspace);
         litDao.update(lit,occupee, espace, etatLit);
     }
 
@@ -70,7 +71,8 @@ public class LitService implements ILitService{
 
     @Override
     public List<Lit> getLitByEsapce(int idEspace) {
-        return litDao.getLitByEspace(idEspace);
+        Espace espace = getEspace(idEspace);
+        return litDao.getLitByEspace(espace);
     }
 }
 

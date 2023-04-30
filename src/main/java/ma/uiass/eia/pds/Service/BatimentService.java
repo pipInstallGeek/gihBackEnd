@@ -3,7 +3,6 @@ package ma.uiass.eia.pds.Service;
 import ma.uiass.eia.pds.Dao.BatimentDao;
 import ma.uiass.eia.pds.Dao.IBatimentDao;
 import ma.uiass.eia.pds.Model.Batiment;
-import ma.uiass.eia.pds.Model.DescriptionDM;
 
 import java.util.List;
 

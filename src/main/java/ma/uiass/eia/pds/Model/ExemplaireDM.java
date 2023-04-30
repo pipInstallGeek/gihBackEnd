@@ -17,12 +17,12 @@
         @Column(name="CodeDME", length=50)
         private String codeDME;
         @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
-        @JoinColumn(name = "idDM", referencedColumnName = "idDM")
-        private DescriptionDM dmDescription;
+        @JoinColumn(name = "idDispositifMedical", referencedColumnName = "idDispositifMedical")
+        private DispositifMedical dmDescription;
 
 
 
-        public ExemplaireDM( DescriptionDM dmDescription) {
+        public ExemplaireDM( DispositifMedical dmDescription) {
             this.dmDescription = dmDescription;
         }
         public String toString(){

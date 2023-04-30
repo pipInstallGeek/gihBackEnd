@@ -10,7 +10,7 @@ public class StockService implements IStockService{
     IStockDao stockDao = new StockDao();
     @Override
     public void ajouter(Stock stock) {
-
+        stockDao.add(stock);
     }
 
     @Override

@@ -2,9 +2,6 @@ package ma.uiass.eia.pds.Controller;
 
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
-import ma.uiass.eia.pds.Model.DescriptionDM;
-import ma.uiass.eia.pds.Model.Espace;
-import ma.uiass.eia.pds.Model.Lit;
 import ma.uiass.eia.pds.Model.TypeDM;
 import ma.uiass.eia.pds.Service.DescriptionDMService;
 import ma.uiass.eia.pds.Service.IDescriptionDMService;

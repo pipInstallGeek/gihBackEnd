@@ -2,6 +2,7 @@ package ma.uiass.eia.pds.Dao;
 
 import jakarta.persistence.EntityTransaction;
 import ma.uiass.eia.pds.HibernateUtility.HibernateUtil;
+import ma.uiass.eia.pds.Model.DispositifMedical;
 import ma.uiass.eia.pds.Model.StocksDetails;
 
 import jakarta.persistence.EntityManager;
@@ -57,8 +58,6 @@ public class StocksDetailsDao implements IStocksDetailsDao {
     public void mergeDetail(StocksDetails stocksDetails) {
         EntityTransaction transaction = entityManager.getTransaction();
         try {
-            StocksDetails stocksDetails1 = getById(stocksDetails.getIdStocksDetails());
-            stocksDetails.setQuantity(stocksDetails1.getQuantity()+stocksDetails.getQuantity());
             entityManager.merge(stocksDetails);
 
         } catch (Exception e) {
@@ -67,5 +66,13 @@ public class StocksDetailsDao implements IStocksDetailsDao {
             }
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public StocksDetails getByDispoMedical(DispositifMedical dispositifMedical) {
+
+        return entityManager.createQuery("from StocksDetails s join DispositifMedical where s.dispositifMedical =: value", StocksDetails.class)
+                .setParameter("value", dispositifMedical)
+                .getSingleResult();
     }
 }

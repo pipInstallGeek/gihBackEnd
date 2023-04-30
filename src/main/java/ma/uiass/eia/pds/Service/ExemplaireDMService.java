@@ -2,7 +2,6 @@ package ma.uiass.eia.pds.Service;
 
 import ma.uiass.eia.pds.Dao.ExemplaireDMDao;
 import ma.uiass.eia.pds.Dao.IExemplaireDMDao;
-import ma.uiass.eia.pds.Model.DescriptionDM;
 import ma.uiass.eia.pds.Model.ExemplaireDM;
 
 import java.util.List;

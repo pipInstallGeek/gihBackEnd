@@ -2,10 +2,7 @@ package ma.uiass.eia.pds.Dao;
 
 import jakarta.persistence.*;
 import ma.uiass.eia.pds.HibernateUtility.HibernateUtil;
-import ma.uiass.eia.pds.Model.Admission;
-import ma.uiass.eia.pds.Model.Demande;
-import ma.uiass.eia.pds.Model.DescriptionDM;
-import ma.uiass.eia.pds.Model.TypeDM;
+import ma.uiass.eia.pds.Model.DispositifMedical;
 
 import java.util.List;
 
@@ -17,19 +14,19 @@ public class DescriptionDMDao implements IDescriptionDMDao {
     }
 
     @Override
-    public List<DescriptionDM> getAll() {
-        return entityManager.createQuery(" from DescriptionDM ").getResultList();
+    public List<DispositifMedical> getAll() {
+        return entityManager.createQuery(" from DispositifMedical ").getResultList();
     }
 
     @Override
-    public void add(DescriptionDM descriptionDM) {
+    public void add(DispositifMedical dispositifMedical) {
         EntityTransaction transaction = entityManager.getTransaction();
         try {
             transaction.begin();
-            descriptionDM.setCodeDM(descriptionDM.getNomDM()+descriptionDM.getEspace());
+            dispositifMedical.setCodeDM(dispositifMedical.getNomDM()+ dispositifMedical.getEspace());
             //descriptionDM.setNomDM(descriptionDM.getNomDM()+descriptionDM.getEspace());
 
-            entityManager.persist(descriptionDM);
+            entityManager.persist(dispositifMedical);
             transaction.commit();
 
         } catch (Exception e) {
@@ -40,7 +37,7 @@ public class DescriptionDMDao implements IDescriptionDMDao {
         }
     }
     @Override
-    public void Create(DescriptionDM d){
+    public void Create(DispositifMedical d){
         EntityTransaction transaction = entityManager.getTransaction();
         try {
             transaction.begin();
@@ -58,21 +55,21 @@ public class DescriptionDMDao implements IDescriptionDMDao {
     }
 
     @Override
-    public DescriptionDM getById(int id) {
-        return entityManager.find(DescriptionDM.class, id);
+    public DispositifMedical getById(int id) {
+        return entityManager.find(DispositifMedical.class, id);
     }
 
     @Override
-    public List<DescriptionDM> getDmByNomType(String nomTypeDM) {
-        TypedQuery<DescriptionDM> query = entityManager.createQuery(
-                "SELECT d FROM DescriptionDM d WHERE d.typeDM.nomTypeDM = :nomTypeDM", DescriptionDM.class);
+    public List<DispositifMedical> getDmByNomType(String nomTypeDM) {
+        TypedQuery<DispositifMedical> query = entityManager.createQuery(
+                "SELECT d FROM DispositifMedical d WHERE d.typeDM.nomTypeDM = :nomTypeDM", DispositifMedical.class);
         query.setParameter("nomTypeDM", nomTypeDM);
         return query.getResultList();
     }
 
     @Override
-    public DescriptionDM findbyNom(String nomDM) {
-        TypedQuery<DescriptionDM> query = entityManager.createQuery("SELECT t FROM DescriptionDM t WHERE t.nomDM = :nomDM", DescriptionDM.class);
+    public DispositifMedical findbyNom(String nomDM) {
+        TypedQuery<DispositifMedical> query = entityManager.createQuery("SELECT t FROM DispositifMedical t WHERE t.nomDM = :nomDM", DispositifMedical.class);
         query.setParameter("nomDM", nomDM);
         try {
             return query.getSingleResult();
@@ -81,7 +78,7 @@ public class DescriptionDMDao implements IDescriptionDMDao {
         }
     }
     public int getQuantitéByDM(String nomDM) {
-        TypedQuery<Integer> query = entityManager.createQuery("SELECT t.quantité FROM DescriptionDM t WHERE t.nomDM = :nomDM", Integer.class);
+        TypedQuery<Integer> query = entityManager.createQuery("SELECT t.quantité FROM DispositifMedical t WHERE t.nomDM = :nomDM", Integer.class);
         query.setParameter("nomDM", nomDM);
         List<Integer> results = query.getResultList();
         if (results.isEmpty()) {
@@ -92,7 +89,7 @@ public class DescriptionDMDao implements IDescriptionDMDao {
         }
     }
     @Override
-    public void deleteDM(DescriptionDM d) {
+    public void deleteDM(DispositifMedical d) {
         EntityTransaction et = null;
         try {
             et= entityManager.getTransaction();

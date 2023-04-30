@@ -26,9 +26,8 @@ public class StocksDetails implements Serializable {
     @JoinColumn(name = "idDispositifMedical", referencedColumnName ="idDispositifMedical" )
     private DispositifMedical dispositifMedical;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JsonIgnore
-
     @JoinColumn(name = "idStock", referencedColumnName = "idStock")
     private Stock stock;
     @Column

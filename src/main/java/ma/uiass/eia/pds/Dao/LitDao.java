@@ -94,25 +94,17 @@ public class LitDao implements ILitDao{
 
     @Override
     public Long countOccupationInEspace(Espace espace,boolean occupation) {
-        Long mycount = entityManager.createQuery("SELECT count(*) from Lit t JOIN Espace where t.occupe = :value and Espace.idEspace = :value2 ", Long.class)
+        Long mycount = entityManager.createQuery("SELECT count(*) from Lit t JOIN Espace where t.occupe = :value and t.espace = :value2 ", Long.class)
                 .setParameter("value", occupation)
-                .setParameter("value2", espace.getIdEspace())
+                .setParameter("value2", espace)
                 .getSingleResult();
         return mycount;
     }
 
     @Override
-    public List<Lit> getLitByEspace(int idEspace) {
-        return entityManager.createQuery("from Lit t JOIN t.espace  where Espace.idEspace =: value")
-                .setParameter("value", idEspace).getResultList();
-    }
-
-
-
-
-    public List<Lit> test(int idMarque){
-        return  entityManager.createQuery("from Lit t JOIN t.espace  where Espace .idEspace =: value")
-                .setParameter("value", idMarque).getResultList();
+    public List<Lit> getLitByEspace(Espace espace) {
+        return entityManager.createQuery("from Lit t JOIN t.espace  where t.espace=: value")
+                .setParameter("value", espace).getResultList();
     }
 
        public List<Lit> getAvailableLit(String nomService) {

@@ -11,9 +11,6 @@
             import org.glassfish.jersey.jdkhttp.JdkHttpServerFactory;
             import org.glassfish.jersey.server.ResourceConfig;
             import java.net.*;
-            import java.time.LocalDate;
-            import java.time.LocalDateTime;
-            import java.time.ZoneId;
             import java.util.*;
 
             public class App extends ResourceConfig {
@@ -209,7 +206,7 @@
                 litService.ajouter(lit19);
                 litService.ajouter(lit20);
 
-                System.out.println(l.getNLO());
+
 
 
 
@@ -234,27 +231,27 @@
                    typeDMService.ajouter(typeDM2);
                    typeDMService.ajouter(typeDM3);
 
-                    DescriptionDM des1=new DescriptionDM("bandes",15,typeDM1,null);
-                    DescriptionDM des2=new DescriptionDM("gants",2,typeDM1,null);
-                    DescriptionDM des3=new DescriptionDM("seringues",2,typeDM1,null);
+                    DispositifMedical des1=new DispositifMedical("bandes",15,typeDM1,null);
+                    DispositifMedical des2=new DispositifMedical("gants",2,typeDM1,null);
+                    DispositifMedical des3=new DispositifMedical("seringues",2,typeDM1,null);
                     descriptionDMService.ajouter(des1);
                     descriptionDMService.ajouter(des2);
                     descriptionDMService.ajouter(des3);
-                    List<DescriptionDM> lstDM1= Arrays.asList(des1, des2, des3);
+                    List<DispositifMedical> lstDM1= Arrays.asList(des1, des2, des3);
 
-                    DescriptionDM des4=new DescriptionDM("pinces",4,typeDM2,null);
-                    DescriptionDM des5=new DescriptionDM("ciseaux",2,typeDM2,null);
-                    DescriptionDM des6=new DescriptionDM("scalpels",2,typeDM2,null);
+                    DispositifMedical des4=new DispositifMedical("pinces",4,typeDM2,null);
+                    DispositifMedical des5=new DispositifMedical("ciseaux",2,typeDM2,null);
+                    DispositifMedical des6=new DispositifMedical("scalpels",2,typeDM2,null);
                     descriptionDMService.ajouter(des4);
                     descriptionDMService.ajouter(des5);
                     descriptionDMService.ajouter(des6);
-                    List<DescriptionDM> lstDM2= Arrays.asList(des4, des5, des6);
+                    List<DispositifMedical> lstDM2= Arrays.asList(des4, des5, des6);
 
-                    DescriptionDM des7=new DescriptionDM("stéthoscopes",15,typeDM3,null);
-                    DescriptionDM des8=new DescriptionDM("thermomètres",2,typeDM3,null);
+                    DispositifMedical des7=new DispositifMedical("stéthoscopes",15,typeDM3,null);
+                    DispositifMedical des8=new DispositifMedical("thermomètres",2,typeDM3,null);
                     descriptionDMService.ajouter(des7);
                     descriptionDMService.ajouter(des8);
-                    List<DescriptionDM> lstDM3= Arrays.asList(des7, des8);
+                    List<DispositifMedical> lstDM3= Arrays.asList(des7, des8);
 
                    /* ExemplaireDM ex1=new ExemplaireDM(des1);
                     ExemplaireDM ex2=new ExemplaireDM(des1);

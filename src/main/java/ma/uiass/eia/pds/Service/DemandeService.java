@@ -3,7 +3,6 @@ package ma.uiass.eia.pds.Service;
 import ma.uiass.eia.pds.Dao.DemandeDao;
 import ma.uiass.eia.pds.Dao.IDemandeDao;
 import ma.uiass.eia.pds.Model.Demande;
-import ma.uiass.eia.pds.Model.DescriptionDM;
 import ma.uiass.eia.pds.Model.EtatDemande;
 
 import java.util.List;

@@ -1,7 +1,6 @@
 package ma.uiass.eia.pds.Service;
 
 import ma.uiass.eia.pds.Model.DispositifMedical;
-import ma.uiass.eia.pds.Model.TypeDM;
 
 import java.util.List;
 

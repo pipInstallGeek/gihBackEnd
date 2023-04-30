@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.util.List;
+
 @Entity
 @Table(name = "stock")
 @Data
@@ -17,44 +18,13 @@ public class Stock implements Serializable {
     @Column
     private String nomStock;
 
-    @OneToOne(optional = true)
+    @OneToOne(optional = true, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "idService")
     private Service service;
 
     @OneToMany(mappedBy = "stock")
     private List<StocksDetails> stocksDetails;
-    public String getNomStock() {
-        return nomStock;
-    }
 
-    public void setNomStock(String nomStock) {
-        this.nomStock = nomStock;
-    }
-
-
-    public void setIdStock(int idStock) {
-        this.idStock = idStock;
-    }
-
-    public int getIdStock() {
-        return idStock;
-    }
-
-    public Service getService() {
-        return service;
-    }
-
-    public void setService(Service service) {
-        this.service = service;
-    }
-
-    public List<StocksDetails> getStocksDetails() {
-        return stocksDetails;
-    }
-
-    public void setStocksDetails(List<StocksDetails> stocksDetails) {
-        this.stocksDetails = stocksDetails;
-    }
 
     public Stock(String nomStock, Service service){
         setNomStock(nomStock);

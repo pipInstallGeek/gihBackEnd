@@ -11,8 +11,6 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -45,7 +43,7 @@ public abstract class Espace implements Serializable {
 
     @JsonIgnore
     @OneToMany(mappedBy = "espace")
-    public List<DescriptionDM> descriptionDM;
+    public List<DispositifMedical> dispositifMedical;
 
 
 

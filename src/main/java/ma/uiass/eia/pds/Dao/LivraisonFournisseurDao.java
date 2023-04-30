@@ -2,6 +2,7 @@ package ma.uiass.eia.pds.Dao;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.NoResultException;
 import ma.uiass.eia.pds.HibernateUtility.HibernateUtil;
 import ma.uiass.eia.pds.Model.*;
 
@@ -36,9 +37,23 @@ public class LivraisonFournisseurDao implements ILivraisonFournisseurDao {
             detailsLivraisons.forEach(detailsLivraison -> {
                 detailsLivraison.setLivraisonFournisseur(livraisonFournisseur);
                 detailsLivraisonDao.add(detailsLivraison);
-                StocksDetails stocksDetails = new StocksDetails(detailsLivraison.getDispositifMedical(),stockDao.getById(1), detailsLivraison.getQuantite());
+                StocksDetails stocksDetails = null;
+                try {
+                     stocksDetails = stocksDetailsDao.getByDispoMedical(detailsLivraison.getDispositifMedical());
 
-                stocksDetailsDao.add(stocksDetails);
+                }catch (NoResultException e){
+
+                }
+                finally {
+
+                    if (stocksDetails == null) {
+                        stocksDetails = new StocksDetails(detailsLivraison.getDispositifMedical(), stockDao.getById(1), detailsLivraison.getQuantite());
+                        stocksDetailsDao.add(stocksDetails);
+                    } else {
+                        stocksDetails.setQuantity(stocksDetails.getQuantity() + detailsLivraison.getQuantite());
+                        stocksDetailsDao.mergeDetail(stocksDetails);
+                    }
+                }
             });
             transaction.commit();
 

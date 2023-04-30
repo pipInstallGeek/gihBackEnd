@@ -15,7 +15,7 @@ public interface ILitDao extends IDao<Lit> {
 
     Long countOccupationInEspace(Espace espace,boolean occupe);
 
-    List<Lit> getLitByEspace(int idEspace);
+    List<Lit> getLitByEspace(Espace espace);
 
     List<Lit> getAvailableLit(String nomService);
     Lit findbyCode(String code);
