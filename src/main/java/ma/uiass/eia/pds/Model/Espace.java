@@ -8,6 +8,8 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 import jakarta.persistence.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -22,6 +24,8 @@ import java.util.List;
         @JsonSubTypes.Type(value = Chambre.class, name = "chambre"),
         @JsonSubTypes.Type(value = Salle.class, name = "salle"),
 })
+@Data
+@NoArgsConstructor
 public abstract class Espace implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
@@ -46,14 +50,10 @@ public abstract class Espace implements Serializable {
 
 
 
-    public Espace(String numEspace, Service service) {
-        this.codeEspace = numEspace;
+    public Espace(Service service) {
         this.service = service;
     }
 
-    public Espace() {
-
-    }
 
     public String toString(){
         return this.codeEspace;

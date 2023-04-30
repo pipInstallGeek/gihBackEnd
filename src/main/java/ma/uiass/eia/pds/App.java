@@ -24,10 +24,13 @@
                 URI baseUri = UriBuilder.fromUri("http://localhost/").port(9998).build();
                 ResourceConfig config = new ResourceConfig().packages("ma.uiass.eia.pds");
                 config.register(JacksonJsonProvider.class);
-                    config.register(AdmissionController.class);
-                    HttpServer server = JdkHttpServerFactory.createHttpServer(baseUri, config);
-                    System.out.println("server launched Successfully ");
-                IAdmissionService reservationService =new AdmissionService();
+                config.register(AdmissionController.class);
+                HttpServer server = JdkHttpServerFactory.createHttpServer(baseUri, config);
+                System.out.println("server launched Successfully ");
+
+
+
+                IAdmissionService admissionService =new AdmissionService();
                 IDemandeService commandeService=new DemandeService();
                 IServiceService serviceService = new ServiceService();
                 IServiceDao s=new ServiceDao();
@@ -215,21 +218,21 @@
                 Date date = Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());*/
 
                 //Admission reser1=new Admission("reser1", date2, Calendar.getInstance().getTime(),lit);
-                // reservationService.ajouter(reser1);
+                // admissionService.ajouter(reser1);
                 //Admission reser2=new Admission("reser2", date, Calendar.getInstance().getTime(),lit2);
                Admission reser1=new Admission("reser1", "2020-05-06", null,lit13);
-                reservationService.ajouter(reser1);
+               admissionService.ajouter(reser1);
 
 
 
 
 
-                   TypeDM typeDM1=new TypeDM("fourniture");
-                   TypeDM typeDM2=new TypeDM("instruments légers");
-                    TypeDM typeDM3=new TypeDM("outils de diagnostic");
+                   TypeDM typeDM1=new TypeDM("Four","fourniture");
+                   TypeDM typeDM2=new TypeDM("in lege","instruments légers");
+                   TypeDM typeDM3=new TypeDM("ODD","outils de diagnostic");
                    typeDMService.ajouter(typeDM1);
                    typeDMService.ajouter(typeDM2);
-                    typeDMService.ajouter(typeDM3);
+                   typeDMService.ajouter(typeDM3);
 
                     DescriptionDM des1=new DescriptionDM("bandes",15,typeDM1,null);
                     DescriptionDM des2=new DescriptionDM("gants",2,typeDM1,null);
@@ -295,7 +298,7 @@
                  commandeService.modifier(commande1,date15,false);
                 System.out.println(commandeService.afficherTout());
                 litService.modifier(lit1,EtatLit.DEFECTUEUSE,false,salle);
-                reservationService.modifier(reser1,Calendar.getInstance().getTime(),true);
+                admissionService.modifier(reser1,Calendar.getInstance().getTime(),true);
                 System.out.println(s.getAll());*/
                    // System.out.println(descriptionDMService.trouverDMByTypeDM("fourniture"));
                   //  descriptionDMService.ajouter(new DescriptionDM("sss",1,typeDM1,chambre1));

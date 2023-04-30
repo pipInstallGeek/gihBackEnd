@@ -2,9 +2,14 @@ package ma.uiass.eia.pds.Model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 @Entity
+@Table
+@Data
+@NoArgsConstructor
 public class StocksDetails implements Serializable {
 
 
@@ -28,38 +33,6 @@ public class StocksDetails implements Serializable {
     private Stock stock;
     @Column
     private int quantity;
-
-    public int getIdStocksDetails() {
-        return idStocksDetails;
-    }
-
-    public DispositifMedical getDispositifMedical() {
-        return dispositifMedical;
-    }
-
-    public void setDispositifMedical(DispositifMedical dispositifMedical) {
-        this.dispositifMedical = dispositifMedical;
-    }
-
-    public Stock getStock() {
-        return stock;
-    }
-
-    public void setStock(Stock stock) {
-        this.stock = stock;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
-
-
-    public StocksDetails() {
-    }
 
     public StocksDetails(DispositifMedical dispositifMedical, Stock stock, int quantity) {
         this.dispositifMedical = dispositifMedical;

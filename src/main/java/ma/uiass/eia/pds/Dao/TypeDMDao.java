@@ -21,7 +21,7 @@ public class TypeDMDao implements ITypeDMDao {
         try {
             transaction.begin();
             entityManager.persist(typeDM);
-            typeDM.setCodeTypeDM(typeDM.getNomTypeDM()+typeDM.getIdTypeDM());
+            typeDM.setCodeTypeDM(typeDM.getCodeTypeDM()+typeDM.getIdTypeDM());
             //entityManager.merge(typeDM);
             transaction.commit();
         } catch (Exception e) {
@@ -58,7 +58,7 @@ public class TypeDMDao implements ITypeDMDao {
         try {
             transaction.begin();
             entityManager.persist(t);
-            t.setCodeTypeDM(t.getNomTypeDM()+t.getIdTypeDM());
+            t.setCodeTypeDM(t.getCodeTypeDM()+t.getIdTypeDM());
             //entityManager.merge(typeDM);
             transaction.commit();
         } catch (Exception e) {

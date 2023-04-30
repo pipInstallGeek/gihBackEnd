@@ -5,9 +5,13 @@
     import java.io.Serializable;
     import java.util.Date;
     import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+    import lombok.Data;
+    import lombok.NoArgsConstructor;
 
     @Entity
     @Table(name= "TAdmission")
+    @Data
+    @NoArgsConstructor
     public class Admission implements Serializable {
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,56 +34,15 @@
         }
 
 
-        public String getNumAdmission() {
-            return numAdmission;
-        }
-        public void setNumAdmission(String numAdmission) {
-            this.numAdmission = numAdmission;
-        }
-
-
-
-        public String getDateDébut() {
-            return dateDébut;
-        }
-
-        public void setDateDébut(String dateDébut) {
-            this.dateDébut = dateDébut;
-        }
-
-        public String getDateFin() {
-            return dateFin;
-        }
-
-        public int getIdAdmission() {
-            return idAdmission;
-        }
-
-        public void setDateFin(String dateFin) {
-            this.dateFin = dateFin;
-        }
         public Admission(String numAdmission, String dateDébut, String dateFin, Lit lit) {
             this.numAdmission = numAdmission;
             this.dateDébut = dateDébut;
             this.dateFin = dateFin;
             this.lit = lit;
 
+        }
 
-        }
-        public Lit getLit() {
-            return lit;
-        }
-        public void setLit(Lit lit) {
-            this.lit = lit;
-        }
-        public void setIdAdmission(int idAdmission) {
-            this.idAdmission = idAdmission;
-        }
-        public Admission(){}
         public String toString(){
             return this.idAdmission + " "+this.numAdmission+" "+" "+this.dateDébut+" "+this.dateFin +" "+this.lit.getIdLit();        }
-
-       /*public int getLitId() {
-           return lit.getIdLit();*/
 
     }

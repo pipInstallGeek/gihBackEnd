@@ -13,9 +13,8 @@ public class TypeDMService implements ITypeDMService {
     @Override
     public void ajouter(TypeDM typeDM) {type.add(typeDM);}
     @Override
-    public void addTypeDM(String NomTypeDM){
-        TypeDM typedm=new TypeDM(NomTypeDM);
-        type.add((typedm));
+    public void addTypeDM(String code,String nomTypeDM){
+        type.add(new TypeDM(code,nomTypeDM));
     }
 
     @Override
@@ -28,20 +27,15 @@ public class TypeDMService implements ITypeDMService {
     @Override
     public TypeDM trouverId(int id) {return type.getById(id);}
 
-   /* @Override
-    public List<TypeDM> trouverTypeDMByDM(String  NomDM) {
-        DescriptionDM dm=new DescriptionDM();
-                List<TypeDM> typeDms = type.getTypeDmByNomDm(NomDM);
-        return typeDms;
-    }*/
+
    @Override
-   public void createT(String nomTypeDM){
-       type.createT(new TypeDM(nomTypeDM));
+   public void createT(String code,String nomTypeDM){
+       type.createT(new TypeDM(code,nomTypeDM));
    }
     @Override
     public void supprimerTypeDM(String nomTypeDM) {
         TypeDM type1 = type.findbyNom(nomTypeDM);
-        if (type1.getDMs() == null) {
+        if (type1 == null) {
             type.deleteTypeDM(type.findbyNom(nomTypeDM));
         }
     }

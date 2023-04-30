@@ -1,6 +1,8 @@
 package ma.uiass.eia.pds.Model;
 
-public enum Role {
+import java.io.Serializable;
+
+public enum Role implements Serializable {
     ADMIN,
     CHEF_LOGISTIC,
     CHEF_DE_SERVICE;

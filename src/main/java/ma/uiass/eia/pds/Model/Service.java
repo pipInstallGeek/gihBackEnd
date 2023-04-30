@@ -2,6 +2,8 @@
 package ma.uiass.eia.pds.Model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.util.List;
@@ -9,6 +11,8 @@ import java.util.List;
 //import javax.persistence.*;
 @Entity
 @Table(name= "TService")
+@Data
+@NoArgsConstructor
 public class Service implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,64 +34,12 @@ public class Service implements Serializable {
 
 
 
-	public int getIdService() {
-		return idService;
-	}
-
-	public void setIdService(int idService) {
-		this.idService = idService;
-	}
-
-	public List<Espace> getEspaces() {
-		return espaces;
-	}
-
-	public void setEspaces(List<Espace> espaces) {
-		this.espaces = espaces;
-	}
-
-	public Etage getEtage() {
-		return etage;
-	}
-
-	public String getCodeService() {
-		return codeService;
-	}
-
-	public void setCodeService(String codeS) {
-		this.codeService = codeS;
-	}
-
-	public String getNomService() {
-		return nomService;
-	}
-
-	public void setNomService(String nomService) {
-		this.nomService = nomService;
-	}
-
-	public void setEtage(Etage etage) {
-		this.etage = etage;
-	}
-
-	public Stock getStock() {
-		return stock;
-	}
-
-	public void setStock(Stock stock) {
-		this.stock = stock;
-	}
-
-
 	public Service(String codeS, String nomService, Etage etage) {
 		setEtage(etage);
 		setCodeService(etage.getCodeEtage()+codeS);
 		setNomService(nomService);
 	}
 
-	public Service() {
-
-	}
 
 	public String toString() {
 		return this.nomService;

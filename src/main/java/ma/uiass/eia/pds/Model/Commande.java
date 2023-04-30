@@ -2,6 +2,8 @@ package ma.uiass.eia.pds.Model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -11,6 +13,8 @@ import java.util.List;
 
 @Entity
 @Table(name= "TCommande")
+@Data
+@NoArgsConstructor
 public class Commande implements Serializable {
 
 
@@ -32,65 +36,11 @@ public class Commande implements Serializable {
     @JoinTable(name = "detailsCommande", joinColumns = {@JoinColumn(name = "idCommande")}, inverseJoinColumns = {@JoinColumn(name = "idLit")})
     private List<Lit> lits;
 
-
-    public int getIdReservation() {
-        return idCommande;
-    }
-
-    public void setIdReservation(int idCommande) {
-        this.idCommande = idCommande;
-    }
-
-    public String getNumCommande() {
-        return numCommande;
-    }
-
-    public void setNumCommande(String numCommande) {
-        this.numCommande = numCommande;
-    }
-
-    public int getQuantite() {
-        return quantite;
-    }
-
-    public void setQuantite(int quantite) {
-        this.quantite = quantite;
-    }
-
-    public Date getDateCommande() {
-        return dateCommande;
-    }
-
-    public void setDateCommande(Date dateCommande) {
-        this.dateCommande = dateCommande;
-    }
-
-    public Date getDateLivraison() {
-        return dateLivraison;
-    }
-
-    public void setDateLivraison(Date dateLivraison) {
-        this.dateLivraison = dateLivraison;
-    }
-
-    public Boolean getConfirmation() {
-        return confirmation;
-    }
-
-    public void setConfirmation(Boolean confirmation) {
-        this.confirmation = confirmation;
-    }
-
-
-    public Commande() {
-
-    }
-
-    public Commande(String numCommande, int quantite, Date dateCommande, Date dateLivraison, Boolean confirmation, List<Lit> lits) {
-        this.numCommande = numCommande;
-        this.quantite = quantite;
-        this.dateCommande = dateCommande;
-        this.dateLivraison = dateLivraison;
-        this.confirmation = confirmation;
+   public Commande(String numCommande, int quantite, Date dateCommande, Date dateLivraison, Boolean confirmation, List<Lit> lits) {
+        setNumCommande(numCommande);
+        setQuantite(quantite);
+        setDateCommande(dateCommande);
+        setDateLivraison(dateLivraison);
+        setConfirmation(confirmation);
     }
 }

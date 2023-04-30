@@ -102,7 +102,7 @@ public class LitController {
         @GET
         @Path("/getlitByCode/{idLit}")
         @Produces(MediaType.APPLICATION_JSON)
-        public Lit findbycode(@PathParam(("idLit")) String idLit){return service1.findbycode(idLit) ;  }
+        public Lit findbycode(@PathParam(("idLit")) String idLit){return service.findbycode(idLit) ;  }
         @GET
         @Path("/getAvailableLit{nomService}")
         @Produces(MediaType.APPLICATION_JSON)
@@ -121,13 +121,13 @@ public class LitController {
         @Path("/getnldb")
         @Produces(MediaType.APPLICATION_JSON)
         public Map<String, Integer> getNLDB() {
-            return service1.getNLDB();
+            return service.getNLDB();
         }
         @GET
         @Path("/getnlo")
         @Produces(MediaType.APPLICATION_JSON)
         public Map<String, Integer> getNLO() {
-            return service1.getNLO();
+            return service.getNLO();
         }
 
 

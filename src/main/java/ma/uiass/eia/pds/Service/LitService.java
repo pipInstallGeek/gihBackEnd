@@ -25,8 +25,8 @@ public class LitService implements ILitService{
     @Override
     public Lit trouverId(int id) {return litDao.getById(id);}
 
-        @Override
-        public Long countOccupation(boolean occupation) {
+    @Override
+    public Long countOccupation(boolean occupation) {
             Long mycount = litDao.countOccupation(occupation);
             return mycount;
         }
@@ -60,24 +60,17 @@ public class LitService implements ILitService{
         litDao.update(lit,occupee, espace, etatLit);
     }
 
+    public List<Lit> afficherToutL(String nomService){return litDao.getAvailableLit( nomService);}
+    public List<Espace> afficherToutE(String nomService){return litDao.getEspaceByService(nomService);}
 
-
-
-
-
-        public List<Lit> afficherToutL(String nomService){return litDao.getAvailableLit( nomService);}
-        public List<Espace> afficherToutE(String nomService){return litDao.getEspaceByService(nomService);}
-
-        public Lit findbycode(String codeLit){
-            return litDao.findbyCode(codeLit);
-}
-        public Map<String, Integer> getNLDB(){return littDao1.getNLDB();}
-        public Map<String, Integer> getNLO(){return littDao1.getNLO();}
+    public Lit findbycode(String codeLit){
+            return litDao.findbyCode(codeLit);}
+    public Map<String, Integer> getNLDB(){return littDao1.getNLDB();}
+    public Map<String, Integer> getNLO(){return littDao1.getNLO();}
 
     @Override
     public List<Lit> getLitByEsapce(int idEspace) {
-
         return litDao.getLitByEspace(idEspace);
     }
 }
-    }
+

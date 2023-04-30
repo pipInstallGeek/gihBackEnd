@@ -1,17 +1,17 @@
 package ma.uiass.eia.pds.Model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import jakarta.persistence.*;
 
-import java.io.Serializable;
-import java.util.ArrayList;
+import jakarta.persistence.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+
 import java.util.List;
 
 @Entity
 @Table(name = "TtypeDM")
 @Data
-
+@NoArgsConstructor
 public class TypeDM {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,7 +27,7 @@ public class TypeDM {
     private List<DispositifMedical> dispositifMedicals;
 
     public TypeDM(String codeDM, String nomType) {
-        setCodeDM(codeDM);
+        setCodeTypeDM(codeDM);
         setNomType(nomType);
     }
 }

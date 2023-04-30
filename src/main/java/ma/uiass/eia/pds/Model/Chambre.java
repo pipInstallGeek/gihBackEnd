@@ -1,6 +1,8 @@
 package ma.uiass.eia.pds.Model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -10,7 +12,7 @@ import java.util.List;
 @Entity
 @Table(name= "TChambre")
 @DiscriminatorValue("chambre")
-
+@Data
 public class Chambre extends Espace implements Serializable {
 
 
@@ -21,30 +23,10 @@ public class Chambre extends Espace implements Serializable {
     private TypeChambre typeChambre;
 
 
-    public void setNumChambre(String numC) {
-        this.numChambre = numC;
-    }
 
-
-    public void setTypeChambre(TypeChambre typeC) {
-        this.typeChambre = typeC;
-    }
-
-
-    public String getNumChambre() {
-        return numChambre;
-    }
-
-
-    public TypeChambre getTypeChambre() {
-        return typeChambre;
-    }
-
-
-    public Chambre(String numChambre, TypeChambre typeChambre, Service service) {
-        super( service);
-        this.numChambre = numChambre;
-        this.typeChambre = typeChambre;
+    public Chambre( TypeChambre typeChambre, Service service) {
+        super(service);
+        setTypeChambre(typeChambre);
     }
 
     public Chambre() {

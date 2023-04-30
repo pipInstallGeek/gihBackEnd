@@ -1,11 +1,15 @@
 package ma.uiass.eia.pds.Model;
 
 import jakarta.persistence.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
 @Entity
 @Table(name= "TDemande")
+@Data
+@NoArgsConstructor
 public class Demande implements Serializable {
 
 
@@ -44,83 +48,7 @@ public class Demande implements Serializable {
         this.service=service;
     }
 
-    public int getIdDemande() {
-        return idDemande;
-    }
 
-    public void setIdDemande(int idDemande) {
-        this.idDemande = idDemande;
-    }
-
-    public String getNumDemande() {
-        return numDemande;
-    }
-
-    public void setNumDemande(String numDemande) {
-        this.numDemande = numDemande;
-    }
-
-    public int getQuantite() {
-        return quantite;
-    }
-
-    public void setQuantite(int quantite) {
-        this.quantite = quantite;
-    }
-
-    public String getDateDemande() {
-        return dateDemande;
-    }
-
-    public void setDateDemande(String dateDemande) {
-        this.dateDemande = dateDemande;
-    }
-
-    public String getDateLivraison() {
-        return dateLivraison;
-    }
-
-    public void setDateLivraison(String dateLivraison) {
-        this.dateLivraison = dateLivraison;
-    }
-
-    public String getTypelit() {
-        return typelit;
-    }
-
-    public void setTypelit(String typelit) {
-        this.typelit = typelit;
-    }
-
-    public String getMarque() {
-        return marque;
-    }
-
-    public void setMarque(String marque) {
-        this.marque = marque;
-    }
-
-    public String getService() {
-        return service;
-    }
-
-    public void setService(String service) {
-        this.service = service;
-    }
-
-    public EtatDemande getEtat() {
-        return etat;
-    }
-
-    public void setEtat(EtatDemande etat) {
-        this.etat = etat;
-    }
-
-
-
-    public Demande(){
-
-    }
 
     @Override
     public String toString() {

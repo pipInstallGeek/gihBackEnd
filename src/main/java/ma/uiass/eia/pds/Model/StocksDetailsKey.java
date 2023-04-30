@@ -2,10 +2,14 @@ package ma.uiass.eia.pds.Model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
 @Embeddable
+@Data
+@NoArgsConstructor
 public  class StocksDetailsKey implements Serializable {
     @Column(name = "idStock")
     private int idStock;
@@ -17,24 +21,5 @@ public  class StocksDetailsKey implements Serializable {
         this.idDispositifMedical = idDispositifMedical;
     }
 
-    public StocksDetailsKey() {
-
-    }
-
-    public int getIdStock() {
-        return idStock;
-    }
-
-    public void setIdStock(int idStock) {
-        this.idStock = idStock;
-    }
-
-    public int getIdDispositifMedical() {
-        return idDispositifMedical;
-    }
-
-    public void setIdDispositifMedical(int idDispositifMedical) {
-        this.idDispositifMedical = idDispositifMedical;
-    }
 
 }

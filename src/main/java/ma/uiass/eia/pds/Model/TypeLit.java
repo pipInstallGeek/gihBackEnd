@@ -2,13 +2,17 @@ package ma.uiass.eia.pds.Model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.util.List;
 
 @Entity
 @Table(name= "TypeLit")
-public class    TypeLit implements Serializable {
+@Data
+@NoArgsConstructor
+public class TypeLit implements Serializable {
 
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,37 +26,12 @@ public class    TypeLit implements Serializable {
         @OneToMany(mappedBy = "typeLit")
         private List<Lit> lits;
 
-        public int getIdType() {
-                return idType;
-        }
-
-        public void setIdType(int id_T) {
-                this.idType = id_T;
-        }
-
-
-        public String getNomTypeLit() {
-                return nomTypeLit;
-        }
-
-        public void setNomTypeLit(String nomTypeLit) {
-                this.nomTypeLit = nomTypeLit;
-        }
-
-        public List<Lit> getLits() {
-                return lits;
-        }
-
-        public void setLits(List<Lit> lits) {
-                this.lits = lits;
-        }
 
         public TypeLit( String nomTypeLit,String codeType) {
                 this.codeType=codeType;
                 this.nomTypeLit = nomTypeLit;
         }
 
-        public TypeLit(){ }
         public String toString(){
                 return this.nomTypeLit;
         }

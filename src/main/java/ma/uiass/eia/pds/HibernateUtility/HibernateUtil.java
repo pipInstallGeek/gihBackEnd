@@ -5,7 +5,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
-public class   HibernateUtil {
+public class HibernateUtil {
     private static EntityManager entityManager;
     public static EntityManager getEntityManger() {
         if (entityManager == null) {

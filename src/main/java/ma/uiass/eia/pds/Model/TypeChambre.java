@@ -2,7 +2,9 @@ package ma.uiass.eia.pds.Model;
 
 import com.fasterxml.jackson.annotation.JsonEnumDefaultValue;
 
-public enum TypeChambre {
+import java.io.Serializable;
+
+public enum TypeChambre implements Serializable {
     SIMPLE,
     DOUBLE,
     SUITE,

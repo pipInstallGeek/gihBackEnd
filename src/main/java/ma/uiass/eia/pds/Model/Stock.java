@@ -1,10 +1,14 @@
 package ma.uiass.eia.pds.Model;
 import jakarta.persistence.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.util.List;
 @Entity
 @Table(name = "stock")
+@Data
+@NoArgsConstructor
 public class Stock implements Serializable {
 
     @Id
@@ -55,8 +59,5 @@ public class Stock implements Serializable {
     public Stock(String nomStock, Service service){
         setNomStock(nomStock);
         setService(service);
-    }
-    public Stock(){
-
     }
 }

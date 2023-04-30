@@ -5,14 +5,10 @@ import ma.uiass.eia.pds.Model.EtatLit;
 import ma.uiass.eia.pds.Model.Lit;
 
 import java.util.List;
+import java.util.Map;
 
 public interface ILitService extends IService<Lit>{
-    Long countOccupation(boolean occupation);
-    Long countOccupationInEspace(int idEspace, boolean occupation);
 
-    void deleteLit(int idLitt);
-
-    void update(int idLit, boolean occupee, int espacecode, EtatLit etatLit);
     List<Lit> afficherToutL(String nomService);
     public List<Espace> afficherToutE(String nomService);
 
@@ -24,4 +20,7 @@ public interface ILitService extends IService<Lit>{
     Long countOccupationInEspace(int idEspace, boolean occupation);
 
     List<Lit> getLitByEsapce(int idEspace);
+    Map<String, Integer> getNLDB();
+    Map<String, Integer> getNLO();
+    Lit findbycode(String codeLit);
 }

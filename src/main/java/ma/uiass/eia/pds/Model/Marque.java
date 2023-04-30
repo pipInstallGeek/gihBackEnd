@@ -2,6 +2,8 @@ package ma.uiass.eia.pds.Model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -9,6 +11,8 @@ import java.util.List;
 
 @Entity
 @Table(name= "TMarque")
+@Data
+@NoArgsConstructor
 public class Marque implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,37 +26,12 @@ public class Marque implements Serializable {
     private List<Lit> lits=new ArrayList<>();
 
 
-    public List<Lit> getLits() {
-        return lits;
+
+    public Marque(String codeMarque, String nomMarque) {
+        this.codeMarque = codeMarque;
+        this.nomMarque = nomMarque;
     }
 
-    public void setLits(List<Lit> lits) {
-        this.lits = lits;
-    }
-
-    public int getIdMarque() {
-        return idMarque;
-    }
-
-    public void setIdMarque(int id_M) {
-        this.idMarque = id_M;
-    }
-
-    public String getNomMarque() { return nomMarque; }
-
-    public void setNomMarque(String nomMarque) { this.nomMarque = nomMarque; }
-
-    public String getCodeMarque() { return codeMarque; }
-
-    public void setCodeMarque(String codeMarque) { this.codeMarque = codeMarque; }
-
-    public Marque(String code_Marque, String nom_Marque) {
-        codeMarque = code_Marque;
-        nomMarque = nom_Marque;
-    }
-
-    public Marque(){
-    }
     public String toString(){
         return this.nomMarque;
     }

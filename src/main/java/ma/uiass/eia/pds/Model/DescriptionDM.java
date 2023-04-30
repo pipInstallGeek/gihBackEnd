@@ -3,6 +3,8 @@ package ma.uiass.eia.pds.Model;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -10,6 +12,8 @@ import java.util.List;
 
 @Entity
 @Table(name="TDM")
+@Data
+@NoArgsConstructor
 public class DescriptionDM implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,36 +38,6 @@ public class DescriptionDM implements Serializable {
 
 
 
-    public DescriptionDM() {
-    }
-    public int getIdDM() {
-        return idDM;
-    }
-
-    public void setIdDM(int idDM) {
-        this.idDM = idDM;
-    }
-
-    public String getCodeDM() {
-        return codeDM;
-    }
-
-    public void setCodeDM(String codeDM) {
-        this.codeDM = codeDM;
-    }
-
-
-    public List<ExemplaireDM> getExemplaires() {
-        return exemplaires;
-    }
-
-    public void setExemplaires(List<ExemplaireDM> exemplaires) {
-        this.exemplaires = exemplaires;
-    }
-
-    public Espace getEspace() {
-        return espace;
-    }
 
     public DescriptionDM(String nomDM, int quantité, TypeDM typeDM, Espace espace) {
 
@@ -80,37 +54,11 @@ public class DescriptionDM implements Serializable {
         this.typeDM = typeDM;
     }
 
-    public TypeDM getTypeDM() {
-        return typeDM;
-    }
 
-    public void setTypeDM(TypeDM typeDM) {
-        this.typeDM = typeDM;
-    }
-
-    public void setEspace(Espace espace) {
-        this.espace = espace;
-    }
 
     public DescriptionDM(String nomDM, int quantité, TypeDM t) {
       this.typeDM=t;
         this.nomDM = nomDM;
-        this.quantité = quantité;
-    }
-
-    public String getNomDM() {
-        return nomDM;
-    }
-
-    public void setNomDM(String nomDM) {
-        this.nomDM = nomDM;
-    }
-
-    public int getQuantité() {
-        return quantité;
-    }
-
-    public void setQuantité(int quantité) {
         this.quantité = quantité;
     }
 

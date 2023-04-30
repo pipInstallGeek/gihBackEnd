@@ -3,11 +3,15 @@ package ma.uiass.eia.pds.Model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.util.List;
 @Entity
 @Table(name = "Tlit")
+@Data
+@NoArgsConstructor
 public class Lit implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -49,71 +53,6 @@ public class Lit implements Serializable {
     private List<Commande> commandes;
 
 
-    public int getIdLit() {
-        return idLit;
-    }
-
-    public void setIdLit(int idLit) {
-        this.idLit = idLit;
-    }
-
-    public Boolean getOccupe() {
-        return occupe;
-    }
-
-    public void setOccupe(Boolean occupe) {
-        this.occupe = occupe;
-    }
-
-    public List<Equipement> getEquipements() {
-        return equipements;
-    }
-
-    public void setEquipements(List<Equipement> equipements) {
-        this.equipements = equipements;
-    }
-
-    public EtatLit getEtatLit() {
-        return etatLit;
-    }
-
-    public void setEtatLit(EtatLit etatLit ) {
-        this.etatLit = etatLit;
-    }
-
-    public TypeLit getTypeLit() {
-        return typeLit;
-    }
-
-   /*public Reservation getReservation() {
-        return reservation;
-    }*/
-
-    /*public void setReservation(Reservation reservation) {
-        this.reservation = reservation;
-    }*/
-
-    public void setTypeLit(TypeLit typeLit) {
-        this.typeLit = typeLit;
-    }
-
-    public Marque getMarque() {
-        return marque;
-    }
-
-    public void setMarque(Marque marque) {
-        this.marque = marque;
-    }
-
-    public Espace getEspace() {
-        return espace;
-    }
-
-    public void setEspace(Espace espace) {
-        this.espace = espace;
-    }
-    public Lit(){
-    }
 
     public Lit(EtatLit etatLit, Boolean occupe, Espace espace,  TypeLit typeLit, Marque marque) {
         this.etatLit = etatLit;

@@ -1,11 +1,11 @@
 package ma.uiass.eia.pds.Dao;
 
 import jakarta.persistence.*;
+
 import ma.uiass.eia.pds.HibernateUtility.HibernateUtil;
 import ma.uiass.eia.pds.Model.Espace;
 import ma.uiass.eia.pds.Model.EtatLit;
 import ma.uiass.eia.pds.Model.Lit;
-import ma.uiass.eia.pds.Model.Reservation;
 
 import java.util.HashMap;
 import java.util.List;
@@ -94,7 +94,7 @@ public class LitDao implements ILitDao{
 
     @Override
     public Long countOccupationInEspace(Espace espace,boolean occupation) {
-        Long mycount = entityManager.createQuery("SELECT count(*) from Lit t JOIN t.espace where t.occupe = :value and Espace.idEspace = :value2 ", Long.class)
+        Long mycount = entityManager.createQuery("SELECT count(*) from Lit t JOIN Espace where t.occupe = :value and Espace.idEspace = :value2 ", Long.class)
                 .setParameter("value", occupation)
                 .setParameter("value2", espace.getIdEspace())
                 .getSingleResult();
@@ -108,38 +108,14 @@ public class LitDao implements ILitDao{
     }
 
 
-}
 
-
-
-    @Override
-    public Long countOccupationInEspace(Espace espace,boolean occupation) {
-        Long mycount = entityManager.createQuery("SELECT count(*) from Lit t JOIN t.espace where t.occupe = :value and espace.idEspace = :value2 ", Long.class)
-                .setParameter("value", occupation)
-                .setParameter("value2", espace.getIdEspace())
-                .getSingleResult();
-        return mycount;
-    }
 
     public List<Lit> test(int idMarque){
-        return  entityManager.createQuery("from Lit t JOIN t.espace  where espace.idEspace =: value")
+        return  entityManager.createQuery("from Lit t JOIN t.espace  where Espace .idEspace =: value")
                 .setParameter("value", idMarque).getResultList();
     }
 
-
-
-
-
-       /* public List<Lit> getAvailableLit(String nomService, String typeEspace) {
-            return entityManager.createQuery(
-                            "SELECT l FROM Lit l JOIN l.espace e WHERE e.service.nomService = :nomService " +
-                                    "AND e.typeEspace = :typeEspace AND l.occupe = false AND l.etatLit = :etatLit",
-                            Lit.class)
-                    .setParameter("nomService", nomService)
-                    .setParameter("typeEspace", typeEspace)
-                    .setParameter("etatLit", EtatLit.BONNNEETAT)
-                    .getResultList();
-        }*/public List<Lit> getAvailableLit(String nomService) {
+       public List<Lit> getAvailableLit(String nomService) {
            return entityManager.createQuery(
                            "SELECT l FROM Lit l JOIN l.espace e WHERE e.service.nomService = :nomService " +
                                    "AND l.occupe = false AND l.etatLit = :etatLit", Lit.class)

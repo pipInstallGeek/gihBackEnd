@@ -1,5 +1,7 @@
 package ma.uiass.eia.pds.Model;
 
-public enum EtatDemandeL {
+import java.io.Serializable;
+
+public enum EtatDemandeL implements Serializable {
     TRAITE,ENCOURS,ANNULE
 }

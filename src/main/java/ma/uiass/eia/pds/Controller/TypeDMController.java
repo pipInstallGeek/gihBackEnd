@@ -24,27 +24,27 @@ public class TypeDMController {
         return type.afficherTout();
     }
    @POST
-    @Path("/addtypeDM/{NomTypeDM}")
+    @Path("/addtypeDM/{NomTypeDM}/{codeTypeDM}")
     @Consumes(MediaType.APPLICATION_JSON)
     public void addTypeDM(
-            @PathParam("NomTypeDM") String NomTypeDM)
+            @PathParam("NomTypeDM") String NomTypeDM,
+           @PathParam("codeTypeDM") String codeTypeDM)
     {
-        //DescriptionDM descriptionDM= descriptionservice.trouverId(Integer.parseInt(codedescription));
-       // TypeDM typed=new TypeDM(NomTypeDM);
-        type.addTypeDM(NomTypeDM);
+        type.addTypeDM(codeTypeDM,NomTypeDM);
     }
    @GET
     @Path("/gettypeDMByIdDM/{NomDM}")
     @Produces(MediaType.APPLICATION_JSON)
     public TypeDM getTypeDmByNomDm(@PathParam(("NomTypeDM")) String  NomTypeDM){return type.trouverbyNom(NomTypeDM);  }
     @PUT
-    @Path("createT/{nomTypeDM}")
+    @Path("createT/{nomTypeDM}/{codeTypeDM}")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     public void addDescription(
-            @PathParam("nomTypeDM") String  nomTypeDM)
+            @PathParam("nomTypeDM") String  nomTypeDM,
+            @PathParam("codeTypeDM") String codeTypeDM)
     {
-        type.createT(nomTypeDM);
+        type.createT(codeTypeDM,nomTypeDM);
     }
     @DELETE
     @Path("/deleteTypeDM{nomTypeDM}")
