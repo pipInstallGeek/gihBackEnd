@@ -9,6 +9,7 @@ import java.util.List;
 
 public class TypeDMService implements ITypeDMService {
     ITypeDMDao type=new TypeDMDao();
+    IDescriptionDMService d=new DescriptionDMService();
     TypeDM typeDM=new TypeDM();
     @Override
     public void ajouter(TypeDM typeDM) {type.add(typeDM);}
@@ -43,6 +44,13 @@ public class TypeDMService implements ITypeDMService {
         TypeDM type1 = type.findbyNom(nomTypeDM);
         if (type1.getDMs() == null) {
             type.deleteTypeDM(type.findbyNom(nomTypeDM));
+        }
+    }
+    public void modifier(String ancienNomTypeDM, String nouveauNomTypeDM) {
+        TypeDM typeDM = type.findbyNom(ancienNomTypeDM);
+        if (typeDM != null) {
+            typeDM.setNomTypeDM(nouveauNomTypeDM);
+            type.updateNomTypeDM(typeDM,nouveauNomTypeDM);
         }
     }
 

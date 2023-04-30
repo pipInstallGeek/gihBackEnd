@@ -1,9 +1,6 @@
 package ma.uiass.eia.pds.Dao;
 
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityTransaction;
-import jakarta.persistence.NonUniqueResultException;
-import jakarta.persistence.TypedQuery;
+import jakarta.persistence.*;
 import ma.uiass.eia.pds.HibernateUtility.HibernateUtil;
 import ma.uiass.eia.pds.Model.DescriptionDM;
 import ma.uiass.eia.pds.Model.TypeDM;
@@ -37,12 +34,12 @@ public class TypeDMDao implements ITypeDMDao {
     }
     @Override
     public TypeDM findbyNom(String nomTypeDM) {
-        TypedQuery<TypeDM> query = entityManager.createQuery("FROM TypeDM t WHERE t.nomTypeDM = :nomTypeDM", TypeDM.class);
+        TypedQuery<TypeDM> query = entityManager.createQuery("SELECT t FROM TypeDM t WHERE t.nomTypeDM = :nomTypeDM", TypeDM.class);
         query.setParameter("nomTypeDM", nomTypeDM);
         try {
             return query.getSingleResult();
-        } catch (NonUniqueResultException e) {
-            return null;
+        } catch (NoResultException e) {
+            return null; // or throw a custom exception or handle the case accordingly
         }
     }
     /*@Override
@@ -82,6 +79,24 @@ public class TypeDMDao implements ITypeDMDao {
         }catch (Exception e){
             if(et!=null){
                 et.rollback();
+            }
+            e.printStackTrace();
+        }
+    }
+    public void updateNomTypeDM(TypeDM t, String newNomTypeDM) {
+        EntityTransaction transaction = entityManager.getTransaction();
+        try {
+            transaction.begin();
+
+            TypeDM typeDM = entityManager.find(TypeDM.class, t.getIdTypeDM());
+            if (typeDM != null) {
+                typeDM.setNomTypeDM(newNomTypeDM);
+                entityManager.merge(t);
+                transaction.commit();
+            }
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
             }
             e.printStackTrace();
         }

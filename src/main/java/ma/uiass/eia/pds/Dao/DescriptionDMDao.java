@@ -2,10 +2,7 @@ package ma.uiass.eia.pds.Dao;
 
 import jakarta.persistence.*;
 import ma.uiass.eia.pds.HibernateUtility.HibernateUtil;
-import ma.uiass.eia.pds.Model.Admission;
-import ma.uiass.eia.pds.Model.Demande;
-import ma.uiass.eia.pds.Model.DescriptionDM;
-import ma.uiass.eia.pds.Model.TypeDM;
+import ma.uiass.eia.pds.Model.*;
 
 import java.util.List;
 
@@ -108,5 +105,45 @@ public class DescriptionDMDao implements IDescriptionDMDao {
             e.printStackTrace();
         }
     }
+    public void updateNomDM(DescriptionDM d, String newNomDM) {
+        EntityTransaction transaction = entityManager.getTransaction();
+        try {
+            transaction.begin();
+
+            DescriptionDM descriptionDM = entityManager.find(DescriptionDM.class, d.getIdDM());
+            if (descriptionDM != null) {
+                descriptionDM.setNomDM(newNomDM);
+                entityManager.merge(descriptionDM);
+                transaction.commit();
+            }
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }
+    }
+    public  List<DescriptionDM> getAllByService(Service service) {
+        EntityTransaction transaction = entityManager.getTransaction();
+
+        try {
+            TypedQuery<DescriptionDM> query = entityManager.createQuery("SELECT d FROM DescriptionDM d WHERE d.espace.service = :service", DescriptionDM.class);
+            query.setParameter("service", service);
+            return query.getResultList();
+        }
+        catch (NoResultException e) {
+            return null;
+        }
+
+    }
+
+
+
+
+
+
+
+
+
 }
 

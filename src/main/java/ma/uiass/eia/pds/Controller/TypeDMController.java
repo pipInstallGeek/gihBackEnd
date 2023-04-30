@@ -54,4 +54,13 @@ public class TypeDMController {
             @PathParam("nomTypeDM") String nomTypeDM){
         type.supprimerTypeDM(nomTypeDM);
     }
+    @PUT
+    @Path("/updateTypeDM{ancienNomTypeDM}/{nouveauNomTypeDM}")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    public void updateDM(
+            @PathParam("ancienNomDM") String ancienNomTypeDM,
+            @PathParam("nouveauNomDM") String nouveauNomTypeDM) {
+        type.modifier(ancienNomTypeDM, nouveauNomTypeDM);
+    }
 }

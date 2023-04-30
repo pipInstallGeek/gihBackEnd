@@ -11,5 +11,6 @@ public interface ITypeDMService extends IService<TypeDM> {
     TypeDM trouverbyNom(String nomTypeDM);
     void createT(String nomTypeDM);
     void supprimerTypeDM(String nomTypeDM);
+    void modifier(String ancienNomTypeDM, String nouveauNomTypeDM);
 
 }

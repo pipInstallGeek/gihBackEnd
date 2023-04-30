@@ -14,7 +14,7 @@ public class DescriptionDMController {
     IEspaceService<Salle> salleService = new SalleService();
     IDescriptionDMService Idm = new DescriptionDMService();
     DescriptionDMService dms = new DescriptionDMService();
-    ITypeDMService tt = new TypeDMService();
+    TypeDMService tt = new TypeDMService();
 
     @GET
     @Path("/getdispositifs")
@@ -67,6 +67,22 @@ public class DescriptionDMController {
             @PathParam("nomDM") String nomDM){
         dms.supprimerDM(nomDM);
     }
+    @PUT
+    @Path("/updateDM{ancienNomDM}/{nouveauNomDM}")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    public void updateDM(
+            @PathParam("ancienNomDM") String ancienNomDM,
+            @PathParam("nouveauNomDM") String nouveauNomDM) {
+        dms.modifier(ancienNomDM, nouveauNomDM);
+    }
+    @GET
+    @Path("/getAllByService{nomService}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<DescriptionDM> getAllByService(@PathParam(("nomService")) String nomService) {
+        return Idm.afficherToutParService(nomService);
+    }
+
 }
 
 

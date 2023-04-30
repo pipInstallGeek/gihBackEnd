@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import ma.uiass.eia.pds.HibernateUtility.HibernateUtil;
 import ma.uiass.eia.pds.Model.Espace;
 import ma.uiass.eia.pds.Model.Service;
+import ma.uiass.eia.pds.Model.TypeDM;
 
 import java.util.List;
 
@@ -41,6 +42,16 @@ public class ServiceDao implements IServiceDao{
             return null;
         }
         return service;
+    }
+    @Override
+    public Service findbyNom(String nomService) {
+        TypedQuery<Service> query = entityManager.createQuery("SELECT t FROM Service t WHERE t.nomService = :nomService", Service.class);
+        query.setParameter("nomService", nomService);
+        try {
+            return query.getSingleResult();
+        } catch (NoResultException e) {
+            return null; // or throw a custom exception or handle the case accordingly
+        }
     }
 
 
