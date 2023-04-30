@@ -3,7 +3,8 @@ package ma.uiass.eia.pds.Controller;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import ma.uiass.eia.pds.Model.Service;
-import ma.uiass.eia.pds.Service.*;
+import ma.uiass.eia.pds.Service.IServiceService;
+import ma.uiass.eia.pds.Service.ServiceService;
 
 import java.util.List;
 

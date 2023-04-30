@@ -4,8 +4,6 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 import ma.uiass.eia.pds.HibernateUtility.HibernateUtil;
 import ma.uiass.eia.pds.Model.Chambre;
-import ma.uiass.eia.pds.Model.Lit;
-
 
 import java.util.List;
 public class ChambreDao implements IEspaceDao<Chambre> {
@@ -54,8 +52,7 @@ public class ChambreDao implements IEspaceDao<Chambre> {
     }
 
 
-    @Override
-    public void remove(Lit l) {
 
-    }
+
+
 }

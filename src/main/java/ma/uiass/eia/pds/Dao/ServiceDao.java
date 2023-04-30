@@ -1,6 +1,9 @@
 package ma.uiass.eia.pds.Dao;
 
-import jakarta.persistence.*;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.NonUniqueResultException;
+import jakarta.persistence.TypedQuery;
 import ma.uiass.eia.pds.HibernateUtility.HibernateUtil;
 import ma.uiass.eia.pds.Model.Service;
 
@@ -8,7 +11,7 @@ import java.util.List;
 
 public class ServiceDao implements IServiceDao{
 
-    private final EntityManager entityManager;
+    private  EntityManager entityManager;
     public ServiceDao() {
         entityManager = HibernateUtil.getEntityManger();
     }
@@ -41,6 +44,19 @@ public class ServiceDao implements IServiceDao{
         }
         return service;
     }
+
+
+    public Service findByName(String nom){
+        TypedQuery<Service> query=entityManager.createQuery("From Service WHERE nomService=:nom",Service.class);
+        query.setParameter("nom",nom);
+        try{
+            return query.getSingleResult();
+        }catch (NonUniqueResultException e){
+            return null;
+        }
+
+    }
+
 
 }
 

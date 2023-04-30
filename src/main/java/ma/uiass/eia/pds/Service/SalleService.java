@@ -2,7 +2,6 @@ package ma.uiass.eia.pds.Service;
 
 import ma.uiass.eia.pds.Dao.IEspaceDao;
 import ma.uiass.eia.pds.Dao.SalleDao;
-import ma.uiass.eia.pds.Model.Lit;
 import ma.uiass.eia.pds.Model.Salle;
 
 import java.util.List;
@@ -25,8 +24,5 @@ public class SalleService implements IEspaceService<Salle> {
         return salleDao.getById(id);
     }
 
-    @Override
-    public void retirerLit(Lit l) {
-        salleDao.remove(l);
-    }
+
 }
