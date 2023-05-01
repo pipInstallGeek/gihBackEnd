@@ -21,27 +21,26 @@ public class TypeDMController {
         return type.afficherTout();
     }
    @POST
-    @Path("/addtypeDM/{NomTypeDM}/{codeTypeDM}")
+    @Path("/addtypeDM/{NomTypeDM}")
     @Consumes(MediaType.APPLICATION_JSON)
     public void addTypeDM(
-            @PathParam("NomTypeDM") String NomTypeDM,
-           @PathParam("codeTypeDM") String codeTypeDM)
+            @PathParam("NomTypeDM") String NomTypeDM)
     {
-        type.addTypeDM(codeTypeDM,NomTypeDM);
+        type.addTypeDM(NomTypeDM);
     }
    @GET
     @Path("/gettypeDMByIdDM/{NomDM}")
     @Produces(MediaType.APPLICATION_JSON)
     public TypeDM getTypeDmByNomDm(@PathParam(("NomTypeDM")) String  NomTypeDM){return type.trouverbyNom(NomTypeDM);  }
     @PUT
-    @Path("createT/{nomTypeDM}/{codeTypeDM}")
+    @Path("createT/{nomTypeDM}")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     public void addDescription(
-            @PathParam("nomTypeDM") String  nomTypeDM,
-            @PathParam("codeTypeDM") String codeTypeDM)
+            @PathParam("nomTypeDM") String  nomTypeDM)
+
     {
-        type.createT(codeTypeDM,nomTypeDM);
+        type.createT(nomTypeDM);
     }
     @DELETE
     @Path("/deleteTypeDM{nomTypeDM}")
@@ -50,5 +49,15 @@ public class TypeDMController {
     public void removeTypeDM(
             @PathParam("nomTypeDM") String nomTypeDM){
         type.supprimerTypeDM(nomTypeDM);
+    }
+
+    @PUT
+    @Path("/updateTypeDM/{ancienTypeDM}/{nouveauTypeDM}")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    public void updateDM(
+            @PathParam("ancienTypeDM") String ancienTypeDM,
+            @PathParam("nouveauTypeDM") String nouveauTypeDM) {
+        type.modifier(ancienTypeDM, nouveauTypeDM);
     }
 }

@@ -19,6 +19,9 @@
         @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
         @JoinColumn(name = "idDispositifMedical", referencedColumnName = "idDispositifMedical")
         private DispositifMedical dmDescription;
+        @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+        @JoinColumn(name = "idDM", referencedColumnName = "idDM")
+        private DescriptionDM DMDescription;
 
 
 

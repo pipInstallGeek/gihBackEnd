@@ -42,6 +42,16 @@ public class ServiceDao implements IServiceDao{
         }
         return service;
     }
+    @Override
+    public Service findbyNom(String nomService) {
+        TypedQuery<Service> query = entityManager.createQuery("SELECT t FROM Service t WHERE t.nomService = :nomService", Service.class);
+        query.setParameter("nomService", nomService);
+        try {
+            return query.getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
+    }
 
 
 

@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -24,10 +25,9 @@ public class TypeDM {
 
     @OneToMany(mappedBy = "typeDM")
     @JsonIgnore
-    private List<DispositifMedical> dispositifMedicals;
+    private List<DescriptionDM> DMs = new ArrayList<>();
 
-    public TypeDM(String codeDM, String nomType) {
-        setCodeTypeDM(codeDM);
+    public TypeDM( String nomType) {
         setNomType(nomType);
     }
 }

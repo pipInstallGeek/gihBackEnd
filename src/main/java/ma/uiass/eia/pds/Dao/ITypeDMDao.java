@@ -9,4 +9,6 @@ public interface  ITypeDMDao extends IDao<TypeDM> {
     TypeDM findbyNom(String nomTypeDM);
     void createT(TypeDM t);
     void deleteTypeDM(TypeDM t);
+    void updateNomTypeDM(TypeDM t, String newNomTypeDM);
+
 }

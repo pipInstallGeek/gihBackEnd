@@ -46,9 +46,10 @@ public class DemandeDao implements IDemandeDao {
         EntityTransaction transaction = entityManager.getTransaction();
         try{
             transaction.begin();
-            Demande demandeUpdate = getbycode(demande.getNumDemande());
-            demande.setEtat(EtatDemande.TRAITEE);
-            transaction.commit();
+           if(demande!=null) {//Demande demandeUpdate = getbycode(demande.getNumDemande());
+               demande.setEtat(EtatDemande.TRAITEE);
+               transaction.commit();
+           }
         }catch (Exception e){
             if(transaction!=null){
                 transaction.rollback();
@@ -61,7 +62,7 @@ public class DemandeDao implements IDemandeDao {
         EntityTransaction transaction = entityManager.getTransaction();
         try{
             transaction.begin();
-            Demande demandeUpdate = getbycode(demande.getNumDemande());
+            //Demande demandeUpdate = getbycode(demande.getNumDemande());
             demande.setEtat(EtatDemande.REJETER);
             transaction.commit();
         }catch (Exception e){

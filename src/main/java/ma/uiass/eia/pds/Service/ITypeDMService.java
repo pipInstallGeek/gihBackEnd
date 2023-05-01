@@ -7,9 +7,10 @@ import ma.uiass.eia.pds.Model.TypeDM;
 public interface ITypeDMService extends IService<TypeDM> {
 
     //List<TypeDM> trouverTypeDMByDM(String  idDM);
-    void addTypeDM(String code,String NomTypeDM);
+    void addTypeDM(String NomTypeDM);
     TypeDM trouverbyNom(String nomTypeDM);
-    void createT(String code,String nomTypeDM);
+    void createT(String nomTypeDM);
     void supprimerTypeDM(String nomTypeDM);
+    void modifier(String ancienNomTypeDM, String nouveauNomTypeDM);
 
 }

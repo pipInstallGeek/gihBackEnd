@@ -2,7 +2,7 @@ package ma.uiass.eia.pds.Dao;
 
 import jakarta.persistence.*;
 import ma.uiass.eia.pds.HibernateUtility.HibernateUtil;
-import ma.uiass.eia.pds.Model.DispositifMedical;
+import ma.uiass.eia.pds.Model.*;
 
 import java.util.List;
 
@@ -14,19 +14,19 @@ public class DescriptionDMDao implements IDescriptionDMDao {
     }
 
     @Override
-    public List<DispositifMedical> getAll() {
-        return entityManager.createQuery(" from DispositifMedical ").getResultList();
+    public List<DescriptionDM> getAll() {
+        return entityManager.createQuery(" from DescriptionDM ").getResultList();
     }
 
     @Override
-    public void add(DispositifMedical dispositifMedical) {
+    public void add(DescriptionDM descriptionDM) {
         EntityTransaction transaction = entityManager.getTransaction();
         try {
             transaction.begin();
-            dispositifMedical.setCodeDM(dispositifMedical.getNomDM()+ dispositifMedical.getEspace());
+            descriptionDM.setCodeDM(descriptionDM.getNomDM().substring(0,3)+descriptionDM.getTypeDM().getIdTypeDM());
             //descriptionDM.setNomDM(descriptionDM.getNomDM()+descriptionDM.getEspace());
 
-            entityManager.persist(dispositifMedical);
+            entityManager.persist(descriptionDM);
             transaction.commit();
 
         } catch (Exception e) {
@@ -37,11 +37,11 @@ public class DescriptionDMDao implements IDescriptionDMDao {
         }
     }
     @Override
-    public void Create(DispositifMedical d){
+    public void Create(DescriptionDM d){
         EntityTransaction transaction = entityManager.getTransaction();
         try {
             transaction.begin();
-            d.setCodeDM(d.getTypeDM().getCodeTypeDM() + d.getNomDM());
+            d.setCodeDM(d.getTypeDM().getCodeTypeDM().substring(0,3) + d.getNomDM().substring(0,3));
             entityManager.persist(d);
             transaction.commit();
 
@@ -55,30 +55,30 @@ public class DescriptionDMDao implements IDescriptionDMDao {
     }
 
     @Override
-    public DispositifMedical getById(int id) {
-        return entityManager.find(DispositifMedical.class, id);
+    public DescriptionDM getById(int id) {
+        return entityManager.find(DescriptionDM.class, id);
     }
 
     @Override
-    public List<DispositifMedical> getDmByNomType(String nomTypeDM) {
-        TypedQuery<DispositifMedical> query = entityManager.createQuery(
-                "SELECT d FROM DispositifMedical d WHERE d.typeDM.nomTypeDM = :nomTypeDM", DispositifMedical.class);
-        query.setParameter("nomTypeDM", nomTypeDM);
+    public List<DescriptionDM> getDmByNomType(String nomType) {
+        TypedQuery<DescriptionDM> query = entityManager.createQuery(
+                "SELECT d FROM DescriptionDM d WHERE d.typeDM.nomType = :nomType", DescriptionDM.class);
+        query.setParameter("nomType", nomType);
         return query.getResultList();
     }
 
     @Override
-    public DispositifMedical findbyNom(String nomDM) {
-        TypedQuery<DispositifMedical> query = entityManager.createQuery("SELECT t FROM DispositifMedical t WHERE t.nomDM = :nomDM", DispositifMedical.class);
+    public DescriptionDM findbyNom(String nomDM) {
+        TypedQuery<DescriptionDM> query = entityManager.createQuery("SELECT t FROM DescriptionDM t WHERE t.nomDM = :nomDM", DescriptionDM.class);
         query.setParameter("nomDM", nomDM);
         try {
             return query.getSingleResult();
         } catch (NoResultException e) {
-            return null; // Or throw a custom exception
+            return null;
         }
     }
     public int getQuantitéByDM(String nomDM) {
-        TypedQuery<Integer> query = entityManager.createQuery("SELECT t.quantité FROM DispositifMedical t WHERE t.nomDM = :nomDM", Integer.class);
+        TypedQuery<Integer> query = entityManager.createQuery("SELECT t.quantité FROM DescriptionDM t WHERE t.nomDM = :nomDM", Integer.class);
         query.setParameter("nomDM", nomDM);
         List<Integer> results = query.getResultList();
         if (results.isEmpty()) {
@@ -89,7 +89,7 @@ public class DescriptionDMDao implements IDescriptionDMDao {
         }
     }
     @Override
-    public void deleteDM(DispositifMedical d) {
+    public void deleteDM(DescriptionDM d) {
         EntityTransaction et = null;
         try {
             et= entityManager.getTransaction();
@@ -103,6 +103,46 @@ public class DescriptionDMDao implements IDescriptionDMDao {
                 et.rollback();
             }
             e.printStackTrace();
+        }
+    }
+    public void updateNomDM(DescriptionDM d, String newNomDM) {
+        EntityTransaction et = null;
+        try {
+            et = entityManager.getTransaction();
+            if (!et.isActive()) {
+                et.begin();
+            }
+
+            if (d != null) {
+                d.setNomDM(newNomDM);
+                d.setCodeDM(d.getTypeDM().getCodeTypeDM().substring(0,3) + d.getNomDM().substring(0,3));
+
+                entityManager.merge(d);
+            }
+
+            et.commit();
+        } catch (Exception e) {
+            if (et != null) {
+                et.rollback();
+            }
+            e.printStackTrace();
+        }
+    }
+
+
+
+
+
+
+    public  List<DescriptionDM> getAllByService(Service service) {
+        EntityTransaction transaction = entityManager.getTransaction();
+
+        try {
+            TypedQuery<DescriptionDM> query = entityManager.createQuery("SELECT d FROM DescriptionDM d WHERE d.espace.service = :service", DescriptionDM.class);
+            query.setParameter("service", service);
+            return query.getResultList();
+        } catch (NoResultException e) {
+            return null;
         }
     }
 }

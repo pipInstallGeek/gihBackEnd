@@ -19,7 +19,7 @@ public class DescriptionDMController {
     @GET
     @Path("/getdispositifs")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<DispositifMedical> getAdmission() {
+    public List<DescriptionDM> getDispo() {
         return Idm.afficherTout();
     }
 
@@ -38,7 +38,7 @@ public class DescriptionDMController {
     @GET
     @Path("/getDMByTypeDM/{TypeDM}")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<DispositifMedical> getTypeDmByNomDm(@PathParam(("TypeDM")) String TypeDM) {
+    public List<DescriptionDM> getTypeDmByNomDm(@PathParam(("TypeDM")) String TypeDM) {
         return dms.trouverDMByTypeDM(TypeDM);
     }
 
@@ -66,6 +66,26 @@ public class DescriptionDMController {
     public void removeDM(
             @PathParam("nomDM") String nomDM){
         dms.supprimerDM(nomDM);
+    }
+    @PUT
+    @Path("/updateDM/{ancienNomDM}/{nouveauNomDM}")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    public void updateDM(
+            @PathParam("ancienNomDM") String ancienNomDM,
+            @PathParam("nouveauNomDM") String nouveauNomDM) {
+        dms.modifier(ancienNomDM, nouveauNomDM);
+    }
+    @GET
+    @Path("/getAllByService{nomService}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<DescriptionDM> getAllByService(@PathParam(("nomService")) String nomService) {
+        return Idm.afficherToutParService(nomService);
+    }
+
+    public static void main(String[] args) {
+        DescriptionDMController d=new DescriptionDMController();
+        d.updateDM("gants","gggg");
     }
 }
 

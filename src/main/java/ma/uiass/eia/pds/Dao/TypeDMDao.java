@@ -1,9 +1,6 @@
 package ma.uiass.eia.pds.Dao;
 
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityTransaction;
-import jakarta.persistence.NonUniqueResultException;
-import jakarta.persistence.TypedQuery;
+import jakarta.persistence.*;
 import ma.uiass.eia.pds.HibernateUtility.HibernateUtil;
 import ma.uiass.eia.pds.Model.TypeDM;
 
@@ -20,7 +17,7 @@ public class TypeDMDao implements ITypeDMDao {
         try {
             transaction.begin();
             entityManager.persist(typeDM);
-            typeDM.setCodeTypeDM(typeDM.getCodeTypeDM()+typeDM.getIdTypeDM());
+            typeDM.setCodeTypeDM(typeDM.getNomType().substring(0,3)+typeDM.getIdTypeDM());
             //entityManager.merge(typeDM);
             transaction.commit();
         } catch (Exception e) {
@@ -35,12 +32,12 @@ public class TypeDMDao implements ITypeDMDao {
         return entityManager.find(TypeDM.class, id);
     }
     @Override
-    public TypeDM findbyNom(String nomTypeDM) {
-        TypedQuery<TypeDM> query = entityManager.createQuery("FROM TypeDM t WHERE t.nomTypeDM = :nomTypeDM", TypeDM.class);
-        query.setParameter("nomTypeDM", nomTypeDM);
+    public TypeDM findbyNom(String nomType) {
+        TypedQuery<TypeDM> query = entityManager.createQuery("SELECT t FROM TypeDM t WHERE t.nomType = :nomType", TypeDM.class);
+        query.setParameter("nomType", nomType);
         try {
             return query.getSingleResult();
-        } catch (NonUniqueResultException e) {
+        } catch (NoResultException e) {
             return null;
         }
     }
@@ -52,21 +49,23 @@ public class TypeDMDao implements ITypeDMDao {
         return query.getResultList();
     }*/
     @Override
-    public void createT(TypeDM t){
+    public void createT(TypeDM t) {
         EntityTransaction transaction = entityManager.getTransaction();
         try {
-            transaction.begin();
+            if (!transaction.isActive()) {
+                transaction.begin();
+            }
+
             entityManager.persist(t);
-            t.setCodeTypeDM(t.getCodeTypeDM()+t.getIdTypeDM());
+            t.setCodeTypeDM(t.getNomType().substring(0, 3) + t.getIdTypeDM());
             //entityManager.merge(typeDM);
             transaction.commit();
         } catch (Exception e) {
-            if (transaction != null) {
+            if (transaction != null && transaction.isActive()) {
                 transaction.rollback();
             }
             e.printStackTrace();
         }
-
     }
     @Override
     public void deleteTypeDM(TypeDM t) {
@@ -85,8 +84,27 @@ public class TypeDMDao implements ITypeDMDao {
             e.printStackTrace();
         }
     }
+    public void updateNomTypeDM(TypeDM t, String newNomTypeDM) {
+        EntityTransaction et = null;
+        try {
+            et = entityManager.getTransaction();
+            if (!et.isActive()) {
+                et.begin();
+            }
+            if (t != null) {
+                t.setNomType(newNomTypeDM);
+                t.setCodeTypeDM(t.getNomType().substring(0, 3) + t.getIdTypeDM());
 
-
+                entityManager.merge(t);
+            }
+            et.commit();
+        } catch (Exception e) {
+            if (et != null) {
+                et.rollback();
+            }
+            e.printStackTrace();
+        }
+    }
 
 
 }
