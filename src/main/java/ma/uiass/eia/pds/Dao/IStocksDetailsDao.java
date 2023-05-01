@@ -11,4 +11,7 @@ public interface IStocksDetailsDao extends IDao<StocksDetails> {
     void mergeDetail(StocksDetails stocksDetails);
     StocksDetails getByDispoMedical(DispositifMedical dispositifMedical);
 
+    StocksDetails findByCode(int id);
+
+    void updateqt(StocksDetails d, int q);
 }

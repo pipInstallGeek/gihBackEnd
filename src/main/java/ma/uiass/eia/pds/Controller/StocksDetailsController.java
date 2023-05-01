@@ -27,4 +27,33 @@ public class StocksDetailsController {
         return stocksDetailsService.afficherTout();
     }
 
+
+/*########################################################################################*/
+
+
+    @POST
+    @Path("/addDetailStock")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    public void addDetailStock(@FormParam("dispositifMedical") String dispositifMedical, @FormParam("stock") String stock, @FormParam("quantity") int quantity){
+        stocksDetailsService.ajouterS(dispositifMedical,stock,quantity);
+    }
+
+    @GET
+    @Path("/DetailStock/{code}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public StocksDetails getStockdetail(@PathParam("code") int idStocksDetails){
+        StocksDetails detail = stocksDetailsService.getByCode(idStocksDetails);
+        return detail;
+    }
+    @POST
+    @Path("/updateQuantiteDetailstock/{code}/{q}")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    public void updateqt2(@PathParam("code") int id,@PathParam("q") int  q){
+        stocksDetailsService.updateqtS(id,q);
+
+    }
+
+
 }

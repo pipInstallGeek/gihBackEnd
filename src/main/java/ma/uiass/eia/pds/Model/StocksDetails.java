@@ -18,11 +18,8 @@ public class StocksDetails implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idStocksDetails;
 
-    public void setIdStocksDetails(int idStocksDetails) {
-        this.idStocksDetails = idStocksDetails;
-    }
 
-    @ManyToOne
+
     @JoinColumn(name = "idDispositifMedical", referencedColumnName ="idDispositifMedical" )
     private DispositifMedical dispositifMedical;
 
@@ -37,6 +34,12 @@ public class StocksDetails implements Serializable {
         this.dispositifMedical = dispositifMedical;
         this.stock = stock;
         this.quantity = quantity;
+    }
+
+    @Override
+    public String toString() {
+        return
+                "dispositifMedical=" + dispositifMedical+ " "+ stock+" "+ quantity ;
     }
 }
 

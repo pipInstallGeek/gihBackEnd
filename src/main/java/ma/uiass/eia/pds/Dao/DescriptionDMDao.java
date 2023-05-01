@@ -145,5 +145,15 @@ public class DescriptionDMDao implements IDescriptionDMDao {
             return null;
         }
     }
-}
 
+    @Override
+    public DispositifMedical searchByNom(String nom){
+        TypedQuery<DispositifMedical> query = entityManager.createQuery("From DispositifMedical WHERE nomDM=:nom", DispositifMedical.class);
+        query.setParameter("nom",nom);
+        try{
+            return query.getSingleResult();
+        }catch (NonUniqueResultException e){
+            return  null;
+        }
+    }
+}

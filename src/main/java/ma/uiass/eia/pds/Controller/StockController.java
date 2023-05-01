@@ -5,7 +5,7 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
-import ma.uiass.eia.pds.Model.Lit;
+
 import ma.uiass.eia.pds.Model.Stock;
 import ma.uiass.eia.pds.Service.IStockService;
 import ma.uiass.eia.pds.Service.StockService;
@@ -30,6 +30,17 @@ public class StockController {
             @PathParam("idStock") int idStock
     ){
         return stockService.trouverId(idStock);
+
     }
+
+/*##############################################################*/
+@GET
+@Path("getstocknom/{nom}")
+@Produces(MediaType.APPLICATION_JSON)
+public Stock getStockByName(
+        @PathParam("nom") String nom
+){
+    return stockService.trouverNOM(nom);
+}
 
 }

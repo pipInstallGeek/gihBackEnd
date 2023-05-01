@@ -13,7 +13,7 @@ import java.util.List;
 @Entity
 @Table(name= "TSalle")
 @Data
-
+@DiscriminatorValue("salle")
 public class Salle extends Espace implements Serializable {
 
     @Column(name = "TypeSalle", length = 50)
@@ -31,4 +31,5 @@ public class Salle extends Espace implements Serializable {
 
 
 }
+
 

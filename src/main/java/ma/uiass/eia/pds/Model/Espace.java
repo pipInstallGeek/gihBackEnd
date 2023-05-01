@@ -45,13 +45,10 @@ public abstract class Espace implements Serializable {
     @OneToMany(mappedBy = "espace")
     public List<DispositifMedical> dispositifMedical;
 
-
-
-
     public Espace(Service service) {
+        this.codeEspace = service.getCodeService()+this.getIdEspace();
         this.service = service;
     }
-
 
     public String toString(){
         return this.codeEspace;

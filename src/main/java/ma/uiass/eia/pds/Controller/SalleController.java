@@ -3,9 +3,7 @@ package ma.uiass.eia.pds.Controller;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import ma.uiass.eia.pds.Model.Chambre;
-import ma.uiass.eia.pds.Model.Lit;
 import ma.uiass.eia.pds.Model.Salle;
-import ma.uiass.eia.pds.Service.ChambreService;
 import ma.uiass.eia.pds.Service.IEspaceService;
 import ma.uiass.eia.pds.Service.SalleService;
 

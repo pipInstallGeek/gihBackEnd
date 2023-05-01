@@ -4,12 +4,11 @@ import jakarta.persistence.EntityTransaction;
 import ma.uiass.eia.pds.HibernateUtility.HibernateUtil;
 import ma.uiass.eia.pds.Model.DispositifMedical;
 import ma.uiass.eia.pds.Model.StocksDetails;
-
 import jakarta.persistence.EntityManager;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
+import jakarta.persistence.NonUniqueResultException;
+import jakarta.persistence.TypedQuery;
 
 public class StocksDetailsDao implements IStocksDetailsDao {
     private final EntityManager entityManager;
@@ -75,4 +74,34 @@ public class StocksDetailsDao implements IStocksDetailsDao {
                 .setParameter("value", dispositifMedical)
                 .getSingleResult();
     }
+    @Override
+    public StocksDetails findByCode(int idStocksDetails) {
+        TypedQuery<StocksDetails> query = entityManager.createQuery("FROM StocksDetails WHERE idStocksDetails = :idStocksDetails", StocksDetails.class);
+        query.setParameter("idStocksDetails", idStocksDetails);
+        try {
+            return query.getSingleResult();
+        } catch (NonUniqueResultException e) {
+            return null;
+        }
+    }
+    @Override
+    public void updateqt(StocksDetails d, int q) {
+        EntityTransaction et = null;
+        d.setQuantity(q);
+        try {
+            et = entityManager.getTransaction();
+            if (!et.isActive()) {
+                et.begin();
+            }
+            entityManager.merge(d);
+            et.commit();
+        }catch(Exception e){
+            if (et != null) {
+                et.rollback();
+            }
+            e.printStackTrace();
+        }
+    }
+
+
 }

@@ -1,6 +1,9 @@
 package ma.uiass.eia.pds.Dao;
-
 import jakarta.persistence.*;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.NonUniqueResultException;
+import jakarta.persistence.TypedQuery;
 import ma.uiass.eia.pds.HibernateUtility.HibernateUtil;
 import ma.uiass.eia.pds.Model.TypeDM;
 
@@ -18,7 +21,7 @@ public class TypeDMDao implements ITypeDMDao {
             transaction.begin();
             entityManager.persist(typeDM);
             typeDM.setCodeTypeDM(typeDM.getNomType().substring(0,3)+typeDM.getIdTypeDM());
-            //entityManager.merge(typeDM);
+            entityManager.merge(typeDM);
             transaction.commit();
         } catch (Exception e) {
             if (transaction != null) {
@@ -32,6 +35,16 @@ public class TypeDMDao implements ITypeDMDao {
         return entityManager.find(TypeDM.class, id);
     }
     @Override
+    public TypeDM findbyCode(String codeTypeDM) {
+        TypedQuery<TypeDM> query = entityManager.createQuery("FROM TypeDM t WHERE t.codeTypeDM = :codeTypeDM", TypeDM.class);
+        query.setParameter("codeTypeDM", codeTypeDM);
+        try {
+            return query.getSingleResult();
+        } catch (NonUniqueResultException e) {
+            return null;
+        }
+    }
+    @Override
     public TypeDM findbyNom(String nomType) {
         TypedQuery<TypeDM> query = entityManager.createQuery("SELECT t FROM TypeDM t WHERE t.nomType = :nomType", TypeDM.class);
         query.setParameter("nomType", nomType);
@@ -42,6 +55,7 @@ public class TypeDMDao implements ITypeDMDao {
         }
     }
     /*@Override
+<<<<<<< HEAD
     public List<TypeDM> getTypeDmByNomDm(String nomDM) {
         TypedQuery<TypeDM> query = entityManager.createQuery(
                 "SELECT t FROM TypeDM t WHERE t.dmDescription.nomDM = :nomDM", TypeDM.class);
@@ -105,6 +119,8 @@ public class TypeDMDao implements ITypeDMDao {
             e.printStackTrace();
         }
     }
+
+
 
 
 }

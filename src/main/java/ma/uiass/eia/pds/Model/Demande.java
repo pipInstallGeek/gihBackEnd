@@ -1,6 +1,7 @@
 package ma.uiass.eia.pds.Model;
 
 import jakarta.persistence.*;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -12,12 +13,12 @@ import java.io.Serializable;
 @NoArgsConstructor
 public class Demande implements Serializable {
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idDemande;
     @Column(name = "numDemande", length = 50)
     private String numDemande;
+
     @Column(name = "quantite", length = 50)
     private int quantite;
     @Column(name = "dateDemande", length = 50)
@@ -33,6 +34,11 @@ public class Demande implements Serializable {
 
     @Column(name = "service", length = 50)
     private String service;
+
+    @OneToMany(mappedBy ="demande")
+    private List<DetailDemande> detailDemande ;
+
+
     @Column
     @Enumerated(EnumType.STRING)
     private EtatDemande etat;
@@ -46,6 +52,14 @@ public class Demande implements Serializable {
         this.marque=marque;
         this.etat=etat;
         this.service=service;
+    }
+
+
+    public Demande( String dateDemande, EtatDemande etat, String service) {
+        this.dateDemande = dateDemande;
+        this.etat=etat;
+        this.service=service;
+        this.detailDemande=detailDemande;
     }
 
 

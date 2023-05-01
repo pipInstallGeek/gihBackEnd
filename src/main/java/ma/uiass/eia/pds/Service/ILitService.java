@@ -4,6 +4,7 @@ import ma.uiass.eia.pds.Model.Espace;
 import ma.uiass.eia.pds.Model.EtatLit;
 import ma.uiass.eia.pds.Model.Lit;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 

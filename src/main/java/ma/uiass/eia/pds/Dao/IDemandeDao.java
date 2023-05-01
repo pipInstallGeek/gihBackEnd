@@ -6,6 +6,7 @@ public interface IDemandeDao extends IDao<Demande> {
     void update(Demande demande);
 
     void updateR(Demande demande);
+    void update3(Demande demande);
 
     void deleteCommande(Demande demande);
     Demande getbycode(String numDemande);

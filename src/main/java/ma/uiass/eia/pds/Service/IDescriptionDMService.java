@@ -13,4 +13,5 @@ public interface IDescriptionDMService extends IService<DispositifMedical> {
     public void supprimerDM(String nomDM);
     void modifier(String ancienNomDM, String nouveauNomDM);
     List<DispositifMedical> afficherToutParService(String nomService);
+    DispositifMedical trouverNom(String nom);
 }

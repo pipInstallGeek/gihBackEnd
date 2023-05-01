@@ -4,7 +4,6 @@ import ma.uiass.eia.pds.Model.Espace;
 import ma.uiass.eia.pds.Model.EtatLit;
 import ma.uiass.eia.pds.Model.Lit;
 
-
 import java.util.List;
 
 public interface ILitDao extends IDao<Lit> {
@@ -20,5 +19,7 @@ public interface ILitDao extends IDao<Lit> {
     List<Lit> getAvailableLit(String nomService);
     Lit findbyCode(String code);
     List<Espace> getEspaceByService(String nomService);
+
+
 
 }
