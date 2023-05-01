@@ -19,7 +19,7 @@ public class DescriptionDMController {
     @GET
     @Path("/getdispositifs")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<DescriptionDM> getDispo() {
+    public List<DispositifMedical> getDispo() {
         return Idm.afficherTout();
     }
 
@@ -38,7 +38,7 @@ public class DescriptionDMController {
     @GET
     @Path("/getDMByTypeDM/{TypeDM}")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<DescriptionDM> getTypeDmByNomDm(@PathParam(("TypeDM")) String TypeDM) {
+    public List<DispositifMedical> getTypeDmByNomDm(@PathParam(("TypeDM")) String TypeDM) {
         return dms.trouverDMByTypeDM(TypeDM);
     }
 
@@ -79,7 +79,7 @@ public class DescriptionDMController {
     @GET
     @Path("/getAllByService{nomService}")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<DescriptionDM> getAllByService(@PathParam(("nomService")) String nomService) {
+    public List<DispositifMedical> getAllByService(@PathParam(("nomService")) String nomService) {
         return Idm.afficherToutParService(nomService);
     }
 

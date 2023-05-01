@@ -25,7 +25,7 @@ public class TypeDM {
 
     @OneToMany(mappedBy = "typeDM")
     @JsonIgnore
-    private List<DescriptionDM> DMs = new ArrayList<>();
+    private List<DispositifMedical> DMs = new ArrayList<>();
 
     public TypeDM( String nomType) {
         setNomType(nomType);

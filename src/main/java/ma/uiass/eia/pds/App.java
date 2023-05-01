@@ -234,27 +234,27 @@
                    typeDMService.ajouter(typeDM2);
                    typeDMService.ajouter(typeDM3);
 
-                    DescriptionDM des1=new DescriptionDM("bandes",15,typeDM1,null);
-                    DescriptionDM des2=new DescriptionDM("gants",24,typeDM1,null);
-                    DescriptionDM des3=new DescriptionDM("seringues",28,typeDM1,null);
+                    DispositifMedical des1=new DispositifMedical("bandes",15,typeDM1,null);
+                    DispositifMedical des2=new DispositifMedical("gants",24,typeDM1,null);
+                    DispositifMedical des3=new DispositifMedical("seringues",28,typeDM1,null);
                     descriptionDMService.ajouter(des1);
                     descriptionDMService.ajouter(des2);
                     descriptionDMService.ajouter(des3);
-                    List<DescriptionDM> lstDM1= Arrays.asList(des1, des2, des3);
+                    List<DispositifMedical> lstDM1= Arrays.asList(des1, des2, des3);
 
-                    DescriptionDM des4=new DescriptionDM("pinces",20,typeDM2,null);
-                    DescriptionDM des5=new DescriptionDM("ciseaux",12,typeDM2,null);
-                    DescriptionDM des6=new DescriptionDM("scalpels",18,typeDM2,null);
+                    DispositifMedical des4=new DispositifMedical("pinces",20,typeDM2,null);
+                    DispositifMedical des5=new DispositifMedical("ciseaux",12,typeDM2,null);
+                    DispositifMedical des6=new DispositifMedical("scalpels",18,typeDM2,null);
                     descriptionDMService.ajouter(des4);
                     descriptionDMService.ajouter(des5);
                     descriptionDMService.ajouter(des6);
-                    List<DescriptionDM> lstDM2= Arrays.asList(des4, des5, des6);
+                    List<DispositifMedical> lstDM2= Arrays.asList(des4, des5, des6);
 
-                    DescriptionDM des7=new DescriptionDM("stéthoscopes",40,typeDM3,null);
-                    DescriptionDM des8=new DescriptionDM("thermomètres",22,typeDM3,null);
+                    DispositifMedical des7=new DispositifMedical("stéthoscopes",40,typeDM3,null);
+                    DispositifMedical des8=new DispositifMedical("thermomètres",22,typeDM3,null);
                     descriptionDMService.ajouter(des7);
                     descriptionDMService.ajouter(des8);
-                    List<DescriptionDM> lstDM3= Arrays.asList(des7, des8);
+                    List<DispositifMedical> lstDM3= Arrays.asList(des7, des8);
 
                    /* ExemplaireDM ex1=new ExemplaireDM(des1);
                     ExemplaireDM ex2=new ExemplaireDM(des1);

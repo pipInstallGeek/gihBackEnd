@@ -14,12 +14,12 @@ public class DescriptionDMDao implements IDescriptionDMDao {
     }
 
     @Override
-    public List<DescriptionDM> getAll() {
-        return entityManager.createQuery(" from DescriptionDM ").getResultList();
+    public List<DispositifMedical> getAll() {
+        return entityManager.createQuery(" from DispositifMedical ").getResultList();
     }
 
     @Override
-    public void add(DescriptionDM descriptionDM) {
+    public void add(DispositifMedical descriptionDM) {
         EntityTransaction transaction = entityManager.getTransaction();
         try {
             transaction.begin();
@@ -37,7 +37,7 @@ public class DescriptionDMDao implements IDescriptionDMDao {
         }
     }
     @Override
-    public void Create(DescriptionDM d){
+    public void Create(DispositifMedical d){
         EntityTransaction transaction = entityManager.getTransaction();
         try {
             transaction.begin();
@@ -55,21 +55,21 @@ public class DescriptionDMDao implements IDescriptionDMDao {
     }
 
     @Override
-    public DescriptionDM getById(int id) {
-        return entityManager.find(DescriptionDM.class, id);
+    public DispositifMedical getById(int id) {
+        return entityManager.find(DispositifMedical.class, id);
     }
 
     @Override
-    public List<DescriptionDM> getDmByNomType(String nomType) {
-        TypedQuery<DescriptionDM> query = entityManager.createQuery(
-                "SELECT d FROM DescriptionDM d WHERE d.typeDM.nomType = :nomType", DescriptionDM.class);
+    public List<DispositifMedical> getDmByNomType(String nomType) {
+        TypedQuery<DispositifMedical> query = entityManager.createQuery(
+                "SELECT d FROM DispositifMedical d WHERE d.typeDM.nomType = :nomType", DispositifMedical.class);
         query.setParameter("nomType", nomType);
         return query.getResultList();
     }
 
     @Override
-    public DescriptionDM findbyNom(String nomDM) {
-        TypedQuery<DescriptionDM> query = entityManager.createQuery("SELECT t FROM DescriptionDM t WHERE t.nomDM = :nomDM", DescriptionDM.class);
+    public DispositifMedical findbyNom(String nomDM) {
+        TypedQuery<DispositifMedical> query = entityManager.createQuery("SELECT t FROM DispositifMedical t WHERE t.nomDM = :nomDM", DispositifMedical.class);
         query.setParameter("nomDM", nomDM);
         try {
             return query.getSingleResult();
@@ -78,7 +78,7 @@ public class DescriptionDMDao implements IDescriptionDMDao {
         }
     }
     public int getQuantitéByDM(String nomDM) {
-        TypedQuery<Integer> query = entityManager.createQuery("SELECT t.quantité FROM DescriptionDM t WHERE t.nomDM = :nomDM", Integer.class);
+        TypedQuery<Integer> query = entityManager.createQuery("SELECT t.quantité FROM DispositifMedical t WHERE t.nomDM = :nomDM", Integer.class);
         query.setParameter("nomDM", nomDM);
         List<Integer> results = query.getResultList();
         if (results.isEmpty()) {
@@ -89,7 +89,7 @@ public class DescriptionDMDao implements IDescriptionDMDao {
         }
     }
     @Override
-    public void deleteDM(DescriptionDM d) {
+    public void deleteDM(DispositifMedical d) {
         EntityTransaction et = null;
         try {
             et= entityManager.getTransaction();
@@ -105,7 +105,7 @@ public class DescriptionDMDao implements IDescriptionDMDao {
             e.printStackTrace();
         }
     }
-    public void updateNomDM(DescriptionDM d, String newNomDM) {
+    public void updateNomDM(DispositifMedical d, String newNomDM) {
         EntityTransaction et = null;
         try {
             et = entityManager.getTransaction();
@@ -134,11 +134,11 @@ public class DescriptionDMDao implements IDescriptionDMDao {
 
 
 
-    public  List<DescriptionDM> getAllByService(Service service) {
+    public  List<DispositifMedical> getAllByService(Service service) {
         EntityTransaction transaction = entityManager.getTransaction();
 
         try {
-            TypedQuery<DescriptionDM> query = entityManager.createQuery("SELECT d FROM DescriptionDM d WHERE d.espace.service = :service", DescriptionDM.class);
+            TypedQuery<DispositifMedical> query = entityManager.createQuery("SELECT d FROM DispositifMedical d WHERE d.espace.service = :service", DispositifMedical.class);
             query.setParameter("service", service);
             return query.getResultList();
         } catch (NoResultException e) {
