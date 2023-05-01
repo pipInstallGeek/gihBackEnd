@@ -3,7 +3,7 @@ package ma.uiass.eia.pds.Service;
 import ma.uiass.eia.pds.Dao.DemandeDMDaoImp;
 import ma.uiass.eia.pds.Dao.DescriptionDMDao;
 import ma.uiass.eia.pds.Dao.DetailDemandeDMDaoImp;
-import ma.uiass.eia.pds.Model.DescriptionDM;
+import ma.uiass.eia.pds.Model.DispositifMedical;
 import ma.uiass.eia.pds.Model.DetailDemandeDM;
 
 import java.util.List;
@@ -15,7 +15,7 @@ public class DetailDemandeDMService implements IDetailDemandeDMService{
          DescriptionDMDao daoDM = new DescriptionDMDao();
         @Override
         public void create(String code,String nom, int quantite){
-        DescriptionDM dm = daoDM.searchByNom(nom);
+        DispositifMedical dm = daoDM.searchByNom(nom);
         DetailDemandeDM d = new DetailDemandeDM(code,quantite,dm);
         daoDD.add(d);
     }

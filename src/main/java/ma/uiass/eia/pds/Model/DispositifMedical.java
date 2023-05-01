@@ -10,7 +10,7 @@ import java.util.List;
 
 @Entity
 @Table(name="TDM")
-public class DescriptionDM implements Serializable {
+public class DispositifMedical implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idDM;
@@ -34,7 +34,7 @@ public class DescriptionDM implements Serializable {
 
 
 
-    public DescriptionDM() {
+    public DispositifMedical() {
     }
     public int getIdDM() {
         return idDM;
@@ -65,7 +65,7 @@ public class DescriptionDM implements Serializable {
         return espace;
     }
 
-    public DescriptionDM(String nomDM, int quantité, TypeDM typeDM, Espace espace) {
+    public DispositifMedical(String nomDM, int quantité, TypeDM typeDM, Espace espace) {
 
         this.nomDM = nomDM;
         this.quantité = quantité;
@@ -85,7 +85,7 @@ public class DescriptionDM implements Serializable {
         this.espace = espace;
     }
 
-    public DescriptionDM(String nomDM, int quantité, Espace espace) {
+    public DispositifMedical(String nomDM, int quantité, Espace espace) {
         this.espace=espace;
         this.nomDM = nomDM;
         this.quantité = quantité;

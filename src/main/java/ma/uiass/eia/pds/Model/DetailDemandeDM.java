@@ -18,17 +18,17 @@ public class DetailDemandeDM implements Serializable {
     private int quantite;
     @JoinColumn(name = "idDM")
     @ManyToOne
-    private DescriptionDM dispositif;
+    private DispositifMedical dispositif;
     @JsonIgnore
     @JoinColumn(name = "DemandeDM_id")
     @ManyToOne
     private DemandeDM demandeDM;
 
-    public DescriptionDM getDispositif() {
+    public DispositifMedical getDispositif() {
         return dispositif;
     }
 
-    public void setDispositif(DescriptionDM dispositif) {
+    public void setDispositif(DispositifMedical dispositif) {
         this.dispositif = dispositif;
     }
 
@@ -40,7 +40,7 @@ public class DetailDemandeDM implements Serializable {
         this.demandeDM = demandeDM;
     }
 
-    public DetailDemandeDM(String code, int quantite, DescriptionDM dispositif) {
+    public DetailDemandeDM(String code, int quantite, DispositifMedical dispositif) {
         this.code = code;
         this.quantite = quantite;
         this.dispositif = dispositif;

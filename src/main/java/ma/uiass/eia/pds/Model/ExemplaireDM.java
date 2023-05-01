@@ -14,12 +14,12 @@
         private String codeDME;
         @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
         @JoinColumn(name = "idDM", referencedColumnName = "idDM")
-        private DescriptionDM dmDescription;
+        private DispositifMedical dmDescription;
 
         public ExemplaireDM() {
         }
 
-        public ExemplaireDM( DescriptionDM dmDescription) {
+        public ExemplaireDM( DispositifMedical dmDescription) {
            // this.codeDME = codeDME;
             this.dmDescription = dmDescription;
         }
@@ -40,11 +40,11 @@
             this.codeDME = codeDME;
         }
 
-        public DescriptionDM getDmDescription() {
+        public DispositifMedical getDmDescription() {
             return dmDescription;
         }
 
-        public void setDmDescription(DescriptionDM dmDescription) {
+        public void setDmDescription(DispositifMedical dmDescription) {
             this.dmDescription = dmDescription;
         }
         public String toString(){

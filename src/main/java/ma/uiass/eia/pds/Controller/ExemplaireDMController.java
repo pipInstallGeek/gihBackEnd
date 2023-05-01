@@ -2,7 +2,7 @@ package ma.uiass.eia.pds.Controller;
 
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
-import ma.uiass.eia.pds.Model.DescriptionDM;
+import ma.uiass.eia.pds.Model.DispositifMedical;
 import ma.uiass.eia.pds.Model.ExemplaireDM;
 import ma.uiass.eia.pds.Service.DescriptionDMService;
 import ma.uiass.eia.pds.Service.ExemplaireDMService;
@@ -24,8 +24,8 @@ public class ExemplaireDMController {
             @PathParam("codedescription") String codedescription)
 
     {
-        DescriptionDM descriptionDM= descriptionservice.trouverId(Integer.parseInt(codedescription));
-        descriptionservice.ajouter(descriptionDM);
+        DispositifMedical dispositifMedical = descriptionservice.trouverId(Integer.parseInt(codedescription));
+        descriptionservice.ajouter(dispositifMedical);
     }
     @GET
     @Path("/getexemplaires")

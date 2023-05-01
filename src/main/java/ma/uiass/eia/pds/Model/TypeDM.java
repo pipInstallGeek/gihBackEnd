@@ -26,7 +26,7 @@ public class TypeDM implements Serializable {
     private String NomTypeDM;
     @JsonManagedReference
     @OneToMany(mappedBy = "typeDM")
-    private List<DescriptionDM> DMs = new ArrayList<>();
+    private List<DispositifMedical> DMs = new ArrayList<>();
     public int getIdTypeDM() {
         return idTypeDM;
     }
@@ -43,11 +43,11 @@ public class TypeDM implements Serializable {
         this.NomTypeDM = NomTypeDM;
     }
 
-    public List<DescriptionDM> getDMs() {
+    public List<DispositifMedical> getDMs() {
         return DMs;
     }
 
-    public void setDMs(List<DescriptionDM> DMs) {
+    public void setDMs(List<DispositifMedical> DMs) {
         this.DMs = DMs;
     }
 

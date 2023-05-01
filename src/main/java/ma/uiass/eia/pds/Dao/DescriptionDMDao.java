@@ -5,7 +5,7 @@ import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.NonUniqueResultException;
 import jakarta.persistence.TypedQuery;
 import ma.uiass.eia.pds.HibernateUtility.HibernateUtil;
-import ma.uiass.eia.pds.Model.DescriptionDM;
+import ma.uiass.eia.pds.Model.DispositifMedical;
 
 import java.util.List;
 
@@ -17,16 +17,16 @@ public class DescriptionDMDao implements IDescriptionDMDao {
     }
 
     @Override
-    public List<DescriptionDM> getAll() {
-        return entityManager.createQuery(" from DescriptionDM ").getResultList();
+    public List<DispositifMedical> getAll() {
+        return entityManager.createQuery(" from DispositifMedical ").getResultList();
     }
     @Override
-    public void add(DescriptionDM descriptionDM) {
+    public void add(DispositifMedical dispositifMedical) {
         EntityTransaction transaction = entityManager.getTransaction();
         try {
             transaction.begin();
-            descriptionDM.setCodeDM(descriptionDM.getTypeDM().getCodeTypeDM()+descriptionDM.getNomDM());
-            entityManager.persist(descriptionDM);
+            dispositifMedical.setCodeDM(dispositifMedical.getTypeDM().getCodeTypeDM()+ dispositifMedical.getNomDM());
+            entityManager.persist(dispositifMedical);
             transaction.commit();
 
         } catch (Exception e) {
@@ -38,20 +38,20 @@ public class DescriptionDMDao implements IDescriptionDMDao {
     }
 
     @Override
-    public DescriptionDM getById(int id) {
-        return entityManager.find(DescriptionDM.class, id);
+    public DispositifMedical getById(int id) {
+        return entityManager.find(DispositifMedical.class, id);
     }
 
     @Override
-    public List<DescriptionDM> getDmByNomType(String NomTypeDM) {
-        TypedQuery<DescriptionDM> query = entityManager.createQuery(
-                "SELECT d FROM DescriptionDM d WHERE d.typeDM.NomTypeDM = :NomTypeDM" , DescriptionDM.class);
+    public List<DispositifMedical> getDmByNomType(String NomTypeDM) {
+        TypedQuery<DispositifMedical> query = entityManager.createQuery(
+                "SELECT d FROM DispositifMedical d WHERE d.typeDM.NomTypeDM = :NomTypeDM" , DispositifMedical.class);
         query.setParameter("NomTypeDM" , NomTypeDM);
         return query.getResultList();
     }
     @Override
-    public DescriptionDM searchByNom(String nom){
-        TypedQuery<DescriptionDM> query = entityManager.createQuery("From DescriptionDM WHERE nomDM=:nom",DescriptionDM.class);
+    public DispositifMedical searchByNom(String nom){
+        TypedQuery<DispositifMedical> query = entityManager.createQuery("From DispositifMedical WHERE nomDM=:nom", DispositifMedical.class);
         query.setParameter("nom",nom);
         try{
             return query.getSingleResult();

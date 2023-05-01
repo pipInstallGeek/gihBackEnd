@@ -1,11 +1,11 @@
 package ma.uiass.eia.pds.Service;
 
-import ma.uiass.eia.pds.Model.DescriptionDM;
+import ma.uiass.eia.pds.Model.DispositifMedical;
 
 import java.util.List;
 
-public interface IDescriptionDMService extends IService<DescriptionDM> {
-    List<DescriptionDM> trouverDMByTypeDM(String  TypeDM);
+public interface IDescriptionDMService extends IService<DispositifMedical> {
+    List<DispositifMedical> trouverDMByTypeDM(String  TypeDM);
 
-    DescriptionDM trouverNom(String nom);
+    DispositifMedical trouverNom(String nom);
 }

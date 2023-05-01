@@ -21,7 +21,7 @@ public class StocksDetails implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "idDM")
-    private DescriptionDM dispositifMedical;
+    private DispositifMedical dispositifMedical;
 
     @ManyToOne
     @JsonIgnore
@@ -34,11 +34,11 @@ public class StocksDetails implements Serializable {
         return idStocksDetails;
     }
 
-    public DescriptionDM getDispositifMedical() {
+    public DispositifMedical getDispositifMedical() {
         return dispositifMedical;
     }
 
-    public void setDispositifMedical(DescriptionDM dispositifMedical) {
+    public void setDispositifMedical(DispositifMedical dispositifMedical) {
         this.dispositifMedical = dispositifMedical;
     }
 
@@ -62,7 +62,7 @@ public class StocksDetails implements Serializable {
     public StocksDetails() {
     }
 
-    public StocksDetails(DescriptionDM dispositifMedical, Stock stock, int quantity) {
+    public StocksDetails(DispositifMedical dispositifMedical, Stock stock, int quantity) {
         this.dispositifMedical = dispositifMedical;
         this.stock = stock;
         this.quantity = quantity;
