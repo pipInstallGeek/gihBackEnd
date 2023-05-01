@@ -46,6 +46,6 @@ public class StocksDetailsService implements IStocksDetailsService {
     @Override
     public void ajouterS(String dispositifMedical, String stock, int quantity) {
         StocksDetails s = new StocksDetails(ddm.searchByNom(dispositifMedical),std.findStockByName(stock),quantity);
-        stocksDetailsDao.add(s);
+        stocksDetailsDao.addDetailStock(s);
     }
 }

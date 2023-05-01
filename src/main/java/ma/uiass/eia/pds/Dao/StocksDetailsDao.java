@@ -30,7 +30,6 @@ public class StocksDetailsDao implements IStocksDetailsDao {
 
         } catch (Exception e) {
             if (transaction != null) {
-                transaction.rollback();
             }
             e.printStackTrace();
         }
@@ -96,6 +95,24 @@ public class StocksDetailsDao implements IStocksDetailsDao {
             entityManager.merge(d);
             et.commit();
         }catch(Exception e){
+            if (et != null) {
+                et.rollback();
+            }
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void addDetailStock(StocksDetails stockD) {
+        EntityTransaction et = null;
+        try {
+            et = entityManager.getTransaction();
+            if (!et.isActive()) {
+                et.begin();
+            }
+            entityManager.persist(stockD);
+            et.commit();
+        } catch (Exception e) {
             if (et != null) {
                 et.rollback();
             }

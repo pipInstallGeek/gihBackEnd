@@ -17,12 +17,9 @@ public class StocksDetails implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idStocksDetails;
-
-
-
-    @JoinColumn(name = "idDispositifMedical", referencedColumnName ="idDispositifMedical" )
+    @JoinColumn(name = "idDispositifMedical")
+    @ManyToOne
     private DispositifMedical dispositifMedical;
-
     @ManyToOne(cascade = CascadeType.MERGE)
     @JsonIgnore
     @JoinColumn(name = "idStock", referencedColumnName = "idStock")
