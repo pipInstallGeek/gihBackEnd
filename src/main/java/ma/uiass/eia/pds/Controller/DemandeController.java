@@ -72,7 +72,7 @@ public class DemandeController {
     public void addDemande(@FormParam("dateDemande") String dateDemande,
                             @FormParam("etat") EtatDemande etat,
                             @FormParam("service") String service) {
-        demandeservice.ajouter(dateDemande, etat, service);
+        //demandeservice.ajouter(dateDemande, etat, service);
         System.out.println("commqnde controller hereeeee");
     }
 }

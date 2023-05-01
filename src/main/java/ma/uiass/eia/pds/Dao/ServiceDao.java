@@ -1,9 +1,6 @@
 package ma.uiass.eia.pds.Dao;
 
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityTransaction;
-import jakarta.persistence.NonUniqueResultException;
-import jakarta.persistence.TypedQuery;
+import jakarta.persistence.*;
 import ma.uiass.eia.pds.HibernateUtility.HibernateUtil;
 import ma.uiass.eia.pds.Model.Espace;
 import ma.uiass.eia.pds.Model.Service;
@@ -55,9 +52,6 @@ public class ServiceDao implements IServiceDao{
             return null;
         }
     }
-
-
-
 
 
     public Service findByName(String nom){

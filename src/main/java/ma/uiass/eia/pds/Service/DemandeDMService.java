@@ -1,6 +1,7 @@
 package ma.uiass.eia.pds.Service;
 
 import ma.uiass.eia.pds.Dao.DemandeDMDaoImp;
+import ma.uiass.eia.pds.Dao.IServiceDao;
 import ma.uiass.eia.pds.Dao.ServiceDao;
 import ma.uiass.eia.pds.Model.DemandeDM;
 import ma.uiass.eia.pds.Model.EtatDemande;
@@ -11,11 +12,11 @@ import java.util.List;
 
 public class DemandeDMService implements IDemandeDMService{
     private DemandeDMDaoImp daoD = new DemandeDMDaoImp();
-    private ServiceDao daoS = new ServiceDao();
+    private IServiceDao daoS = new ServiceDao();
     @Override
     public void create(String code,String nomS){
         Date currentDate = new Date();
-        daoD.add(new DemandeDM(code,currentDate,daoS.findByName(nomS), EtatDemande.EnCours));
+        daoD.add(new DemandeDM(code,currentDate,daoS.findByName(nomS), EtatDemande.ENCOURS));
     }
     @Override
     public List<DemandeDM> getAll(){return daoD.getAll();}

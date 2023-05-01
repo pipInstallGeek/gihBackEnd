@@ -72,7 +72,7 @@ public class DemandeDMDaoImp implements IDemandeDMDao {
         try{
             transaction.begin();
             DemandeDM demandeUpdate = findByCode(demandedm.getCode());
-            demandedm.setEtat(EtatDemande.Acceptée);
+            demandedm.setEtat(EtatDemande.ACCEPTEE);
             transaction.commit();
         }catch (Exception e){
             if(transaction!=null){
@@ -87,7 +87,7 @@ public class DemandeDMDaoImp implements IDemandeDMDao {
         try{
             transaction.begin();
             DemandeDM demandeUpdate = findByCode(demandedm.getCode());
-            demandedm.setEtat(EtatDemande.Rejetée);
+            demandedm.setEtat(EtatDemande.REJETEE);
             transaction.commit();
         }catch (Exception e){
             if(transaction!=null){

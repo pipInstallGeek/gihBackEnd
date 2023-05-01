@@ -27,8 +27,5 @@ public class ChambreService implements IEspaceService<Chambre> {
         return (Chambre)chambreDao.getById(id);
     }
 
-    @Override
-    public void retirerLit(Lit l) {
-        chambreDao.remove(l);
-    }
+
 }

@@ -4,6 +4,7 @@ import ma.uiass.eia.pds.Model.Service;
 
 public interface IServiceDao extends IDao<Service> {
     Service findbyNom(String nomService);
+    Service findByName(String nom);
 
 
 

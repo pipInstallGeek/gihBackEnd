@@ -47,7 +47,7 @@ public class DemandeDao implements IDemandeDao {
         try{
             transaction.begin();
            if(demande!=null) {//Demande demandeUpdate = getbycode(demande.getNumDemande());
-               demande.setEtat(EtatDemande.TRAITEE);
+               demande.setEtat(EtatDemande.ACCEPTEE);
                transaction.commit();
            }
         }catch (Exception e){
@@ -63,7 +63,7 @@ public class DemandeDao implements IDemandeDao {
         try{
             transaction.begin();
             //Demande demandeUpdate = getbycode(demande.getNumDemande());
-            demande.setEtat(EtatDemande.REJETER);
+            demande.setEtat(EtatDemande.REJETEE);
             transaction.commit();
         }catch (Exception e){
             if(transaction!=null){
@@ -71,6 +71,11 @@ public class DemandeDao implements IDemandeDao {
             }
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void update3(Demande demande) {
+
     }
 
 

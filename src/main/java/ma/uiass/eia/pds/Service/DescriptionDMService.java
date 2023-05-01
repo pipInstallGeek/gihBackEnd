@@ -83,4 +83,9 @@ public class DescriptionDMService implements IDescriptionDMService{
         Service service=serviceDao.findbyNom(nomService);
         return descriptionDao.getAllByService(service);
     }
+
+    @Override
+    public DispositifMedical trouverNom(String nom) {
+        return descriptionDao.findbyNom(nom);
+    }
 }

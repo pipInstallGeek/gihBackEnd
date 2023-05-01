@@ -35,7 +35,7 @@
                 IAdmissionService admissionService =new AdmissionService();
                 IDemandeService commandeService=new DemandeService();
                 IServiceService serviceService = new ServiceService();
-                IServiceDao s=new ServiceDao();
+                IServiceDao s = new ma.uiass.eia.pds.Dao.ServiceDao();
                 ILitService litService = new LitService();
                 IEspaceService chambreService = new ChambreService();
                 IEspaceService salleService = new SalleService();
@@ -103,7 +103,7 @@
         chambreService.ajouter(chambre3);
         salleService.ajouter(salle3);
 
-                TypeLit typeLit = new TypeLit("Lit electrique");
+                TypeLit typeLit = new TypeLit("ele","Lit electrique");
                 typeLitService.ajouter(typeLit);
 
                     marqueService.ajouter(marque0);
@@ -131,12 +131,12 @@
                     typeLitService.ajouter(typeLit2);
                     typeLitService.ajouter(typeLit3);
                     typeLitService.ajouter(typeLit4);
-                    Demande demande1 = new Demande("a230",15,"2025-03-20","2026-05-12",typeLit0.getNomTypeLit(),marque0.getNomMarque(), EtatDemande.EN_TRAITEMENT,service1.getNomService());
-                    Demande demande2 = new Demande("a231",16,"2025-03-20","2026-05-12",typeLit1.getNomTypeLit(),marque1.getNomMarque(), EtatDemande.TRAITEE,service2.getNomService());
-                    Demande demande3 = new Demande("a232",17,"2025-03-20","2026-05-12",typeLit2.getNomTypeLit(),marque2.getNomMarque(), EtatDemande.TRAITEE,service3.getNomService());
-                    Demande demande4 = new Demande("a233",18,"2025-03-20","2026-05-12",typeLit3.getNomTypeLit(),marque3.getNomMarque(), EtatDemande.TRAITEE,service2.getNomService());
-                    Demande demande5 = new Demande("a234",19,"2025-03-20","2026-05-12",typeLit4.getNomTypeLit(),marque4.getNomMarque(), EtatDemande.EN_TRAITEMENT,service1.getNomService());
-                    Demande demande7 = new Demande("souad5",15,"2025-03-20","2026-05-12",typeLit0.getNomTypeLit(),marque0.getNomMarque(), EtatDemande.EN_TRAITEMENT,service2.getNomService());
+                    Demande demande1 = new Demande("a230",15,"2025-03-20","2026-05-12",typeLit0.getNomTypeLit(),marque0.getNomMarque(), EtatDemande.ENCOURS,service1.getNomService());
+                    Demande demande2 = new Demande("a231",16,"2025-03-20","2026-05-12",typeLit1.getNomTypeLit(),marque1.getNomMarque(), EtatDemande.ACCEPTEE,service2.getNomService());
+                    Demande demande3 = new Demande("a232",17,"2025-03-20","2026-05-12",typeLit2.getNomTypeLit(),marque2.getNomMarque(), EtatDemande.ACCEPTEE,service3.getNomService());
+                    Demande demande4 = new Demande("a233",18,"2025-03-20","2026-05-12",typeLit3.getNomTypeLit(),marque3.getNomMarque(), EtatDemande.ACCEPTEE,service2.getNomService());
+                    Demande demande5 = new Demande("a234",19,"2025-03-20","2026-05-12",typeLit4.getNomTypeLit(),marque4.getNomMarque(), EtatDemande.ENCOURS,service1.getNomService());
+                    Demande demande7 = new Demande("souad5",15,"2025-03-20","2026-05-12",typeLit0.getNomTypeLit(),marque0.getNomMarque(), EtatDemande.ENCOURS,service2.getNomService());
 
                     commandeService.ajouter(demande1);
                     commandeService.ajouter(demande2);
@@ -511,6 +511,5 @@
         //System.out.println(descriptionDMService.trouverDMByTypeDM("fourniture"));
         //System.out.println(exemplaireDMService.trouvezExemplaireByDMetT
         // ypeDm("gants"));
-    }
-}
+
 
