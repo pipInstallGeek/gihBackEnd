@@ -16,4 +16,9 @@ public class TypeDmServiceImp implements ITypeDmService {
     public List<TypeDM> afficherTypeDm() {
         return typeDmDAO.getAll();
     }
+
+    @Override
+    public void supprimerTypeDm(TypeDM typeDm){
+        typeDmDAO.deleteTypeDM(typeDm);
+    }
 }

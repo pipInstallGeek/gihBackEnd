@@ -47,4 +47,22 @@ public class TypeDmDAO implements ITypeDmDAO{
         }
         return typeDM;
     }
+
+    @Override
+    public void deleteTypeDM(TypeDM typeDM) {
+        EntityTransaction transaction =entityManager.getTransaction();
+        try {
+            transaction.begin();
+            entityManager.remove(typeDM);
+            transaction.commit();
+
+        }catch (Exception e){
+            if (transaction != null){
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }
+
+
+    }
 }

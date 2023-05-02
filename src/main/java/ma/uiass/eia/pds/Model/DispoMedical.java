@@ -13,8 +13,6 @@ public class DispoMedical {
     @Column
     private String nomDispoMed;
 
-    @Column
-    private int quantiteStock;
 
     @ManyToOne
     @JoinColumn(name = "codeTypeDm", referencedColumnName = "codeTypeDm")
@@ -38,13 +36,6 @@ public class DispoMedical {
         this.nomDispoMed = nomDispoMed;
     }
 
-    public int getQuantiteStock() {
-        return quantiteStock;
-    }
-
-    public void setQuantiteStock(int quantiteStock) {
-        this.quantiteStock = quantiteStock;
-    }
 
     public TypeDM getTypeDM() {
         return typeDM;
@@ -55,9 +46,8 @@ public class DispoMedical {
     }
 
 
-    public DispoMedical(String nomDispoMed, TypeDM typeDM,int quantiteStock){
+    public DispoMedical(String nomDispoMed, TypeDM typeDM){
         setNomDispoMed(nomDispoMed);
-        setQuantiteStock(quantiteStock);
         setTypeDM(typeDM);
     }
 

@@ -5,10 +5,7 @@
             import jakarta.ws.rs.core.UriBuilder;
 
             import ma.uiass.eia.pds.Controller.ReservationController;
-            import ma.uiass.eia.pds.Dao.IMarqueDao;
-            import ma.uiass.eia.pds.Dao.ITypeLitDao;
-            import ma.uiass.eia.pds.Dao.MarqueDao;
-            import ma.uiass.eia.pds.Dao.TypeLitDao;
+            import ma.uiass.eia.pds.Dao.*;
             import ma.uiass.eia.pds.Model.*;
             import ma.uiass.eia.pds.Service.*;
 
@@ -41,8 +38,8 @@
                 HttpServer server = JdkHttpServerFactory.createHttpServer(baseUri, config);
                 System.out.println("server launched Successfully ");
 
-                /*
 
+/*
                 IBatimentService batimentService = new BatimentService();
                 IEtageService etageService = new EtageService();
                 IServiceService serviceService = new ServiceService();
@@ -139,6 +136,8 @@
                 litService.ajouter(lit16);
 
 
+
+
                 //------------------------------------------------------------------------------------------------------------------------
                 TypeDmServiceImp typeDmServiceImp=new TypeDmServiceImp();
                 typeDmServiceImp.ajouterTypeDm(new TypeDM("instruments légers"));
@@ -147,6 +146,16 @@
                 typeDmServiceImp.ajouterTypeDm(new TypeDM("équipement léger"));
                 typeDmServiceImp.ajouterTypeDm(new TypeDM("DM connectés"));
                 typeDmServiceImp.ajouterTypeDm(new TypeDM("équipement lourd"));
+
+
+
+ */
+
+                SalleService salleService=new SalleService();
+                ServiceService serviceService1=new ServiceService();
+                salleService.ajouter(new Salle("Stock",TypeSalle.UNKNOWN,serviceService1.afficherTout().get(serviceService1.afficherTout().size()-1)));
+
+
 
                 //------------------------------------------------------------------------------------------------------------------------
 
@@ -189,7 +198,43 @@
                 dispoMedicItemService.ajouter(i1);}
 
 
+
+                /*IDetailsService detailsService=new DetailsLivraisonService();
+                System.out.println(detailsService.afficherTout());
+
+
+
+
+
+
+
+
+
+                IDispoMedicalService dispoMedicalServiceImp=new DispoMedicalServiceImp();
+                ILivraisonService livraisonService=new LivraisonFourniseurService();
+                IDetailsService detailsService=new DetailsLivraisonService();
+
+                LivraisonFournisseur l1=new LivraisonFournisseur("BSDS1D",Fournisseur.McKessonCorporation,"10/02/2022");
+                livraisonService.ajouter(l1);
+
+
+                detailsService.ajouter(new DetailsLivraison(12,livraisonService.afficherTout().get(0), dispoMedicalServiceImp.afficherDispoMedical().get(0)));
+
+                System.out.println(dispoMedicalServiceImp.afficherDispoMedical().get(dispoMedicalServiceImp.afficherDispoMedical().size()-1));
+
+
+
                  */
+
+
+
+
+
+
+
+
+
+
 
 
 

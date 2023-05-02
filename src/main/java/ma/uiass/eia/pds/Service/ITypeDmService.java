@@ -8,4 +8,6 @@ public interface ITypeDmService {
     void ajouterTypeDm(TypeDM typeDM);
 
     List<TypeDM> afficherTypeDm();
+
+    public void supprimerTypeDm(TypeDM typeDm);
 }
