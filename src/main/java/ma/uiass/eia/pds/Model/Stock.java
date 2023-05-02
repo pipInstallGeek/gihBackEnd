@@ -1,4 +1,5 @@
 package ma.uiass.eia.pds.Model;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -27,6 +28,7 @@ public class Stock implements Serializable {
     private Service service;
 
     @OneToMany(mappedBy = "stock")
+    @JsonIgnore
     private List<StocksDetails> stocksDetails;
 
     public Stock(String nomStock, Service service){

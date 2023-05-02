@@ -30,6 +30,7 @@ public class Service implements Serializable {
 	private Etage etage;
 
 	@OneToOne(mappedBy = "service", optional = true)
+	@JsonIgnore
 	private Stock stock;
 
 
