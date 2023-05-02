@@ -390,15 +390,17 @@
         stockservice.ajouter(st4);
         stockservice.ajouter(st5);
         System.out.println(stockservice.trouverNOM("logistique"));
-        IStocksDetailsService stockdetail = new StocksDetailsService();
 
+        IStocksDetailsService stockdetail = new StocksDetailsService();
+        System.out.println("hello");
         stockdetail.ajouterS(des1.getNomDM(),st1.getNomStock(),1000);
+        System.out.println("hello");
         stockdetail.ajouterS(des2.getNomDM(),st1.getNomStock(),1000);
         stockdetail.ajouterS(des3.getNomDM(),st1.getNomStock(),1000);
         stockdetail.ajouterS(des4.getNomDM(),st1.getNomStock(),1000);
         stockdetail.ajouterS(des5.getNomDM(),st1.getNomStock(),1000);
         stockdetail.ajouterS(des6.getNomDM(),st1.getNomStock(),1000);
-        //stockdetail.updateqt(std1.getIdStocksDetails(),500);
+        //stockdetail.updateqtS(std1.getIdStocksDetails(),500);
         System.out.println(stockdetail.getByStock(1));
 
 

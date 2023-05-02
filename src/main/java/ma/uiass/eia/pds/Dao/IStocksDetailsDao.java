@@ -1,5 +1,6 @@
 package ma.uiass.eia.pds.Dao;
 
+import ma.uiass.eia.pds.Model.DetailDemande;
 import ma.uiass.eia.pds.Model.DispositifMedical;
 import ma.uiass.eia.pds.Model.Stock;
 import ma.uiass.eia.pds.Model.StocksDetails;
@@ -14,4 +15,7 @@ public interface IStocksDetailsDao extends IDao<StocksDetails> {
     StocksDetails findByCode(int id);
 
     void updateqt(StocksDetails d, int q);
+
+
+    void addDetailStock(StocksDetails stockD);
 }

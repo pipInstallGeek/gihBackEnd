@@ -8,7 +8,8 @@
         <sourceTestOutputDir name="output/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="gihBackEnd" />
-        <module name="backend" />
+        <module name="dm demznde" />
+        <module name="gihpds" />
       </profile>
     </annotationProcessing>
   </component>
