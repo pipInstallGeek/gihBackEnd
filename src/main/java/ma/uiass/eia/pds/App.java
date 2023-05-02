@@ -36,7 +36,7 @@
                 HttpServer server = JdkHttpServerFactory.createHttpServer(baseUri, config);
                 System.out.println("server launched Successfully ");
 
-/*
+
                 IBatimentService batimentService = new BatimentService();
                 IEtageService etageService = new EtageService();
                 IServiceService serviceService = new ServiceService();
@@ -130,7 +130,7 @@
                 litService.ajouter(lit16);
 
 
- */
+
 
             }
         }

@@ -4,11 +4,12 @@ package ma.uiass.eia.pds.Model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
+import java.io.Serializable;
 import java.util.List;
 
 @Entity
 @Table(name = "TtypeDM")
-public class TypeDM {
+public class TypeDM implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idTypeDM;
