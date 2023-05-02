@@ -66,13 +66,5 @@ public class DemandeController {
                             @FormParam("service") String service) {
         demandeservice.ajouter(numDemande, quantite, dateDemande, dateLivraison, typelit, marque, etat, service);
     }
-    @Produces(MediaType.APPLICATION_JSON)
-    @Path("/addDemande")
-    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-    public void addDemande(@FormParam("dateDemande") String dateDemande,
-                            @FormParam("etat") EtatDemande etat,
-                            @FormParam("service") String service) {
-        //demandeservice.ajouter(dateDemande, etat, service);
-        System.out.println("commqnde controller hereeeee");
-    }
+
 }
