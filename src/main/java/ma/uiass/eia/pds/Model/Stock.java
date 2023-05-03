@@ -25,6 +25,7 @@ public class Stock implements Serializable {
 
     @OneToOne(optional = true, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "idService")
+    @JsonIgnore
     private Service service;
 
     @OneToMany(mappedBy = "stock")

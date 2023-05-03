@@ -19,8 +19,10 @@ public class Service implements Serializable {
 	private int idService;
 	@Column(name="codeService",length=50)
 	private String codeService;
+
 	@Column(name="NomService",length=50)
 	private String nomService;
+
 	@JsonIgnore
 	@OneToMany(mappedBy = "service")
 	private List<Espace> espaces;
@@ -29,10 +31,8 @@ public class Service implements Serializable {
 	@JoinColumn(name = "idEtage", referencedColumnName = "idEtage")
 	private Etage etage;
 
-	@OneToOne(mappedBy = "service", optional = true)
-	@JsonIgnore
+	@OneToOne(mappedBy = "service")
 	private Stock stock;
-
 
 
 	public Service(String codeS, String nomService, Etage etage) {

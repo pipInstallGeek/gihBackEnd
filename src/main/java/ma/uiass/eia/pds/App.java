@@ -402,6 +402,10 @@
         stockdetail.ajouterS(des6.getNomDM(),st1.getNomStock(),1000);
         //stockdetail.updateqtS(std1.getIdStocksDetails(),500);
         System.out.println(stockdetail.getByStock(1));
+                System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+                Stock stock = service2.getStock();
+                System.out.println(stock.getIdStock());
+                System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 
 
 
@@ -486,6 +490,7 @@
                   //  System.out.println(typeDMService.trouverbyNom("fournitures"));
                   //  descriptionDMService.modifier("bande","bandes");
                    //    System.out.println(typeDMService.trouverbyNom("fourniture"));
+
             }
                 }
 
