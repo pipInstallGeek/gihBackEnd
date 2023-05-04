@@ -28,6 +28,24 @@ public class EspaceController {
         return espaces;
     }
 
+    @GET
+    @Path("/getespaces/{idservice}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Espace> getEspacesByService(
+            @PathParam("idservice") int idservice
+    ){
+        System.out.println(idservice);
+        List<Espace> list = getChambres();
+        List<Espace> listF = new ArrayList<>();
+
+        for (Espace espace :list){
+            if (espace.getService().getIdService() == idservice){
+                listF.add(espace);
+            }
+        }
+        return listF;
+    }
+
 
 
 }

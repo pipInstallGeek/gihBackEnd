@@ -40,7 +40,7 @@ public class Fournisseur {
 
     }
     public String toString(){
-        return this.getIdFiscal()+ " "+this.getEmail();
+        return this.getIdFiscal() + " " +this.getNameFournisseur();
     }
 
 }

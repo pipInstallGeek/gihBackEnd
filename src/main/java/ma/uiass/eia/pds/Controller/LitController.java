@@ -4,6 +4,8 @@ package ma.uiass.eia.pds.Controller;
     import jakarta.ws.rs.core.MediaType;
     import ma.uiass.eia.pds.Model.*;
     import ma.uiass.eia.pds.Service.*;
+
+    import java.util.ArrayList;
     import java.util.List;
     import java.util.Map;
 
@@ -130,7 +132,15 @@ public class LitController {
             return service.getNLO();
         }
 
-
+        @GET
+        @Path("/lits/service/{idservice}")
+        @Produces(MediaType.APPLICATION_JSON)
+        public List<Lit> getallbyservice(@PathParam("idservice") int idservice){
+            List<Lit> filtred = new ArrayList<>();
+            getLit().forEach(lit -> { if (lit.getEspace().getService().getIdService() == idservice){filtred.add(lit);}
+            });
+            return filtred;
+        }
 
 
 }

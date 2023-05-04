@@ -31,4 +31,7 @@ public class TypeDM implements Serializable {
     public TypeDM( String nomType) {
         setNomType(nomType);
     }
+    public String toString(){
+        return this.getNomType();
+    }
 }
