@@ -24,7 +24,7 @@ public class DescriptionDMController {
     }
 
     @PUT
-    @Path("addDispo/{nomDM}/{quantité}/{nomTypeDM}/{codeespace}")
+    @Path("/addDispo/{nomDM}/{quantité}/{nomTypeDM}/{codeespace}")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     public void addDescription(
@@ -86,6 +86,14 @@ public class DescriptionDMController {
     public static void main(String[] args) {
         DescriptionDMController d=new DescriptionDMController();
         d.updateDM("gants","gggg");
+    }
+    @POST
+    @Path("/updateQuantiteDM")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    public void updateqt(@FormParam("nomDM") String nomDM,@FormParam("q")int  q){
+        Idm.updateqt(nomDM,q);
+
     }
 }
 

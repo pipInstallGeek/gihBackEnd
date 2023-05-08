@@ -88,18 +88,20 @@ public class DescriptionDMDao implements IDescriptionDMDao {
             return results.get(0);
         }
     }
-    @Override
     public void deleteDM(DispositifMedical d) {
         EntityTransaction et = null;
         try {
-            et= entityManager.getTransaction();
-            if(!et.isActive()){
+            et = entityManager.getTransaction();
+            if (!et.isActive()) {
                 et.begin();
             }
+            Query query = entityManager.createQuery("DELETE FROM StocksDetails s WHERE s.dispositifMedical = :dm");
+            query.setParameter("dm", d);
+            query.executeUpdate();
             entityManager.remove(d);
             et.commit();
-        }catch (Exception e){
-            if(et!=null){
+        } catch (Exception e) {
+            if (et != null) {
                 et.rollback();
             }
             e.printStackTrace();
@@ -122,6 +124,24 @@ public class DescriptionDMDao implements IDescriptionDMDao {
 
             et.commit();
         } catch (Exception e) {
+            if (et != null) {
+                et.rollback();
+            }
+            e.printStackTrace();
+        }
+    }
+    @Override
+    public void updateqt(DispositifMedical d, int q) {
+        EntityTransaction et = null;
+        d.setQuantité(q);
+        try {
+            et = entityManager.getTransaction();
+            if (!et.isActive()) {
+                et.begin();
+            }
+            entityManager.merge(d);
+            et.commit();
+        }catch(Exception e){
             if (et != null) {
                 et.rollback();
             }

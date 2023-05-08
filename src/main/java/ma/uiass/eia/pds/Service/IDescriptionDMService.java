@@ -14,4 +14,5 @@ public interface IDescriptionDMService extends IService<DispositifMedical> {
     void modifier(String ancienNomDM, String nouveauNomDM);
     List<DispositifMedical> afficherToutParService(String nomService);
     DispositifMedical trouverNom(String nom);
+    void updateqt(String code ,int q);
 }

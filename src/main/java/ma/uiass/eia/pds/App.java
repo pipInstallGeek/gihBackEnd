@@ -2,15 +2,15 @@
             import com.sun.net.httpserver.HttpServer;
             import jakarta.ws.rs.core.UriBuilder;
             import ma.uiass.eia.pds.Controller.AdmissionController;
+            import ma.uiass.eia.pds.Dao.*;
             import ma.uiass.eia.pds.Dao.IServiceDao;
-            import ma.uiass.eia.pds.Dao.LitDao;
-            import ma.uiass.eia.pds.Dao.IServiceDao;
-            import ma.uiass.eia.pds.Dao.ServiceDao;
             import ma.uiass.eia.pds.Model.*;
             import ma.uiass.eia.pds.Service.*;
             import org.glassfish.jersey.jackson.internal.jackson.jaxrs.json.JacksonJsonProvider;
             import org.glassfish.jersey.jdkhttp.JdkHttpServerFactory;
             import org.glassfish.jersey.server.ResourceConfig;
+            import org.python.antlr.ast.Str;
+
             import java.net.*;
             import java.time.LocalDate;
             import java.time.LocalDateTime;
@@ -31,8 +31,7 @@
                 System.out.println("server launched Successfully ");
 
 
-
-                IAdmissionService admissionService =new AdmissionService();
+              IAdmissionService admissionService =new AdmissionService();
                 IDemandeService commandeService=new DemandeService();
                 IServiceService serviceService = new ServiceService();
                 IServiceDao s = new ma.uiass.eia.pds.Dao.ServiceDao();
@@ -50,23 +49,19 @@
 
 
 
-
-
-
-        Batiment batiment = new Batiment("Batiment A");
-        batimentService.ajouter(batiment);
-
-        Etage etage = new Etage("Etage 1", batiment);
-        Etage etage1 = new Etage("Etage 2", batiment);
-        Etage etage2 = new Etage("Etage 3", batiment);
+       Batiment batiment = new Batiment("Batiment A");
+       batimentService.ajouter(batiment);
+    Etage etage = new Etage("Etage 1", batiment);
+       Etage etage1 = new Etage("Etage 2", batiment);
+    Etage etage2 = new Etage("Etage 3", batiment);
         etageService.ajouter(etage);
         etageService.ajouter(etage1);
         etageService.ajouter(etage2);
-
-        Service service1 = new Service("OC", "Oncologie", etage );
+//
+      Service service1 = new Service("OC", "Oncologie", etage );
         Service service2 = new Service("GY", "Gynegologie", etage1 );
-        Service service3 = new Service("PN", "Pneumologie", etage2 );
-        Service service4 = new Service("DR", "Dérmathologie", etage2 );
+      Service service3 = new Service("PN", "Pneumologie", etage2 );
+       Service service4 = new Service("DR", "Dérmathologie", etage2 );
 
         serviceService.ajouter(service1);
         serviceService.ajouter(service2);
@@ -264,24 +259,24 @@
                    typeDMService.ajouter(typeDM2);
                    typeDMService.ajouter(typeDM3);
 
-                    DispositifMedical des1=new DispositifMedical("bandes",15,typeDM1,null);
-                    DispositifMedical des2=new DispositifMedical("gants",24,typeDM1,null);
-                    DispositifMedical des3=new DispositifMedical("seringues",28,typeDM1,null);
+                    DispositifMedical des1=new DispositifMedical("bandes",0,typeDM1,null);
+                    DispositifMedical des2=new DispositifMedical("gants",0,typeDM1,null);
+                    DispositifMedical des3=new DispositifMedical("seringues",0,typeDM1,null);
                     descriptionDMService.ajouter(des1);
                     descriptionDMService.ajouter(des2);
                     descriptionDMService.ajouter(des3);
                     List<DispositifMedical> lstDM1= Arrays.asList(des1, des2, des3);
 
-                    DispositifMedical des4=new DispositifMedical("pinces",20,typeDM2,null);
-                    DispositifMedical des5=new DispositifMedical("ciseaux",12,typeDM2,null);
-                    DispositifMedical des6=new DispositifMedical("scalpels",18,typeDM2,null);
+                    DispositifMedical des4=new DispositifMedical("pinces",0,typeDM2,null);
+                    DispositifMedical des5=new DispositifMedical("ciseaux",0,typeDM2,null);
+                    DispositifMedical des6=new DispositifMedical("scalpels",0,typeDM2,null);
                     descriptionDMService.ajouter(des4);
                     descriptionDMService.ajouter(des5);
                     descriptionDMService.ajouter(des6);
                     List<DispositifMedical> lstDM2= Arrays.asList(des4, des5, des6);
 
-                    DispositifMedical des7=new DispositifMedical("stéthoscopes",40,typeDM3,null);
-                    DispositifMedical des8=new DispositifMedical("thermomètres",22,typeDM3,null);
+                    DispositifMedical des7=new DispositifMedical("stéthoscopes",0,typeDM3,null);
+                    DispositifMedical des8=new DispositifMedical("thermomètres",0,typeDM3,null);
                     descriptionDMService.ajouter(des7);
                     descriptionDMService.ajouter(des8);
                     List<DispositifMedical> lstDM3= Arrays.asList(des7, des8);
@@ -392,6 +387,7 @@
         System.out.println(stockservice.trouverNOM("logistique"));
 
         IStocksDetailsService stockdetail = new StocksDetailsService();
+                IStocksDetailsDao stocksDetailsDao=new StocksDetailsDao();
         System.out.println("hello");
         stockdetail.ajouterS(des1.getNomDM(),st1.getNomStock(),1000);
         System.out.println("hello");
@@ -400,12 +396,22 @@
         stockdetail.ajouterS(des4.getNomDM(),st1.getNomStock(),1000);
         stockdetail.ajouterS(des5.getNomDM(),st1.getNomStock(),1000);
         stockdetail.ajouterS(des6.getNomDM(),st1.getNomStock(),1000);
-        //stockdetail.updateqtS(std1.getIdStocksDetails(),500);
-        System.out.println(stockdetail.getByStock(1));
+
+
+               /* System.out.println(stocksDetailsDao.getByDispoMedical(des1));
+                stockdetail.ajouterS(des4.getNomDM(),st4.getNomStock(),0);
+                typeDMService.modifier("souad","ayaya");*/
+                //System.out.println(stocksDetailsDao.getStockDetailsByNomDM("seringues"));
+
+
+                //stockdetail.updateqtS(std1.getIdStocksDetails(),500);
+        /*System.out.println(stockdetail.getByStock(1));
                 System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
                 Stock stock = service2.getStock();
                 System.out.println(stock.getIdStock());
-                System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+                System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");*/
+
+
 
 
 
@@ -444,12 +450,8 @@
                     detaildemande.update("Dbandes1","DDM3");
                     detaildemande.update("Dpinces2","DDM5");
                     detaildemande.supprimer("Dbandes1");
-                    System.out.println(detaildemande.afficherTout());
-*/
-
-
-
-
+                   System.out.println(detaildemande.afficherTout());
+//*/
 
 
 
@@ -518,5 +520,6 @@
         //System.out.println(descriptionDMService.trouverDMByTypeDM("fourniture"));
         //System.out.println(exemplaireDMService.trouvezExemplaireByDMetT
         // ypeDm("gants"));
+
 
 

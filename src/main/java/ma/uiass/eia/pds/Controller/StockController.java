@@ -42,5 +42,11 @@ public Stock getStockByName(
 ){
     return stockService.trouverNOM(nom);
 }
-
+    @GET
+    @Path("/getidstock/{nom}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public int getidstock(
+            @PathParam("nom")String nom){
+        return stockService.getidStockbyname(nom);
+    }
 }

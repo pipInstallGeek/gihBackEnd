@@ -6,4 +6,5 @@ public interface IStockService extends IService<Stock> {
 
 
     Stock trouverNOM(String nom);
+    int getidStockbyname(String nom);
 }

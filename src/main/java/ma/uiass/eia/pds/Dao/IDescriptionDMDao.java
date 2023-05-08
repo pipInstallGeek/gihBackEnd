@@ -16,5 +16,6 @@ public interface IDescriptionDMDao extends IDao<DispositifMedical> {
     List<DispositifMedical> getAllByService(Service service);
 
     DispositifMedical searchByNom(String nom);
+    void updateqt(DispositifMedical d, int q);
 
 }

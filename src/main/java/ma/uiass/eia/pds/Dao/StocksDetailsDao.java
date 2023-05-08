@@ -1,14 +1,16 @@
 package ma.uiass.eia.pds.Dao;
 
-import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.*;
 import ma.uiass.eia.pds.HibernateUtility.HibernateUtil;
 import ma.uiass.eia.pds.Model.DispositifMedical;
+import ma.uiass.eia.pds.Model.Service;
+import ma.uiass.eia.pds.Model.Stock;
 import ma.uiass.eia.pds.Model.StocksDetails;
-import jakarta.persistence.EntityManager;
+
 import java.util.ArrayList;
 import java.util.List;
-import jakarta.persistence.NonUniqueResultException;
-import jakarta.persistence.TypedQuery;
+
+import ma.uiass.eia.pds.Service.StockService;
 
 public class StocksDetailsDao implements IStocksDetailsDao {
     private final EntityManager entityManager;
@@ -45,12 +47,25 @@ public class StocksDetailsDao implements IStocksDetailsDao {
         List<StocksDetails> stocksDetails = entityManager.createQuery("from StocksDetails ").getResultList();
         List<StocksDetails> stocksDetailsList = new ArrayList<>();
         stocksDetails.forEach(stocksDetail -> {
-            if (stocksDetail.getStock().getIdStock() == id){
+            if (stocksDetail.getStock().getIdStock() == id) {
                 stocksDetailsList.add(stocksDetail);
             }
         });
         return stocksDetailsList;
     }
+
+    @Override
+    public List getIdByStock(int id) {
+        StockService stockService = new StockService();
+        Stock stock = stockService.trouverId(id);
+        List<StocksDetails> stocksDetails = entityManager.createQuery("from StocksDetails where stock =: value", StocksDetails.class)
+
+                .setParameter("value", stock)
+                .getResultList();
+
+        return stocksDetails;
+    }
+
 
     @Override
     public void mergeDetail(StocksDetails stocksDetails) {
@@ -73,6 +88,7 @@ public class StocksDetailsDao implements IStocksDetailsDao {
                 .setParameter("value", dispositifMedical)
                 .getSingleResult();
     }
+
     @Override
     public StocksDetails findByCode(int idStocksDetails) {
         TypedQuery<StocksDetails> query = entityManager.createQuery("FROM StocksDetails WHERE idStocksDetails = :idStocksDetails", StocksDetails.class);
@@ -83,6 +99,7 @@ public class StocksDetailsDao implements IStocksDetailsDao {
             return null;
         }
     }
+
     @Override
     public void updateqt(StocksDetails d, int q) {
         EntityTransaction et = null;
@@ -94,7 +111,7 @@ public class StocksDetailsDao implements IStocksDetailsDao {
             }
             entityManager.merge(d);
             et.commit();
-        }catch(Exception e){
+        } catch (Exception e) {
             if (et != null) {
                 et.rollback();
             }
@@ -120,5 +137,39 @@ public class StocksDetailsDao implements IStocksDetailsDao {
         }
     }
 
+    @Override
+    public int getDeviceStockQuantity(String nomDM, Service service) {
+        TypedQuery<Integer> query = entityManager.createQuery(
+                "SELECT sd.quantity FROM StocksDetails sd " +
+                        "WHERE sd.dispositifMedical.nomDM = :nomDM " +
+                        "AND sd.stock.service.nomService = :nomService",
+                Integer.class);
+        query.setParameter("nomDM", nomDM);
+        query.setParameter("nomService", service.getNomService());
+        try {
+            return query.getSingleResult();
+        } catch (NoResultException e) {
+            return 0;
+        }
+    }
+
+    @Override
+    public StocksDetails getStockDetailsByNomDMAndService(String nomDM, String nomService) {
+        TypedQuery<StocksDetails> query = entityManager.createQuery(
+                "SELECT sd FROM StocksDetails sd " +
+                        "JOIN sd.dispositifMedical dm " +
+                        "JOIN sd.stock s " +
+                        "JOIN s.service serv " +
+                        "WHERE dm.nomDM = :nomDM " +
+                        "AND serv.nomService = :nomService",
+                StocksDetails.class);
+
+        query.setParameter("nomDM", nomDM);
+        query.setParameter("nomService", nomService);
+
+        return query.getSingleResult();
+
+
+    }
 
 }

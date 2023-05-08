@@ -12,6 +12,8 @@ public class DescriptionDMService implements IDescriptionDMService{
     IEspaceDao salle=new SalleDao();
     IEspaceDao chambre =new ChambreDao();
     IServiceDao serviceDao=new ServiceDao();
+    IStocksDetailsService stocksDetailsService=new StocksDetailsService();
+    IStocksDetailsDao stocksDetailsDao=new StocksDetailsDao();
 
     @Override
     public void ajouter(DispositifMedical dispositifMedical) {descriptionDao.add(dispositifMedical);}
@@ -20,34 +22,49 @@ public class DescriptionDMService implements IDescriptionDMService{
         TypeDM t=typeDMDao.findbyNom(NomTypeDM);
         char s='S';
             if (CodeESpace.charAt(0)==s){
-              Espace  s1= salle.findbyCode(CodeESpace);
-              DispositifMedical old1= descriptionDao.findbyNom(NomDM);
-              DispositifMedical d1=new DispositifMedical(NomDM,Quantité,t, s1);
-              d1.setNomDM(NomDM+CodeESpace);
-                old1.setQuantité(old1.getQuantité() - Quantité);
-              descriptionDao.add(d1);
-              System.out.println(d1.getNomDM());
+                IStockService stockService=new StockService();
+                Espace  s1= salle.findbyCode(CodeESpace);
+                String nomService= s1.getService().getNomService();
+                StocksDetails stock1=stocksDetailsService.getStockDetailsByNomDMAndService(NomDM,nomService);
+
+                //  StocksDetails oldstock=stocksDetailsDao.getByDispoMedical(old1);
+                //List<StocksDetails> stocks= stocksDetailsService.getByStock(stockService.getidStockbyname(nomService));
+                DispositifMedical d1=new DispositifMedical(NomDM,Quantité,t, s1);
+                d1.setNomDM(NomDM+CodeESpace.substring(0,3));
+                int Q=stock1.getQuantity();
+                descriptionDao.add(d1);
+                //stock1.setQuantity(stock1.getQuantity()-Quantité);
+                System.out.println(d1.getNomDM());
+              //oldstock.setQuantity(oldstock.getQuantity() - Quantité);
+             // descriptionDao.add(d1);
+             // System.out.println(d1.getNomDM());
 
 
             }
           else {
+                IStockService stockService=new StockService();
                 Espace  c1= chambre.findbyCode(CodeESpace);
-                DispositifMedical old2= descriptionDao.findbyNom(NomDM);
-                System.out.println(old2);
-                DispositifMedical d2=new DispositifMedical(NomDM,Quantité,t, c1);
-                d2.setNomDM(NomDM+CodeESpace);
-                old2.setQuantité(old2.getQuantité() - Quantité);
+                String nomService= c1.getService().getNomService();
+                //int quantity=stocksDetailsService.getDeviceStockQuantity(NomDM,nomService);
+                //DispositifMedical old1= descriptionDao.findbyNom(NomDM);
+                StocksDetails stock1=stocksDetailsService.getStockDetailsByNomDMAndService(NomDM,nomService);
 
-
-                descriptionDao.add(d2);
-                System.out.println(d2.getNomDM());
-
+                //  StocksDetails oldstock=stocksDetailsDao.getByDispoMedical(old1);
+                //List<StocksDetails> stocks= stocksDetailsService.getByStock(stockService.getidStockbyname(nomService));
+                DispositifMedical d1=new DispositifMedical(NomDM,Quantité,t, c1);
+                d1.setNomDM(NomDM+CodeESpace.substring(0,3));
+               int Q=stock1.getQuantity();
+                descriptionDao.add(d1);
+                //stock1.setQuantity(stock1.getQuantity()-Quantité);
+                System.out.println(d1.getNomDM());
             }
     }
     @Override
     public void create(String nomDM, int quantité,String typeDM){
         TypeDM t=typeDMDao.findbyNom(typeDM);
         descriptionDao.Create(new DispositifMedical(nomDM,0,t));
+        DD.setCodeDM(t.getCodeTypeDM().substring(0,3) + nomDM.substring(0,3));
+        stocksDetailsService.ajouterS(nomDM,"logistique",0);
     }
     @Override
     public List<DispositifMedical> afficherTout() { return descriptionDao.getAll();}
@@ -88,4 +105,6 @@ public class DescriptionDMService implements IDescriptionDMService{
     public DispositifMedical trouverNom(String nom) {
         return descriptionDao.findbyNom(nom);
     }
+    @Override
+    public void updateqt(String code ,int q){descriptionDao.updateqt(descriptionDao.findbyNom(code),q);}
 }

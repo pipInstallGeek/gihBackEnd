@@ -16,4 +16,7 @@ public interface IStocksDetailsService extends IService<StocksDetails> {
     StocksDetails getByCode(int idStocksDetails);
 
     void updateqtS(int idStocksDetails, int q);
+    int getDeviceStockQuantity(String nomDM, String nomService);
+    StocksDetails getStockDetailsByNomDMAndService(String nomDM, String nomService);
+    void ajouterStock(String TypeDM,String DM, String stock, int quantity);
 }

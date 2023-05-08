@@ -28,4 +28,9 @@ public class StockService implements IStockService{
     public Stock trouverNOM(String nom) {
         return stockDao.findStockByName(nom);
     }
+
+    @Override
+    public int getidStockbyname(String nom) {
+        return trouverNOM(nom).getIdStock();
+    }
 }
