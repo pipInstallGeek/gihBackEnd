@@ -40,8 +40,8 @@ public class LitService implements ILitService{
 
         @Override
         public Long countOccupationInEspace(int idEspace, boolean occupation) {
-           Espace espace = getEspace(idEspace);
-            return litDao.countOccupationInEspace(espace, occupation);
+
+            return litDao.countOccupationInEspace(idEspace, occupation);
         }
 
         @Override

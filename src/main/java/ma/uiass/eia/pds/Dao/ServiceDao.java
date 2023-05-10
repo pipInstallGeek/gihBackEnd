@@ -23,6 +23,7 @@ public class ServiceDao implements IServiceDao{
         EntityTransaction transaction = entityManager.getTransaction();
         try {
             transaction.begin();
+            service.setCodeService(service.getCodeService()+"-");
             entityManager.persist(service);
             transaction.commit();
         }catch (Exception e){

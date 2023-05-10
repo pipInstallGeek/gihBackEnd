@@ -23,6 +23,7 @@ public class EtageDao implements IEtageDao{
         EntityTransaction transaction = entityManager.getTransaction();
         try {
             transaction.begin();
+            etage.setCodeEtage(etage.getCodeEtage()+"-");
             entityManager.persist(etage);
             transaction.commit();
         }catch (Exception e){

@@ -22,6 +22,7 @@ public class BatimentDao implements IBatimentDao{
         EntityTransaction transaction = entityManager.getTransaction();
         try {
             transaction.begin();
+            batiment.setCodeBatiment(batiment.getCodeBatiment()+"-");
             entityManager.persist(batiment);
             transaction.commit();
         }catch (Exception e){

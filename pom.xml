@@ -157,14 +157,14 @@
          <directory>${project.basedir}/output</directory>
         <pluginManagement>
             <plugins>
-                <!-- Plugin responsable de la génération du fichier JAR
+
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-jar-plugin</artifactId>
                     <version>3.0.2</version>
 
                 </plugin>
-                -->
+                <!--
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
@@ -173,7 +173,7 @@
                         <includes>**/Model/**</includes>
                     </configuration>
                 </plugin>
-
+                -->
             </plugins>
         </pluginManagement>
         <plugins>

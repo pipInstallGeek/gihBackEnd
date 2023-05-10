@@ -24,11 +24,12 @@ public class Lit implements Serializable {
     private EtatLit etatLit;
     @Column
     private Boolean occupe;
-    @JsonIgnore
+
 
     @ManyToOne
     @JoinColumn(name = "idEspace", referencedColumnName = "idEspace")
     private Espace espace;
+
     @JsonIgnore
     @OneToOne(mappedBy = "lit")
     private Admission admission;
@@ -39,7 +40,6 @@ public class Lit implements Serializable {
     private TypeLit typeLit;
 
 
-    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "idMarque", referencedColumnName = "idMarque")
     private Marque marque;

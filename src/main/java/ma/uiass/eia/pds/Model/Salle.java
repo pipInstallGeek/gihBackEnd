@@ -20,7 +20,7 @@ public class Salle extends Espace implements Serializable {
     private TypeSalle typeSalle;
 
 
-    public Salle(String numEspace, TypeSalle typeSalle,Service service) {
+    public Salle(TypeSalle typeSalle,Service service) {
         super(service);
         this.typeSalle = typeSalle;
     }

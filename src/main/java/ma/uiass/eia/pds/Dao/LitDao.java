@@ -28,7 +28,7 @@ public class LitDao implements ILitDao{
         try {
             transaction.begin();
             entityManager.persist(lit);
-            lit.setCodeLit(lit.getEspace().getCodeEspace()+lit.getIdLit());
+            lit.setCodeLit(lit.getEspace().getCodeEspace()+"-"+lit.getIdLit());
             entityManager.merge(lit);
             transaction.commit();
         }catch (Exception e){
@@ -93,11 +93,12 @@ public class LitDao implements ILitDao{
     }
 
     @Override
-    public Long countOccupationInEspace(Espace espace,boolean occupation) {
-        Long mycount = entityManager.createQuery("SELECT count(*) from Lit t JOIN Espace where t.occupe = :value and t.espace = :value2 ", Long.class)
+    public Long countOccupationInEspace(int espace,boolean occupation) {
+        Long mycount = entityManager.createQuery("SELECT count(*) from Lit t JOIN t.espace where t.occupe = :value and espace.idEspace = :value2 ", Long.class)
                 .setParameter("value", occupation)
                 .setParameter("value2", espace)
                 .getSingleResult();
+        System.out.println(espace+"  "+ mycount + "   "+ occupation );
         return mycount;
     }
 

@@ -9,7 +9,6 @@
             import org.glassfish.jersey.jackson.internal.jackson.jaxrs.json.JacksonJsonProvider;
             import org.glassfish.jersey.jdkhttp.JdkHttpServerFactory;
             import org.glassfish.jersey.server.ResourceConfig;
-            import org.python.antlr.ast.Str;
 
             import java.net.*;
             import java.time.LocalDate;
@@ -49,11 +48,11 @@
 
 
 
-       Batiment batiment = new Batiment("Batiment A");
+       Batiment batiment = new Batiment("A");
        batimentService.ajouter(batiment);
-    Etage etage = new Etage("Etage 1", batiment);
-       Etage etage1 = new Etage("Etage 2", batiment);
-    Etage etage2 = new Etage("Etage 3", batiment);
+    Etage etage = new Etage("1", batiment);
+       Etage etage1 = new Etage("2", batiment);
+    Etage etage2 = new Etage("3", batiment);
         etageService.ajouter(etage);
         etageService.ajouter(etage1);
         etageService.ajouter(etage2);
@@ -69,12 +68,12 @@
         serviceService.ajouter(service4);
 
         Espace chambre = new Chambre(TypeChambre.SIMPLE, service2 );
-        Espace salle = new Salle("salle78", TypeSalle.OPERATION,service2);
+        Espace salle = new Salle( TypeSalle.OPERATION,service2);
         Espace chambre2 = new Chambre(TypeChambre.SIMPLE, service1 );
-        Espace salle2 = new Salle("salle0", TypeSalle.OPERATION,service1);
+        Espace salle2 = new Salle( TypeSalle.OPERATION,service1);
         Espace chambre1= new Chambre(TypeChambre.SIMPLE, service3 );
-        Espace salle1 = new Salle("salle2", TypeSalle.OPERATION,service3);
-        Espace salle3 = new Salle("salle3", TypeSalle.OPERATION,service4);
+        Espace salle1 = new Salle( TypeSalle.OPERATION,service3);
+        Espace salle3 = new Salle( TypeSalle.OPERATION,service4);
         Espace chambre3= new Chambre(TypeChambre.SIMPLE, service4 );
 
 
