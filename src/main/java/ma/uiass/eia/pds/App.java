@@ -10,6 +10,7 @@
             import ma.uiass.eia.pds.Service.*;
 
 
+            import org.glassfish.jersey.jackson.JacksonFeature;
             import org.glassfish.jersey.jackson.internal.jackson.jaxrs.json.JacksonJsonProvider;
             import org.glassfish.jersey.jdkhttp.JdkHttpServerFactory;
             import org.glassfish.jersey.server.ResourceConfig;
@@ -33,13 +34,13 @@
             {
 
                 URI baseUri = UriBuilder.fromUri("http://localhost/").port(9998).build();
-                ResourceConfig config = new ResourceConfig().packages("ma.uiass.eia.pds");
+                ResourceConfig config = new ResourceConfig().packages("ma.uiass.eia.pds","com.fasterxml.jackson.jaxrs.json.provider").register(JacksonFeature.class);
                 config.register(ReservationController.class);
                 HttpServer server = JdkHttpServerFactory.createHttpServer(baseUri, config);
                 System.out.println("server launched Successfully ");
 
 
-/*
+
                 IBatimentService batimentService = new BatimentService();
                 IEtageService etageService = new EtageService();
                 IServiceService serviceService = new ServiceService();
@@ -149,13 +150,13 @@
 
 
 
- */
 
+/*
                 SalleService salleService=new SalleService();
                 ServiceService serviceService1=new ServiceService();
                 salleService.ajouter(new Salle("Stock",TypeSalle.UNKNOWN,serviceService1.afficherTout().get(serviceService1.afficherTout().size()-1)));
 
-
+*/
 
                 //------------------------------------------------------------------------------------------------------------------------
 
