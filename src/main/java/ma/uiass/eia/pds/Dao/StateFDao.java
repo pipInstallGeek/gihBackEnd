@@ -1,0 +1,44 @@
+package ma.uiass.eia.pds.Dao;
+
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityTransaction;
+import ma.uiass.eia.pds.HibernateUtility.HibernateUtil;
+import ma.uiass.eia.pds.Model.Salle;
+import ma.uiass.eia.pds.Model.StateAMB;
+import ma.uiass.eia.pds.Model.StateF;
+
+import java.util.List;
+
+public class StateFDao implements IStateAMBDao<StateF> {
+    private EntityManager entityManager;
+    public StateFDao() {
+        entityManager = HibernateUtil.getEntityManger();
+    }
+
+    @Override
+    public List<StateF> getAll() {
+        return entityManager.createQuery("from StateF ", StateF.class).getResultList();
+    }
+
+    @Override
+    public void add(StateF stateF) {
+        EntityTransaction transaction = entityManager.getTransaction();
+        try {
+            transaction.begin();
+            entityManager.persist(stateF);
+            stateF.setCodeState("F-"+stateF.getIdState());
+            entityManager.merge(stateF);
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }
+
+    }
+
+    @Override
+    public StateF getById(int id) {
+        return entityManager.find(StateF.class, id);    }
+}

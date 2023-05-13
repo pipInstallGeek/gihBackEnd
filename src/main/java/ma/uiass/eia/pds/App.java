@@ -45,29 +45,39 @@
                 ITypeDMService typeDMService=new TypeDMService();
                 IExemplaireDMService exemplaireDMService=new ExemplaireDMService();
                 LitDao l=new LitDao();
+                IAmbulanceService ambulanceService=new AmbulanceService();
+                IStateAMBService stateF=new StateFService();
+                IStateAMBService stateNFCD=new StateNFCDService();
+                IStateAMBService stateNFLD=new StateNFLDService();
+                IRévisionService révision=new RévisionService();
 
 
 
-       Batiment batiment = new Batiment("A");
-       batimentService.ajouter(batiment);
-    Etage etage = new Etage("1", batiment);
-       Etage etage1 = new Etage("2", batiment);
-    Etage etage2 = new Etage("3", batiment);
-        etageService.ajouter(etage);
-        etageService.ajouter(etage1);
-        etageService.ajouter(etage2);
+
+                Batiment batiment = new Batiment("A");
+                batimentService.ajouter(batiment);
+                Etage etage = new Etage("1", batiment);
+                Etage etage1 = new Etage("2", batiment);
+                Etage etage2 = new Etage("3", batiment);
+                etageService.ajouter(etage);
+                etageService.ajouter(etage1);
+                etageService.ajouter(etage2);
 //
       Service service1 = new Service("OC", "Oncologie", etage );
         Service service2 = new Service("GY", "Gynegologie", etage1 );
       Service service3 = new Service("PN", "Pneumologie", etage2 );
        Service service4 = new Service("DR", "Dérmathologie", etage2 );
+       Service service5 = new Service("UR", "Urgence", etage);
+
 
         serviceService.ajouter(service1);
         serviceService.ajouter(service2);
         serviceService.ajouter(service3);
         serviceService.ajouter(service4);
+        serviceService.ajouter(service5);
 
-        Espace chambre = new Chambre(TypeChambre.SIMPLE, service2 );
+
+                Espace chambre = new Chambre(TypeChambre.SIMPLE, service2 );
         Espace salle = new Salle( TypeSalle.OPERATION,service2);
         Espace chambre2 = new Chambre(TypeChambre.SIMPLE, service1 );
         Espace salle2 = new Salle( TypeSalle.OPERATION,service1);
@@ -386,7 +396,7 @@
         System.out.println(stockservice.trouverNOM("logistique"));
 
         IStocksDetailsService stockdetail = new StocksDetailsService();
-                IStocksDetailsDao stocksDetailsDao=new StocksDetailsDao();
+        IStocksDetailsDao stocksDetailsDao=new StocksDetailsDao();
         System.out.println("hello");
         stockdetail.ajouterS(des1.getNomDM(),st1.getNomStock(),1000);
         System.out.println("hello");
@@ -395,6 +405,27 @@
         stockdetail.ajouterS(des4.getNomDM(),st1.getNomStock(),1000);
         stockdetail.ajouterS(des5.getNomDM(),st1.getNomStock(),1000);
         stockdetail.ajouterS(des6.getNomDM(),st1.getNomStock(),1000);
+
+
+        Ambulance ambulance=new Ambulance();
+
+        StateAMB stateF1= new StateF("Fonctionnelle");
+        StateAMB stateF2= new StateNFCD("Non-Fonctionnelle-CD");
+        StateAMB stateF3= new StateNFLD("Non-Fonctionnelle-LD");
+
+        stateF.ajouter(stateF1);
+        stateNFCD.ajouter(stateF2);
+        stateNFLD.ajouter(stateF3);
+               ambulanceService.addAMB("2023-05-20");
+                révision.addR("2023-06-03","AMB-1","2023-07-04",TypeRévision.Révision_Maintenance_Regulière);
+                System.out.println(ambulanceService.trouverByCode("AMB-1"));
+
+
+
+
+
+
+
 
 
                /* System.out.println(stocksDetailsDao.getByDispoMedical(des1));

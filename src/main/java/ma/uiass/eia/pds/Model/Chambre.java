@@ -15,10 +15,6 @@ import java.util.List;
 @Data
 public class Chambre extends Espace implements Serializable {
 
-
-    @Column(name = "NumChambre", length = 50)
-    private String numChambre;
-
     @Column(name = "TypeChambre", length = 50)
     private TypeChambre typeChambre;
 
