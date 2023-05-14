@@ -35,7 +35,7 @@ public class Commande implements Serializable {
     @ManyToMany
     @JoinTable(name = "detailsCommande", joinColumns = {@JoinColumn(name = "idCommande")}, inverseJoinColumns = {@JoinColumn(name = "idLit")})
     private List<Lit> lits;
-
+    
    public Commande(String numCommande, int quantite, Date dateCommande, Date dateLivraison, Boolean confirmation, List<Lit> lits) {
         setNumCommande(numCommande);
         setQuantite(quantite);
