@@ -5,6 +5,7 @@ import ma.uiass.eia.pds.Dao.IAmbulanceDao;
 import ma.uiass.eia.pds.Dao.IRévisionDao;
 import ma.uiass.eia.pds.Dao.RévisionDao;
 import ma.uiass.eia.pds.Model.Ambulance;
+import ma.uiass.eia.pds.Model.DispositifMedical;
 import ma.uiass.eia.pds.Model.Révision;
 import ma.uiass.eia.pds.Model.TypeRévision;
 
@@ -38,5 +39,9 @@ IAmbulanceService ambulanceService=new AmbulanceService();
         Révision r=new Révision(dateR,dateProRévision,desc,typeR,ambulance);
         révisionDao.add(r);
         //r.setCodeRévision("REV"+r.getIdRévision());
+    }
+    @Override
+    public List<Révision> trouverbyCode(String codeAMB) {
+        return révisionDao.findbyCde(codeAMB);
     }
 }

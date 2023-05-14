@@ -17,8 +17,14 @@ public class StateNFCD extends StateAMB implements Serializable {
         super(nomState);
     }
 
+    @Override
+    public String toString() {
+        return "Non-Fonctionnelle-CD";
+    }
+
     public StateNFCD() {
         super();
     }
+
 
 }

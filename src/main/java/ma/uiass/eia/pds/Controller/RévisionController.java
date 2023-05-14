@@ -2,6 +2,7 @@ package ma.uiass.eia.pds.Controller;
 
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
+import ma.uiass.eia.pds.Model.DispositifMedical;
 import ma.uiass.eia.pds.Model.Révision;
 
 import ma.uiass.eia.pds.Model.TypeRévision;
@@ -25,6 +26,12 @@ IRévisionService révisionService=new RévisionService();
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     public void addHistorique(@PathParam("dateR") String dateR,@PathParam("codeAMB") String codeAMB,@PathParam("dateProRévision") String dateProRévision,@PathParam("typeR") TypeRévision typeR){
         révisionService.addR(dateR,codeAMB,dateProRévision,typeR);
+    }
+    @GET
+    @Path("/getAllCodeAMB{codeAMB}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Révision> getAllByCodeAMB(@PathParam(("codeAMB")) String codeAMB) {
+        return révisionService.trouverbyCode(codeAMB);
     }
 
 

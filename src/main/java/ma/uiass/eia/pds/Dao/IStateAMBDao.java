@@ -1,5 +1,6 @@
 package ma.uiass.eia.pds.Dao;
 
+import ma.uiass.eia.pds.Model.Ambulance;
 import ma.uiass.eia.pds.Model.Espace;
 import ma.uiass.eia.pds.Model.StateAMB;
 

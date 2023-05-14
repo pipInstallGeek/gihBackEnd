@@ -2,11 +2,10 @@ package ma.uiass.eia.pds.Dao;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.NonUniqueResultException;
+import jakarta.persistence.TypedQuery;
 import ma.uiass.eia.pds.HibernateUtility.HibernateUtil;
-import ma.uiass.eia.pds.Model.Salle;
-import ma.uiass.eia.pds.Model.StateAMB;
-import ma.uiass.eia.pds.Model.StateF;
-import ma.uiass.eia.pds.Model.StateNFCD;
+import ma.uiass.eia.pds.Model.*;
 
 import java.util.List;
 
@@ -45,6 +44,14 @@ public class StateNFCDDao implements IStateAMBDao<StateNFCD> {
 
     @Override
     public StateAMB findbyNom(String nomState) {
-        return null;
+        TypedQuery<StateF> query = entityManager.createQuery("SELECT c FROM StateF c WHERE c.nomState = :nomState", StateF.class);
+        query.setParameter("nomState", nomState);
+        try {
+            return query.getSingleResult();
+        } catch (NonUniqueResultException e) {
+            return null;
+        }
     }
+
+
 }

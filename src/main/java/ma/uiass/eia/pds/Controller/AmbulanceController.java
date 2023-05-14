@@ -25,5 +25,13 @@ public class AmbulanceController {
     public void addAMB(@PathParam("dateCirculation") String dateCirculation) {
         ambulanceService.addAMB(dateCirculation);
     }
+    @POST
+    @Path("/updateState")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    public void updateState(@FormParam("codeAMB") String codeAMB,@FormParam("NewState")String NewState){
+       ambulanceService.modifierS(codeAMB, NewState);
+
+    }
 
 }

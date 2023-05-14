@@ -50,6 +50,7 @@
                 IStateAMBService stateNFCD=new StateNFCDService();
                 IStateAMBService stateNFLD=new StateNFLDService();
                 IRévisionService révision=new RévisionService();
+                IStateAMBService stateAMBService=new StateFService();
 
 
 
@@ -420,6 +421,7 @@
                 révision.addR("2023-06-03","AMB-1","2023-07-04",TypeRévision.Révision_Maintenance_Régulière);
                 System.out.println(ambulanceService.trouverByCode("AMB-1"));
                 System.out.println(ambulanceService.afficherTout());
+                System.out.println(stateAMBService.afficherTout());
 
 
 

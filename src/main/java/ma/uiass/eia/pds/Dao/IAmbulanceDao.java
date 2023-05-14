@@ -4,4 +4,5 @@ import ma.uiass.eia.pds.Model.Ambulance;
 
 public interface IAmbulanceDao extends IDao<Ambulance> {
     Ambulance findbyCode(String codeAMB);
+    void updateS(Ambulance a,String nomState);
 }

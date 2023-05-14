@@ -46,4 +46,18 @@ public class AmbulanceDao implements IAmbulanceDao{
             return null;
         }
     }
+    @Override
+    public void updateS(Ambulance a,String nomState) {
+        EntityTransaction transaction = entityManager.getTransaction();
+        try{
+            transaction.begin();
+            a.getState().setNomState(nomState);
+            transaction.commit();
+        }catch (Exception e){
+            if(transaction!=null){
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }
+    }
 }

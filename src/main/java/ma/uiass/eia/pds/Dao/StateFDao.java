@@ -5,10 +5,7 @@ import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.NonUniqueResultException;
 import jakarta.persistence.TypedQuery;
 import ma.uiass.eia.pds.HibernateUtility.HibernateUtil;
-import ma.uiass.eia.pds.Model.Espace;
-import ma.uiass.eia.pds.Model.Salle;
-import ma.uiass.eia.pds.Model.StateAMB;
-import ma.uiass.eia.pds.Model.StateF;
+import ma.uiass.eia.pds.Model.*;
 
 import java.util.List;
 
@@ -54,4 +51,5 @@ public class StateFDao implements IStateAMBDao<StateF> {
             return null;
         }
     }
+
 }

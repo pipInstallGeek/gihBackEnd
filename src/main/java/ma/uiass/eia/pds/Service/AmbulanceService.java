@@ -28,6 +28,11 @@ public class AmbulanceService implements IAmbulanceService {
         System.out.println(ambulance.getCodeAmbulance());
 
     }
+    @Override
+    public void modifierS(String codeAMB,String NewState) {
+        Ambulance ambulance= ambulanceDao.findbyCode(codeAMB);
+        ambulanceDao.updateS(ambulance,NewState);
+    }
 
 
 }
