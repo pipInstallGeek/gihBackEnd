@@ -15,6 +15,12 @@ public class Ambulance {
     @Column(name = "immatriculation")
     private String immatriculation;
 
+    @Column
+    private String marque;
+
+    @Column
+    private String model;
+
     @Column(name="date_mise_service")
     private LocalDate date_mise_service;
 
@@ -25,13 +31,17 @@ public class Ambulance {
     @OneToMany(mappedBy = "ambulance")
     private List<HistoriqueEtats> historiqueEtats = new ArrayList<>();
 
+
     public Ambulance() {
     }
 
-    public Ambulance(String immatriculation, EtatsAmbulance etatsAmbulances) {
+
+    public Ambulance(String immatriculation, String marque, String model, LocalDate date_mise_service, EtatsAmbulance etatsAmbulance) {
         this.immatriculation = immatriculation;
-        this.date_mise_service = LocalDate.now();
-        this.etatsAmbulance = etatsAmbulances;
+        this.marque = marque;
+        this.model = model;
+        this.date_mise_service = date_mise_service;
+        this.etatsAmbulance = etatsAmbulance;
     }
 
     public LocalDate getDate_mise_service() {
