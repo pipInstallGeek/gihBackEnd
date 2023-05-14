@@ -2,14 +2,14 @@ package ma.uiass.eia.pds.Model;
 
 import javax.persistence.*;
 
-@Entity(name = "TEtatAmbulance")
+@Entity
+@Table(name = "TEtatAmbulance")
 public class EtatsAmbulance {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_etat")
     private int id;
 
-    @Column(name = "nom_etat", unique = true)
+    @Column
     private String nom;
 
     public EtatsAmbulance() {}
@@ -38,4 +38,5 @@ public class EtatsAmbulance {
     public String toString() {
         return nom;
     }
+
 }

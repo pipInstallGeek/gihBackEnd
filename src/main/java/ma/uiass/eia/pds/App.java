@@ -151,6 +151,18 @@
 
 
 
+
+
+                EtatsAmbulanceService etatsAmbulanceService=new EtatsAmbulanceService();
+                etatsAmbulanceService.ajouter(new EtatsAmbulance("Nouvelle"));
+                etatsAmbulanceService.ajouter(new EtatsAmbulance("Bonne etat"));
+                etatsAmbulanceService.ajouter(new EtatsAmbulance("Usée"));
+
+
+
+
+
+
 /*
                 SalleService salleService=new SalleService();
                 ServiceService serviceService1=new ServiceService();

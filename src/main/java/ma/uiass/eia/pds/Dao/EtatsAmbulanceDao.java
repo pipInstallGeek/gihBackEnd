@@ -3,14 +3,13 @@ package ma.uiass.eia.pds.Dao;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 import ma.uiass.eia.pds.HibernateUtility.HibernateUtil;
-import ma.uiass.eia.pds.Model.Ambulance;
 import ma.uiass.eia.pds.Model.EtatsAmbulance;
 
 import java.util.List;
 
 public class EtatsAmbulanceDao implements IEtatsAmbulanceDao{
-    private EntityManager entityManager;
-    public  EtatsAmbulanceDao(){this.entityManager= HibernateUtil.getEntityManger();
+    private final EntityManager entityManager;
+    public EtatsAmbulanceDao(){this.entityManager= HibernateUtil.getEntityManger();
     }
     @Override
     public List<EtatsAmbulance> getAll() {
@@ -43,3 +42,4 @@ public class EtatsAmbulanceDao implements IEtatsAmbulanceDao{
         return etatsAmbulance;
     }
 }
+

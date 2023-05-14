@@ -4,7 +4,8 @@ import java.time.LocalDate;
 
 import javax.persistence.*;
 
-@Entity(name = "THistoriqueEtatambulance")
+@Entity
+@Table(name = "THistoriqueEtatambulance")
 public class HistoriqueEtats {
 
     @Id
