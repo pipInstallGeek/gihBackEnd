@@ -2,20 +2,32 @@ package ma.uiass.eia.pds.Model;
 
 import javax.persistence.*;
 
-@Entity(name = "TEtatAmbulance")
-public class EtatsAmbulance {
+@Entity(name = "t_etat_ambulance")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+public abstract class EtatsAmbulance {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_etat")
     private int id;
 
-    @Column(name = "nom_etat", unique = true)
-    private String nom;
+    @Column(name = "nom_etat")
+    @Enumerated(EnumType.STRING)
+    private StateName stateName;
+    @Transient
+    private static double A;
+    @Transient
+    private static double B;
+    private double x;
+    private double y;
+    @OneToOne
+    @JoinColumn(name = "id_ambulance")
+    private Ambulance ambulance;
 
-    public EtatsAmbulance() {}
+    public EtatsAmbulance() {
+    }
 
-    public EtatsAmbulance(String nom) {
-        this.nom = nom;
+    public EtatsAmbulance(StateName stateName) {
+        this.stateName = stateName;
     }
 
     public int getId() {
@@ -26,16 +38,19 @@ public class EtatsAmbulance {
         this.id = id;
     }
 
-    public String getNom() {
-        return nom;
+    public StateName getStateName() {
+        return stateName;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
+    public void setStateName(StateName stateName) {
+        this.stateName = stateName;
     }
 
     @Override
     public String toString() {
-        return nom;
+        return "EtatAmbulance{" +
+                "id=" + id +
+                ", stateName=" + stateName +
+                '}';
     }
 }

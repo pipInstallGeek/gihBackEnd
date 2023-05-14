@@ -2,17 +2,15 @@ package ma.uiass.eia.pds.Model;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
-@Entity(name = "TAmbulance")
+@Entity(name = "t_ambulance")
 public class Ambulance {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_ambulance")
     private int id;
 
-    @Column(name = "immatriculation")
+    @Column(name = "immatriculation", unique = true)
     private String immatriculation;
 
     @Column(name="date_mise_service")
@@ -20,18 +18,25 @@ public class Ambulance {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_etat")
-    private EtatsAmbulance etatsAmbulance;
+    private EtatsAmbulance etatAmbulance = new F();
 
-    @OneToMany(mappedBy = "ambulance")
-    private List<HistoriqueEtats> historiqueEtats = new ArrayList<>();
+    @Column(name = "estimated_date_revision")
+    private LocalDate estimatedRevisionDate;
 
     public Ambulance() {
     }
 
-    public Ambulance(String immatriculation, EtatsAmbulance etatsAmbulances) {
+    public Ambulance(String immatriculation, EtatsAmbulance etatAmbulances) {
         this.immatriculation = immatriculation;
         this.date_mise_service = LocalDate.now();
-        this.etatsAmbulance = etatsAmbulances;
+        this.etatAmbulance = etatAmbulances;
+    }
+
+    public Ambulance(String immatriculation, LocalDate date_mise_service, EtatsAmbulance etatAmbulance, LocalDate estimatedRevisionDate) {
+        this.immatriculation = immatriculation;
+        this.date_mise_service = date_mise_service;
+        this.etatAmbulance = etatAmbulance;
+        this.estimatedRevisionDate = estimatedRevisionDate;
     }
 
     public LocalDate getDate_mise_service() {
@@ -61,19 +66,20 @@ public class Ambulance {
     }
 
     public EtatsAmbulance getEtatAmbulance() {
-        return etatsAmbulance;
+        return etatAmbulance;
     }
 
-    public void setEtatAmbulance(EtatsAmbulance etatsAmbulance) {
-        this.etatsAmbulance = etatsAmbulance;
+    public void setEtatAmbulance(EtatsAmbulance etatAmbulance) {
+        this.etatAmbulance = etatAmbulance;
     }
 
-    public List<HistoriqueEtats> getHistoriqueEtats() {
-        return historiqueEtats;
+    public LocalDate getEstimatedRevisionDate() {
+        return estimatedRevisionDate;
     }
 
-    public void setHistoriqueEtats(List<HistoriqueEtats> historiqueEtats) {
-        this.historiqueEtats = historiqueEtats;
+    public void setEstimatedRevisionDate(LocalDate estimatedRevisionDate) {
+        this.estimatedRevisionDate = estimatedRevisionDate;
     }
 }
+
 

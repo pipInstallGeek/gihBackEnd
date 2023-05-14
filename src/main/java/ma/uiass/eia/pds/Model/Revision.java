@@ -2,11 +2,10 @@ package ma.uiass.eia.pds.Model;
 
 
 
+import javax.persistence.*;
 import java.util.Date;
 
-import javax.persistence.*;
-
-@Entity(name = "TRevision")
+@Entity(name = "t_revision")
 public class Revision {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,6 +14,8 @@ public class Revision {
 
     @Column(name = "date_revision")
     private Date date_revision;
+    @Column(name = "description_revision")
+    private String description;
 
     @ManyToOne
     @JoinColumn(name = "id_ambulance")
@@ -22,15 +23,22 @@ public class Revision {
 
     @ManyToOne
     @JoinColumn(name = "code_etat")
-    private EtatsAmbulance etatsAmbulance;
+    private EtatsAmbulance etatAmbulance;
 
     public Revision() {
     }
 
-    public Revision(Date date_revision, Ambulance ambulance, EtatsAmbulance etatsAmbulance) {
+    public Revision(Date date_revision, Ambulance ambulance, EtatsAmbulance etatAmbulance) {
         this.date_revision = date_revision;
         this.ambulance = ambulance;
-        this.etatsAmbulance = etatsAmbulance;
+        this.etatAmbulance = etatAmbulance;
+    }
+
+    public Revision(Date date_revision, String description, Ambulance ambulance, EtatsAmbulance etatAmbulance) {
+        this.date_revision = date_revision;
+        this.description = description;
+        this.ambulance = ambulance;
+        this.etatAmbulance = etatAmbulance;
     }
 
     public int getId() {
@@ -49,6 +57,18 @@ public class Revision {
         this.date_revision = date_revision;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setEtatAmbulance(EtatsAmbulance etatAmbulance) {
+        this.etatAmbulance = etatAmbulance;
+    }
+
     public Ambulance getAmbulance() {
         return ambulance;
     }
@@ -58,6 +78,6 @@ public class Revision {
     }
 
     public EtatsAmbulance getEtatAmbulance() {
-        return etatsAmbulance;
+        return etatAmbulance;
     }
 }
