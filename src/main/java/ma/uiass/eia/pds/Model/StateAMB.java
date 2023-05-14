@@ -15,9 +15,9 @@ import java.io.Serializable;
 @DiscriminatorColumn(name = "type")
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
 @JsonSubTypes({
-        @JsonSubTypes.Type(value = Chambre.class, name = "stateF"),
-        @JsonSubTypes.Type(value = Salle.class, name = "stateNFCD"),
-        @JsonSubTypes.Type(value = Salle.class, name = "stateNFLD"),
+        @JsonSubTypes.Type(value = StateF.class, name = "stateF"),
+        @JsonSubTypes.Type(value = StateNFCD.class, name = "stateNFCD"),
+        @JsonSubTypes.Type(value = StateNFLD.class, name = "stateNFLD"),
 })
 @Data
 @NoArgsConstructor
