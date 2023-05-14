@@ -6,7 +6,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,21 +19,20 @@ public class Ambulance implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idAmbulance;
 
-    @Column(name="codeAmbulance", length=50)
+    @Column(name="CodeAmbulance", length=50)
     private String codeAmbulance;
-    @Column(name="dateMiseEnCirculation", length=50)
+    @Column(name="DateMiseEnCirculation", length=50)
     private String dateMiseEnCirculation;
-    @Column(name="dateCréation", length=50)
+    @Column(name="DateCréation", length=50)
     private String dateCréation;
     @Column(name="Kilométrage", length=50)
-    private double Kilométrage;
+    private double kilométrage;
 
     @JsonIgnore
     @OneToMany(mappedBy = "ambulance", fetch = FetchType.LAZY )
     private List<Révision> révisions = new ArrayList<>();
     @OneToOne(optional = true, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "idState")
-    @JsonIgnore
     private StateAMB state;
 
 
@@ -47,7 +45,7 @@ public class Ambulance implements Serializable {
     public Ambulance(String dateMiseEnCirculation, String dateCréation, double kilométrage, StateAMB state) {
         this.dateMiseEnCirculation = dateMiseEnCirculation;
         this.dateCréation = dateCréation;
-        Kilométrage = kilométrage;
+       this.kilométrage=kilométrage;
         this.state = state;
     }
 

@@ -42,4 +42,9 @@ public class StateNFCDDao implements IStateAMBDao<StateNFCD> {
     @Override
     public StateNFCD getById(int id) {
         return entityManager.find(StateNFCD.class, id);    }
+
+    @Override
+    public StateAMB findbyNom(String nomState) {
+        return null;
+    }
 }

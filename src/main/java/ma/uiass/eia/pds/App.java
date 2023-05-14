@@ -417,8 +417,9 @@
         stateNFCD.ajouter(stateF2);
         stateNFLD.ajouter(stateF3);
                ambulanceService.addAMB("2023-05-20");
-                révision.addR("2023-06-03","AMB-1","2023-07-04",TypeRévision.Révision_Maintenance_Regulière);
+                révision.addR("2023-06-03","AMB-1","2023-07-04",TypeRévision.Révision_Maintenance_Régulière);
                 System.out.println(ambulanceService.trouverByCode("AMB-1"));
+                System.out.println(ambulanceService.afficherTout());
 
 
 

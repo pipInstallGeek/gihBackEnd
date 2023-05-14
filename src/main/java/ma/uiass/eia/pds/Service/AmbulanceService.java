@@ -8,8 +8,7 @@ import java.util.List;
 
 public class AmbulanceService implements IAmbulanceService {
     IAmbulanceDao ambulanceDao=new AmbulanceDao();
-    IRévisionDao r=new RévisionDao();
-    IStateAMBDao<StateAMB> e=new StateAMBDao();
+    IStateAMBDao stateAMBDao=new StateFDao();
     @Override
     public void ajouter(Ambulance ambulance) {ambulanceDao.add(ambulance);}
 
@@ -22,9 +21,8 @@ public class AmbulanceService implements IAmbulanceService {
     public Ambulance trouverByCode(String code) {return ambulanceDao.findbyCode(code);}
     @Override
     public void addAMB(String dateMiseEnCirculation) {
-        StateAMB etat = new StateAMB("Fonctionnelle");
+        StateAMB  etat=stateAMBDao.findbyNom("Fonctionnelle");
         Ambulance ambulance = new Ambulance(dateMiseEnCirculation,LocalDate.now().toString(),0,etat);
-        //ambulance.setCodeAmbulance("AMB-"+ambulance.getIdAmbulance());
         ambulanceDao.add(ambulance);
         System.out.println(ambulance.getIdAmbulance());
         System.out.println(ambulance.getCodeAmbulance());

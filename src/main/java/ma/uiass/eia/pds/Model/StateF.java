@@ -25,4 +25,8 @@ public class StateF extends StateAMB implements Serializable {
         super();
     }
 
+    public String toString(){
+        return this.getNomState();
+    }
+
 }

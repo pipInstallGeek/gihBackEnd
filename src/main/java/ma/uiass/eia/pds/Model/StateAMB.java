@@ -21,7 +21,7 @@ import java.io.Serializable;
 })
 @Data
 @NoArgsConstructor
-public class StateAMB implements Serializable {
+public abstract  class StateAMB implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
     private int idState;

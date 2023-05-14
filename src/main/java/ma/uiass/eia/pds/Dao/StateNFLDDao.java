@@ -4,6 +4,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 import ma.uiass.eia.pds.HibernateUtility.HibernateUtil;
 
+import ma.uiass.eia.pds.Model.StateAMB;
 import ma.uiass.eia.pds.Model.StateF;
 import ma.uiass.eia.pds.Model.StateNFLD;
 
@@ -41,4 +42,9 @@ public class StateNFLDDao implements IStateAMBDao<StateNFLD> {
     @Override
     public StateNFLD getById(int id) {
         return entityManager.find(StateNFLD.class, id);    }
+
+    @Override
+    public StateAMB findbyNom(String nomState) {
+        return null;
+    }
 }
