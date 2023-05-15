@@ -10,7 +10,7 @@ import ma.uiass.eia.pds.Service.IAmbulanceService;
 
 import java.util.List;
 
-@Path("/Ambulance")
+@Path("/ambulanceController")
 public class AmbulanceController {
    IAmbulanceService ambulanceService = new AmbulanceService();
 
@@ -21,8 +21,8 @@ public class AmbulanceController {
         return ambulanceService.afficherTout();
     }
 
-    @POST
     @Path("/addambulane")
+    @POST
     @Consumes(MediaType.APPLICATION_JSON)
     public void addAmbulance(Ambulance ambulance){
         ambulanceService.ajouter(ambulance);

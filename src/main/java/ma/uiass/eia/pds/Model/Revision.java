@@ -4,7 +4,7 @@ package ma.uiass.eia.pds.Model;
 
 import java.util.Date;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity(name = "TRevision")
 public class Revision {

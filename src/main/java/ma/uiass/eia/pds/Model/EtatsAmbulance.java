@@ -1,42 +1,54 @@
 package ma.uiass.eia.pds.Model;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "TEtatAmbulance")
-public class EtatsAmbulance {
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+public abstract class EtatsAmbulance implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    @Column
+    private int codeEtat;
 
     @Column
-    private String nom;
+    @Enumerated(EnumType.STRING)
+    private StateName stateName;
+    @Transient
+    private static double A;
+    @Transient
+    private static double B;
+    private double x;
+    private double y;
 
-    public EtatsAmbulance() {}
+    @OneToOne
+    @JoinColumn(name = "id_ambulance")
+    private Ambulance ambulance;
 
-    public EtatsAmbulance(String nom) {
-        this.nom = nom;
+    public EtatsAmbulance() {
     }
 
-    public int getId() {
-        return id;
+    public EtatsAmbulance(StateName stateName) {
+        this.stateName = stateName;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public int getCodeEtat() {
+        return codeEtat;
     }
 
-    public String getNom() {
-        return nom;
+    public void setCodeEtat(int codeEtat) {
+        this.codeEtat = codeEtat;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
+    public StateName getStateName() {
+        return stateName;
+    }
+
+    public void setStateName(StateName stateName) {
+        this.stateName = stateName;
     }
 
     @Override
-    public String toString() {
-        return nom;
-    }
-
+    public String toString() {return "EtatAmbulance{" + "id=" + codeEtat + ", stateName=" + stateName + '}';}
 }

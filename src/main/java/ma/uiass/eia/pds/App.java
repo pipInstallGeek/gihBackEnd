@@ -39,7 +39,7 @@
                 HttpServer server = JdkHttpServerFactory.createHttpServer(baseUri, config);
                 System.out.println("server launched Successfully ");
 
-
+/*
 
                 IBatimentService batimentService = new BatimentService();
                 IEtageService etageService = new EtageService();
@@ -147,6 +147,8 @@
                 typeDmServiceImp.ajouterTypeDm(new TypeDM("équipement léger"));
                 typeDmServiceImp.ajouterTypeDm(new TypeDM("DM connectés"));
                 typeDmServiceImp.ajouterTypeDm(new TypeDM("équipement lourd"));
+
+ */
 
 
 
