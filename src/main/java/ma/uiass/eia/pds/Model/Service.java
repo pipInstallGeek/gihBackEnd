@@ -35,6 +35,7 @@ public class Service implements Serializable {
 	private Stock stock;
 
 
+
 	public Service(String codeS, String nomService, Etage etage) {
 		setEtage(etage);
 		setCodeService(etage.getCodeEtage()+codeS);
