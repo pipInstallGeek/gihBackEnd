@@ -18,7 +18,9 @@ public class AmbulanceService implements IAmbulanceService {
     @Override
     public Ambulance trouverId(int id) {return ambulanceDao.getById(id);}
     @Override
-    public Ambulance trouverByCode(String code) {return ambulanceDao.findbyCode(code);}
+    public Ambulance trouverByCode(String code) {
+        //return ambulanceDao.findbyCode(code);
+        return null;}
     @Override
     public void addAMB(String dateMiseEnCirculation) {
         StateAMB  etat=stateAMBDao.findbyNom("Fonctionnelle");
@@ -30,8 +32,10 @@ public class AmbulanceService implements IAmbulanceService {
     }
     @Override
     public void modifierS(String codeAMB,String NewState) {
-        Ambulance ambulance= ambulanceDao.findbyCode(codeAMB);
+      /*  Ambulance ambulance= ambulanceDao.findbyCode(codeAMB);
         ambulanceDao.updateS(ambulance,NewState);
+
+       */
     }
 
 

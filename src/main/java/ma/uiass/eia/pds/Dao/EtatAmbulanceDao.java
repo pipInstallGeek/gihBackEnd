@@ -5,7 +5,7 @@ import java.util.List;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 import ma.uiass.eia.pds.HibernateUtility.HibernateUtil;
-import ma.uiass.eia.pds.Model.EtatAmbulance;
+import ma.uiass.eia.pds.Model.StateAMB;
 
 public class EtatAmbulanceDao implements IEtatAmbulanceDao{
     private EntityManager entityManager;
@@ -15,12 +15,12 @@ public class EtatAmbulanceDao implements IEtatAmbulanceDao{
     }
 
     @Override
-    public List<EtatAmbulance> getAll() {
-        return entityManager.createQuery("From EtatAmbulance", EtatAmbulance.class).getResultList();
+    public List<StateAMB> getAll() {
+        return entityManager.createQuery("From EtatAmbulance", StateAMB.class).getResultList();
     }
 
     @Override
-    public void add(EtatAmbulance t) {
+    public void add(StateAMB t) {
         EntityTransaction et = entityManager.getTransaction();
         try {
             et.begin();
@@ -36,8 +36,8 @@ public class EtatAmbulanceDao implements IEtatAmbulanceDao{
 
 
     @Override
-    public EtatAmbulance getById(int id) {
-        return entityManager.find(EtatAmbulance.class, id);
+    public StateAMB getById(int id) {
+        return entityManager.find(StateAMB.class, id);
     }
     
 }
