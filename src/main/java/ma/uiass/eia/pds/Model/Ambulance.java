@@ -2,10 +2,12 @@ package ma.uiass.eia.pds.Model;
 
 import java.time.LocalDate;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -23,10 +25,6 @@ public class Ambulance {
     @Column
     private LocalDate dateCirucaltion;
 
-    @ManyToOne
-    @JoinColumn(name = "idEtatAmbulance", referencedColumnName = "idEtatAmbulance")
-    private EtatAmbulance etatAmbulance;
-
     @OneToMany(mappedBy = "ambulance")
     private List<Revision> revisions;
 
@@ -35,7 +33,6 @@ public class Ambulance {
         setDateCirucaltion(dateCirucaltion);
         setImmatruculation(immatruculation);
     }
-=======
     @Column(name="CodeAmbulance", length=50)
     private String codeAmbulance;
     @Column(name="DateMiseEnCirculation", length=50)
