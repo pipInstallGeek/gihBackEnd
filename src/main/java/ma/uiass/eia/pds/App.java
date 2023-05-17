@@ -16,10 +16,7 @@
             import org.glassfish.jersey.server.ResourceConfig;
 
             import java.net.*;
-            import java.time.LocalDate;
-            import java.time.LocalDateTime;
-            import java.time.Month;
-            import java.time.ZoneId;
+            import java.time.*;
             import java.util.ArrayList;
             import java.util.Arrays;
             import java.util.Calendar;
@@ -30,123 +27,119 @@
             public App(){
                 packages("ma.uiass.eia.pds");
             }
-                public static void main(String[] args )
-            {
+                public static void main(String[] args ) {
 
-                URI baseUri = UriBuilder.fromUri("http://localhost/").port(9998).build();
-                ResourceConfig config = new ResourceConfig().packages("ma.uiass.eia.pds","com.fasterxml.jackson.jaxrs.json.provider").register(JacksonFeature.class);
-                config.register(ReservationController.class);
-                HttpServer server = JdkHttpServerFactory.createHttpServer(baseUri, config);
-                System.out.println("server launched Successfully ");
-
+                    URI baseUri = UriBuilder.fromUri("http://localhost/").port(9998).build();
+                    ResourceConfig config = new ResourceConfig().packages("ma.uiass.eia.pds", "com.fasterxml.jackson.jaxrs.json.provider").register(JacksonFeature.class);
+                    config.register(ReservationController.class);
+                    HttpServer server = JdkHttpServerFactory.createHttpServer(baseUri, config);
+                    System.out.println("server launched Successfully ");
 
 
-                IBatimentService batimentService = new BatimentService();
-                IEtageService etageService = new EtageService();
-                IServiceService serviceService = new ServiceService();
-                IEspaceService espaceService = new ChambreService();
-                ITypeLitService typeLitService = new TypeLitService();
-                IMarqueService marqueService = new MarqueService();
-                ILitService litService = new LitService();
+                    IBatimentService batimentService = new BatimentService();
+                    IEtageService etageService = new EtageService();
+                    IServiceService serviceService = new ServiceService();
+                    IEspaceService espaceService = new ChambreService();
+                    ITypeLitService typeLitService = new TypeLitService();
+                    IMarqueService marqueService = new MarqueService();
+                    ILitService litService = new LitService();
+                    IAmbulanceService ambulanceService = new AmbulanceService();
+                    IRevisionService revisionService = new RevisionService();
 
 
-
-                Batiment batiment = new Batiment("A");
-                Batiment batiment1 = new Batiment("B");
-                Batiment batiment2 = new Batiment("C");
-                batimentService.ajouter(batiment1);
-                batimentService.ajouter(batiment2);
-                batimentService.ajouter(batiment);
-
-
-                Etage etage = new Etage("1", batiment);
-                Etage etage1 = new Etage("2", batiment);
-                Etage etage4 = new Etage("3", batiment);
-                Etage etage2 = new Etage("1", batiment1);
-                Etage etage3 = new Etage("2", batiment1);
-                etageService.ajouter(etage);
-                etageService.ajouter(etage1);
-                etageService.ajouter(etage2);
-                etageService.ajouter(etage3);
-                etageService.ajouter(etage4);
-
-                Service service = new Service("Car", "Cardiologie", etage);
-                Service service1 = new Service("On", "Oncologie", etage);
-                Service service2 = new Service("Gy", "Gynécologie", etage1);
-                serviceService.ajouter(service);
-                serviceService.ajouter(service1);
-                serviceService.ajouter(service2);
+                    Batiment batiment = new Batiment("A");
+                    Batiment batiment1 = new Batiment("B");
+                    Batiment batiment2 = new Batiment("C");
+                    batimentService.ajouter(batiment1);
+                    batimentService.ajouter(batiment2);
+                    batimentService.ajouter(batiment);
 
 
+                    Etage etage = new Etage("1", batiment);
+                    Etage etage1 = new Etage("2", batiment);
+                    Etage etage4 = new Etage("3", batiment);
+                    Etage etage2 = new Etage("1", batiment1);
+                    Etage etage3 = new Etage("2", batiment1);
+                    etageService.ajouter(etage);
+                    etageService.ajouter(etage1);
+                    etageService.ajouter(etage2);
+                    etageService.ajouter(etage3);
+                    etageService.ajouter(etage4);
 
-                Espace chambre = new Chambre(TypeChambre.SIMPLE,service );
-                Espace chambre1 = new Chambre(TypeChambre.DOUBLE, service1);
-                Espace chambre2 = new Chambre(TypeChambre.DOUBLE, service2);
-                espaceService.ajouter(chambre2);
-                espaceService.ajouter(chambre);
-                espaceService.ajouter(chambre1);
-
-                TypeLit typeLit = new TypeLit("Lit electrique");
-                TypeLit typeLit1 = new TypeLit("Lit manuelle");
-                typeLitService.ajouter(typeLit);
-                typeLitService.ajouter(typeLit1);
-
-                Marque marque = new Marque("K","Kinedorssal");
-                Marque marque1 = new Marque("K","ComfyBed");
-                Marque marque2 = new Marque("K","MyBedsComfy");
-                marqueService.ajouter(marque);
-                marqueService.ajouter(marque1);
-                marqueService.ajouter(marque2);
+                    Service service = new Service("Car", "Cardiologie", etage);
+                    Service service1 = new Service("On", "Oncologie", etage);
+                    Service service2 = new Service("Gy", "Gynécologie", etage1);
+                    serviceService.ajouter(service);
+                    serviceService.ajouter(service1);
+                    serviceService.ajouter(service2);
 
 
-                Lit lit = new Lit(EtatLit.DEFECTUEUSE, false, chambre1, typeLit1, marque);
-                Lit lit1 = new Lit(EtatLit.DEFECTUEUSE, true, chambre, typeLit, marque1);
-                Lit lit2 = new Lit(EtatLit.DEFECTUEUSE, true, chambre2, typeLit, marque2);
-                Lit lit3 = new Lit(EtatLit.DEFECTUEUSE, false, chambre1, typeLit1, marque2);
-                Lit lit4 = new Lit(EtatLit.BONNNEETAT, false, chambre2, typeLit, marque1);
-                Lit lit5 = new Lit(EtatLit.BONNNEETAT, true, chambre, typeLit1, marque);
-                Lit lit6 = new Lit(EtatLit.DEFECTUEUSE, true, chambre, typeLit, marque1);
-                Lit lit7 = new Lit(EtatLit.DEFECTUEUSE, false, chambre1, typeLit1, marque2);
-                Lit lit8 = new Lit(EtatLit.BONNNEETAT, true, chambre1, typeLit, marque);
-                Lit lit9 = new Lit(EtatLit.DEFECTUEUSE, true, chambre2, typeLit1, marque2);
-                Lit lit10 = new Lit(EtatLit.BONNNEETAT, false, chambre2, typeLit, marque2);
-                Lit lit11 = new Lit(EtatLit.DEFECTUEUSE, true, chambre, typeLit1, marque1);
-                Lit lit12 = new Lit(EtatLit.BONNNEETAT, false, chambre1, typeLit1, marque);
-                Lit lit13= new Lit(EtatLit.DEFECTUEUSE, true, chambre2, typeLit, marque1);
-                Lit lit14= new Lit(EtatLit.BONNNEETAT, true, chambre, typeLit, marque2);
-                Lit lit15= new Lit(EtatLit.BONNNEETAT, false, chambre2, typeLit1, marque);
-                Lit lit16= new Lit(EtatLit.BONNNEETAT, true, chambre1, typeLit, marque1);
+                    Espace chambre = new Chambre(TypeChambre.SIMPLE, service);
+                    Espace chambre1 = new Chambre(TypeChambre.DOUBLE, service1);
+                    Espace chambre2 = new Chambre(TypeChambre.DOUBLE, service2);
+                    espaceService.ajouter(chambre2);
+                    espaceService.ajouter(chambre);
+                    espaceService.ajouter(chambre1);
+
+                    TypeLit typeLit = new TypeLit("Lit electrique");
+                    TypeLit typeLit1 = new TypeLit("Lit manuelle");
+                    typeLitService.ajouter(typeLit);
+                    typeLitService.ajouter(typeLit1);
+
+                    Marque marque = new Marque("K", "Kinedorssal");
+                    Marque marque1 = new Marque("K", "ComfyBed");
+                    Marque marque2 = new Marque("K", "MyBedsComfy");
+                    marqueService.ajouter(marque);
+                    marqueService.ajouter(marque1);
+                    marqueService.ajouter(marque2);
 
 
-                litService.ajouter(lit);
-                litService.ajouter(lit1);
-                litService.ajouter(lit2);
-                litService.ajouter(lit3);
-                litService.ajouter(lit4);
-                litService.ajouter(lit5);
-                litService.ajouter(lit6);
-                litService.ajouter(lit7);
-                litService.ajouter(lit8);
-                litService.ajouter(lit9);
-                litService.ajouter(lit10);
-                litService.ajouter(lit11);
-                litService.ajouter(lit12);
-                litService.ajouter(lit13);
-                litService.ajouter(lit14);
-                litService.ajouter(lit15);
-                litService.ajouter(lit16);
+                    Lit lit = new Lit(EtatLit.DEFECTUEUSE, false, chambre1, typeLit1, marque);
+                    Lit lit1 = new Lit(EtatLit.DEFECTUEUSE, true, chambre, typeLit, marque1);
+                    Lit lit2 = new Lit(EtatLit.DEFECTUEUSE, true, chambre2, typeLit, marque2);
+                    Lit lit3 = new Lit(EtatLit.DEFECTUEUSE, false, chambre1, typeLit1, marque2);
+                    Lit lit4 = new Lit(EtatLit.BONNNEETAT, false, chambre2, typeLit, marque1);
+                    Lit lit5 = new Lit(EtatLit.BONNNEETAT, true, chambre, typeLit1, marque);
+                    Lit lit6 = new Lit(EtatLit.DEFECTUEUSE, true, chambre, typeLit, marque1);
+                    Lit lit7 = new Lit(EtatLit.DEFECTUEUSE, false, chambre1, typeLit1, marque2);
+                    Lit lit8 = new Lit(EtatLit.BONNNEETAT, true, chambre1, typeLit, marque);
+                    Lit lit9 = new Lit(EtatLit.DEFECTUEUSE, true, chambre2, typeLit1, marque2);
+                    Lit lit10 = new Lit(EtatLit.BONNNEETAT, false, chambre2, typeLit, marque2);
+                    Lit lit11 = new Lit(EtatLit.DEFECTUEUSE, true, chambre, typeLit1, marque1);
+                    Lit lit12 = new Lit(EtatLit.BONNNEETAT, false, chambre1, typeLit1, marque);
+                    Lit lit13 = new Lit(EtatLit.DEFECTUEUSE, true, chambre2, typeLit, marque1);
+                    Lit lit14 = new Lit(EtatLit.BONNNEETAT, true, chambre, typeLit, marque2);
+                    Lit lit15 = new Lit(EtatLit.BONNNEETAT, false, chambre2, typeLit1, marque);
+                    Lit lit16 = new Lit(EtatLit.BONNNEETAT, true, chambre1, typeLit, marque1);
 
 
+                    litService.ajouter(lit);
+                    litService.ajouter(lit1);
+                    litService.ajouter(lit2);
+                    litService.ajouter(lit3);
+                    litService.ajouter(lit4);
+                    litService.ajouter(lit5);
+                    litService.ajouter(lit6);
+                    litService.ajouter(lit7);
+                    litService.ajouter(lit8);
+                    litService.ajouter(lit9);
+                    litService.ajouter(lit10);
+                    litService.ajouter(lit11);
+                    litService.ajouter(lit12);
+                    litService.ajouter(lit13);
+                    litService.ajouter(lit14);
+                    litService.ajouter(lit15);
+                    litService.ajouter(lit16);
 
 
-                //------------------------------------------------------------------------------------------------------------------------
-                TypeDmServiceImp typeDmServiceImp=new TypeDmServiceImp();
-                typeDmServiceImp.ajouterTypeDm(new TypeDM("instruments légers"));
-                typeDmServiceImp.ajouterTypeDm(new TypeDM("outils de diagnostic"));
-                typeDmServiceImp.ajouterTypeDm(new TypeDM("mobilier"));
-                typeDmServiceImp.ajouterTypeDm(new TypeDM("équipement léger"));
-                typeDmServiceImp.ajouterTypeDm(new TypeDM("DM connectés"));
-                typeDmServiceImp.ajouterTypeDm(new TypeDM("équipement lourd"));
+                    //------------------------------------------------------------------------------------------------------------------------
+                    TypeDmServiceImp typeDmServiceImp = new TypeDmServiceImp();
+                    typeDmServiceImp.ajouterTypeDm(new TypeDM("instruments légers"));
+                    typeDmServiceImp.ajouterTypeDm(new TypeDM("outils de diagnostic"));
+                    typeDmServiceImp.ajouterTypeDm(new TypeDM("mobilier"));
+                    typeDmServiceImp.ajouterTypeDm(new TypeDM("équipement léger"));
+                    typeDmServiceImp.ajouterTypeDm(new TypeDM("DM connectés"));
+                    typeDmServiceImp.ajouterTypeDm(new TypeDM("équipement lourd"));
 
 
 
@@ -158,7 +151,7 @@
 
 */
 
-                //------------------------------------------------------------------------------------------------------------------------
+                    //------------------------------------------------------------------------------------------------------------------------
 
 
                 /*
@@ -221,15 +214,50 @@
 
                 detailsService.ajouter(new DetailsLivraison(12,livraisonService.afficherTout().get(0), dispoMedicalServiceImp.afficherDispoMedical().get(0)));
 
-                System.out.println(dispoMedicalServiceImp.afficherDispoMedical().get(dispoMedicalServiceImp.afficherDispoMedical().size()-1));
-
-
-
-                 */
+                System.out.println(dispoMedicalServiceImp.afficherDispoMedical().get(dispoMedicalServiceImp.afficherDispoMedical().size()-1));*/
 
 
 
 
+               EtatsAmbulance etatsAmbulance1 = new F();
+                EtatsAmbulance etatsAmbulance2 = new NFCD();
+                EtatsAmbulance etatsAmbulance3 = new NFLD();
+                /*etatsAmbulanceService.ajouter(etatsAmbulance1);
+                etatsAmbulanceService.ajouter(etatsAmbulance2);
+                etatsAmbulanceService.ajouter(etatsAmbulance3);
+
+                Ambulance ambulance1 = new Ambulance("1",LocalDate.now(),etatsAmbulance1,LocalDate.now());
+                Ambulance ambulance2 = new Ambulance("2",LocalDate.now(),etatsAmbulance2,LocalDate.now());
+                Ambulance ambulance3 = new Ambulance("3",LocalDate.now(),etatsAmbulance3,LocalDate.now());
+                ambulanceService.ajouter(ambulance1);
+                ambulanceService.ajouter(ambulance2);
+                ambulanceService.ajouter(ambulance3);
+
+                Date now = new Date();
+                Revision revision1 = new Revision(now,ambulance1,etatsAmbulance1);
+                Revision revision2= new Revision(now , ambulance2,etatsAmbulance2);
+                Revision revision3 = new Revision(now, ambulance3 , etatsAmbulance3);
+                revisionService.ajouter(revision1);
+                revisionService.ajouter(revision2);
+                revisionService.ajouter(revision3);*/
+
+
+
+                    Ambulance ambulance4 = new Ambulance("77", "15/5/2023", "15/5/2023");
+                    Ambulance ambulance5 = new Ambulance("6479", "15/5/2023", "15/5/2023");
+                    Ambulance ambulance6 = new Ambulance("25681", "15/5/2023", "15/5/2023");
+                    ambulanceService.ajouter(ambulance4);
+                    ambulanceService.ajouter(ambulance5);
+                    ambulanceService.ajouter(ambulance6);
+
+                  Date now = new Date();
+                  Revision revision1 = new Revision("15/5/2023",    "DEFECTUEUSE" ,ambulance4,"100000");
+                  Revision revision2= new Revision("15/5/2023" ,"NOUS ALLONS CHANGER UNE PIECE",ambulance5,"12000");
+                  Revision revision3 = new Revision("15/5/2023","EN COURS DE TRAITEMENT", ambulance6,"14326688");
+                  revisionService.ajouter(revision1);
+                  revisionService.ajouter(revision2);
+                  revisionService.ajouter(revision3);
+                }}
 
 
 
@@ -246,9 +274,3 @@
 
 
 
-
-
-
-
-            }
-        }

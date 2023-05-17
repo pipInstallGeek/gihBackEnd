@@ -15,7 +15,7 @@ public class AmbulanceController {
    IAmbulanceService ambulanceService = new AmbulanceService();
 
     @GET
-    @Path("/getambulances")
+    @Path("/getAmbulances")
     @Produces(MediaType.APPLICATION_JSON)
     public List<Ambulance> getambulances(){
         return ambulanceService.afficherTout();

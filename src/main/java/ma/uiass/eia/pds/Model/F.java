@@ -1,9 +1,10 @@
 package ma.uiass.eia.pds.Model;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity(name = "t_fonctionnel")
 @DiscriminatorValue("1")
+
 public class F extends EtatsAmbulance{
     private final StateName stateName = StateName.F;
     private static double q;

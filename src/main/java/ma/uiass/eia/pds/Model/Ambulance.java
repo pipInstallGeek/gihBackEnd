@@ -1,10 +1,12 @@
 package ma.uiass.eia.pds.Model;
 
-import javax.persistence.*;
-import java.time.LocalDate;
+import jakarta.persistence.*;
+import java.io.Serializable;
 
-@Entity(name = "t_ambulance")
-public class Ambulance {
+
+@Entity
+@Table(name = "TAmbulance")
+public class Ambulance implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_ambulance")
@@ -14,36 +16,48 @@ public class Ambulance {
     private String immatriculation;
 
     @Column(name="date_mise_service")
-    private LocalDate date_mise_service;
+    private String date_mise_service;
+
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_etat")
-    private EtatsAmbulance etatAmbulance = new F();
+    private EtatsAmbulance etatAmbulance = new F() ;
 
     @Column(name = "estimated_date_revision")
-    private LocalDate estimatedRevisionDate;
+    private String estimatedRevisionDate;
+
+    @Column(name = "kilometrage")
+    private String kilometrage;
 
     public Ambulance() {
     }
 
-    public Ambulance(String immatriculation, EtatsAmbulance etatAmbulances) {
-        this.immatriculation = immatriculation;
-        this.date_mise_service = LocalDate.now();
-        this.etatAmbulance = etatAmbulances;
-    }
-
-    public Ambulance(String immatriculation, LocalDate date_mise_service, EtatsAmbulance etatAmbulance, LocalDate estimatedRevisionDate) {
+    public Ambulance(String immatriculation,String date_mise_service) {
         this.immatriculation = immatriculation;
         this.date_mise_service = date_mise_service;
-        this.etatAmbulance = etatAmbulance;
+        this.etatAmbulance = new F();
+    }
+
+    public Ambulance(String immatriculation, String date_mise_service, String estimatedRevisionDate) {
+        this.immatriculation = immatriculation;
+        this.date_mise_service = date_mise_service;
+        this.etatAmbulance = new F();
         this.estimatedRevisionDate = estimatedRevisionDate;
     }
 
-    public LocalDate getDate_mise_service() {
+    public Ambulance(String immatriculation, String date_mise_service, String estimatedRevisionDate, String kilometrage) {
+        this.immatriculation = immatriculation;
+        this.date_mise_service = date_mise_service;
+        this.etatAmbulance = new F();
+        this.estimatedRevisionDate = estimatedRevisionDate;
+        this.kilometrage = kilometrage;
+    }
+
+    public String getDate_mise_service() {
         return date_mise_service;
     }
 
-    public void setDate_mise_service(LocalDate date_mise_service) {
+    public void setDate_mise_service(String date_mise_service) {
         this.date_mise_service = date_mise_service;
     }
 
@@ -55,7 +69,13 @@ public class Ambulance {
         this.immatriculation = immatriculation;
     }
 
+    public String getKilometrage() {
+        return kilometrage;
+    }
 
+    public void setKilometrage(String kilometrage) {
+        this.kilometrage = kilometrage;
+    }
 
     public void setId(int id) {
         this.id = id;
@@ -73,12 +93,17 @@ public class Ambulance {
         this.etatAmbulance = etatAmbulance;
     }
 
-    public LocalDate getEstimatedRevisionDate() {
+    public String getEstimatedRevisionDate() {
         return estimatedRevisionDate;
     }
 
-    public void setEstimatedRevisionDate(LocalDate estimatedRevisionDate) {
+    public void setEstimatedRevisionDate(String estimatedRevisionDate) {
         this.estimatedRevisionDate = estimatedRevisionDate;
+    }
+
+    @Override
+    public String toString() {
+        return immatriculation ;
     }
 }
 

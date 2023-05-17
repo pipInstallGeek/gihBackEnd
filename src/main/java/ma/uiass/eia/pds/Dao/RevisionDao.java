@@ -3,7 +3,7 @@ package ma.uiass.eia.pds.Dao;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 import ma.uiass.eia.pds.HibernateUtility.HibernateUtil;
-import ma.uiass.eia.pds.Model.HistoriqueEtats;
+import ma.uiass.eia.pds.Model.Ambulance;
 import ma.uiass.eia.pds.Model.Revision;
 
 import java.util.List;
@@ -14,7 +14,7 @@ public class RevisionDao implements IRevisionDao{
     }
     @Override
     public List<Revision> getAll() {
-        return entityManager.createQuery("from Revision ",Revision.class).getResultList();
+        return entityManager.createQuery("from Revision",Revision.class).getResultList();
     }
 
     @Override
@@ -43,4 +43,12 @@ public class RevisionDao implements IRevisionDao{
         return revision;
 
     }
+
+        public List<Revision> getRevisionByAmbulance(int idAmb) {
+            return entityManager.createQuery("SELECT r FROM Revision r WHERE r.ambulance.id = :idAmb", Revision.class)
+                    .setParameter("idAmb", idAmb)
+                    .getResultList();
+        }
+
+
 }

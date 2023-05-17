@@ -1,18 +1,27 @@
 package ma.uiass.eia.pds.Model;
 
-import javax.persistence.*;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import jakarta.persistence.*;
 
-@Entity(name = "t_etat_ambulance")
+import java.io.Serializable;
+
+
+@Entity
+@Table(name = "TEtatAmbulance")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-public abstract class EtatsAmbulance {
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
+@JsonSubTypes({
+        @JsonSubTypes.Type(value = F.class, name = "fonctionel"),
+        @JsonSubTypes.Type(value = NFCD.class, name = "courteDuree"),
+        @JsonSubTypes.Type(value = NFLD.class, name = "longueDurée"),
+})
+public abstract class EtatsAmbulance implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_etat")
     private int id;
 
-    @Column(name = "nom_etat")
-    @Enumerated(EnumType.STRING)
-    private StateName stateName;
     @Transient
     private static double A;
     @Transient
@@ -23,12 +32,8 @@ public abstract class EtatsAmbulance {
     @JoinColumn(name = "id_ambulance")
     private Ambulance ambulance;
 
-    public EtatsAmbulance() {
-    }
 
-    public EtatsAmbulance(StateName stateName) {
-        this.stateName = stateName;
-    }
+
 
     public int getId() {
         return id;
@@ -38,19 +43,12 @@ public abstract class EtatsAmbulance {
         this.id = id;
     }
 
-    public StateName getStateName() {
-        return stateName;
-    }
 
-    public void setStateName(StateName stateName) {
-        this.stateName = stateName;
-    }
 
     @Override
     public String toString() {
         return "EtatAmbulance{" +
-                "id=" + id +
-                ", stateName=" + stateName +
-                '}';
+                "id=" + id ;
+
     }
 }
