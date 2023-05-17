@@ -1,6 +1,9 @@
 package ma.uiass.eia.pds.Model;
 
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -48,6 +51,8 @@ public abstract  class StateAMB implements Serializable {
     public StateAMB(String nomState) {
         this.nomState = nomState;
     }
+    
+    @JsonIgnore
     @OneToOne(mappedBy = "state")
     private Ambulance ambulance;
 

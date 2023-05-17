@@ -18,24 +18,19 @@ public class AmbulanceService implements IAmbulanceService {
     @Override
     public Ambulance trouverId(int id) {return ambulanceDao.getById(id);}
     @Override
-    public Ambulance trouverByCode(String code) {
-        //return ambulanceDao.findbyCode(code);
-        return null;}
+    public Ambulance trouverByCode(String code) {return null;}
     @Override
     public void addAMB(String dateMiseEnCirculation) {
         StateAMB  etat=stateAMBDao.findbyNom("Fonctionnelle");
-        Ambulance ambulance = new Ambulance(dateMiseEnCirculation,LocalDate.now().toString(),0,etat);
-        ambulanceDao.add(ambulance);
-        System.out.println(ambulance.getIdAmbulance());
-        System.out.println(ambulance.getCodeAmbulance());
+        //Ambulance ambulance = new Ambulance(dateMiseEnCirculation,LocalDate.now().toString(),0,etat);
+        //ambulanceDao.add(ambulance);
+    
 
     }
     @Override
     public void modifierS(String codeAMB,String NewState) {
-      /*  Ambulance ambulance= ambulanceDao.findbyCode(codeAMB);
-        ambulanceDao.updateS(ambulance,NewState);
-
-       */
+        // Ambulance ambulance= ambulanceDao.findbyCode(codeAMB);
+        // ambulanceDao.updateS(ambulance,NewState);
     }
 
 

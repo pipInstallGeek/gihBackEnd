@@ -49,12 +49,11 @@
                 IStateAMBService stateF=new StateFService();
                 IStateAMBService stateNFCD=new StateNFCDService();
                 IStateAMBService stateNFLD=new StateNFLDService();
-                IRévisionService révision=new RévisionService();
                 IStateAMBService stateAMBService=new StateFService();
 
 
 
-
+/*
                 Batiment batiment = new Batiment("A");
                 batimentService.ajouter(batiment);
                 Etage etage = new Etage("1", batiment);
@@ -161,7 +160,7 @@
                 Date date2 = Date.from(localDateTime2.atZone(ZoneId.systemDefault()).toInstant());
                 LocalDate localDate3 = LocalDate.of(2020, 12, 13);
                 LocalDateTime localDateTime3 = localDate2.atStartOfDay();
-                Date date3 = Date.from(localDateTime2.atZone(ZoneId.systemDefault()).toInstant());*/
+                Date date3 = Date.from(localDateTime2.atZone(ZoneId.systemDefault()).toInstant());
 
                 Lit lit1 = new Lit(EtatLit.BONNNEETAT,true,chambre,typeLit0,marque0);
                 Lit lit2 = new Lit(EtatLit.BONNNEETAT,true,salle,typeLit1,marque0);
@@ -219,7 +218,7 @@
                 Date date2 = Date.from(localDateTime2.atZone(ZoneId.systemDefault()).toInstant());
                 LocalDate localDate3 = LocalDate.of(2020, 12, 13);
                 LocalDateTime localDateTime3 = localDate2.atStartOfDay();
-                Date date3 = Date.from(localDateTime2.atZone(ZoneId.systemDefault()).toInstant());*/
+                Date date3 = Date.from(localDateTime2.atZone(ZoneId.systemDefault()).toInstant());
 
 
 
@@ -250,7 +249,7 @@
 
                /* LocalDate localDate = LocalDate.of(2022, 12, 13);
                 LocalDateTime localDateTime = localDate.atStartOfDay();
-                Date date = Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());*/
+                Date date = Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
 
                 //Admission reser1=new Admission("reser1", date2, Calendar.getInstance().getTime(),lit);
                 // admissionService.ajouter(reser1);
@@ -301,7 +300,7 @@
                     exemplaireDMService.ajouter(ex3);
                     exemplaireDMService.ajouter(ex4);*/
                   /*  System.out.println( typeDMService.trouverTypeDMByDM("fourniture"));
-                    System.out.println(exemplaireDMService.trouvezExemplaireByDMetTypeDm("fourniture","bandes"));*/
+                    System.out.println(exemplaireDMService.trouvezExemplaireByDMetTypeDm("fourniture","bandes"));
 
                    // descriptionDMService.addDescriptionDM("bandes",2,"fourniture","CBatiment AEtage 2GY1");
         litService.ajouter(lit1);
@@ -331,7 +330,7 @@
 
                /* LocalDate localDate = LocalDate.of(2022, 12, 13);
                 LocalDateTime localDateTime = localDate.atStartOfDay();
-                Date date = Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());*/
+                Date date = Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
 
         //Admission reser1=new Admission("reser1", date2, Calendar.getInstance().getTime(),lit);
         // reservationService.ajouter(reser1);

@@ -34,4 +34,10 @@ public class AmbulanceController {
 
     }
 
+    @POST
+    @Path("/add")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public void addAmbulance(Ambulance ambulance){
+        ambulanceService.ajouter(ambulance);
+    }
 }

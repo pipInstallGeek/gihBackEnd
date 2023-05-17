@@ -7,8 +7,14 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.time.*;
 
 @Data
 @Entity
@@ -21,59 +27,44 @@ public class Ambulance {
 
     @Column
     private String immatruculation;
-
+	
+    @JsonDeserialize(using = LocalDateDeserializer.class)
+    @JsonSerialize(using = LocalDateSerializer.class)
     @Column
     private LocalDate dateCirucaltion;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "ambulance")
     private List<Revision> revisions;
 
+
+    
+    @Column(name="CodeAmbulance", length=50)
+    private String codeAmbulance;
+
+    @JsonDeserialize(using = LocalDateDeserializer.class)
+    @JsonSerialize(using = LocalDateSerializer.class)
+    @Column(name="DateCreation", length=50)
+    private LocalDate dateCreation;
+
+    @Column(name="Kilometrage", length=50)
+    private double kilometrage;
+
+    
+    @OneToOne(optional = true, cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "idState")
+    private StateAMB state;
 
     public Ambulance(String immatruculation, LocalDate dateCirucaltion){
         setDateCirucaltion(dateCirucaltion);
         setImmatruculation(immatruculation);
     }
-    @Column(name="CodeAmbulance", length=50)
-    private String codeAmbulance;
-    @Column(name="DateMiseEnCirculation", length=50)
-    private String dateMiseEnCirculation;
-    @Column(name="DateCréation", length=50)
-    private String dateCréation;
-    @Column(name="Kilométrage", length=50)
-    private double kilométrage;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "ambulance", fetch = FetchType.LAZY )
-    private List<Révision> révisions = new ArrayList<>();
-    @OneToOne(optional = true, cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "idState")
-    private StateAMB state;
-
-
-    public Ambulance(String dateMiseEnCirculation, String dateCréation, List<Révision> révisions) {
-        this.dateMiseEnCirculation = dateMiseEnCirculation;
-        this.dateCréation = dateCréation;
-        this.révisions = révisions;
+    public Ambulance(String matricule, LocalDate dateCirucaltion, double kilometrage){
+    	this.kilometrage = kilometrage;
+    	this.immatruculation = matricule;
+    	this.dateCirucaltion = dateCirucaltion;
     }
-
-    public Ambulance(String dateMiseEnCirculation, String dateCréation, double kilométrage, StateAMB state) {
-        this.dateMiseEnCirculation = dateMiseEnCirculation;
-        this.dateCréation = dateCréation;
-       this.kilométrage=kilométrage;
-        this.state = state;
-    }
-
-    public Ambulance(String dateMiseEnCirculation, String dateCréation) {
-        this.dateMiseEnCirculation = dateMiseEnCirculation;
-        this.dateCréation = dateCréation;
-    }
-
-
-
-
-
-
-
 
 
 
