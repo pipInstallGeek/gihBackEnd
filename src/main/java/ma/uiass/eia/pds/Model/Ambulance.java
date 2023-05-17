@@ -39,6 +39,13 @@ public class Ambulance implements Serializable {
         this.date_mise_service = date_mise_service;
     }
 
+    public Ambulance(String immatriculation, String kilometrage, String date_mise_service, EtatsAmbulance etatsAmbulance) {
+        this.immatriculation = immatriculation;
+        this.kilometrage = kilometrage;
+        this.date_mise_service = date_mise_service;
+        this.etatsAmbulance = etatsAmbulance;
+    }
+
     public String getDate_mise_service() {
         return date_mise_service;
     }

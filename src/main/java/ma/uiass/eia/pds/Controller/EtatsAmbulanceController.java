@@ -3,6 +3,7 @@ package ma.uiass.eia.pds.Controller;
 
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
+import ma.uiass.eia.pds.Model.EtatsAmbulance;
 import ma.uiass.eia.pds.Service.EtatsAmbulanceService;
 import ma.uiass.eia.pds.Service.IEtatsAmbulanceService;
 

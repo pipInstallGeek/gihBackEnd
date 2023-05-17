@@ -39,7 +39,9 @@
                 HttpServer server = JdkHttpServerFactory.createHttpServer(baseUri, config);
                 System.out.println("server launched Successfully ");
 
-/*
+
+
+
 
                 IBatimentService batimentService = new BatimentService();
                 IEtageService etageService = new EtageService();
@@ -148,6 +150,46 @@
                 typeDmServiceImp.ajouterTypeDm(new TypeDM("DM connectés"));
                 typeDmServiceImp.ajouterTypeDm(new TypeDM("équipement lourd"));
 
+
+
+                EtatsAmbulance etat1=new F();
+                EtatsAmbulance etat2=new NFLD();
+                EtatsAmbulance etat3=new NFCD();
+                IEtatsAmbulanceService etatsAmbulanceService=new EtatsAmbulanceService();
+                etatsAmbulanceService.ajouter(etat1);
+                etatsAmbulanceService.ajouter(etat2);
+                etatsAmbulanceService.ajouter(etat3);
+
+
+
+
+                IAmbulanceService ambulanceService=new AmbulanceService();
+                ambulanceService.ajouter(new Ambulance("1/ALIF/20103","123909","12/9/2006",etat1));
+                ambulanceService.ajouter(new Ambulance("2/ALIF/20103","390309","1/10/2007",etat2));
+                ambulanceService.ajouter(new Ambulance("4/ALIF/20103","20309","2/10/2008",etat3));
+                ambulanceService.ajouter(new Ambulance("6/ALIF/20103","1209","21/10/2009",etat3));
+                ambulanceService.ajouter(new Ambulance("39/ALIF/20103","208309","14/10/2012",etat3));
+                ambulanceService.ajouter(new Ambulance("58/ALIF/20103","12093","12/10/2013",etat1));
+                ambulanceService.ajouter(new Ambulance("20/ALIF/20103","149","12/10/2014",etat1));
+                ambulanceService.ajouter(new Ambulance("44/ALIF/20103","1309","12/10/2010",etat1));
+
+
+
+
+
+
+
+
+/*
+                ambulanceService.afficherTout().get(0).setEtatAmbulance(etat1);
+                ambulanceService.afficherTout().get(1).setEtatAmbulance(etat1);
+                ambulanceService.afficherTout().get(2).setEtatAmbulance(etat1);
+                ambulanceService.afficherTout().get(3).setEtatAmbulance(etat1);
+                ambulanceService.afficherTout().get(4).setEtatAmbulance(etat1);
+                ambulanceService.afficherTout().get(5).setEtatAmbulance(etat1);
+                ambulanceService.afficherTout().get(6).setEtatAmbulance(etat2);
+                ambulanceService.afficherTout().get(6).setEtatAmbulance(etat3);
+
  */
 
 
@@ -155,10 +197,12 @@
 
 
 
-                EtatsAmbulanceService etatsAmbulanceService=new EtatsAmbulanceService();
-                etatsAmbulanceService.ajouter(new EtatsAmbulance("Nouvelle"));
-                etatsAmbulanceService.ajouter(new EtatsAmbulance("Bonne etat"));
-                etatsAmbulanceService.ajouter(new EtatsAmbulance("Usée"));
+
+
+
+
+
+
 
 
 

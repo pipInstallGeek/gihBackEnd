@@ -1,11 +1,20 @@
 package ma.uiass.eia.pds.Model;
 
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import jakarta.persistence.*;
 import java.io.Serializable;
 
 @Entity
 @Table(name = "TEtatAmbulance")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "type")
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
+@JsonSubTypes({
+        @JsonSubTypes.Type(value = F.class, name = "f"),
+        @JsonSubTypes.Type(value = NFCD.class, name = "nfcd"),
+        @JsonSubTypes.Type(value = NFLD.class, name = "nfld"),
+})
 public abstract class EtatsAmbulance implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

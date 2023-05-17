@@ -3,7 +3,9 @@ package ma.uiass.eia.pds.Service;
 import ma.uiass.eia.pds.Dao.AmbulanceDao;
 import ma.uiass.eia.pds.Dao.IAmbulanceDao;
 import ma.uiass.eia.pds.Model.Ambulance;
+import ma.uiass.eia.pds.Model.EtatsAmbulance;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class AmbulanceService implements IAmbulanceService{
@@ -21,5 +23,15 @@ public class AmbulanceService implements IAmbulanceService{
     @Override
     public Ambulance trouverId(int idAmbulance) {
         return ambulanceDao.getById(idAmbulance);
+    }
+
+    public List<Ambulance> afficherAmbulanceEtat(String etatambulance){
+        List<Ambulance> ambulanceList=new ArrayList<>();
+        for(Ambulance ambulance1:ambulanceDao.getAll()){
+            if(ambulance1.getEtatAmbulance().getStateName().name().equals(etatambulance)){
+                ambulanceList.add(ambulance1);
+            }
+        }
+        return ambulanceList;
     }
 }
