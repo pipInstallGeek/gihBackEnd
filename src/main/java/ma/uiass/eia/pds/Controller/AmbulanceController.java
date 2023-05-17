@@ -40,4 +40,12 @@ public class AmbulanceController {
     public void addAmbulance(Ambulance ambulance){
         ambulanceService.ajouter(ambulance);
     }
+
+    @DELETE
+    @Path("delete/{id}")
+    public void delete(
+            @PathParam("id") int id
+    ){
+        ambulanceService.delete(id);
+    }
 }

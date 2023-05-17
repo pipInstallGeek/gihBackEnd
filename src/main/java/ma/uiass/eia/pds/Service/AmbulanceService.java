@@ -33,5 +33,12 @@ public class AmbulanceService implements IAmbulanceService {
         // ambulanceDao.updateS(ambulance,NewState);
     }
 
+    @Override
+    public void delete(int id) {
+        Ambulance ambulance = ambulanceDao.getById(id);
+        ambulanceDao.delete(ambulance);
+
+    }
+
 
 }

@@ -37,5 +37,19 @@ public class AmbulanceDao implements IAmbulanceDao {
     public Ambulance getById(int id) {
         return entityManager.find(Ambulance.class, id);
     }
-    
+
+    @Override
+    public void delete(Ambulance ambulance) {
+        EntityTransaction transaction = entityManager.getTransaction();
+        try {
+            transaction.begin();
+            entityManager.remove(ambulance);
+            transaction.commit();
+        }catch (Exception e){
+            if (transaction != null){
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }
+    }
 }
