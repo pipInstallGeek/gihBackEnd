@@ -48,4 +48,12 @@ public class AmbulanceController {
     ){
         ambulanceService.delete(id);
     }
+
+    @PUT
+    @Path("/update")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public void update(Ambulance ambulance){
+        ambulanceService.update(ambulance);
+    }
+
 }

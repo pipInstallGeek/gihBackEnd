@@ -40,5 +40,10 @@ public class AmbulanceService implements IAmbulanceService {
 
     }
 
+    @Override
+    public void update(Ambulance ambulance) {
+        ambulanceDao.update(ambulance);
+    }
+
 
 }

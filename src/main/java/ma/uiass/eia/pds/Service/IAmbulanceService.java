@@ -8,4 +8,6 @@ public interface IAmbulanceService extends IService<Ambulance> {
     void modifierS(String codeAMB,String NewState);
 
     void delete(int id);
+
+    void update(Ambulance ambulance);
 }

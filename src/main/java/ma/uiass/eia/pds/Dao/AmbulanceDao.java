@@ -52,4 +52,19 @@ public class AmbulanceDao implements IAmbulanceDao {
             e.printStackTrace();
         }
     }
+
+    @Override
+    public void update(Ambulance ambulance) {
+        EntityTransaction transaction = entityManager.getTransaction();
+        try {
+            transaction.begin();
+            entityManager.merge(ambulance);
+            transaction.commit();
+        }catch (Exception e){
+            if (transaction != null){
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }
+    }
 }
