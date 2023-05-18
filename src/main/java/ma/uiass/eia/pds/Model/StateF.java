@@ -21,6 +21,11 @@ public class StateF extends StateAMB implements Serializable {
         super(nomState);
     }
 
+    @Override
+    public String toString() {
+        return "StateF" ;
+    }
+
     public StateF() {
         super();
     }

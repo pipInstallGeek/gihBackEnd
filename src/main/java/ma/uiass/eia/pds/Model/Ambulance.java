@@ -31,8 +31,8 @@ public class Ambulance implements Serializable {
     @JsonIgnore
     @OneToMany(mappedBy = "ambulance", fetch = FetchType.LAZY )
     private List<Révision> révisions = new ArrayList<>();
-    @OneToOne(optional = true, cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "idState")
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "idState",referencedColumnName ="idState" )
     private StateAMB state;
 
 
@@ -42,28 +42,19 @@ public class Ambulance implements Serializable {
         this.révisions = révisions;
     }
 
-    public Ambulance(String dateMiseEnCirculation, String dateCréation, double kilométrage, StateAMB state) {
+    public Ambulance(String dateMiseEnCirculation, String dateCréation, double kilométrage) {
         this.dateMiseEnCirculation = dateMiseEnCirculation;
         this.dateCréation = dateCréation;
        this.kilométrage=kilométrage;
-        this.state = state;
     }
 
     public Ambulance(String dateMiseEnCirculation, String dateCréation) {
         this.dateMiseEnCirculation = dateMiseEnCirculation;
         this.dateCréation = dateCréation;
     }
-
-
-
-
-
-
-
-
-
-
-
+    public  String toString(){
+        return this.codeAmbulance;
+    }
 
 
 }

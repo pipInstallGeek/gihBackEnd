@@ -6,6 +6,8 @@ import jakarta.persistence.NoResultException;
 import jakarta.persistence.TypedQuery;
 import ma.uiass.eia.pds.HibernateUtility.HibernateUtil;
 import ma.uiass.eia.pds.Model.Ambulance;
+import ma.uiass.eia.pds.Model.StateAMB;
+
 import java.util.List;
 
 public class AmbulanceDao implements IAmbulanceDao{
@@ -46,12 +48,26 @@ public class AmbulanceDao implements IAmbulanceDao{
             return null;
         }
     }
+    public void updateState(Ambulance ambulance, StateAMB newState) {
+        EntityTransaction transaction = entityManager.getTransaction();
+        try {
+            transaction.begin();
+            ambulance.setState(newState);
+            entityManager.merge(ambulance);
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }
+    }
     @Override
-    public void updateS(Ambulance a,String nomState) {
+    public void updateS(Ambulance a,double kilo) {
         EntityTransaction transaction = entityManager.getTransaction();
         try{
             transaction.begin();
-            a.getState().setNomState(nomState);
+            a.setKilométrage(kilo);
             transaction.commit();
         }catch (Exception e){
             if(transaction!=null){

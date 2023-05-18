@@ -6,7 +6,7 @@ import ma.uiass.eia.pds.Model.*;
 
 import java.util.List;
 
-public class DescriptionDMDao implements IDescriptionDMDao {
+public class    DescriptionDMDao implements IDescriptionDMDao {
     private EntityManager entityManager;
 
     public DescriptionDMDao() {

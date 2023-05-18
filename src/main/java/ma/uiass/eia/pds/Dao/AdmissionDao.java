@@ -88,20 +88,12 @@ public class AdmissionDao implements IAdmissionDao {
         EntityTransaction transaction = entityManager.getTransaction();
         try {
             transaction.begin();
-            // récupérer l'admission à mettre à jour
             Admission admissionToUpdate = findbyCode(admission.getNumAdmission());
-
-            // récupérer le lit lié à l'admission
             Lit lit = admissionToUpdate.getLit();
-
-            // marquer le lit comme disponible
             lit.setOccupe(false);
             entityManager.merge(lit);
-
-            // mettre à jour l'admission
             admissionToUpdate.setDateFin(admission.getDateFin());
             entityManager.merge(admissionToUpdate);
-
             transaction.commit();
         } catch (Exception e) {
             if (transaction != null) {
@@ -121,6 +113,7 @@ public class AdmissionDao implements IAdmissionDao {
         }
 
     }
+
 }
 
 

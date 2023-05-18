@@ -44,7 +44,7 @@ public class StateNFCDDao implements IStateAMBDao<StateNFCD> {
 
     @Override
     public StateAMB findbyNom(String nomState) {
-        TypedQuery<StateF> query = entityManager.createQuery("SELECT c FROM StateF c WHERE c.nomState = :nomState", StateF.class);
+        TypedQuery<StateNFCD> query = entityManager.createQuery("SELECT c FROM StateNFCD c WHERE c.nomState = :nomState", StateNFCD.class);
         query.setParameter("nomState", nomState);
         try {
             return query.getSingleResult();

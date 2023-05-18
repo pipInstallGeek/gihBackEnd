@@ -6,4 +6,5 @@ public interface IAmbulanceService extends IService<Ambulance> {
     Ambulance trouverByCode(String code);
     void addAMB(String dateMiseEnCirculation);
     void modifierS(String codeAMB,String NewState);
+    void modifierK(String codeAMB,double NewKilo);
 }

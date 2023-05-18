@@ -1,12 +1,13 @@
 package ma.uiass.eia.pds.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import java.io.Serializable;
-
+import java.util.List;
 
 
 @Entity
@@ -34,7 +35,6 @@ public abstract  class StateAMB implements Serializable {
         this.paraX = paraX;
         this.paraY = paraY;
     }
-
     @Column(name="nomState", length=50)
     private String nomState;
     @Column(name="paraA", length=50)
@@ -48,8 +48,9 @@ public abstract  class StateAMB implements Serializable {
     public StateAMB(String nomState) {
         this.nomState = nomState;
     }
-    @OneToOne(mappedBy = "state")
-    private Ambulance ambulance;
+    @OneToMany(mappedBy = "state")
+    @JsonIgnore
+    private List<Ambulance> ambulances;
 
 
 

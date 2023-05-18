@@ -1,7 +1,6 @@
 package ma.uiass.eia.pds.Model;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -29,6 +28,8 @@ public class Révision implements Serializable {
     private String dateRévision;
     @Column(name="dateProRévision", length=50)
     private String dateProRévision;
+    @Column(name="dateSortie", length=50)
+    private String dateSortie;
 
     public Révision(String dateRévision, String dateProRévision, String description) {
         this.dateRévision = dateRévision;
@@ -43,14 +44,23 @@ public class Révision implements Serializable {
         this.typeR = typeR;
     }
 
-    public Révision(String dateRévision, String dateProRévision, String description, TypeRévision typeR, Ambulance ambulance) {
+    public Révision(String dateRévision,double kilométrage,String dateSortie, String dateProRévision, String description, TypeRévision typeR, Ambulance ambulance) {
         this.dateRévision = dateRévision;
         this.dateProRévision = dateProRévision;
         this.description = description;
         this.typeR = typeR;
         this.ambulance = ambulance;
+        this.dateSortie=dateSortie;
+        this.ambulance.setKilométrage(kilométrage);
     }
 
+    public Révision(String dateRévision, TypeRévision typeR,double kilométrage,Ambulance am,String description) {
+        this.dateRévision = dateRévision;
+        this.typeR = typeR;
+        this.ambulance.setKilométrage(kilométrage);
+        this.ambulance=am;
+        this.description=description;
+    }
     @Column(name="description")
     private String description;
     @Column(name="typeR", length=50)
