@@ -36,7 +36,7 @@
                     System.out.println("server launched Successfully ");
 
 
-                    IBatimentService batimentService = new BatimentService();
+                   IBatimentService batimentService = new BatimentService();
                     IEtageService etageService = new EtageService();
                     IServiceService serviceService = new ServiceService();
                     IEspaceService espaceService = new ChambreService();
@@ -216,10 +216,7 @@
 
                 System.out.println(dispoMedicalServiceImp.afficherDispoMedical().get(dispoMedicalServiceImp.afficherDispoMedical().size()-1));*/
 
-
-
-
-               EtatsAmbulance etatsAmbulance1 = new F();
+                EtatsAmbulance etatsAmbulance1 = new F();
                 EtatsAmbulance etatsAmbulance2 = new NFCD();
                 EtatsAmbulance etatsAmbulance3 = new NFLD();
                 /*etatsAmbulanceService.ajouter(etatsAmbulance1);
@@ -243,14 +240,14 @@
 
 
 
-                    Ambulance ambulance4 = new Ambulance("77", "15/5/2023", "15/5/2023");
-                    Ambulance ambulance5 = new Ambulance("6479", "15/5/2023", "15/5/2023");
-                    Ambulance ambulance6 = new Ambulance("25681", "15/5/2023", "15/5/2023");
+                    Ambulance ambulance4 = new Ambulance("77",etatsAmbulance1,"15/5/2023", "15/5/2023");
+                    Ambulance ambulance5 = new Ambulance("6479",etatsAmbulance2, "15/5/2023", "15/5/2023");
+                    Ambulance ambulance6 = new Ambulance("25681", etatsAmbulance3,"15/5/2023", "15/5/2023");
                     ambulanceService.ajouter(ambulance4);
                     ambulanceService.ajouter(ambulance5);
                     ambulanceService.ajouter(ambulance6);
 
-                  Date now = new Date();
+
                   Revision revision1 = new Revision("15/5/2023",    "DEFECTUEUSE" ,ambulance4,"100000");
                   Revision revision2= new Revision("15/5/2023" ,"NOUS ALLONS CHANGER UNE PIECE",ambulance5,"12000");
                   Revision revision3 = new Revision("15/5/2023","EN COURS DE TRAITEMENT", ambulance6,"14326688");

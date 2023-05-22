@@ -3,6 +3,7 @@ package ma.uiass.eia.pds.Service;
 import ma.uiass.eia.pds.Dao.IRevisionDao;
 import ma.uiass.eia.pds.Dao.RevisionDao;
 import ma.uiass.eia.pds.Model.Ambulance;
+import ma.uiass.eia.pds.Model.DispoMedicItem;
 import ma.uiass.eia.pds.Model.Revision;
 
 import java.util.List;
@@ -27,5 +28,13 @@ public class RevisionService implements IRevisionService{
     @Override
     public List<Revision> afficherRevisionParAmbulance(int ambulance) {
         return revisionDao.getRevisionByAmbulance(ambulance);
+    }
+
+    @Override
+    public void SupprimerRevision(int idRev) {
+        Revision revision =revisionDao.getById(idRev);
+        if (revision != null) {
+            revisionDao.DeleteRevision(revision);
+        }
     }
 }

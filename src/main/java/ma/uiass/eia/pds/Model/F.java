@@ -20,4 +20,9 @@ public class F extends EtatsAmbulance{
     public static void setQ(double q) {
         F.q = q;
     }
+
+    @Override
+    public String toString() {
+        return "Fonctionnel" ;
+    }
 }

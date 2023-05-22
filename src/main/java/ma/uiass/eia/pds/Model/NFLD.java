@@ -11,4 +11,9 @@ public class NFLD extends EtatsAmbulance{
     public NFLD() {
         super();
     }
+
+    @Override
+    public String toString() {
+        return "Non fonctionel longue durée" ;
+    }
 }

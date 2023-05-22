@@ -9,5 +9,10 @@ public class NFCD extends EtatsAmbulance {
 
     public NFCD() {
     }
+
+    @Override
+    public String toString() {
+        return "Non Fonctionel courte durée" ;
+    }
 }
 

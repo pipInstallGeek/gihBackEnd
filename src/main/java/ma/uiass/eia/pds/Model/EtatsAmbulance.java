@@ -45,10 +45,4 @@ public abstract class EtatsAmbulance implements Serializable {
 
 
 
-    @Override
-    public String toString() {
-        return "EtatAmbulance{" +
-                "id=" + id ;
-
-    }
 }

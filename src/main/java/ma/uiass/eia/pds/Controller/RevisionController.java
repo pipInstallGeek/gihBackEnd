@@ -35,4 +35,11 @@ public class RevisionController {
     public List<Revision> getrevisionAmbulance(@PathParam("id") int ambulance){
         return revisionService.afficherRevisionParAmbulance(ambulance);
    }
+
+   @DELETE
+   @Path("/deleterevision/{codeRevision}")
+   @Produces(MediaType.APPLICATION_JSON)
+   public void deleteRevision(@PathParam("codeRevision") int codeRev){
+        revisionService.SupprimerRevision(codeRev);
+   }
 }

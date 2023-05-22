@@ -21,7 +21,7 @@ public class Ambulance implements Serializable {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_etat")
-    private EtatsAmbulance etatAmbulance = new F() ;
+    private EtatsAmbulance etatAmbulance  ;
 
     @Column(name = "estimated_date_revision")
     private String estimatedRevisionDate;
@@ -32,23 +32,23 @@ public class Ambulance implements Serializable {
     public Ambulance() {
     }
 
-    public Ambulance(String immatriculation,String date_mise_service) {
+    public Ambulance(String immatriculation,String date_mise_service , EtatsAmbulance etatsAmbulance) {
         this.immatriculation = immatriculation;
         this.date_mise_service = date_mise_service;
-        this.etatAmbulance = new F();
+        this.etatAmbulance = etatsAmbulance;
     }
 
-    public Ambulance(String immatriculation, String date_mise_service, String estimatedRevisionDate) {
+    public Ambulance(String immatriculation, EtatsAmbulance etatsAmbulance ,String date_mise_service, String estimatedRevisionDate) {
         this.immatriculation = immatriculation;
         this.date_mise_service = date_mise_service;
-        this.etatAmbulance = new F();
+        this.etatAmbulance = etatsAmbulance;
         this.estimatedRevisionDate = estimatedRevisionDate;
     }
 
-    public Ambulance(String immatriculation, String date_mise_service, String estimatedRevisionDate, String kilometrage) {
+    public Ambulance(String immatriculation, String date_mise_service, String estimatedRevisionDate,EtatsAmbulance etatsAmbulance ,String kilometrage) {
         this.immatriculation = immatriculation;
         this.date_mise_service = date_mise_service;
-        this.etatAmbulance = new F();
+        this.etatAmbulance = etatsAmbulance;
         this.estimatedRevisionDate = estimatedRevisionDate;
         this.kilometrage = kilometrage;
     }
