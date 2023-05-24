@@ -51,13 +51,13 @@ public class Révision implements Serializable {
         this.typeR = typeR;
         this.ambulance = ambulance;
         this.dateSortie=dateSortie;
-        this.ambulance.setKilométrage(kilométrage);
+        this.ambulance.setKilometrage(kilométrage);
     }
 
     public Révision(String dateRévision, TypeRévision typeR,double kilométrage,Ambulance am,String description) {
         this.dateRévision = dateRévision;
         this.typeR = typeR;
-        this.ambulance.setKilométrage(kilométrage);
+        this.ambulance.setKilometrage(kilométrage);
         this.ambulance=am;
         this.description=description;
     }

@@ -1,6 +1,6 @@
 package ma.uiass.eia.pds.Model;
 
 public enum TypeRévision {
-    Révision_Maintenance_Régulière,Réparation_Urgence,Révision_Maintenance_Approfondie;
+    R_Régulière,R_Urgence,R_Approfondie;
 
 }

@@ -47,8 +47,34 @@ public class AmbulanceController {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public Ambulance getAMBByCode(
-            @PathParam("codeAMB") String codeAMB){
-        return ambulanceService.trouverByCode(codeAMB);
+            @PathParam("codeAMB") String codeAMB) {
+        Ambulance ambulance = ambulanceService.trouverByCode(codeAMB);
+        if (ambulance == null) {
+            return null;
+        } else {
+            return ambulance;
+        }
+    }
+    @POST
+    @Path("/add")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public void addAmbulance(Ambulance ambulance){
+        ambulanceService.ajouter(ambulance);
+    }
+
+    @DELETE
+    @Path("/delete/{id}")
+    public void delete(
+            @PathParam("id") int id
+    ){
+        ambulanceService.delete(id);
+    }
+
+    @PUT
+    @Path("/update")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public void update(Ambulance ambulance){
+        ambulanceService.update(ambulance);
     }
 
 }

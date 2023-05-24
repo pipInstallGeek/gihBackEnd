@@ -48,6 +48,7 @@ public abstract  class StateAMB implements Serializable {
     public StateAMB(String nomState) {
         this.nomState = nomState;
     }
+
     @OneToMany(mappedBy = "state")
     @JsonIgnore
     private List<Ambulance> ambulances;

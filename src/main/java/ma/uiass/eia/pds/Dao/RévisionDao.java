@@ -41,9 +41,9 @@ public class RévisionDao implements IRévisionDao{
         return entityManager.find(Révision.class, id);
     }
     @Override
-    public List<Révision> findbyCde(String codeAmbulance) {
-        TypedQuery<Révision> query = entityManager.createQuery("SELECT c FROM Révision c WHERE c.ambulance.codeAmbulance = :codeAmbulance", Révision.class);
-        query.setParameter("codeAmbulance", codeAmbulance);
+    public List<Révision> findbyCde(String immatruculation) {
+        TypedQuery<Révision> query = entityManager.createQuery("SELECT c FROM Révision c WHERE c.ambulance.immatruculation = :immatruculation", Révision.class);
+        query.setParameter("immatruculation",immatruculation);
         try {
             return query.getResultList();
         } catch (NonUniqueResultException e) {
@@ -89,9 +89,9 @@ public class RévisionDao implements IRévisionDao{
         }
     }
     @Override
-    public List<Révision> findbyDateSNull(String codeAmbulance) {
-        TypedQuery<Révision> query = entityManager.createQuery("SELECT r FROM Révision r WHERE r.ambulance.codeAmbulance = :codeAmbulance AND r.dateSortie='null'", Révision.class);
-        query.setParameter("codeAmbulance", codeAmbulance);
+    public List<Révision> findbyDateSNull(String immatruculation ) {
+        TypedQuery<Révision> query = entityManager.createQuery("SELECT r FROM Révision r WHERE r.ambulance.immatruculation = :immatruculation AND r.dateSortie='null'", Révision.class);
+        query.setParameter("immatruculation", immatruculation );
         try {
             return query.getResultList();
         } catch (NonUniqueResultException e) {

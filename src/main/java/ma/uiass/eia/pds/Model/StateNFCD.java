@@ -19,7 +19,7 @@ public class StateNFCD extends StateAMB implements Serializable {
 
     @Override
     public String toString() {
-        return "Non-Fonctionnelle-CD";
+        return "NFCD";
     }
 
     public StateNFCD() {

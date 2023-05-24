@@ -1,13 +1,7 @@
 package ma.uiass.eia.pds.Service;
 
-import ma.uiass.eia.pds.Dao.AmbulanceDao;
-import ma.uiass.eia.pds.Dao.IAmbulanceDao;
-import ma.uiass.eia.pds.Dao.IRévisionDao;
-import ma.uiass.eia.pds.Dao.RévisionDao;
-import ma.uiass.eia.pds.Model.Ambulance;
-import ma.uiass.eia.pds.Model.DispositifMedical;
-import ma.uiass.eia.pds.Model.Révision;
-import ma.uiass.eia.pds.Model.TypeRévision;
+import ma.uiass.eia.pds.Dao.*;
+import ma.uiass.eia.pds.Model.*;
 
 import java.util.List;
 
@@ -15,7 +9,9 @@ public class
 RévisionService implements IRévisionService{
     IRévisionDao révisionDao=new RévisionDao();
     IAmbulanceDao ambulanceDao=new AmbulanceDao();
-IAmbulanceService ambulanceService=new AmbulanceService();
+    IStateAMBDao stateFDao=new StateFDao();
+
+    IAmbulanceService ambulanceService=new AmbulanceService();
 
     @Override
     public void ajouter(Révision révision) {
@@ -45,7 +41,7 @@ IAmbulanceService ambulanceService=new AmbulanceService();
     public void addRSansDateS(String dateR,double kilométrage, String codeAMB,  TypeRévision typeR) {
         Ambulance ambulance=ambulanceService.trouverByCode(codeAMB);
         System.out.println(ambulance);
-        String desc=codeAMB+"a été soumise à une "+typeR+"et elle est devenue";
+        String desc=codeAMB+" a été soumise à une "+typeR;
         Révision r=new Révision(dateR,typeR, kilométrage,ambulance,desc);
         révisionDao.add(r);
         //r.setCodeRévision("REV"+r.getIdRévision());
@@ -57,6 +53,8 @@ IAmbulanceService ambulanceService=new AmbulanceService();
     @Override
     public void modifierDateS(String codeR,String dateS) {
         Révision révision= révisionDao.findbyCode(codeR);
+        StateF state= (StateF) stateFDao.findbyNom("F");
+        révision.getAmbulance().setState(state);
         révisionDao.updateS(révision,dateS);
 
     }

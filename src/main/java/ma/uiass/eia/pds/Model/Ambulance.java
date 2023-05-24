@@ -1,59 +1,73 @@
 package ma.uiass.eia.pds.Model;
 
+import java.time.LocalDate;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.io.Serializable;
-import java.util.ArrayList;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
+
 import java.util.List;
 
-@Entity
+
 @Table(name= "TAmbulance")
-@Inheritance(strategy = InheritanceType.JOINED)
 @Data
+@Entity
 @NoArgsConstructor
-public class Ambulance implements Serializable {
+
+public class Ambulance {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idAmbulance;
 
-    @Column(name="CodeAmbulance", length=50)
-    private String codeAmbulance;
-    @Column(name="DateMiseEnCirculation", length=50)
-    private String dateMiseEnCirculation;
-    @Column(name="DateCréation", length=50)
-    private String dateCréation;
-    @Column(name="Kilométrage", length=50)
-    private double kilométrage;
+    @Column
+    private String immatruculation;
+
+    @JsonDeserialize(using = LocalDateDeserializer.class)
+    @JsonSerialize(using = LocalDateSerializer.class)
+    @Column
+    private LocalDate dateCirucaltion;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "ambulance", fetch = FetchType.LAZY )
-    private List<Révision> révisions = new ArrayList<>();
+    @OneToMany(mappedBy = "ambulance",cascade = CascadeType.ALL)
+    private List<Révision> revisions;
+
+
+
+    /*@Column(name="CodeAmbulance", length=50)
+    private String codeAmbulance;*/
+
+    @JsonDeserialize(using = LocalDateDeserializer.class)
+    @JsonSerialize(using = LocalDateSerializer.class)
+    @Column(name="DateCreation", length=50)
+    private LocalDate dateCreation;
+    @Column(name="Kilometrage", length=50)
+    private double kilometrage;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "idState",referencedColumnName ="idState" )
     private StateAMB state;
-
-
-    public Ambulance(String dateMiseEnCirculation, String dateCréation, List<Révision> révisions) {
-        this.dateMiseEnCirculation = dateMiseEnCirculation;
-        this.dateCréation = dateCréation;
-        this.révisions = révisions;
+    public Ambulance(String immatruculation, LocalDate dateCirucaltion){
+        setDateCirucaltion(dateCirucaltion);
+        setImmatruculation(immatruculation);
     }
 
-    public Ambulance(String dateMiseEnCirculation, String dateCréation, double kilométrage) {
-        this.dateMiseEnCirculation = dateMiseEnCirculation;
-        this.dateCréation = dateCréation;
-       this.kilométrage=kilométrage;
+    public Ambulance(LocalDate dateCirucaltion, double kilometrage) {
+        this.dateCirucaltion = dateCirucaltion;
+        this.kilometrage = kilometrage;
     }
 
-    public Ambulance(String dateMiseEnCirculation, String dateCréation) {
-        this.dateMiseEnCirculation = dateMiseEnCirculation;
-        this.dateCréation = dateCréation;
+    public Ambulance(String matricule, LocalDate dateCirucaltion, double kilometrage){
+    	this.kilometrage = kilometrage;
+    	this.immatruculation = matricule;
+    	this.dateCirucaltion = dateCirucaltion;
     }
     public  String toString(){
-        return this.codeAmbulance;
+        return this.immatruculation;
     }
 
 

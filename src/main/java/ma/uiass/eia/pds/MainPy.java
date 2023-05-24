@@ -3,7 +3,6 @@ package ma.uiass.eia.pds;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
@@ -30,6 +29,5 @@ public class MainPy {
             System.out.println(line);}
         while (((line= error.readLine()))!= null ){
             System.out.println(line);}
-
     }
 }

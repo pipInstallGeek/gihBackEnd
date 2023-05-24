@@ -19,7 +19,7 @@ public class StateNFLD extends StateAMB implements Serializable {
 
     @Override
     public String toString() {
-        return "Non-Fonctionnelle-LD";
+        return "NCLD";
     }
 
     public StateNFLD() {

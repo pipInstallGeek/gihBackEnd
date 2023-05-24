@@ -23,7 +23,7 @@ public class StateF extends StateAMB implements Serializable {
 
     @Override
     public String toString() {
-        return "StateF" ;
+        return "F" ;
     }
 
     public StateF() {

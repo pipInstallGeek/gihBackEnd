@@ -7,4 +7,7 @@ public interface IAmbulanceDao extends IDao<Ambulance> {
     Ambulance findbyCode(String codeAMB);
     void updateState(Ambulance ambulance, StateAMB newState);
     void updateS(Ambulance a,double kilo);
+    void delete(Ambulance ambulance);
+
+    void update(Ambulance ambulance);
 }
