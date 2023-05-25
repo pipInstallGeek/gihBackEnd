@@ -4,7 +4,9 @@ package ma.uiass.eia.pds.Controller;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import ma.uiass.eia.pds.Model.Ambulance;
+import ma.uiass.eia.pds.Model.EtatsAmbulance;
 import ma.uiass.eia.pds.Model.Marque;
+import ma.uiass.eia.pds.Model.Revision;
 import ma.uiass.eia.pds.Service.AmbulanceService;
 import ma.uiass.eia.pds.Service.IAmbulanceService;
 
@@ -27,4 +29,12 @@ public class AmbulanceController {
     public void addAmbulance(Ambulance ambulance){
         ambulanceService.ajouter(ambulance);
     }
+
+    @POST
+    @Path("/updateState")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public void updateState(Ambulance amb){
+        ambulanceService.Changertat(amb);
+    }
+
 }

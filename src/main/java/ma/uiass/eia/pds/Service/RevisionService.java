@@ -4,6 +4,7 @@ import ma.uiass.eia.pds.Dao.IRevisionDao;
 import ma.uiass.eia.pds.Dao.RevisionDao;
 import ma.uiass.eia.pds.Model.Ambulance;
 import ma.uiass.eia.pds.Model.DispoMedicItem;
+import ma.uiass.eia.pds.Model.EtatsAmbulance;
 import ma.uiass.eia.pds.Model.Revision;
 
 import java.util.List;
@@ -36,5 +37,6 @@ public class RevisionService implements IRevisionService{
         if (revision != null) {
             revisionDao.DeleteRevision(revision);
         }
+
     }
 }

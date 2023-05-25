@@ -18,8 +18,7 @@ public class Ambulance implements Serializable {
     @Column(name="date_mise_service")
     private String date_mise_service;
 
-
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_etat")
     private EtatsAmbulance etatAmbulance  ;
 

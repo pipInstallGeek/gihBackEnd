@@ -3,6 +3,7 @@ package ma.uiass.eia.pds.Controller;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import ma.uiass.eia.pds.Model.Ambulance;
+import ma.uiass.eia.pds.Model.EtatsAmbulance;
 import ma.uiass.eia.pds.Model.Marque;
 import ma.uiass.eia.pds.Model.Revision;
 import ma.uiass.eia.pds.Service.IMarqueService;
@@ -43,3 +44,5 @@ public class RevisionController {
         revisionService.SupprimerRevision(codeRev);
    }
 }
+
+

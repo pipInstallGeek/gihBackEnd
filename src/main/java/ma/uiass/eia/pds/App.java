@@ -216,14 +216,16 @@
 
                 System.out.println(dispoMedicalServiceImp.afficherDispoMedical().get(dispoMedicalServiceImp.afficherDispoMedical().size()-1));*/
 
+
+                    IEtatsAmbulanceService etatsAmbulanceService = new EtatsAmbulanceService();
                 EtatsAmbulance etatsAmbulance1 = new F();
                 EtatsAmbulance etatsAmbulance2 = new NFCD();
                 EtatsAmbulance etatsAmbulance3 = new NFLD();
-                /*etatsAmbulanceService.ajouter(etatsAmbulance1);
+                etatsAmbulanceService.ajouter(etatsAmbulance1);
                 etatsAmbulanceService.ajouter(etatsAmbulance2);
                 etatsAmbulanceService.ajouter(etatsAmbulance3);
 
-                Ambulance ambulance1 = new Ambulance("1",LocalDate.now(),etatsAmbulance1,LocalDate.now());
+               /* Ambulance ambulance1 = new Ambulance("1",LocalDate.now(),etatsAmbulance1,LocalDate.now());
                 Ambulance ambulance2 = new Ambulance("2",LocalDate.now(),etatsAmbulance2,LocalDate.now());
                 Ambulance ambulance3 = new Ambulance("3",LocalDate.now(),etatsAmbulance3,LocalDate.now());
                 ambulanceService.ajouter(ambulance1);

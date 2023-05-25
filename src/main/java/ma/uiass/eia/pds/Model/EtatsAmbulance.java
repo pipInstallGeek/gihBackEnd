@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
+import java.util.List;
 
 
 @Entity
@@ -28,9 +29,8 @@ public abstract class EtatsAmbulance implements Serializable {
     private static double B;
     private double x;
     private double y;
-    @OneToOne
-    @JoinColumn(name = "id_ambulance")
-    private Ambulance ambulance;
+    @OneToMany(mappedBy="etatAmbulance")
+    private List<Ambulance> ambulance;
 
 
 

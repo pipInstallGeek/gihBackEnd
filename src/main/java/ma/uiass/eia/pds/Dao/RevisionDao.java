@@ -2,9 +2,10 @@ package ma.uiass.eia.pds.Dao;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.Query;
 import ma.uiass.eia.pds.HibernateUtility.HibernateUtil;
 import ma.uiass.eia.pds.Model.Ambulance;
-import ma.uiass.eia.pds.Model.DispoMedicItem;
+import ma.uiass.eia.pds.Model.EtatsAmbulance;
 import ma.uiass.eia.pds.Model.Revision;
 
 import java.util.List;
@@ -68,4 +69,9 @@ public class RevisionDao implements IRevisionDao{
 
 
 
+
+
 }
+
+
+
