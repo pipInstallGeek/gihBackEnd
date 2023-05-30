@@ -23,8 +23,8 @@ public class Ambulance implements Serializable {
     @Column(name="date_mise_service")
     private String date_mise_service;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_etat")
+    @ManyToOne
+    @JoinColumn(name = "id_etat", referencedColumnName = "codeEtat")
     private EtatsAmbulance etatsAmbulance;
 
 
@@ -39,12 +39,16 @@ public class Ambulance implements Serializable {
         this.date_mise_service = date_mise_service;
     }
 
+
+/*
     public Ambulance(String immatriculation, String kilometrage, String date_mise_service, EtatsAmbulance etatsAmbulance) {
         this.immatriculation = immatriculation;
         this.kilometrage = kilometrage;
         this.date_mise_service = date_mise_service;
         this.etatsAmbulance = etatsAmbulance;
     }
+
+ */
 
     public String getDate_mise_service() {
         return date_mise_service;
@@ -72,13 +76,10 @@ public class Ambulance implements Serializable {
         return id;
     }
 
-    public EtatsAmbulance getEtatAmbulance() {
-        return etatsAmbulance;
+    public EtatsAmbulance getEtatsAmbulance() {
+        return this.etatsAmbulance;
     }
 
-    public void setEtatAmbulance(EtatsAmbulance etatsAmbulance) {
-        this.etatsAmbulance = etatsAmbulance;
-    }
 
     public String getKilometrage() {
         return kilometrage;
@@ -88,12 +89,14 @@ public class Ambulance implements Serializable {
         this.kilometrage = kilometrage;
     }
 
-    public EtatsAmbulance getEtatsAmbulance() {
-        return etatsAmbulance;
-    }
 
     public void setEtatsAmbulance(EtatsAmbulance etatsAmbulance) {
         this.etatsAmbulance = etatsAmbulance;
+    }
+
+
+    public String toString(){
+        return this.immatriculation;
     }
 }
 

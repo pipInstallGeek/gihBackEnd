@@ -4,6 +4,7 @@ package ma.uiass.eia.pds.Controller;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import ma.uiass.eia.pds.Model.Ambulance;
+import ma.uiass.eia.pds.Model.DispoMedicItem;
 import ma.uiass.eia.pds.Model.EtatsAmbulance;
 import ma.uiass.eia.pds.Model.Marque;
 import ma.uiass.eia.pds.Service.AmbulanceService;
@@ -31,7 +32,11 @@ public class AmbulanceController {
 
     @GET
     @Path("/getAmbulancePerType/{etatsAmbulance}")
-    @Consumes(MediaType.APPLICATION_JSON)
-    public void ambulancePerType(
-            @PathParam("etatsAmbulance") String etatsAmbulance){ambulanceService.afficherAmbulanceEtat(etatsAmbulance);}
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Ambulance> ambulancePerType(
+            @PathParam("etatsAmbulance") String etatsAmbulance){return ambulanceService.afficherAmbulanceEtat(etatsAmbulance);}
+
+
+
+
 }

@@ -4,5 +4,6 @@ import ma.uiass.eia.pds.Model.DispoMedicItem;
 
 public interface IDispoMedicItemService extends IService<DispoMedicItem> {
      void deleteItem(int id);
+     void updateEspaceItem(int dispoMedicItem,String espace);
 
 }

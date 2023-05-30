@@ -28,16 +28,30 @@ public class DispoMedicItemController {
     }
 
     @GET
-    @Path("/getByIdDispoMedItem")
+    @Path("/getByIdDispoMedItem/{codeDispoMedicItem}")
     @Produces(MediaType.APPLICATION_JSON)
-    public DispoMedicItem getByIdDispositifMedItem(int id){
+    public DispoMedicItem getByIdDispositifMedItem(@PathParam("codeDispoMedicItem") int id){
         return dispoMedicItemService.trouverId(id);
     }
 
     @DELETE
     @Path("/deleteItem/{codeDispoMedicItem}")
+    @Produces(MediaType.APPLICATION_JSON)
     public void deleteDMITEM(@PathParam("codeDispoMedicItem") int codeItem){
         dispoMedicItemService.deleteItem(codeItem);
     }
+    @PUT
+    @Path("/modifyDispo/{codeDispoMedicItem}/{espaceItem}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public void updateDISPOMEDIC(@PathParam("codeDispoMedicItem") int dispoMedicItem,
+                                 @PathParam("espaceItem") String espace){
+        dispoMedicItemService.updateEspaceItem(dispoMedicItem,espace);
+
+
+
+    }
+
+
+
 
 }

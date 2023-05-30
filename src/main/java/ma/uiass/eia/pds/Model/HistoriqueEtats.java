@@ -18,13 +18,7 @@ public class HistoriqueEtats {
     @Column(name = "date_prochaine_revision")
     LocalDate date_prochaine_revision;
 
-    @ManyToOne
-    @JoinColumn(name = "id_ambulance")
-    private Ambulance ambulance;
 
-    @ManyToOne
-    @JoinColumn(name = "code_etat")
-    private EtatsAmbulance etatsAmbulance;
 
     public HistoriqueEtats() {}
 
@@ -35,8 +29,7 @@ public class HistoriqueEtats {
     public HistoriqueEtats(LocalDate date_debut, LocalDate date_prochaine_revision, Ambulance ambulance, EtatsAmbulance etatsAmbulance) {
         this.date_debut = date_debut;
         this.date_prochaine_revision = date_prochaine_revision;
-        this.ambulance = ambulance;
-        this.etatsAmbulance = etatsAmbulance;
+
     }
 
     public int getId() {
@@ -64,20 +57,5 @@ public class HistoriqueEtats {
         this.date_prochaine_revision = date_prochaine_revision;
     }
 
-    public Ambulance getAmbulance() {
-        return ambulance;
-    }
-
-    public void setAmbulance(Ambulance ambulance) {
-        this.ambulance = ambulance;
-    }
-
-    public EtatsAmbulance getEtatAmbulance() {
-        return etatsAmbulance;
-    }
-
-    public void setEtatAmbulance(EtatsAmbulance etatsAmbulance) {
-        this.etatsAmbulance = etatsAmbulance;
-    }
 }
 

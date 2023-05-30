@@ -20,10 +20,7 @@
             import java.time.LocalDateTime;
             import java.time.Month;
             import java.time.ZoneId;
-            import java.util.ArrayList;
-            import java.util.Arrays;
-            import java.util.Calendar;
-            import java.util.Date;
+            import java.util.*;
 
 
             public class App extends ResourceConfig {
@@ -40,9 +37,7 @@
                 System.out.println("server launched Successfully ");
 
 
-
-
-
+/*
                 IBatimentService batimentService = new BatimentService();
                 IEtageService etageService = new EtageService();
                 IServiceService serviceService = new ServiceService();
@@ -78,6 +73,11 @@
                 serviceService.ajouter(service);
                 serviceService.ajouter(service1);
                 serviceService.ajouter(service2);
+
+                IEspaceService<Salle> salleIEspaceService=new SalleService();
+                salleIEspaceService.ajouter(new Salle("Stock",TypeSalle.UNKNOWN,service));
+
+
 
 
 
@@ -155,16 +155,61 @@
                 EtatsAmbulance etat1=new F();
                 EtatsAmbulance etat2=new NFLD();
                 EtatsAmbulance etat3=new NFCD();
+                etat1.setStateName(StateName.F);
+                etat2.setStateName(StateName.NFLD);
+                etat3.setStateName(StateName.NFCD);
                 IEtatsAmbulanceService etatsAmbulanceService=new EtatsAmbulanceService();
                 etatsAmbulanceService.ajouter(etat1);
                 etatsAmbulanceService.ajouter(etat2);
                 etatsAmbulanceService.ajouter(etat3);
 
 
+                IAmbulanceService ambulanceService=new AmbulanceService();
+                ambulanceService.ajouter(new Ambulance("1/ALIF/20103","123909","12/9/2006"));
+                Ambulance dd =new Ambulance("1/ALIF/20103","123909","12/9/2006");
+                dd.setEtatsAmbulance(etat2);
+                ambulanceService.ajouter(dd);
+                Ambulance ambulance=new Ambulance("2/ALIF/20103","390309","1/10/2007");
+                ambulance.setEtatsAmbulance(etat3);
+                ambulanceService.ajouter(ambulance);
+                Ambulance ambulance2=new Ambulance("58/ALIF/20103","12093","12/10/2013");
+                ambulance2.setEtatsAmbulance(etat3);
+                ambulanceService.ajouter(ambulance2);
 
 
+
+
+
+
+ */
+
+
+
+
+
+               /* IAmbulanceService ambulanceService=new AmbulanceService();
+                IEtatsAmbulanceService etatsAmbulanceService=new EtatsAmbulanceService();
+                /*
+                List<EtatsAmbulance> etatsAmbulanceList=etatsAmbulanceService.afficherTout();
+                Ambulance ambulance=ambulanceService.afficherTout().get(0);
+                System.out.println(ambulance.getEtatsAmbulance().getStateName().toString().equals("F"));
+
+                System.out.println(ambulanceService.afficherAmbulanceEtat("F"));
+                Ambulance ambulance1=new Ambulance("1/ALIF/20103","123909","12/9/2006");
+                ambulance1.setEtatsAmbulance(etatsAmbulanceList.get(0));
+                ambulanceService.ajouter(ambulance1);
+
+                 */
+
+              //  System.out.println(etatsAmbulanceService.afficherTout().get(0));
+
+
+
+
+/*
                 IAmbulanceService ambulanceService=new AmbulanceService();
                 ambulanceService.ajouter(new Ambulance("1/ALIF/20103","123909","12/9/2006",etat1));
+                Ambulance dd =new Ambulance("1/ALIF/20103","123909","12/9/2006",etat1);
                 ambulanceService.ajouter(new Ambulance("2/ALIF/20103","390309","1/10/2007",etat2));
                 ambulanceService.ajouter(new Ambulance("4/ALIF/20103","20309","2/10/2008",etat3));
                 ambulanceService.ajouter(new Ambulance("6/ALIF/20103","1209","21/10/2009",etat3));
@@ -174,6 +219,14 @@
                 ambulanceService.ajouter(new Ambulance("44/ALIF/20103","1309","12/10/2010",etat1));
 
 
+ */
+
+
+
+
+
+
+
 
 
 
@@ -181,7 +234,7 @@
 
 
 /*
-                ambulanceService.afficherTout().get(0).setEtatAmbulance(etat1);
+                ambulanceService.afficherTout().get(0).setEtatsAmbulance(etat1);
                 ambulanceService.afficherTout().get(1).setEtatAmbulance(etat1);
                 ambulanceService.afficherTout().get(2).setEtatAmbulance(etat1);
                 ambulanceService.afficherTout().get(3).setEtatAmbulance(etat1);
@@ -287,9 +340,19 @@
 
 
 
+/*
+                IAmbulanceService ambulanceService=new AmbulanceService();
+                IEtatsAmbulanceService etatsAmbulanceService=new EtatsAmbulanceService();
+                for(Ambulance ambulance:ambulanceService.afficherTout()){
+                    if(ambulance.getEtatAmbulance() == null){
+                        ambulance.setEtatAmbulance(etatsAmbulanceService.afficherTout().get(0));
+                    }
+                }
+                System.out.println(ambulanceService.afficherAmbulanceEtat("NFCD"));
 
 
 
+ */
 
 
 

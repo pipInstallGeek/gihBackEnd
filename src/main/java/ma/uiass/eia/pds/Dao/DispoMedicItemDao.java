@@ -1,7 +1,9 @@
 package ma.uiass.eia.pds.Dao;
 
+import com.mysql.cj.Session;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
+import jakarta.transaction.Transaction;
 import ma.uiass.eia.pds.HibernateUtility.HibernateUtil;
 import ma.uiass.eia.pds.Model.DispoMedicItem;
 import ma.uiass.eia.pds.Model.DispoMedical;
@@ -60,6 +62,25 @@ public class DispoMedicItemDao implements IDispoMedicItemDao{
             transaction.commit();
         }catch (Exception e){
             if (transaction != null){
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }
+    }
+
+    public void updateEspace(int idItem, String espaceItem) {
+        EntityTransaction transaction = entityManager.getTransaction();
+        DispoMedicItem item=getById(idItem);
+        try {
+            transaction.begin();
+            // Update the espaceItem attribute of the DispoMedicItem
+            item.setEspaceItem(espaceItem);
+
+            transaction.commit();
+            // Save the updated item
+
+        } catch (Exception e) {
+            if (transaction != null) {
                 transaction.rollback();
             }
             e.printStackTrace();

@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 @Entity(name = "TFonctionnel")
 @DiscriminatorValue("f")
 public class F extends EtatsAmbulance{
+    @Enumerated(EnumType.STRING)
     private final StateName stateName = StateName.F;
     private static double q;
 
@@ -18,4 +19,5 @@ public class F extends EtatsAmbulance{
     public static void setQ(double q) {
         F.q = q;
     }
+
 }

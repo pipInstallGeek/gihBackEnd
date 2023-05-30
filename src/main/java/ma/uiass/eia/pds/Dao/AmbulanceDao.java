@@ -4,11 +4,15 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 import ma.uiass.eia.pds.HibernateUtility.HibernateUtil;
 import ma.uiass.eia.pds.Model.Ambulance;
+import ma.uiass.eia.pds.Service.EtatsAmbulanceService;
+import ma.uiass.eia.pds.Service.IEtatsAmbulanceService;
 
 
 import java.util.List;
 
 public class AmbulanceDao implements IAmbulanceDao{
+
+    IEtatsAmbulanceService etatsAmbulanceService=new EtatsAmbulanceService();
     private EntityManager entityManager;
     public AmbulanceDao(){this.entityManager= HibernateUtil.getEntityManger();
     }
@@ -22,6 +26,7 @@ public class AmbulanceDao implements IAmbulanceDao{
         EntityTransaction transaction = entityManager.getTransaction();
         try {
             transaction.begin();
+            if(ambulance.getEtatsAmbulance()==null){ambulance.setEtatsAmbulance(etatsAmbulanceService.afficherTout().get(0));}
             entityManager.persist(ambulance);
             transaction.commit();
 

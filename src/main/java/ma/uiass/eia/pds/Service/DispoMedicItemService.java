@@ -35,4 +35,9 @@ public class DispoMedicItemService implements IDispoMedicItemService{
         }
 
     }
+
+    @Override
+    public void updateEspaceItem(int dispoMedicItem, String espace) {
+        dispoMedicItemDao.updateEspace(dispoMedicItem,espace);
+    }
 }

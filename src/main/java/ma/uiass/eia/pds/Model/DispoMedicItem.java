@@ -13,15 +13,30 @@ public class DispoMedicItem {
     @Column
     private String referenceItem;
 
+    @Column
+    private int nombreItems;
 
     @ManyToOne
     @JoinColumn(name = "idDispoMedical", referencedColumnName = "idDispoMedical")
     private DispoMedical dispoMedical;
 
-    @ManyToOne
+  /*  @ManyToOne
     @JoinColumn(name = "idEspaceItem", referencedColumnName = "idEspace")
     private Espace espaceItem;
 
+   */
+
+    @Column
+    private String espaceItem;
+
+
+    public int getNombreItems() {
+        return nombreItems;
+    }
+
+    public void setNombreItems(int nombreItems) {
+        this.nombreItems = nombreItems;
+    }
 
     public int getCodeDispoMedicItem() {
         return codeDispoMedicItem;
@@ -47,18 +62,19 @@ public class DispoMedicItem {
         this.dispoMedical = dispoMedical;
     }
 
-    public Espace getEspaceItem() {
+    public String getEspaceItem() {
         return espaceItem;
     }
 
-    public void setEspaceItem(Espace espaceItem) {
+    public void setEspaceItem(String espaceItem) {
         this.espaceItem = espaceItem;
     }
 
-    public DispoMedicItem(String referenceItem, DispoMedical dispoMedical, Espace espace){
+    public DispoMedicItem(String referenceItem, DispoMedical dispoMedical,String espace,int nombreItems){
         setDispoMedical(dispoMedical);
         setReferenceItem(referenceItem);
         setEspaceItem(espace);
+        setNombreItems(nombreItems);
     }
     public DispoMedicItem(){}
 

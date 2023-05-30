@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AmbulanceService implements IAmbulanceService{
+    IEtatsAmbulanceService etatsAmbulanceService=new EtatsAmbulanceService();
     private IAmbulanceDao ambulanceDao = new AmbulanceDao();
     @Override
     public void ajouter(Ambulance ambulance) {
@@ -28,7 +29,7 @@ public class AmbulanceService implements IAmbulanceService{
     public List<Ambulance> afficherAmbulanceEtat(String etatambulance){
         List<Ambulance> ambulanceList=new ArrayList<>();
         for(Ambulance ambulance1:ambulanceDao.getAll()){
-            if(ambulance1.getEtatAmbulance().getStateName().name().equals(etatambulance)){
+            if(ambulance1.getEtatsAmbulance().getStateName().toString().equals(etatambulance)){
                 ambulanceList.add(ambulance1);
             }
         }
