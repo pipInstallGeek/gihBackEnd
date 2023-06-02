@@ -2,6 +2,7 @@ package ma.uiass.eia.pds.Dao;
 
 import jakarta.persistence.*;
 import ma.uiass.eia.pds.HibernateUtility.HibernateUtil;
+import ma.uiass.eia.pds.Model.Salle;
 import ma.uiass.eia.pds.Model.Service;
 
 import java.util.List;
@@ -40,6 +41,11 @@ public class ServiceDao implements IServiceDao{
             return null;
         }
         return service;
+    }
+
+    public Salle getStock(int idService){
+        Query query = entityManager.createQuery("select s from Salle s where s.id = 1 and s.service.id = " + idService);
+        return (Salle) query.getSingleResult();
     }
 
 }

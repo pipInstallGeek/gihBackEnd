@@ -21,12 +21,24 @@ public class LitDao implements ILitDao{
 
     @Override
     public void add(Lit lit) {
-        EntityTransaction transaction = entityManager.getTransaction();
+       /* EntityTransaction transaction = entityManager.getTransaction();
         try {
             transaction.begin();
             entityManager.persist(lit);
             lit.setCodeLit(lit.getEspace().getCodeEspace()+lit.getIdLit());
             entityManager.merge(lit);
+            transaction.commit();
+
+        }catch (Exception e){
+            if (transaction != null){
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }*/
+        EntityTransaction transaction = entityManager.getTransaction();
+        try {
+            transaction.begin();
+            entityManager.persist(lit);
             transaction.commit();
 
         }catch (Exception e){
@@ -79,7 +91,7 @@ public class LitDao implements ILitDao{
             transaction.begin();
             lit.setOccupe(occupee);
             lit.setEspace(espace);
-            lit.setEtatLit(etatLit);
+            lit.setEtatLit(etatLit.toString());
             entityManager.merge(lit);
             transaction.commit();
         }catch (Exception e){
@@ -98,6 +110,7 @@ public class LitDao implements ILitDao{
                 .getSingleResult();
         return mycount;
     }
+
 
     public List<Lit> test(int idMarque){
         return  entityManager.createQuery("from Lit t JOIN t.espace  where espace.idEspace =: value")

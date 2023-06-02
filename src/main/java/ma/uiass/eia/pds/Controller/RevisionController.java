@@ -2,6 +2,8 @@ package ma.uiass.eia.pds.Controller;
 
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
+import ma.uiass.eia.pds.Model.Ambulance;
+import ma.uiass.eia.pds.Model.EtatsAmbulance;
 import ma.uiass.eia.pds.Model.Marque;
 import ma.uiass.eia.pds.Model.Revision;
 import ma.uiass.eia.pds.Service.IMarqueService;
@@ -27,4 +29,20 @@ public class RevisionController {
     public void addRevision(Revision revision){
         revisionService.ajouter(revision);
     }
+
+    @GET
+    @Path("/getrevisionambulance/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Revision> getrevisionAmbulance(@PathParam("id") int ambulance){
+        return revisionService.afficherRevisionParAmbulance(ambulance);
+   }
+
+   @DELETE
+   @Path("/deleterevision/{codeRevision}")
+   @Produces(MediaType.APPLICATION_JSON)
+   public void deleteRevision(@PathParam("codeRevision") int codeRev){
+        revisionService.SupprimerRevision(codeRev);
+   }
 }
+
+

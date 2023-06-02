@@ -2,6 +2,7 @@ package ma.uiass.eia.pds.Controller;
 
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
+import ma.uiass.eia.pds.Model.Salle;
 import ma.uiass.eia.pds.Model.Service;
 import ma.uiass.eia.pds.Service.*;
 
@@ -23,5 +24,10 @@ public class  ServiceController {
         serviceService.ajouter(service);
     }
 
-
+    @GET
+    @Path("/getstock/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Salle getStock(@PathParam("id") int id){
+        return serviceService.getStock(id);
+    }
 }

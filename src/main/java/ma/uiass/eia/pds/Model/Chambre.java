@@ -1,10 +1,7 @@
 package ma.uiass.eia.pds.Model;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 //import javax.persistence.*;
 @Entity
@@ -14,22 +11,22 @@ import java.util.List;
 public class Chambre extends Espace implements Serializable {
 
     @Column(name="TypeChambre", length=50)
-    private TypeChambre typeChambre;
+    private String typeChambre;
 
 
 
-    public void setTypeChambre(TypeChambre typeC) {
+    public void setTypeChambre(String typeC) {
         this.typeChambre = typeC;
     }
 
 
 
-    public TypeChambre getTypeChambre() {
+    public String getTypeChambre() {
         return typeChambre;
     }
 
 
-    public Chambre(TypeChambre typeChambre, Service service) {
+    public Chambre(String typeChambre, Service service) {
         super(service);
         this.typeChambre = typeChambre;
     }

@@ -29,10 +29,15 @@ public class AmbulanceService implements IAmbulanceService{
     public List<Ambulance> afficherAmbulanceEtat(String etatambulance){
         List<Ambulance> ambulanceList=new ArrayList<>();
         for(Ambulance ambulance1:ambulanceDao.getAll()){
-            if(ambulance1.getEtatsAmbulance().getStateName().toString().equals(etatambulance)){
+            if(ambulance1.getEtatsAmbulance().toString().equals(etatambulance)){
                 ambulanceList.add(ambulance1);
             }
         }
         return ambulanceList;
+    }
+
+    @Override
+    public void Changertat(Ambulance amb) {
+        ambulanceDao.UpdateState(amb);
     }
 }

@@ -1,5 +1,7 @@
             package ma.uiass.eia.pds;
 
+            import com.fasterxml.jackson.databind.DeserializationFeature;
+            import com.fasterxml.jackson.databind.ObjectMapper;
             import com.sun.net.httpserver.HttpServer;
 
             import jakarta.ws.rs.core.UriBuilder;
@@ -37,7 +39,8 @@
                 System.out.println("server launched Successfully ");
 
 
-/*
+
+
                 IBatimentService batimentService = new BatimentService();
                 IEtageService etageService = new EtageService();
                 IServiceService serviceService = new ServiceService();
@@ -45,6 +48,7 @@
                 ITypeLitService typeLitService = new TypeLitService();
                 IMarqueService marqueService = new MarqueService();
                 ILitService litService = new LitService();
+                IReappLitService reappLitService = new ReappLitService();
 
 
 
@@ -67,23 +71,25 @@
                 etageService.ajouter(etage3);
                 etageService.ajouter(etage4);
 
-                Service service = new Service("Car", "Cardiologie", etage);
-                Service service1 = new Service("On", "Oncologie", etage);
-                Service service2 = new Service("Gy", "Gynécologie", etage1);
+                Service service = new Service("LOG", "logistique", etage);
+                Service service1 = new Service("Car", "Cardiologie", etage);
+                Service service2 = new Service("On", "Oncologie", etage);
+                Service service3 = new Service("Gy", "Gynécologie", etage1);
                 serviceService.ajouter(service);
                 serviceService.ajouter(service1);
                 serviceService.ajouter(service2);
 
                 IEspaceService<Salle> salleIEspaceService=new SalleService();
-                salleIEspaceService.ajouter(new Salle("Stock",TypeSalle.UNKNOWN,service));
+                Salle stock = new Salle("Stock","STOCK",service);
+                salleIEspaceService.ajouter(stock);
 
 
 
 
 
-                Espace chambre = new Chambre(TypeChambre.SIMPLE,service );
-                Espace chambre1 = new Chambre(TypeChambre.DOUBLE, service1);
-                Espace chambre2 = new Chambre(TypeChambre.DOUBLE, service2);
+                Espace chambre = new Chambre("SIMPLE",service1 );
+                Espace chambre1 = new Chambre("DOUBLE", service1);
+                Espace chambre2 = new Chambre(TypeChambre.DOUBLE.toString(), service2);
                 espaceService.ajouter(chambre2);
                 espaceService.ajouter(chambre);
                 espaceService.ajouter(chambre1);
@@ -101,23 +107,23 @@
                 marqueService.ajouter(marque2);
 
 
-                Lit lit = new Lit(EtatLit.DEFECTUEUSE, false, chambre1, typeLit1, marque);
-                Lit lit1 = new Lit(EtatLit.DEFECTUEUSE, true, chambre, typeLit, marque1);
-                Lit lit2 = new Lit(EtatLit.DEFECTUEUSE, true, chambre2, typeLit, marque2);
-                Lit lit3 = new Lit(EtatLit.DEFECTUEUSE, false, chambre1, typeLit1, marque2);
-                Lit lit4 = new Lit(EtatLit.BONNNEETAT, false, chambre2, typeLit, marque1);
-                Lit lit5 = new Lit(EtatLit.BONNNEETAT, true, chambre, typeLit1, marque);
-                Lit lit6 = new Lit(EtatLit.DEFECTUEUSE, true, chambre, typeLit, marque1);
-                Lit lit7 = new Lit(EtatLit.DEFECTUEUSE, false, chambre1, typeLit1, marque2);
-                Lit lit8 = new Lit(EtatLit.BONNNEETAT, true, chambre1, typeLit, marque);
-                Lit lit9 = new Lit(EtatLit.DEFECTUEUSE, true, chambre2, typeLit1, marque2);
-                Lit lit10 = new Lit(EtatLit.BONNNEETAT, false, chambre2, typeLit, marque2);
-                Lit lit11 = new Lit(EtatLit.DEFECTUEUSE, true, chambre, typeLit1, marque1);
-                Lit lit12 = new Lit(EtatLit.BONNNEETAT, false, chambre1, typeLit1, marque);
-                Lit lit13= new Lit(EtatLit.DEFECTUEUSE, true, chambre2, typeLit, marque1);
-                Lit lit14= new Lit(EtatLit.BONNNEETAT, true, chambre, typeLit, marque2);
-                Lit lit15= new Lit(EtatLit.BONNNEETAT, false, chambre2, typeLit1, marque);
-                Lit lit16= new Lit(EtatLit.BONNNEETAT, true, chambre1, typeLit, marque1);
+                Lit lit = new Lit(EtatLit.DEFECTUEUSE.toString(), false, chambre1, typeLit1, marque);
+                Lit lit1 = new Lit(EtatLit.DEFECTUEUSE.toString(), true, chambre, typeLit, marque1);
+                Lit lit2 = new Lit(EtatLit.DEFECTUEUSE.toString(), true, chambre2, typeLit, marque2);
+                Lit lit3 = new Lit(EtatLit.DEFECTUEUSE.toString(), false, chambre1, typeLit1, marque2);
+                Lit lit4 = new Lit(EtatLit.BONNNEETAT.toString(), false, chambre2, typeLit, marque1);
+                Lit lit5 = new Lit(EtatLit.BONNNEETAT.toString(), true, chambre, typeLit1, marque);
+                Lit lit6 = new Lit(EtatLit.DEFECTUEUSE.toString(), true, chambre, typeLit, marque1);
+                Lit lit7 = new Lit(EtatLit.DEFECTUEUSE.toString(), false, chambre1, typeLit1, marque2);
+                Lit lit8 = new Lit(EtatLit.BONNNEETAT.toString(), true, chambre1, typeLit, marque);
+                Lit lit9 = new Lit(EtatLit.DEFECTUEUSE.toString(), true, chambre2, typeLit1, marque2);
+                Lit lit10 = new Lit(EtatLit.BONNNEETAT.toString(), false, chambre2, typeLit, marque2);
+                Lit lit11 = new Lit(EtatLit.DEFECTUEUSE.toString(), true, chambre, typeLit1, marque1);
+                Lit lit12 = new Lit(EtatLit.BONNNEETAT.toString(), false, chambre1, typeLit1, marque);
+                Lit lit13= new Lit(EtatLit.DEFECTUEUSE.toString(), true, chambre2, typeLit, marque1);
+                Lit lit14= new Lit(EtatLit.BONNNEETAT.toString(), true, chambre, typeLit, marque2);
+                Lit lit15= new Lit(EtatLit.BONNNEETAT.toString(), false, chambre2, typeLit1, marque);
+                Lit lit16= new Lit(EtatLit.BONNNEETAT.toString(), true, chambre1, typeLit, marque1);
 
 
                 litService.ajouter(lit);
@@ -138,7 +144,13 @@
                 litService.ajouter(lit15);
                 litService.ajouter(lit16);
 
+                ReapprovisionnementLit rl1 = new ReapprovisionnementLit(2,"23-6-2023",lit);
+                ReapprovisionnementLit rl2 = new ReapprovisionnementLit(3,"23-6-2023",lit2);
+                ReapprovisionnementLit rl3 = new ReapprovisionnementLit(4,"23-6-2023",lit3);
 
+                reappLitService.ajouter(rl1);
+                reappLitService.ajouter(rl2);
+                reappLitService.ajouter(rl3);
 
 
                 //------------------------------------------------------------------------------------------------------------------------
@@ -155,9 +167,6 @@
                 EtatsAmbulance etat1=new F();
                 EtatsAmbulance etat2=new NFLD();
                 EtatsAmbulance etat3=new NFCD();
-                etat1.setStateName(StateName.F);
-                etat2.setStateName(StateName.NFLD);
-                etat3.setStateName(StateName.NFCD);
                 IEtatsAmbulanceService etatsAmbulanceService=new EtatsAmbulanceService();
                 etatsAmbulanceService.ajouter(etat1);
                 etatsAmbulanceService.ajouter(etat2);
@@ -181,35 +190,33 @@
 
 
 
- */
 
 
 
 
 
-               /* IAmbulanceService ambulanceService=new AmbulanceService();
-                IEtatsAmbulanceService etatsAmbulanceService=new EtatsAmbulanceService();
-                /*
-                List<EtatsAmbulance> etatsAmbulanceList=etatsAmbulanceService.afficherTout();
+
+
+
+               /* List<EtatsAmbulance> etatsAmbulanceList=etatsAmbulanceService.afficherTout();
                 Ambulance ambulance=ambulanceService.afficherTout().get(0);
                 System.out.println(ambulance.getEtatsAmbulance().getStateName().toString().equals("F"));
 
                 System.out.println(ambulanceService.afficherAmbulanceEtat("F"));
                 Ambulance ambulance1=new Ambulance("1/ALIF/20103","123909","12/9/2006");
                 ambulance1.setEtatsAmbulance(etatsAmbulanceList.get(0));
-                ambulanceService.ajouter(ambulance1);
+                ambulanceService.ajouter(ambulance1);*/
 
-                 */
+
 
               //  System.out.println(etatsAmbulanceService.afficherTout().get(0));
 
 
 
 
-/*
-                IAmbulanceService ambulanceService=new AmbulanceService();
+;
                 ambulanceService.ajouter(new Ambulance("1/ALIF/20103","123909","12/9/2006",etat1));
-                Ambulance dd =new Ambulance("1/ALIF/20103","123909","12/9/2006",etat1);
+                Ambulance d2 =new Ambulance("1/ALIF/20103","123909","12/9/2006",etat1);
                 ambulanceService.ajouter(new Ambulance("2/ALIF/20103","390309","1/10/2007",etat2));
                 ambulanceService.ajouter(new Ambulance("4/ALIF/20103","20309","2/10/2008",etat3));
                 ambulanceService.ajouter(new Ambulance("6/ALIF/20103","1209","21/10/2009",etat3));
@@ -219,7 +226,6 @@
                 ambulanceService.ajouter(new Ambulance("44/ALIF/20103","1309","12/10/2010",etat1));
 
 
- */
 
 
 
@@ -233,17 +239,19 @@
 
 
 
-/*
+
                 ambulanceService.afficherTout().get(0).setEtatsAmbulance(etat1);
-                ambulanceService.afficherTout().get(1).setEtatAmbulance(etat1);
-                ambulanceService.afficherTout().get(2).setEtatAmbulance(etat1);
-                ambulanceService.afficherTout().get(3).setEtatAmbulance(etat1);
-                ambulanceService.afficherTout().get(4).setEtatAmbulance(etat1);
-                ambulanceService.afficherTout().get(5).setEtatAmbulance(etat1);
-                ambulanceService.afficherTout().get(6).setEtatAmbulance(etat2);
-                ambulanceService.afficherTout().get(6).setEtatAmbulance(etat3);
+                ambulanceService.afficherTout().get(1).setEtatsAmbulance(etat1);
+                ambulanceService.afficherTout().get(2).setEtatsAmbulance(etat1);
+                ambulanceService.afficherTout().get(3).setEtatsAmbulance(etat1);
+                ambulanceService.afficherTout().get(4).setEtatsAmbulance(etat1);
+                ambulanceService.afficherTout().get(5).setEtatsAmbulance(etat1);
+                ambulanceService.afficherTout().get(6).setEtatsAmbulance(etat2);
+                ambulanceService.afficherTout().get(6).setEtatsAmbulance(etat3);
 
- */
+
+
+
 
 
 

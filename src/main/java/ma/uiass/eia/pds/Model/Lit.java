@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.List;
 @Entity
 @Table(name = "Tlit")
@@ -15,9 +16,9 @@ public class Lit implements Serializable {
 
     @Column
     private String codeLit;
+
     @Column
-    @Enumerated(EnumType.STRING)
-    private EtatLit etatLit;
+    private String etatLit ;
 
     @Column
     private Boolean occupe;
@@ -26,6 +27,8 @@ public class Lit implements Serializable {
     @ManyToOne
     @JoinColumn(name = "idEspace", referencedColumnName = "idEspace")
     private Espace espace;
+
+
 
 
     @ManyToOne
@@ -78,11 +81,11 @@ public class Lit implements Serializable {
         this.equipements = equipements;
     }
 
-    public EtatLit getEtatLit() {
+    public String getEtatLit() {
         return etatLit;
     }
 
-    public void setEtatLit(EtatLit etatLit ) {
+    public void setEtatLit(String  etatLit ) {
         this.etatLit = etatLit;
     }
 
@@ -114,7 +117,7 @@ public class Lit implements Serializable {
     public Lit(){
     }
 
-    public Lit(EtatLit etatLit, Boolean occupe, Espace espace,  TypeLit typeLit, Marque marque) {
+    public Lit(String etatLit, Boolean occupe, Espace espace,  TypeLit typeLit, Marque marque) {
         this.etatLit = etatLit;
         this.occupe = occupe;
         this.espace = espace;

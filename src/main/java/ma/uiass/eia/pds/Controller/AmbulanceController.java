@@ -37,6 +37,12 @@ public class AmbulanceController {
             @PathParam("etatsAmbulance") String etatsAmbulance){return ambulanceService.afficherAmbulanceEtat(etatsAmbulance);}
 
 
+    @PUT
+    @Path("/updatestate")
+    @Consumes(MediaType.APPLICATION_JSON)
+     public void updateState(Ambulance amb){
+  ambulanceService.Changertat(amb);
+ }
 
 
 }

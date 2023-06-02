@@ -2,6 +2,7 @@ package ma.uiass.eia.pds.Dao;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
+import jakarta.transaction.Transactional;
 import ma.uiass.eia.pds.HibernateUtility.HibernateUtil;
 import ma.uiass.eia.pds.Model.Ambulance;
 import ma.uiass.eia.pds.Service.EtatsAmbulanceService;
@@ -23,7 +24,7 @@ public class AmbulanceDao implements IAmbulanceDao{
 
     @Override
     public void add(Ambulance ambulance) {
-        EntityTransaction transaction = entityManager.getTransaction();
+      EntityTransaction transaction = entityManager.getTransaction();
         try {
             transaction.begin();
             if(ambulance.getEtatsAmbulance()==null){ambulance.setEtatsAmbulance(etatsAmbulanceService.afficherTout().get(0));}
@@ -35,7 +36,19 @@ public class AmbulanceDao implements IAmbulanceDao{
                 transaction.rollback();
             }
             e.printStackTrace();
-        }
+
+           /* EntityTransaction transaction = entityManager.getTransaction();
+            try {
+                transaction.begin();
+                entityManager.persist(ambulance);
+                transaction.commit();
+
+            }catch (Exception e){
+                if (transaction != null){
+                    transaction.rollback();
+                }
+                e.printStackTrace();*/
+            }
 
     }
 
@@ -47,6 +60,21 @@ public class AmbulanceDao implements IAmbulanceDao{
             return null;
         }
         return ambulance;
+    }
+
+    @Override
+    public void UpdateState(Ambulance amb) {
+        EntityTransaction transaction = entityManager.getTransaction();
+        try {
+            transaction.begin();
+            entityManager.merge(amb);
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();}
+
     }
 
 }

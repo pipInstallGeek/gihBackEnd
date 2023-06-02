@@ -10,19 +10,22 @@ import java.io.Serializable;
 public class Salle extends Espace implements Serializable {
 
     @Column(name = "TypeSalle", length = 50)
-    private TypeSalle typeSalle;
+    private String typeSalle;
 
-    public void setTypeSalle(TypeSalle typeSalle) {
+    public void setTypeSalle(String typeSalle) {
         this.typeSalle = typeSalle;
     }
 
-    public TypeSalle getTypeSalle() {
+    public String getTypeSalle() {
         return typeSalle;
     }
 
-    public Salle(String numEspace, TypeSalle typeSalle,Service service) {
+    public Salle(String numEspace, String typeSalle, Service service) {
         super(service);
         this.typeSalle = typeSalle;
+    }
+    public Salle(String typeSalle){
+        this.typeSalle= typeSalle;
     }
 
     public Salle() {

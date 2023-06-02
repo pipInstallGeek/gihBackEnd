@@ -2,15 +2,16 @@ package ma.uiass.eia.pds.Model;
 
 import jakarta.persistence.*;
 
-@Entity(name = "TFonctionnel")
-@DiscriminatorValue("f")
+@Entity(name = "t_fonctionnel")
+@DiscriminatorValue("1")
+
 public class F extends EtatsAmbulance{
-    @Enumerated(EnumType.STRING)
     private final StateName stateName = StateName.F;
     private static double q;
 
     public F() {
     }
+
 
     public static double getQ() {
         return q;
@@ -20,4 +21,8 @@ public class F extends EtatsAmbulance{
         F.q = q;
     }
 
+    @Override
+    public String toString() {
+        return "Fonctionnel" ;
+    }
 }

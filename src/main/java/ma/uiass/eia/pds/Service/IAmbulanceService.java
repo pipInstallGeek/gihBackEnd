@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface IAmbulanceService extends IService<Ambulance>{
     public List<Ambulance> afficherAmbulanceEtat(String ambulance);
+    void Changertat(Ambulance amb);
 }

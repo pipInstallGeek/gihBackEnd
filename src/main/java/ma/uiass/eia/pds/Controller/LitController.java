@@ -1,5 +1,7 @@
 package ma.uiass.eia.pds.Controller;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
@@ -52,7 +54,7 @@ public class LitController {
         TypeLit typeLit = typeLitService.trouverId(Integer.parseInt(typelit));
         Marque marque1 = marqueService.trouverId(Integer.parseInt(marque));
 
-        Lit lit = new Lit( EtatLit.BONNNEETAT, Boolean.parseBoolean(occupe),espace,typeLit,marque1);
+        Lit lit = new Lit( EtatLit.BONNNEETAT.toString(), Boolean.parseBoolean(occupe),espace,typeLit,marque1);
             service.ajouter(lit);
     }
 
@@ -87,10 +89,10 @@ public class LitController {
             @PathParam("lit") int lit,
             @PathParam("occupe") String occupe,
             @PathParam("espacecode") int espacecode,
-            @PathParam("etatlit") String etatlit
+            @PathParam("etatlit") EtatLit etatlit
 
     ){
-        service.update(lit, Boolean.parseBoolean(occupe), espacecode, EtatLit.valueOf(etatlit));
+        service.update(lit, Boolean.parseBoolean(occupe), espacecode, etatlit);
     }
 
 }

@@ -23,9 +23,9 @@ public class Ambulance implements Serializable {
     @Column(name="date_mise_service")
     private String date_mise_service;
 
-    @ManyToOne
-    @JoinColumn(name = "id_etat", referencedColumnName = "codeEtat")
-    private EtatsAmbulance etatsAmbulance;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_etat")
+    private EtatsAmbulance etatsAmbulance  ;
 
 
 
@@ -40,7 +40,9 @@ public class Ambulance implements Serializable {
     }
 
 
-/*
+
+
+
     public Ambulance(String immatriculation, String kilometrage, String date_mise_service, EtatsAmbulance etatsAmbulance) {
         this.immatriculation = immatriculation;
         this.kilometrage = kilometrage;
@@ -48,7 +50,7 @@ public class Ambulance implements Serializable {
         this.etatsAmbulance = etatsAmbulance;
     }
 
- */
+
 
     public String getDate_mise_service() {
         return date_mise_service;
