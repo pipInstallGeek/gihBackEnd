@@ -31,8 +31,8 @@ public class Lit implements Serializable {
     private Espace espace;
 
     @JsonIgnore
-    @OneToOne(mappedBy = "lit")
-    private Admission admission;
+    @OneToMany(mappedBy = "lit")
+    private List<Admission> admissions;
 
 
     @ManyToOne
@@ -62,6 +62,6 @@ public class Lit implements Serializable {
         this.marque = marque;
     }
 
-    public String toString(){return "Lit numero: "+ this.idLit+ "Etat: " + this.etatLit;}
+    public String toString(){return this.codeLit;}
 
 }

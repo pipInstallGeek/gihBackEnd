@@ -141,6 +141,18 @@ public class LitController {
             });
             return filtred;
         }
+    @GET
+    @Path("/GetNBRLitDispoByService/{nomservice}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public int GetNBRLitDispoByService(@PathParam("nomservice") String nomservice){
+        return service.getNBRLitDispoByService(nomservice);
+    }
+    @GET
+    @Path("/GetNBRLitOccupByService/{nomservice}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public int GetNBRLitOccupByService(@PathParam("nomservice") String nomservice){
+        return service.getNBRLitOccupByService(nomservice);
+    }
 
 
 }

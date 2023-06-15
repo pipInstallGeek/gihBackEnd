@@ -19,6 +19,8 @@ public interface ILitDao extends IDao<Lit> {
     List<Lit> getAvailableLit(String nomService);
     Lit findbyCode(String code);
     List<Espace> getEspaceByService(String nomService);
+    int countOccupiedBedsForService(String nomService);
+    int countAvailableBedsForService(String nomService);
 
 
 

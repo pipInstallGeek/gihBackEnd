@@ -172,5 +172,22 @@ public class LitDao implements ILitDao{
             }
             return nombresLitsDisponiblesPourServices;
         }
-
+    public int countAvailableBedsForService(String nomService) {
+        String query = "SELECT COUNT(l) FROM Lit l WHERE l.occupe= false AND l.espace.service.nomService = :nomService";
+        Long count = entityManager.createQuery(query, Long.class)
+                .setParameter("nomService", nomService)
+                .getSingleResult();
+        return count.intValue();
     }
+
+    public int countOccupiedBedsForService(String nomService) {
+        String query = "SELECT COUNT(l) FROM Lit l WHERE l.occupe = true AND l.espace.service.nomService = :nomService";
+        Long count = entityManager.createQuery(query, Long.class)
+                .setParameter("nomService", nomService)
+                .getSingleResult();
+        return count.intValue();
+    }
+}
+
+
+

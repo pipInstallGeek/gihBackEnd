@@ -8,8 +8,10 @@ import ma.uiass.eia.pds.HibernateUtility.HibernateUtil;
 import ma.uiass.eia.pds.Model.Chambre;
 import ma.uiass.eia.pds.Model.Espace;
 
+import ma.uiass.eia.pds.Model.Lit;
 import ma.uiass.eia.pds.Model.Salle;
 
+import java.util.Collections;
 import java.util.List;
 
 public class SalleDao implements IEspaceDao<Salle> {
@@ -56,4 +58,5 @@ public class SalleDao implements IEspaceDao<Salle> {
             return null;
         }
     }
+
 }
