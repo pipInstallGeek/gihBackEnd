@@ -25,7 +25,7 @@ public class Ambulance implements Serializable {
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_etat")
-    private EtatsAmbulance etatsAmbulance  ;
+    private EtatsAmbulance etatsAmbulance;
 
 
 

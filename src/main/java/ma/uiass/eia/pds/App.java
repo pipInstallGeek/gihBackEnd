@@ -39,7 +39,7 @@
                 System.out.println("server launched Successfully ");
 
 
-
+/*
 
                 IBatimentService batimentService = new BatimentService();
                 IEtageService etageService = new EtageService();
@@ -212,9 +212,9 @@
               //  System.out.println(etatsAmbulanceService.afficherTout().get(0));
 
 
+/*TO DELETE------------------------------------------------------------------------------------------------------------------------------
 
 
-;
                 ambulanceService.ajouter(new Ambulance("1/ALIF/20103","123909","12/9/2006",etat1));
                 Ambulance d2 =new Ambulance("1/ALIF/20103","123909","12/9/2006",etat1);
                 ambulanceService.ajouter(new Ambulance("2/ALIF/20103","390309","1/10/2007",etat2));
@@ -253,6 +253,11 @@
 
 
 
+
+
+
+
+ */ //TO DELETE------------------------------------------------------------------------------------------------------------------------------
 
 
 
@@ -360,24 +365,29 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
  */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
             }
         }
+
+
