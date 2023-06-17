@@ -1,7 +1,6 @@
             package ma.uiass.eia.pds;
             import com.sun.net.httpserver.HttpServer;
             import jakarta.ws.rs.core.UriBuilder;
-            import ma.uiass.eia.pds.Controller.AdmissionController;
             import ma.uiass.eia.pds.Dao.*;
             import ma.uiass.eia.pds.Dao.IServiceDao;
             import ma.uiass.eia.pds.Model.*;
@@ -12,8 +11,6 @@
 
             import java.net.*;
             import java.time.LocalDate;
-            import java.time.LocalDateTime;
-            import java.time.ZoneId;
             import java.util.*;
 
             public class App extends ResourceConfig {
@@ -31,7 +28,6 @@
 
 
               IAdmissionService admissionService =new AdmissionService();
-                IDemandeService commandeService=new DemandeService();
                 IServiceService serviceService = new ServiceService();
                 IServiceDao s = new ma.uiass.eia.pds.Dao.ServiceDao();
                 ILitService litService = new LitService();
@@ -51,8 +47,6 @@
                 IStateAMBService stateNFLD=new StateNFLDService();
                 IRévisionService révision=new RévisionService();
                 IStateAMBService stateAMBService=new StateFService();
-
-
 
 
                 Batiment batiment = new Batiment("A");
@@ -136,32 +130,7 @@
                     typeLitService.ajouter(typeLit2);
                     typeLitService.ajouter(typeLit3);
                     typeLitService.ajouter(typeLit4);
-                    Demande demande1 = new Demande("a230",15,"2025-03-20","2026-05-12",typeLit0.getNomTypeLit(),marque0.getNomMarque(), EtatDemande.ENCOURS,service1.getNomService());
-                    Demande demande2 = new Demande("a231",16,"2025-03-20","2026-05-12",typeLit1.getNomTypeLit(),marque1.getNomMarque(), EtatDemande.ACCEPTEE,service2.getNomService());
-                    Demande demande3 = new Demande("a232",17,"2025-03-20","2026-05-12",typeLit2.getNomTypeLit(),marque2.getNomMarque(), EtatDemande.ACCEPTEE,service3.getNomService());
-                    Demande demande4 = new Demande("a233",18,"2025-03-20","2026-05-12",typeLit3.getNomTypeLit(),marque3.getNomMarque(), EtatDemande.ACCEPTEE,service2.getNomService());
-                    Demande demande5 = new Demande("a234",19,"2025-03-20","2026-05-12",typeLit4.getNomTypeLit(),marque4.getNomMarque(), EtatDemande.ENCOURS,service1.getNomService());
-                    Demande demande7 = new Demande("souad5",15,"2025-03-20","2026-05-12",typeLit0.getNomTypeLit(),marque0.getNomMarque(), EtatDemande.ENCOURS,service2.getNomService());
 
-                    commandeService.ajouter(demande1);
-                    commandeService.ajouter(demande2);
-                    commandeService.ajouter(demande3);
-                    commandeService.ajouter(demande4);
-                    commandeService.ajouter(demande5);
-                    commandeService.ajouter(demande7);
-
-                    System.out.println("ajout");
-                    commandeService.supprimerDemande("a230");
-                    commandeService.supprimerDemande("souad5");
-                    commandeService.modifier("a234");
-                    System.out.println("suppression");
-                    System.out.println(commandeService.afficherTout());
-               /* LocalDate localDate2 = LocalDate.of(2023, 12, 13);
-                LocalDateTime localDateTime2 = localDate2.atStartOfDay();
-                Date date2 = Date.from(localDateTime2.atZone(ZoneId.systemDefault()).toInstant());
-                LocalDate localDate3 = LocalDate.of(2020, 12, 13);
-                LocalDateTime localDateTime3 = localDate2.atStartOfDay();
-                Date date3 = Date.from(localDateTime2.atZone(ZoneId.systemDefault()).toInstant());*/
 
                 Lit lit1 = new Lit(EtatLit.BONNNEETAT,true,chambre,typeLit0,marque0);
                 Lit lit2 = new Lit(EtatLit.BONNNEETAT,true,salle,typeLit1,marque0);
@@ -383,7 +352,37 @@
         System.out.println("hello");
         System.out.println(detailDemandeDM.getByCode("DDM3"));
 
-        IStockService stockservice = new StockService();
+
+
+                IDemandelitService demandelit = new DemandelitService();
+                demandelit.create("DL1",service2.getNomService());
+                demandelit.create("DL2",service1.getNomService());
+                demandelit.create("DL3",service3.getNomService());
+                System.out.println(demandelit.getAll());
+                System.out.println(demandelit.getAllByService(service1));
+                demandelit.findBycode("DL1");
+                IDetailDemandelitService detailDemandelit = new DetailDemandelitService();
+                detailDemandelit.create("DDL1",65,typeLit0.getNomTypeLit(),marque0.getNomMarque());
+                detailDemandelit.create("DDL2",18,typeLit1.getNomTypeLit(),marque1.getNomMarque());
+                detailDemandelit.create("DDL3",50,typeLit2.getNomTypeLit(),marque2.getNomMarque());
+                detailDemandelit.create("DDL4",30,typeLit3.getNomTypeLit(),marque3.getNomMarque());
+                detailDemandelit.create("DDL5",20,typeLit4.getNomTypeLit(),marque4.getNomMarque());
+                detailDemandelit.create("DDL6",15,typeLit1.getNomTypeLit(),marque5.getNomMarque());
+                detailDemandelit.update("DDL2","DL1");
+                detailDemandelit.update("DDL6","DL2");
+                detailDemandelit.update("DDL3","DL3");
+                detailDemandelit.update("DDL4","DL1");
+                detailDemandelit.update("DDL5","DL2");
+                detailDemandelit.deleteBycode("DDL1");
+                detailDemandelit.updateqt("DDL2",5);
+                System.out.println("hello");
+                System.out.println(detailDemandelit.listDetailDemande("DL2"));
+                System.out.println("hello");
+                System.out.println(detailDemandelit.getByCode("DDL3"));
+
+
+
+                IStockService stockservice = new StockService();
         Stock st1 = new Stock("logistique",null);
         Stock st2 = new Stock(service2.getNomService(),service2);
         Stock st3 = new Stock(service1.getNomService(),service1);
