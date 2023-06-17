@@ -224,14 +224,19 @@
                 //Admission reser1=new Admission("reser1", date2, Calendar.getInstance().getTime(),lit);
                 // admissionService.ajouter(reser1);
                 //Admission reser2=new Admission("reser2", date, Calendar.getInstance().getTime(),lit2);
-               Admission reser1=new Admission("reser1", "2020-05-06", null,lit13);
+               Admission reser1=new Admission("2020-05-06", null,lit13);
+
                admissionService.ajouter(reser1);
+               admissionService.updateAdmission(reser1.getNumAdmission(),LocalDate.now().toString());
+                Admission reser2=new Admission("2020-06-06", null,lit13);
+                admissionService.ajouter(reser2);
 
 
 
 
 
-                   TypeDM typeDM1=new TypeDM("fourniture");
+
+                TypeDM typeDM1=new TypeDM("fourniture");
                    TypeDM typeDM2=new TypeDM("instruments légers");
                    TypeDM typeDM3=new TypeDM("outils de diagnostic");
                    typeDMService.ajouter(typeDM1);

@@ -24,4 +24,7 @@ public interface ILitService extends IService<Lit>{
     Map<String, Integer> getNLDB();
     Map<String, Integer> getNLO();
     Lit findbycode(String codeLit);
+    int getNBRLitDispoByService(String nomService) ;
+    int getNBRLitOccupByService(String nomService);
+
 }

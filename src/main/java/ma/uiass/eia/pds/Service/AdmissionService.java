@@ -1,14 +1,14 @@
 package ma.uiass.eia.pds.Service;
-import ma.uiass.eia.pds.Dao.IAdmissionDao;
-import ma.uiass.eia.pds.Dao.AdmissionDao;
-import ma.uiass.eia.pds.Dao.ILitDao;
-import ma.uiass.eia.pds.Dao.LitDao;
+import ma.uiass.eia.pds.Dao.*;
 import ma.uiass.eia.pds.Model.Admission;
 import ma.uiass.eia.pds.Model.Lit;
+import ma.uiass.eia.pds.Model.Service;
+
 import java.util.List;
 public class AdmissionService implements IAdmissionService {
      IAdmissionDao admissionDao = new AdmissionDao();
      ILitDao litDao = new LitDao();
+     IServiceDao se=new ServiceDao();
     AdmissionDao ad=new AdmissionDao();
     @Override
     public void ajouter(Admission admission) {
@@ -31,9 +31,10 @@ public class AdmissionService implements IAdmissionService {
 
 
   @Override
-    public void addAdmission(String numAdmission, String dateE,  String codeLit) {
+    public void addAdmission( String dateE,  String codeLit) {
         Lit l=litDao.findbyCode(codeLit);
-        Admission s= new Admission(numAdmission,dateE,litDao.findbyCode(codeLit));
+        Admission s= new Admission(dateE,litDao.findbyCode(codeLit));
+        s.setNumAdmission("ADM_"+s.getIdAdmission());
         admissionDao.add(s);
 
     }
@@ -54,6 +55,11 @@ public class AdmissionService implements IAdmissionService {
     public Admission findbycode(String NumAdmission){
         return admissionDao.findbyCode(NumAdmission);
     }
+    public List<Admission> getAdmissionByService(int idService ){
+      Service s=se.getById(idService);
+      return  admissionDao.getAllByService(s);
+    }
+
 
 
 

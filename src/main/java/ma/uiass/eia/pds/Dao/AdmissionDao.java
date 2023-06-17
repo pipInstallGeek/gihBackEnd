@@ -1,13 +1,9 @@
 package ma.uiass.eia.pds.Dao;
 
-        import jakarta.persistence.EntityManager;
-        import jakarta.persistence.EntityTransaction;
-        import jakarta.persistence.NonUniqueResultException;
-        import jakarta.persistence.TypedQuery;
+        import jakarta.persistence.*;
         import ma.uiass.eia.pds.HibernateUtility.HibernateUtil;
-        import ma.uiass.eia.pds.Model.Admission;
-        import ma.uiass.eia.pds.Model.EtatLit;
-        import ma.uiass.eia.pds.Model.Lit;
+        import ma.uiass.eia.pds.Model.*;
+
         import java.util.List;
 
 public class AdmissionDao implements IAdmissionDao {
@@ -61,6 +57,8 @@ public class AdmissionDao implements IAdmissionDao {
             transaction.begin();
             entityManager.persist(admission);
             admission.getLit().setOccupe(true);
+           entityManager.merge(admission);
+            admission.setNumAdmission("ADM_"+ admission.getIdAdmission());
             entityManager.merge(admission);
             transaction.commit();
 
@@ -112,6 +110,11 @@ public class AdmissionDao implements IAdmissionDao {
             return null;
         }
 
+    }
+    public List<Admission> getAllByService(Service service) {
+        TypedQuery<Admission> query = entityManager.createQuery("SELECT a FROM Admission a WHERE a.lit.espace.service = :service", Admission.class);
+        query.setParameter("service", service);
+        return query.getResultList();
     }
 
 }

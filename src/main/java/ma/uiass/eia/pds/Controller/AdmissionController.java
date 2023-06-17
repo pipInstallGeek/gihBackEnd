@@ -18,14 +18,14 @@
                 return admissionService.afficherTout();
             }
           @PUT
-          @Path("addadmission/{numAdmission}/{dateE}/{codeLit}")
+          @Path("addadmission/{dateE}/{codeLit}")
           @Produces(MediaType.APPLICATION_JSON)
           @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-          public void addAdmission(@PathParam("numAdmission") String numAdmission,
+          public void addAdmission(
                                    @PathParam("dateE") String dateE,
                                    @PathParam("codeLit") String codeLit) {
 
-              admissionService.addAdmission(numAdmission,dateE,codeLit);}
+              admissionService.addAdmission(dateE,codeLit);}
             @GET
             @Path("/getidMax")
             @Produces(MediaType.APPLICATION_JSON)
@@ -37,6 +37,12 @@
                                         @PathParam("dateS") String dateS) {
                 admissionService.updateAdmission( numAdmission,dateS);
             }
+            @GET
+            @Path("/geAllByService/{idService}")
+            @Produces(MediaType.APPLICATION_JSON)
+            @Consumes(MediaType.APPLICATION_JSON)
+
+            public List<Admission> getAllByService(@PathParam("idService") int idService){return ad.getAdmissionByService(idService);}
 
 
 

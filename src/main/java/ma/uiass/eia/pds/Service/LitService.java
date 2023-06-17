@@ -5,15 +5,17 @@ import ma.uiass.eia.pds.Model.*;
 
 import java.util.List; import java.util.Map;
 
-public class LitService implements ILitService{
+public class LitService implements ILitService {
 
     private ILitDao litDao = new LitDao();
     private IEspaceDao<Chambre> chambreDao = new ChambreDao();
     private IEspaceDao<Salle> salleDao = new SalleDao();
-    private LitDao littDao1=new LitDao();
-    private Espace getEspace(int idEspace){
+    private LitDao littDao1 = new LitDao();
+    ServiceDao s = new ServiceDao();
+
+    private Espace getEspace(int idEspace) {
         Espace espace = chambreDao.getById(idEspace);
-        if (espace== null){
+        if (espace == null) {
             espace = salleDao.getById(idEspace);
         }
         return espace;
@@ -30,49 +32,73 @@ public class LitService implements ILitService{
     }
 
     @Override
-    public Lit trouverId(int id) {return litDao.getById(id);}
+    public Lit trouverId(int id) {
+        return litDao.getById(id);
+    }
 
     @Override
     public Long countOccupation(boolean occupation) {
-            Long mycount = litDao.countOccupation(occupation);
-            return mycount;
+        Long mycount = litDao.countOccupation(occupation);
+        return mycount;
+    }
+
+    @Override
+    public Long countOccupationInEspace(int idEspace, boolean occupation) {
+
+        return litDao.countOccupationInEspace(idEspace, occupation);
+    }
+
+    @Override
+    public void deleteLit(int idLit) {
+        Lit lit = litDao.getById(idLit);
+        if (lit != null) {
+            litDao.deleteLit(lit);
         }
 
-        @Override
-        public Long countOccupationInEspace(int idEspace, boolean occupation) {
-
-            return litDao.countOccupationInEspace(idEspace, occupation);
-        }
-
-        @Override
-        public void deleteLit(int idLit) {
-            Lit lit = litDao.getById(idLit);
-            if (lit != null){
-                litDao.deleteLit(lit);
-            }
-
-        }
+    }
 
 
     @Override
-    public void update(int idLit,boolean occupee, int idEspace, EtatLit etatLit) {
+    public void update(int idLit, boolean occupee, int idEspace, EtatLit etatLit) {
         Lit lit = litDao.getById(idLit);
         Espace espace = getEspace(idEspace);
-        litDao.update(lit,occupee, espace, etatLit);
+        litDao.update(lit, occupee, espace, etatLit);
     }
 
-    public List<Lit> afficherToutL(String nomService){return litDao.getAvailableLit( nomService);}
-    public List<Espace> afficherToutE(String nomService){return litDao.getEspaceByService(nomService);}
+    public List<Lit> afficherToutL(String nomService) {
+        return litDao.getAvailableLit(nomService);
+    }
 
-    public Lit findbycode(String codeLit){
-            return litDao.findbyCode(codeLit);}
-    public Map<String, Integer> getNLDB(){return littDao1.getNLDB();}
-    public Map<String, Integer> getNLO(){return littDao1.getNLO();}
+    public List<Espace> afficherToutE(String nomService) {
+        return litDao.getEspaceByService(nomService);
+    }
+
+    public Lit findbycode(String codeLit) {
+        return litDao.findbyCode(codeLit);
+    }
+
+    public Map<String, Integer> getNLDB() {
+        return littDao1.getNLDB();
+    }
+
+    public Map<String, Integer> getNLO() {
+        return littDao1.getNLO();
+    }
 
     @Override
     public List<Lit> getLitByEsapce(int idEspace) {
         Espace espace = getEspace(idEspace);
         return litDao.getLitByEspace(espace);
     }
+
+    public int getNBRLitDispoByService(String nomService) {
+       return  litDao.countAvailableBedsForService(nomService);
+
+    }
+    public int getNBRLitOccupByService(String nomService) {
+        return  litDao.countOccupiedBedsForService(nomService);
+
+    }
 }
+
 

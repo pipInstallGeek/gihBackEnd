@@ -18,20 +18,18 @@
         private String dateDébut;
         @Column(name = "DateFin", length = 50)
         private String dateFin;
-        @OneToOne(cascade = CascadeType.ALL)
+        @ManyToOne
         @JoinColumn(name = "idLit", referencedColumnName = "idLit")
         private Lit lit;
 
 
-        public Admission(String numAdmission, String dateE, Lit lit) {
-            this.numAdmission = numAdmission;
+        public Admission( String dateE, Lit lit) {
             this.dateDébut = dateE;
             this.lit = lit;
         }
 
 
-        public Admission(String numAdmission, String dateDébut, String dateFin, Lit lit) {
-            this.numAdmission = numAdmission;
+        public Admission( String dateDébut, String dateFin, Lit lit) {
             this.dateDébut = dateDébut;
             this.dateFin = dateFin;
             this.lit = lit;
