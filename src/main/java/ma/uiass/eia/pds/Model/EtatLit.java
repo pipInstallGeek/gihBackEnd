@@ -5,12 +5,12 @@ import com.fasterxml.jackson.annotation.JsonEnumDefaultValue;
 import java.io.Serializable;
 
 public enum EtatLit implements Serializable {
-    BONNNEETAT,
-    DEFECTUEUSE,
-    @JsonEnumDefaultValue UNKNOWN;
+    BONNNEETAT ("BONNNEETAT"),
+    DEFECTUEUSE ("DEFECTUEUSE");
+    private String nom;
 
-
-    EtatLit() {
+    EtatLit(String nom) {
+        this.nom = nom;
     }
 
 }
