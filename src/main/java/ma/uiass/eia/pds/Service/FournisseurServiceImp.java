@@ -23,4 +23,9 @@ public class FournisseurServiceImp implements IFournisseurService{
     public Fournisseur trouverId(int id) {
         return fournisseurDao.getById(id);
     }
+
+    @Override
+    public void updateFournisseurService(int idFournissuer, String nom, String email, String telephone, String adresse) {
+        fournisseurDao.updateFournisseurCredentials( idFournissuer,  nom,  email,  telephone,  adresse);
+    }
 }

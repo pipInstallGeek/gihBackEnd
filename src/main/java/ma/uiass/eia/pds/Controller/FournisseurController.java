@@ -25,7 +25,22 @@ public class FournisseurController {
     public void addFournisseurController(Fournisseur fournisseur){fournisseurService.ajouter(fournisseur);}
 
     @GET
-    @Path("/getFournisseurById")
+    @Path("/getFournisseurById/{codeFournisseur}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Fournisseur getFournisseurByIdController(int id){return fournisseurService.trouverId(id);}
+    public Fournisseur getFournisseurByIdController(
+            @PathParam("codeFournisseur") int id){return fournisseurService.trouverId(id);}
+
+    @PUT
+    @Path("/updateFournisseur/{codeFournisseur}/{nomFournisseur}/{emailFournisseur}/{telephoneFournisseur}/{localisationFournisseur}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public void updateFournisseurCred(@PathParam("codeFournisseur")int codeFournisseur,
+            @PathParam("nomFournisseur")String nomFournisseur,
+            @PathParam("emailFournisseur")String emailFournisseur,
+            @PathParam("telephoneFournisseur")String telephoneFournisseur,
+            @PathParam("localisationFournisseur")String localisationFournisseur){
+
+        fournisseurService.updateFournisseurService(codeFournisseur,nomFournisseur,emailFournisseur,telephoneFournisseur,localisationFournisseur);
+
+    }
+
 }
