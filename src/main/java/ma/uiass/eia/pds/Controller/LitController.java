@@ -86,7 +86,7 @@ public class LitController {
         public void deleteLit(@PathParam("idLit") int idLit){
             service.deleteLit(idLit);
         }
-        @PUT
+        @GET
         @Path("/modify/{lit}/{occupe}/{espacecode}/{etatlit}")
         public void updateLit(
                 @PathParam("lit") int lit,
