@@ -23,7 +23,6 @@ public class DispoMedicItem {
   /*  @ManyToOne
     @JoinColumn(name = "idEspaceItem", referencedColumnName = "idEspace")
     private Espace espaceItem;
-
    */
 
     @Column

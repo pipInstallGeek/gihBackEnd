@@ -40,8 +40,8 @@ public class AmbulanceController {
     @PUT
     @Path("/updatestate")
     @Consumes(MediaType.APPLICATION_JSON)
-     public void updateState(Ambulance amb){
-  ambulanceService.Changertat(amb);
+     public void updateStates(Ambulance ambulance){
+  ambulanceService.Changertat(ambulance);
  }
 
 

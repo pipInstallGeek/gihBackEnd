@@ -7,17 +7,25 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "TLivraisonFournisseur")
-public class LivraisonFournisseur {
+public class LivraisonFournisseur{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int codeLivraisonFournisseur;
 
     @Column
-    private String dateLivraison;
+    private int quantiteDemande;
 
     @ManyToOne
-    @JoinColumn(name = "codeFournisseur", referencedColumnName = "codeFournisseur")
+    @JoinColumn(name = "idDispoMedical",referencedColumnName = "idDispoMedical")
+    private DispoMedical dispoMedical;
+
+    @ManyToOne
+    @JoinColumn(name = "codeFournisseur",referencedColumnName = "codeFournisseur")
     private Fournisseur fournisseur;
+
+    @ManyToOne
+    @JoinColumn(name = "codeDetailsFournisseur",referencedColumnName = "codeDetailsFournisseur")
+    private DetailsLivraison detailsLivraison;
 
     public int getCodeLivraisonFournisseur() {
         return codeLivraisonFournisseur;
@@ -27,12 +35,20 @@ public class LivraisonFournisseur {
         this.codeLivraisonFournisseur = codeLivraisonFournisseur;
     }
 
-    public String  getDateLivraison() {
-        return dateLivraison;
+    public int getQuantiteDemande() {
+        return quantiteDemande;
     }
 
-    public void setDateLivraison(String dateLivraison) {
-        this.dateLivraison = dateLivraison;
+    public void setQuantiteDemande(int quantiteDemande) {
+        this.quantiteDemande = quantiteDemande;
+    }
+
+    public DispoMedical getDispoMedical() {
+        return dispoMedical;
+    }
+
+    public void setDispoMedical(DispoMedical dispoMedical) {
+        this.dispoMedical = dispoMedical;
     }
 
     public Fournisseur getFournisseur() {
@@ -43,16 +59,24 @@ public class LivraisonFournisseur {
         this.fournisseur = fournisseur;
     }
 
-    public LivraisonFournisseur(String dateLivraison, Fournisseur fournisseur) {
-        this.dateLivraison = dateLivraison;
+    public DetailsLivraison getDetailsLivraison() {
+        return detailsLivraison;
+    }
+
+    public void setDetailsLivraison(DetailsLivraison detailsLivraison) {
+        this.detailsLivraison = detailsLivraison;
+    }
+
+    public LivraisonFournisseur(int quantiteDemande, DispoMedical dispoMedical, Fournisseur fournisseur) {
+        this.quantiteDemande = quantiteDemande;
+        this.dispoMedical = dispoMedical;
         this.fournisseur = fournisseur;
     }
 
     public LivraisonFournisseur() {
     }
-
     public String toString(){
-        return this.fournisseur.toString();
+        return dispoMedical.toString() + " " + String.valueOf(quantiteDemande);
     }
 }
 

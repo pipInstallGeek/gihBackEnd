@@ -2,6 +2,9 @@ package ma.uiass.eia.pds.Model;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name="TDetailsLivraison")
 public class DetailsLivraison {
@@ -9,23 +12,23 @@ public class DetailsLivraison {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int codeDetailsFournisseur;
 
-    @ManyToOne
-    @JoinColumn(name = "idDispoMedical", referencedColumnName = "idDispoMedical")
-    private DispoMedical dispoMedical;
-
-    @ManyToOne
-    @JoinColumn(name = "codeLivraisonFournisseur", referencedColumnName = "codeLivraisonFournisseur")
-    private LivraisonFournisseur livraisonFournisseur;
-
     @Column
-    private int quantiteDemande;
+    private String dateLivraison;
 
-    public int getQuantiteDemande() {
-        return quantiteDemande;
+    @OneToMany(mappedBy = "detailsLivraison", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<LivraisonFournisseur> livraisonFournisseurs = new ArrayList<>();
+
+
+    public void addLivraisonFournisseur(LivraisonFournisseur livraisonFournisseur) {
+        livraisonFournisseurs.add(livraisonFournisseur);
+        livraisonFournisseur.setDetailsLivraison(this);
     }
 
-    public void setQuantiteDemande(int quantiteDemande) {
-        this.quantiteDemande = quantiteDemande;
+    public void removeLivraisonFournisseur(LivraisonFournisseur livraisonFournisseur) {
+        livraisonFournisseurs.remove(livraisonFournisseur);
+        livraisonFournisseur.setDetailsLivraison(null);
+
+
     }
 
     public int getCodeDetailsFournisseur() {
@@ -36,31 +39,30 @@ public class DetailsLivraison {
         this.codeDetailsFournisseur = codeDetailsFournisseur;
     }
 
-    public DispoMedical getDispoMedical() {
-        return dispoMedical;
+    public String getDateLivraison() {
+        return dateLivraison;
     }
 
-    public void setDispoMedical(DispoMedical dispoMedical) {
-        this.dispoMedical = dispoMedical;
+    public void setDateLivraison(String dateLivraison) {
+        this.dateLivraison = dateLivraison;
     }
 
-    public LivraisonFournisseur getLivraisonFournisseur() {
-        return livraisonFournisseur;
+    public List<LivraisonFournisseur> getLivraisonFournisseurs() {
+        return livraisonFournisseurs;
     }
 
-    public void setLivraisonFournisseur(LivraisonFournisseur livraisonFournisseur) {
-        this.livraisonFournisseur = livraisonFournisseur;
+    public void setLivraisonFournisseurs(List<LivraisonFournisseur> livraisonFournisseurs) {
+        this.livraisonFournisseurs = livraisonFournisseurs;
     }
 
-    public DetailsLivraison(DispoMedical dispoMedical, LivraisonFournisseur livraisonFournisseur,int quantiteDemande) {
-        this.dispoMedical = dispoMedical;
-        this.livraisonFournisseur = livraisonFournisseur;
-        this.quantiteDemande=quantiteDemande;
+    public DetailsLivraison(String dateLivraison, List<LivraisonFournisseur> livraisonFournisseurs) {
+        this.dateLivraison = dateLivraison;
+        this.livraisonFournisseurs = livraisonFournisseurs;
     }
 
     public DetailsLivraison() {
     }
     public String toString(){
-        return this.dispoMedical.toString() + this.livraisonFournisseur.toString();
+        return String.valueOf(codeDetailsFournisseur) + dateLivraison;
     }
 }

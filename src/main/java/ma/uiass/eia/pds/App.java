@@ -39,7 +39,7 @@
                 System.out.println("server launched Successfully ");
 
 
-/*
+
 
                 IBatimentService batimentService = new BatimentService();
                 IEtageService etageService = new EtageService();
@@ -187,35 +187,6 @@
 
 
 
-
-
-
-
-
-
-
- */
-
-
-
-
-
-               /* List<EtatsAmbulance> etatsAmbulanceList=etatsAmbulanceService.afficherTout();
-                Ambulance ambulance=ambulanceService.afficherTout().get(0);
-                System.out.println(ambulance.getEtatsAmbulance().getStateName().toString().equals("F"));
-
-                System.out.println(ambulanceService.afficherAmbulanceEtat("F"));
-                Ambulance ambulance1=new Ambulance("1/ALIF/20103","123909","12/9/2006");
-                ambulance1.setEtatsAmbulance(etatsAmbulanceList.get(0));
-                ambulanceService.ajouter(ambulance1);*/
-
-
-
-              //  System.out.println(etatsAmbulanceService.afficherTout().get(0));
-
-
-/*
-
                 ambulanceService.ajouter(new Ambulance("1/ALIF/20103","123909","12/9/2006",etat1));
                 Ambulance d2 =new Ambulance("1/ALIF/20103","123909","12/9/2006",etat1);
                 ambulanceService.ajouter(new Ambulance("2/ALIF/20103","390309","1/10/2007",etat2));
@@ -225,6 +196,9 @@
                 ambulanceService.ajouter(new Ambulance("58/ALIF/20103","12093","12/10/2013",etat1));
                 ambulanceService.ajouter(new Ambulance("20/ALIF/20103","149","12/10/2014",etat1));
                 ambulanceService.ajouter(new Ambulance("44/ALIF/20103","1309","12/10/2010",etat1));
+                ambulanceService.ajouter(new Ambulance("4/AL/203","139","12/10/2011",etat2));
+                ambulanceService.ajouter(new Ambulance("2/BA/203","13900","12/10/2017",etat2));
+                ambulanceService.ajouter(new Ambulance("2/HAE/1993","87000","01/10/2015",etat2));
 
 
 
@@ -253,7 +227,9 @@
 
 
 
- */
+
+
+
 
 
 
@@ -268,126 +244,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-/*
-                SalleService salleService=new SalleService();
-                ServiceService serviceService1=new ServiceService();
-                salleService.ajouter(new Salle("Stock",TypeSalle.UNKNOWN,serviceService1.afficherTout().get(serviceService1.afficherTout().size()-1)));
-
-*/
-
-                //------------------------------------------------------------------------------------------------------------------------
-
-
-                /*
-
-                System.out.println(typeDmServiceImp.afficherTypeDm());
-
-
-                TypeDmServiceImp typeDmServiceImp=new TypeDmServiceImp();
-                IDispoMedicalService dispoMedicalServiceImp=new DispoMedicalServiceImp();
-                TypeDM typeDM = new TypeDM("fournitures");
-                typeDmServiceImp.ajouterTypeDm(typeDM);
-
-
-
-                typeDmServiceImp.ajouterTypeDm(new TypeDM("équipement lourd"));
-
-
-             //IDispoMedicalService dispoMedicalServiceImp=new DispoMedicalServiceImp();
-               /* dispoMedicalServiceImp.ajouterDispoMed(new DispoMedical("Scanner",typeDM,22));
-                System.out.println(dispoMedicalServiceImp.afficherDispoMedical());
-
-
-
-
-               // dispoMedicItemService.ajouter(i1);
-
-
-                IDispoMedicalService dispoMedicalServiceImp=new DispoMedicalServiceImp();
-                IDispoMedicItemService dispoMedicItemService=new DispoMedicItemService();
-                ITypeDmService typeDmService=new TypeDmServiceImp();
-
-                TypeDM t1=new TypeDM("équipement léger");
-                typeDmService.ajouterTypeDm(t1);
-                DispoMedical i= new DispoMedical("ScannerAlpha",t1,10);
-                dispoMedicalServiceImp.ajouterDispoMed(i);
-                for(int j=0;j<=3;j++){
-                DispoMedicItem i1=new DispoMedicItem("Scanner"+Integer.valueOf((int)(Math.random()*100)),i);
-                dispoMedicItemService.ajouter(i1);}
-
-
-
-                /*IDetailsService detailsService=new DetailsLivraisonService();
-                System.out.println(detailsService.afficherTout());
-
-
-
-
-
-
-
-
-
-                IDispoMedicalService dispoMedicalServiceImp=new DispoMedicalServiceImp();
-                ILivraisonService livraisonService=new LivraisonFourniseurService();
-                IDetailsService detailsService=new DetailsLivraisonService();
-
-                LivraisonFournisseur l1=new LivraisonFournisseur("BSDS1D",Fournisseur.McKessonCorporation,"10/02/2022");
-                livraisonService.ajouter(l1);
-
-
-                detailsService.ajouter(new DetailsLivraison(12,livraisonService.afficherTout().get(0), dispoMedicalServiceImp.afficherDispoMedical().get(0)));
-
-                System.out.println(dispoMedicalServiceImp.afficherDispoMedical().get(dispoMedicalServiceImp.afficherDispoMedical().size()-1));
-
-
-
-                 */
-
-
-
-/*
-                IAmbulanceService ambulanceService=new AmbulanceService();
-                IEtatsAmbulanceService etatsAmbulanceService=new EtatsAmbulanceService();
-                for(Ambulance ambulance:ambulanceService.afficherTout()){
-                    if(ambulance.getEtatAmbulance() == null){
-                        ambulance.setEtatAmbulance(etatsAmbulanceService.afficherTout().get(0));
-                    }
-                }
-                System.out.println(ambulanceService.afficherAmbulanceEtat("NFCD"));
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- */
 
 
             }
