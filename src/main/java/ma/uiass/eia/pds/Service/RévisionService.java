@@ -32,8 +32,8 @@ RévisionService implements IRévisionService{
     public void addR(String dateR,String dateSortie,double kilométrage, String codeAMB, String dateProRévision, TypeRévision typeR) {
         Ambulance ambulance=ambulanceService.trouverByCode(codeAMB);
         System.out.println(ambulance);
-        String desc=codeAMB+"a été soumise à une "+typeR+"et elle est devenue";
-        Révision r=new Révision(dateR, kilométrage,dateSortie,dateProRévision,desc,typeR,ambulance);
+        String desc=codeAMB+"a été soumise à une "+typeR+"à la date "+dateR+" et elle est devenue Fonctionnelle";
+        Révision r=new Révision(dateR,  kilométrage,"     ",dateProRévision,desc,typeR,ambulance);
         révisionDao.add(r);
         //r.setCodeRévision("REV"+r.getIdRévision());
     }

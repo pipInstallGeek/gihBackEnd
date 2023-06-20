@@ -28,7 +28,6 @@ public class Etage {
     @OneToMany(mappedBy="etage")
     private List<Service> services=new ArrayList<>();
 
-    @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "idBatiment", referencedColumnName = "idBatiment")
     private Batiment batiment;

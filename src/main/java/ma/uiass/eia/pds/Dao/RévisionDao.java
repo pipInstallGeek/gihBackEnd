@@ -90,7 +90,7 @@ public class RévisionDao implements IRévisionDao{
     }
     @Override
     public List<Révision> findbyDateSNull(String immatruculation ) {
-        TypedQuery<Révision> query = entityManager.createQuery("SELECT r FROM Révision r WHERE r.ambulance.immatruculation = :immatruculation AND r.dateSortie='null'", Révision.class);
+        TypedQuery<Révision> query = entityManager.createQuery("SELECT r FROM Révision r WHERE r.ambulance.immatruculation = :immatruculation AND r.dateSortie='     '", Révision.class);
         query.setParameter("immatruculation", immatruculation );
         try {
             return query.getResultList();
